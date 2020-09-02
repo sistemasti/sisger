@@ -1,0 +1,117 @@
+HAFF MER - ADIJA
+
+------------
+table agendas
+	id 
+	evento 
+	informacao
+	data 
+	status
+
+------------
+table doadores
+	id 
+	nome 
+	cpf
+	data_nascimento 
+	celuar 
+	sexo 
+	estado_civil
+	data_cadastro 
+	email 
+	logradouro 
+	numero 
+	complemento 
+	cidade 
+	bairro 
+	uf 
+	cep 
+	observacao 
+	
+------------
+table doacoes
+	id 
+	informacao 
+
+------------
+table convites
+???????
+
+------------
+table colaboradores
+	id 
+	id_perfil
+	nome
+	rg
+	data_nascimento
+	celular
+	sexo
+	estado_civil
+	email
+	logradouro
+	numero
+	complemento
+	cidade
+	uf
+	cep
+	observacao
+	data_cadastro
+	situacao
+
+------------	
+table usuarios
+	id 
+	id_perfil
+	email 
+	senha
+	data_cadastro
+
+------------	
+table perfis
+	id
+	perfil
+
+------------
+table orientacoes_juridicas
+	id 
+	titulo
+	orientacao_juridica
+	data 
+
+------------
+table orientacoes_diabetes
+	id 
+	titulo
+	orientacao_diabete
+	data 
+
+------------	
+table eventos
+	id 
+	id_agenda
+	data 
+
+------------	
+table eventos_fotos
+	id 
+	id_evento
+	foto
+
+------------	
+table departamentos
+	id 
+	departamentos
+
+------------
+table fale_conosco 
+	id 
+	id_departamento
+	nome 
+	email 
+	telefone 
+	mensagem 
+	data 
+	status
+	
+
+

@@ -1,0 +1,24 @@
+<?php
+session_start();
+include("../functions.php");
+include("../models/DB.class.php");
+include("../controllers/EC_Build_value_pie.class.php");
+ 	/**/
+	/* echo "<pre>";
+	print_r($_POST);
+	echo "</pre>";  */  
+	
+	Build_value_pie::update_subgroup($_POST['nameSubgroup'],$_POST['definitioSubgroup'],$_POST['noteSubgroup'],$_POST['subgroup_selected']);
+	
+	
+echo 1;
+
+?>
+
+
+
+
+
+
+
+
