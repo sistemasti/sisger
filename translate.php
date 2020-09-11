@@ -34,7 +34,85 @@
 	$_SESSION['pt-br']['click to activate'] 			= "clique para ativar";
 	$_SESSION['pt-br']['Edit'] 							= "Edit";
 	$_SESSION['pt-br']['Comment'] 						= "Observação";
+	
+#analyze_graphs.php
+	$_SESSION['pt-br']['Risk Graphs'] 								= "Gráficos de Risco";
+	$_SESSION['pt-br']['Use the Value Pie, then sort by'] 			= "Classifique pelo formta de torta";
+	$_SESSION['pt-br']['By Agent, Type'] 							= "Por agente";
+	$_SESSION['pt-br']['By Magnitude of Risk'] 						= "Por magnitude de risco";
+	$_SESSION['pt-br']['By Frequency or Rate'] 						= "Por frenquencia ou taxa";
+	$_SESSION['pt-br']['By Loss to Each Item Affected'] 			= "Por perda de cada item afetado";
+	$_SESSION['pt-br']['By Items Affected'] 						= "Por itens afetados";
+	$_SESSION['pt-br']['Consider all items equal, then sort by']	= "Considerando todos os itens iguais";	
+	$_SESSION['pt-br']['Time horizon'] 								= "Horizonte de tempo";
+	$_SESSION['pt-br']['Risk Totals For Agents'] 					= "Total de riscos por agentes";
+	$_SESSION['pt-br']['Frequency / Rate'] 							= "Frenquencia / Taxa";
+	$_SESSION['pt-br']['Loss to object'] 							= "Perda para objetos";
+	$_SESSION['pt-br']['Collection affected'] 						= "Coleção afetada";
+	
 
+#analyze_options.php
+	$_SESSION['pt-br']['Analyze Options'] 						= "Opções de análise";
+	$_SESSION['pt-br']['Risk'] 									= "Risco";
+	$_SESSION['pt-br']['select'] 								= "selecione";
+	$_SESSION['pt-br']['Options'] 								= "Opções";
+	$_SESSION['pt-br']['Frequency o Rate (A)'] 					= "Frequencia ou Taxa (A)";
+	$_SESSION['pt-br']['Loss to each item (B)'] 				= "Perda para cada item(B)";
+	$_SESSION['pt-br']['Items Affected(C)'] 					= "Itens afetados(C)";
+	$_SESSION['pt-br']['Magnitude of Risk']						= "Magnitude do Risco";	
+	$_SESSION['pt-br']['Low'] 									= "Baixa";
+	$_SESSION['pt-br']['Probable'] 								= "Provável";
+	$_SESSION['pt-br']['High'] 									= "Alta";
+	$_SESSION['pt-br']['Uncertainty range'] 					= "Faixa de incerteza";
+	$_SESSION['pt-br']['Expected Scores (average)'] 			= "Pontuações esperadas (média)";
+	$_SESSION['pt-br']['Frequency or Rate'] 					= "Frequencia ou Taxa";
+	$_SESSION['pt-br']['Loss to each item affected'] 			= "Perda para cada item";
+	$_SESSION['pt-br']['Items affected'] 						= "Itens afetados";
+	
+#analyze_risks.php
+	$_SESSION['pt-br']['Analyze Risks'] 							= "Analise de riscos";
+	$_SESSION['pt-br']['Name'] 									= "Nome";
+	$_SESSION['pt-br']['select'] 									= "selecione";
+	$_SESSION['pt-br']['Agent'] 									= "Agente";
+	$_SESSION['pt-br']['Description'] 							= "Descrição";	
+	$_SESSION['pt-br']['Log triangle distribution (default)'] 	= "Distribuição do triângulo de log (padrão)";
+	$_SESSION['pt-br']['Linear triangle distribution'] 			= "Distribuição linear do triângulo";
+	$_SESSION['pt-br']['Simple use of problable value'] 			= "Uso simples de valor provável";
+	$_SESSION['pt-br']['Type of calculation used for expected values (used for the risk and any associated options)'] 			= "Tipo de cálculo usado para os valores esperados (usado para o risco e quaisquer opções associadas)";
+
+#analyze_risks_frequency_or_rate.php 
+	$_SESSION['pt-br']['Time horizon, years'] 														= "Horizonte de tempo, em anos";
+	$_SESSION['pt-br']['Select the type risk']														= "Selecione o tipo de risco";
+	$_SESSION['pt-br']['Event, rare (time between events greater than time horizon)'] 				= "Evento, raro (tempo entre eventos maior que o horizonte de tempo)";
+	$_SESSION['pt-br']['Event, frequent (must be at least one year between events)'] 				= "Evento, frequente (deve haver pelo menos um ano entre eventos)";
+	$_SESSION['pt-br']['Process or cumulative events, analysed over a particular period of time'] 	= "Eventos de processo ou cumulativos, analisados ao longo de um determinado período de tempo";
+	$_SESSION['pt-br']['Process or cumulative events, analyzed at the time horizon'] 				= "Eventos de processo ou cumulativos, analisados no horizonte de tempo";
+	$_SESSION['pt-br']['Process or cumulative events, analyzed at a particular stage of damage'] 	= "Processos ou eventos cumulativos, analisados em um estágio específico de dano";
+	$_SESSION['pt-br']['Not selected yet']															= "Ainda não selecionado";
+	$_SESSION['pt-br']['How often will the event occur?'] 											= "Com que frequência o evento ocorrerá?";
+	$_SESSION['pt-br']['Explain your estimates for frequency or rate'] 								= "Explique suas estimativas de frequência ou taxa";
+	$_SESSION['pt-br']['Zoom explanation and notes'] 												= "Explicação e notas do zoom";
+	$_SESSION['pt-br']['Low estimate of years'] 													= "Estimativa baixa de anos";
+	$_SESSION['pt-br']['Average time period between events, years'] 								= "Período médio de tempo entre eventos, em anos";
+	$_SESSION['pt-br']['High estimate of years'] 													= "Alta estimativa de anos";
+	$_SESSION['pt-br']['Analysis notes and documents (A)'] 											= "Análise de notas e documentos";
+	$_SESSION['pt-br']['Explain your estimates for frequency or rate'] 								= "Explique suas estimativas de frequência ou taxa";
+	$_SESSION['pt-br']['Notes for this explanation'] 												= "Notas para esta explicação";
+	$_SESSION['pt-br']['Documents associated with this risk its options'] 							= "Documentos associados a este risco com suas opções";
+	$_SESSION['pt-br']['Document name'] 															= "Nome do documento";
+	$_SESSION['pt-br']['Comment'] 																	= "Comente";
+	$_SESSION['pt-br']['External Link'] 															= "Link externo";
+	$_SESSION['pt-br']['or Document link'] 															= "ou link para documento";
+	$_SESSION['pt-br']['Close'] 																	= "Fechar";
+	$_SESSION['pt-br']['Save changes'] 																= "Salvar alterações";
+	$_SESSION['pt-br']['Register save successfull'] 												= "Registro realizado com sucesso";
+	$_SESSION['pt-br']['How often will the event occur?'] 											= "Com que frequência o evento ocorrerá?";
+	$_SESSION['pt-br']['How soon will the process cause the specified loss?'] 						= "Em quanto tempo o processo causará a perda especificada?";
+	$_SESSION['pt-br']['Most probable time period between events, years'] 							= "Período de tempo mais provável entre eventos, em anos";
+	$_SESSION['pt-br']['Average time period between events (must be more than 1 year)'] 			= "Período médio de tempo entre eventos (deve ser mais de 1 ano)";
+	$_SESSION['pt-br']['This time period has been selected for analysis of the loss to each item affected'] = "Este período de tempo foi selecionado para análise da perda de cada item afetado";
+	$_SESSION['pt-br']['A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss'] = "Uma perda específica para cada item afetado foi selecionada para análise, esta é a estimativa de anos necessários para atingir essa perda";
+	
 
 
 
@@ -70,4 +148,101 @@
 	$_SESSION['eng']['portuguese'] 						= "portuguese";
 	$_SESSION['eng']['english'] 						= "english";
 	$_SESSION['eng']['new project'] 					= "new project";
+	
+#analyze_graphs.php
+	$_SESSION['eng']['Risk Graphs'] 							= "Risk Graphs";
+	$_SESSION['eng']['Use the Value Pie, then sort by'] 		= "Use the Value Pie, then sort by";
+	$_SESSION['eng']['By Agent, Type'] 							= "By Agent, Type";
+	$_SESSION['eng']['By Magnitude of Risk'] 					= "By Magnitude of Risk";
+	$_SESSION['eng']['By Frequency or Rate'] 					= "By Frequency or Rate";
+	$_SESSION['eng']['By Loss to Each Item Affected'] 			= "By Loss to Each Item Affected";
+	$_SESSION['eng']['By Items Affected'] 						= "By Items Affected";
+	$_SESSION['eng']['Consider all items equal, then sort by'] 	= "Consider all items equal, then sort bys";
+	$_SESSION['eng']['By Agent, Type'] 							= "By Agent, Type";
+	$_SESSION['eng']['By Magnitude of Risk'] 					= "By Magnitude of Risk";
+	$_SESSION['eng']['Time horizon'] 							= "Time horizon";
+	$_SESSION['eng']['Risk Totals For Agents'] 					= "Risk Totals For Agentss";
+	$_SESSION['eng']['By Magnitude of Risk'] 					= "By Magnitude of Risk";
+	$_SESSION['eng']['Frequency / Rate'] 						= "Frequency / Rate";
+	$_SESSION['eng']['Loss to object'] 							= "Loss to object";
+	$_SESSION['eng']['Collection affected'] 					= "Collection affected";
+
+#analyze_options.php
+	$_SESSION['eng']['Analyze Options'] 						= "Analyze Options";
+	$_SESSION['eng']['Risk'] 									= "Risk";
+	$_SESSION['eng']['select'] 									= "select";
+	$_SESSION['eng']['Options'] 								= "Options";
+	$_SESSION['eng']['Frequency o Rate (A)'] 					= "Frequency or Rate (A)";
+	$_SESSION['eng']['Loss to each item (B)'] 					= "Loss to each item (B)";
+	$_SESSION['eng']['Items Affected(C)'] 						= "Items Affected(C)";
+	$_SESSION['eng']['Magnitude of Risk']						= "Magnitude of Risk";	
+	$_SESSION['eng']['Low'] 									= "Low";
+	$_SESSION['eng']['Probable'] 								= "Probable";
+	$_SESSION['eng']['High'] 									= "High";
+	$_SESSION['eng']['Uncertainty range'] 						= "Uncertainty range";
+	$_SESSION['eng']['Expected Scores (average)'] 				= "Expected Scores (average)";
+	$_SESSION['eng']['Frequency or Rate'] 						= "Frequency or Rate";
+	$_SESSION['eng']['Loss to each item affected'] 				= "Loss to each item affected";
+	$_SESSION['eng']['Items affected'] 							= "Items affected";
+	
+	
+#analyze_risks.php
+	$_SESSION['eng']['Analyze Risks'] 							= "Analyze Risks";
+	$_SESSION['eng']['Name'] 									= "Name";
+	$_SESSION['eng']['select'] 									= "select";
+	$_SESSION['eng']['Agent'] 									= "Agent";
+	$_SESSION['eng']['Description'] 							= "Description";
+	$_SESSION['eng']['Frequency o Rate (A'] 					= "Frequency o Rate (A";
+	$_SESSION['eng']['Loss to each item (B)'] 					= "Loss to each item (B)";
+	$_SESSION['eng']['Items Affected(C)'] 						= "Items Affected(C)";
+	$_SESSION['eng']['Magnitude of Risk']						= "Magnitude of Risk";	
+	$_SESSION['eng']['Low'] 									= "Low";
+	$_SESSION['eng']['Probable'] 								= "Probable";
+	$_SESSION['eng']['High'] 									= "High";
+	$_SESSION['eng']['Uncertainty range'] 						= "Uncertainty range";
+	$_SESSION['eng']['Expected Scores (average)'] 				= "Expected Scores (average)";
+	$_SESSION['eng']['Frequency or Rate'] 						= "Frequency or Rate";
+	$_SESSION['eng']['Loss to each item affected'] 				= "Loss to each item affected";
+	$_SESSION['eng']['Items affected'] 							= "Items affected";
+	$_SESSION['eng']['Log triangle distribution (default)'] 	= "Log triangle distribution (default)";
+	$_SESSION['eng']['Linear triangle distribution'] 			= "Linear triangle distribution";
+	$_SESSION['eng']['Simple use of problable value'] 			= "Simple use of problable value";
+	$_SESSION['eng']['Type of calculation used for expected values (used for the risk and any associated options)'] 			= "Type of calculation used for expected values (used for the risk and any associated options)";
+	 /* */
+	
+#analyze_risks_frequency_or_rate.php 
+	$_SESSION['eng']['Time horizon, years'] 													= "Time horizon, years";
+	$_SESSION['eng']['Select the type risk']													= "Select the type risk";
+	$_SESSION['eng']['Event, rare (time between events greater than time horizon)'] 			= "Event, rare (time between events greater than time horizon)";
+	$_SESSION['eng']['Event, frequent (must be at least one year between events)'] 				= "Event, frequent (must be at least one year between events)";
+	$_SESSION['eng']['Process or cumulative events, analysed over a particular period of time'] = "Process or cumulative events, analysed over a particular period of time";
+	$_SESSION['eng']['Process or cumulative events, analyzed at the time horizon'] 				= "Process or cumulative events, analyzed at the time horizon";
+	$_SESSION['eng']['Process or cumulative events, analyzed at a particular stage of damage'] 	= "Process or cumulative events, analyzed at a particular stage of damage";
+	$_SESSION['eng']['Not selected yet']														= "Not selected yet";
+	$_SESSION['eng']['How often will the event occur?'] 										= "How often will the event occur?";
+	$_SESSION['eng']['Explain your estimates for frequency or rate'] 							= "Explain your estimates for frequency or rate";
+	$_SESSION['eng']['Zoom explanation and notes'] 												= "Zoom explanation and notes";
+	$_SESSION['eng']['Low estimate of years'] 													= "Low estimate of years";
+	$_SESSION['eng']['Average time period between events, years'] 								= "Average time period between events, years";
+	$_SESSION['eng']['High estimate of years'] 													= "High estimate of years";
+	$_SESSION['eng']['Analysis notes and documents (A)'] 										= "Analysis notes and documents (A)";
+	$_SESSION['eng']['Explain your estimates for frequency or rate'] 							= "Explain your estimates for frequency or rate";
+	$_SESSION['eng']['Notes for this explanation'] 												= "Notes for this explanation";
+	$_SESSION['eng']['Documents associated with this risk its options'] 						= "Documents associated with this risk its options";
+	$_SESSION['eng']['Document name'] 															= "Document name";
+	$_SESSION['eng']['Comment'] 																= "Comment";
+	$_SESSION['eng']['External Link'] 															= "External Link";
+	$_SESSION['eng']['or Document link'] 														= "or Document link";
+	$_SESSION['eng']['Close'] 																	= "Close";
+	$_SESSION['eng']['Save changes'] 															= "Save changes";
+	$_SESSION['eng']['Register save successfull'] 												= "Register save successfull";
+	$_SESSION['eng']['How often will the event occur?'] 										= "How often will the event occur?";
+	$_SESSION['eng']['How soon will the process cause the specified loss?'] 					= "How soon will the process cause the specified loss?";
+	$_SESSION['eng']['Most probable time period between events, years'] 						= "Most probable time period between events, years";
+	$_SESSION['eng']['Average time period between events (must be more than 1 year)'] 			= "Average time period between events (must be more than 1 year)";
+	$_SESSION['eng']['This time period has been selected for analysis of the loss to each item affected'] = "This time period has been selected for analysis of the loss to each item affected";
+	$_SESSION['eng']['A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss'] = "A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss";
+	
+	
+	
 ?>
