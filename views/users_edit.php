@@ -153,14 +153,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
 									
 								if ( isset($_POST['cadastrar']) ){
 									
-									if($i['cpf'] != $cpf){
+									/* if($i['cpf'] != $cpf){
 										$c_cpf = Users::isset_cpf($cpf);									
 										if($c_cpf['num'] > 0){
 											
 											$txterr="SSN / CPF already registered";
 											
 										}	
-									}
+									} */
 									
 									if($i['email'] != $email){
 										$c_email = Users::isset_email($email);									
@@ -181,10 +181,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
 										
 									if ( $txterr == "" ){
 										
-											Users::update_user($name, $email, $cpf, $matriculation, $telephone, $first_acess,  $institutions_id, $profiles_id, $_REQUEST['id']);
+											Users::update_user($name, $email, '-', '-', $telephone, $first_acess,  $institutions_id, $profiles_id, $_REQUEST['id']);
 										
 											if(!empty($password)){
-												Users::udate_user_password($password,$_REQUEST['id']);
+												Users::update_user_password($password,$_REQUEST['id']);
 											}	
 										
 										echo'<script language= "JavaScript">alert("Registration successful.");location.href="users_report"</script>';
@@ -227,18 +227,18 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
                     <input type="email" class="form-control" id="email"
 					name="email" placeholder="Enter email" value="<?php echo $email; ?>">
                   </div>
-				  
+				 <!-- 
 			    <div class="form-group">
                     <label for="Sigla">SSN / CPF</label>
                     <input type="text" class="form-control" id="cpf"
 					name="cpf" placeholder="Enter documentation"  required value="<?php echo $cpf; ?>">
-                </div>
-				  
+                </div>-->
+				<!--  
 				<div class="form-group">
                         <label>Matriculation</label>
                         <input type="text" class="form-control" id="matriculation"
 					name="matriculation" placeholder=""  required value="<?php echo $matriculation; ?>">
-                </div>
+                </div>-->
 				
 				<div class="form-group">
                         <label>Telephone</label>

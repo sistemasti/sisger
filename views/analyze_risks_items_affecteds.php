@@ -8,7 +8,7 @@
 										
 										if(value < document.getElementById('plia').value){
 												f=1; 	
-												alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+												alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty']."'"; ?>);
 										}
 
 									}
@@ -17,7 +17,7 @@
 
 										if(value > document.getElementById('heia').value || value < document.getElementById('leia').value ){
 												f=1; 	
-												alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+												alert(<?php echo "'".$_SESSION[$_SESSION['lang']]["This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty"]."'"; ?>");
 										}
 
 									}
@@ -26,7 +26,7 @@
 
 										if(value > document.getElementById('plia').value ){
 												f=1; 	
-												alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+												alert(<?php echo "'".$_SESSION[$_SESSION['lang']]["This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty"]."'"; ?>");
 										}
 
 									}
@@ -91,7 +91,7 @@ echo "</pre>"; */
 											  &nbsp;
 											  &nbsp;
 											  &nbsp;
-											  &nbsp; <span >Uncertainty range</span>
+											  &nbsp; <span ><?php echo $_SESSION[$_SESSION['lang']]['Uncertainty range']; ?> </span>
 											  <input type="hidden" id="ia_Inp_Range" name="ia_Inp_Range" value="">	
 											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="ia_Div_Range">0.0</div>
 											  </div>
@@ -100,15 +100,15 @@ echo "</pre>"; */
 											  
 										  <BR>
 										  <BR>
-										<span id="title_id" style="font-size:22px;">What fraction of the value will be affected?</span>
+										<span id="title_id" style="font-size:22px;"><?php echo $_SESSION[$_SESSION['lang']]['What fraction of the value will be affected?']; ?></span>
 										  <BR>
 										  <BR>
 											<div class="form-group">
-														<label for="Sigla">Explain your estimates for frequency or rate</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['What fraction of the value will be affected?']; ?></label>
 														<textarea class="form-control" name="explain_ia" id="explain_ia"><?php echo $explain_ia; ?></textarea>
 														
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg_ia" style="float:right; margin-top:2px">
-                  Zoom explanation and notes
+                 <?php echo $_SESSION[$_SESSION['lang']]['Zoom explanation and notes']; ?>
                 </button>	
 				<br>
 				<br>
@@ -117,17 +117,17 @@ echo "</pre>"; */
 				
 											
 											<br>
-											C.2 Select how this score will be entered:
+											C.2 <?php echo $_SESSION[$_SESSION['lang']]['Select how this score will be entered']; ?>
 											<br>
 											
 											<input type="radio" name="type_score" id="type_score_1" value="1"  onclick="
 													document.getElementById('bxFractionAffected').style.display='block';
-													document.getElementById('bxValuePieAffected').style.display='none';" <?php if (!isset($_GET['ca_high'])){ echo "checked";}else{echo "";} ?> > Steps scale, considering the heritage asset as a whole.
+													document.getElementById('bxValuePieAffected').style.display='none';" <?php if (!isset($_GET['ca_high'])){ echo "checked";}else{echo "";} ?> > <?php echo $_SESSION[$_SESSION['lang']]['Steps scale, considering the heritage asset as a whole.']; ?>
 													
 													<br>
 											<input type="radio" name="type_score" id="type_score_2" value="2" onclick="
 													document.getElementById('bxFractionAffected').style.display='none';
-													document.getElementById('bxValuePieAffected').style.display='block';" <?php if (isset($_GET['ca_high'])){ echo "checked";}else{echo "";} ?>> More precise data using the value pie<br>
+													document.getElementById('bxValuePieAffected').style.display='block';" <?php if (isset($_GET['ca_high'])){ echo "checked";}else{echo "";} ?>> <?php echo $_SESSION[$_SESSION['lang']]['More precise data using the value pie']; ?><br>
 											
 											<input type="hidden" name="C_type_list" id="C_type_list" value='1'>
 											<br>
@@ -146,59 +146,59 @@ echo "</pre>"; */
 											?>
 											
 													<div class="form-group">
-														<label for="Sigla">High estimate</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['High estimate']; ?></label>
 														<select class="form-control" id="heia" name="heia"  onchange="range_I_A('Max',this.value)">
                            
-																<option value="0.0" >Select</option>
-																<option value="5.0" <?php if($heia == "5.0"){ echo "selected"; } ?>>~1, All or most of the whole asset value</option>
-																<option value="4.5" <?php if($heia == "4.5"){ echo "selected"; } ?>>~1/3   Between most and a large fraction of the whole asset value.</option>
-																<option value="4.0" <?php if($heia == "4.0"){ echo "selected"; } ?>>~1/10  A large fraction of the whole asset value.</option>
-																<option value="3.5" <?php if($heia == "3.5"){ echo "selected"; } ?>>~1/30  Between large and small fraction of the whole asset value.</option>
-																<option value="3.0" <?php if($heia == "3.0"){ echo "selected"; } ?>>~1/100  A small fraction of the whole asset value.</option>
-																<option value="2.5" <?php if($heia == "2.5"){ echo "selected"; } ?>>~1/300  Between small and tiny fraction of the whole asset value.</option>
-																<option value="2.0" <?php if($heia == "2.0"){ echo "selected"; } ?>>~1/1000  A tiny fraction of the whole asset value.</option>
-																<option value="1.5" <?php if($heia == "1.5"){ echo "selected"; } ?>>~1/3 000  Between a tiny fraction and a trace of the whole asset value.</option>
-																<option value="1.0" <?php if($heia == "1.0"){ echo "selected"; } ?>>~1/10 000  A trace of the whole asset value.</option>
-																<option value="0.5" <?php if($heia == "0.5"){ echo "selected"; } ?>>~1/30 000  Less than a trace of the whole asset value but not zero.</option>
+																<option value="0.0" ><?php echo $_SESSION[$_SESSION['lang']]['Select']; ?></option>
+																<option value="5.0" <?php if($heia == "5.0"){ echo "selected"; } ?>>~1, <?php echo $_SESSION[$_SESSION['lang']]['All or most of the whole asset value']; ?></option>
+																<option value="4.5" <?php if($heia == "4.5"){ echo "selected"; } ?>>~1/3   <?php echo $_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']; ?></option>
+																<option value="4.0" <?php if($heia == "4.0"){ echo "selected"; } ?>>~1/10  <?php echo $_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']; ?></option>
+																<option value="3.5" <?php if($heia == "3.5"){ echo "selected"; } ?>>~1/30  <?php echo $_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']; ?>.</option>
+																<option value="3.0" <?php if($heia == "3.0"){ echo "selected"; } ?>>~1/100  <?php echo $_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']; ?>.</option>
+																<option value="2.5" <?php if($heia == "2.5"){ echo "selected"; } ?>>~1/300  <?php echo $_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']; ?>.</option>
+																<option value="2.0" <?php if($heia == "2.0"){ echo "selected"; } ?>>~1/1000  <?php echo $_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']; ?>.</option>
+																<option value="1.5" <?php if($heia == "1.5"){ echo "selected"; } ?>>~1/3 000  <?php echo $_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']; ?>.</option>
+																<option value="1.0" <?php if($heia == "1.0"){ echo "selected"; } ?>>~1/10 000  <?php echo $_SESSION[$_SESSION['lang']]['A trace of the whole asset value']; ?>.</option>
+																<option value="0.5" <?php if($heia == "0.5"){ echo "selected"; } ?>>~1/30 000  <?php echo $_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']; ?>.</option>
 																
 																
 														 
 														</select>
 													</div>
 													<div class="form-group">
-														<label for="Sigla">Probable loss to each item affected</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Probable loss to each item affected']; ?></label>
 														<select class="form-control" id="plia" name="plia" onchange="range_I_A('Med',this.value)">
 																
-																<option value="0.0" >Select</option>	
-																<option value="5.0" <?php if($plia == "5.0"){ echo "selected"; } ?>>~1, All or most of the whole asset value</option>
-																<option value="4.5" <?php if($plia == "4.5"){ echo "selected"; } ?>>~1/3  Between most and a large fraction of the whole asset value.</option>
-																<option value="4.0" <?php if($plia == "4.0"){ echo "selected"; } ?>>~1/10  A large fraction of the whole asset value.</option>
-																<option value="3.5" <?php if($plia == "3.5"){ echo "selected"; } ?>>~1/30  Between large and small fraction of the whole asset value.</option>
-																<option value="3.0" <?php if($plia == "3.0"){ echo "selected"; } ?>>~1/100   A small fraction of the whole asset value.</option>
-																<option value="2.5" <?php if($plia == "2.5"){ echo "selected"; } ?>>~1/300  Between small and tiny fraction of the whole asset value.</option>
-																<option value="2.0" <?php if($plia == "2.0"){ echo "selected"; } ?>>~1/1000  A tiny fraction of the whole asset value.</option>
-																<option value="1.5" <?php if($plia == "1.5"){ echo "selected"; } ?>>~1/3 000  Between a tiny fraction and a trace of the whole asset value.</option>
-																<option value="1.0" <?php if($plia == "1.0"){ echo "selected"; } ?>>~1/10 000  A trace of the whole asset value.</option>
-																<option value="0.5" <?php if($plia == "0.5"){ echo "selected"; } ?>>~1/30 000  Less than a trace of the whole asset value but not zero.</option>
+																<option value="0.0" ><?php echo $_SESSION[$_SESSION['lang']]['Select']; ?></option>	
+																<option value="5.0" <?php if($plia == "5.0"){ echo "selected"; } ?>>~1, <?php echo $_SESSION[$_SESSION['lang']]['All or most of the whole asset value']; ?></option>
+																<option value="4.5" <?php if($plia == "4.5"){ echo "selected"; } ?>>~1/3  <?php echo $_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']; ?>.</option>
+																<option value="4.0" <?php if($plia == "4.0"){ echo "selected"; } ?>>~1/10  <?php echo $_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']; ?>.</option>
+																<option value="3.5" <?php if($plia == "3.5"){ echo "selected"; } ?>>~1/30  <?php echo $_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']; ?>.</option>
+																<option value="3.0" <?php if($plia == "3.0"){ echo "selected"; } ?>>~1/100   <?php echo $_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']; ?>.</option>
+																<option value="2.5" <?php if($plia == "2.5"){ echo "selected"; } ?>>~1/300  <?php echo $_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']; ?></option>
+																<option value="2.0" <?php if($plia == "2.0"){ echo "selected"; } ?>>~1/1000  <?php echo $_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']; ?>.</option>
+																<option value="1.5" <?php if($plia == "1.5"){ echo "selected"; } ?>>~1/3 000  <?php echo $_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']; ?>.</option>
+																<option value="1.0" <?php if($plia == "1.0"){ echo "selected"; } ?>>~1/10 000  <?php echo $_SESSION[$_SESSION['lang']]['A trace of the whole asset value']; ?>.</option>
+																<option value="0.5" <?php if($plia == "0.5"){ echo "selected"; } ?>>~1/30 000  <?php echo $_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']; ?>.</option>
 														  
 														 
 														</select>
 													</div>
 													<div class="form-group">
-														<label for="Sigla">Low estimate</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate']; ?></label>
 														<select class="form-control" id="leia" name="leia" onchange="range_I_A('Min',this.value)">
 																
-																<option value="0.0" >Select</option>
-																<option value="5.0" <?php if($leia == "5.0"){ echo "selected"; } ?>>~1, All or most of the whole asset value</option>
-																<option value="4.5" <?php if($leia == "4.5"){ echo "selected"; } ?>>~1/3  Between most and a large fraction of the whole asset value.</option>
-																<option value="4.0" <?php if($leia == "4.0"){ echo "selected"; } ?>>~1/10  A large fraction of the whole asset value.</option>
-																<option value="3.5" <?php if($leia == "3.5"){ echo "selected"; } ?>>~1/30  Between large and small fraction of the whole asset value.</option>
-																<option value="3.0" <?php if($leia == "3.0"){ echo "selected"; } ?>>~1/100  A small fraction of the whole asset value.</option>
-																<option value="2.5" <?php if($leia == "2.5"){ echo "selected"; } ?>>~1/300  Between small and tiny fraction of the whole asset value.</option>
-																<option value="2.0" <?php if($leia == "2.0"){ echo "selected"; } ?>>~1/1000  A tiny fraction of the whole asset value.</option>
-																<option value="1.5" <?php if($leia == "1.5"){ echo "selected"; } ?>>~1/3 000  Between a tiny fraction and a trace of the whole asset value.</option>
-																<option value="1.0" <?php if($leia == "1.0"){ echo "selected"; } ?>>~1/10 000  A trace of the whole asset value.</option>
-																<option value="0.5" <?php if($leia == "0.5"){ echo "selected"; } ?>>~1/30 000  Less than a trace of the whole asset value but not zero.</option>
+																<option value="0.0" ><?php echo $_SESSION[$_SESSION['lang']]['Select']; ?></option>
+																<option value="5.0" <?php if($leia == "5.0"){ echo "selected"; } ?>>~1, <?php echo $_SESSION[$_SESSION['lang']]['All or most of the whole asset value']; ?></option>
+																<option value="4.5" <?php if($leia == "4.5"){ echo "selected"; } ?>>~1/3  <?php echo $_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']; ?>.</option>
+																<option value="4.0" <?php if($leia == "4.0"){ echo "selected"; } ?>>~1/10  <?php echo $_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']; ?>.</option>
+																<option value="3.5" <?php if($leia == "3.5"){ echo "selected"; } ?>>~1/30  <?php echo $_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']; ?>.</option>
+																<option value="3.0" <?php if($leia == "3.0"){ echo "selected"; } ?>>~1/100  <?php echo $_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']; ?>.</option>
+																<option value="2.5" <?php if($leia == "2.5"){ echo "selected"; } ?>>~1/300  <?php echo $_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']; ?>.</option>
+																<option value="2.0" <?php if($leia == "2.0"){ echo "selected"; } ?>>~1/1000 <?php echo $_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']; ?> .</option>
+																<option value="1.5" <?php if($leia == "1.5"){ echo "selected"; } ?>>~1/3 000  <?php echo $_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']; ?>.</option>
+																<option value="1.0" <?php if($leia == "1.0"){ echo "selected"; } ?>>~1/10 000  <?php echo $_SESSION[$_SESSION['lang']]['A trace of the whole asset value']; ?>.</option>
+																<option value="0.5" <?php if($leia == "0.5"){ echo "selected"; } ?>>~1/30 000  <?php echo $_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']; ?>.</option>
 														  
 														 
 														</select>
@@ -222,7 +222,7 @@ echo "</pre>"; */
 											<br>
 											<br>
 
-<a href="javascript:void(0)" onclick="if(document.getElementById('risk').value=='' || document.getElementById('risk').value=='#' ){alert('select a risk');}else{location.href = 'zoom_list?risk_id='+document.getElementById('risk').value;}"><center><button type="button" class="btn btn-block bg-gradient-info btn-sm" style="padding:20px;width:60%" >Zoom list of items affected</button></center></a>
+<a href="javascript:void(0)" onclick="if(document.getElementById('risk').value=='' || document.getElementById('risk').value=='#' ){alert('select a risk');}else{location.href = 'zoom_list?risk_id='+document.getElementById('risk').value;}"><center><button type="button" class="btn btn-block bg-gradient-info btn-sm" style="padding:20px;width:60%" ><?php echo $_SESSION[$_SESSION['lang']]['Zoom list of items affected']; ?></button></center></a>
 											<br>
 											<br>
 											<br>
@@ -300,7 +300,7 @@ echo "</pre>"; */
 													</div>	-->
 													<br>
 								
-									<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="items_affecteds_register()">Save</button>
+									<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="items_affecteds_register()"><?php echo $_SESSION[$_SESSION['lang']]['Save']; ?></button>
 							<!--<button type="button" class="btn btn-block bg-gradient-success btn-sm">Refresh calculations</button>-->
 							</form>
 						  </div>
@@ -315,7 +315,7 @@ echo "</pre>"; */
 							<div class="modal-dialog modal-lg">
 							  <div class="modal-content">
 								<div class="modal-header">
-								  <h4 class="modal-title">Analysis notes and documents (C)</h4>
+								  <h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Analysis notes and documents']; ?> (C)</h4>
 								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								  </button>
@@ -333,38 +333,38 @@ echo "</pre>"; */
 									<div class="row">
 												<div class="col-sm-6 col-md-6">
 													<div class="form-group">
-														<label for="Sigla">Explain your estimates for items affecteds</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for items affecteds']; ?></label>
 														<textarea class="form-control" name="ia_zoom_explanation_fields" ID="ia_zoom_explanation_fields"><?php echo $ia_zoom_explanation_fields; ?></textarea>
 													</div>	
 												</div>	
 												<div class="col-sm-6 col-md-6">
 												<div class="form-group">
-														<label for="Sigla">Notes for this explanation .</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Notes for this explanation']; ?> .</label>
 														<textarea class="form-control" name="ia_zoom_notes_explanation" ID="ia_zoom_notes_explanation"><?php echo $ia_zoom_notes_explanation; ?></textarea>
 													</div>	
 												</div>
 									</div>
 									<hr>
-									<h5>Documents associated with this risk its options</h5>
+									<h5><?php echo $_SESSION[$_SESSION['lang']]['Documents associated with this risk its options']; ?></h5>
 									<br>
 									<div class="row">
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">Document name</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document name']; ?></label>
 														<input type="text" class="form-control" id="ia_zoom_document_name"
 													name="ia_zoom_document_name" placeholder=""  required value="<?php echo $ia_zoom_document_name; ?>" >
 													</div>	
 												</div>	
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">Comment</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Comment']; ?></label>
 														<input type="text" class="form-control" id="ia_zoom_comment"
 													name="ia_zoom_comment" placeholder=""  required value="<?php echo $ia_zoom_comment; ?>" >
 													</div>	
 												</div>
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">Link..</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Link']; ?>..</label>
 														<input type="text" class="form-control" id="ia_zoom_link"
 													name="ia_zoom_link" placeholder=""  required value="<?php echo $ia_zoom_link; ?>" >
 													<div id="ia_zoom_link_bx" style="background-color: #c5dcc6;padding:7px;">
@@ -378,7 +378,7 @@ echo "</pre>"; */
 												</div>														
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">Document file</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document file']; ?></label>
 														
 													<input type="text" class="form-control" id="ia_zoom_document_file"
 													name="ia_zoom_document_file" placeholder=""  required value="<?php echo $ia_zoom_document_file; ?>" >
@@ -401,8 +401,8 @@ echo "</pre>"; */
 									</div>
 								</div>
 								<div class="modal-footer justify-content-between">
-								  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								  <button type="button" class="btn btn-primary" onclick="zoom_ia_save()" data-dismiss="modal">Save changes</button>
+								  <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>
+								  <button type="button" class="btn btn-primary" onclick="zoom_ia_save()" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Save changes']; ?></button>
 								</div>
 							  </div>
 							  <!-- /.modal-content -->
@@ -418,7 +418,7 @@ echo "</pre>"; */
 					<div class="modal-dialog modal-lg">
 					  <div class="modal-content">
 						<div class="modal-header">
-						  <h4 class="modal-title">Original Risk</h4>
+						  <h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Original Risk']; ?></h4>
 						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						  </button>
@@ -474,17 +474,17 @@ echo "</pre>"; */
 													  <hr>
 													  <br>
 													  <form id="frmZoomLista" method="post">
-													   <center><button type="button" class="btn btn-info" onclick="$( '#bxNewRegister' ).toggle();">New register</button></center>
+													   <center><button type="button" class="btn btn-info" onclick="$( '#bxNewRegister' ).toggle();"><?php echo $_SESSION[$_SESSION['lang']]['New register']; ?></button></center>
 													 <br>
 													 
 													 <div id="bxNewRegister" style="padding:20px; background-color:#e2f1e8;display:none;">
 														 <div class="row">
 														  <div class="col-sm-9 col-md-9">
 														 <div class="form-group">
-															<label for="Name">Register</label>
+															<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Register']; ?></label>
 															<select class="form-control" id="value_table" name="value_table" onchange="select_dados_value_table_id(this.value)">
 															<option value="" >
-																		 select
+																		 <?php echo $_SESSION[$_SESSION['lang']]['select']; ?>
 																		   </option>
 															<?php 
 															$in = Build_value_pie::select_ec_value_pie_table_all(1);
@@ -528,7 +528,7 @@ echo "</pre>"; */
 														 </div> 
 														 <div class="col-sm-3 col-md-3">
 														 <div class="form-group">
-															<label for="Name">numbers of itens</label>
+															<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['numbers of itens']; ?></label>
 															<input type="text" class="form-control" id="numbers_itens_inp" name="numbers_itens_inp" placeholder="0" value="" readonly required>
 															<input type="hidden" class="form-control" id="identification" name="identification" placeholder="0" value="" readonly required>
 															<input type="text" class="form-control" id="id_ec_value_pie_table" name="id_ec_value_pie_table" placeholder="0" value="" readonly required>
@@ -538,23 +538,23 @@ echo "</pre>"; */
 														 <div class="row">
 														 <div class="col-sm-4 col-md-4">
 														 <div class="form-group">
-															<label for="Name">Low estimate</label>
+															<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate']; ?></label>
 															<input type="text" class="form-control" id="low_estimate" name="low_estimate" placeholder="0.0" value="<?php echo $low_estimate; ?>" required>
 														 </div>
 														 </div> 
 														 <div class="col-sm-4 col-md-4">
 														  <div class="form-group">
-															<label for="Name">Most Probable</label>
+															<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Most Probable']; ?></label>
 															<input type="text" class="form-control" id="most_probable" name="most_probable" placeholder="0.0" value="" required>
 														 </div>
 														 </div> 
 														 <div class="col-sm-4 col-md-4">
 														 <div class="form-group">
-															<label for="Name">High estimate</label>
+															<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['High estimate']; ?></label>
 															<input type="text" class="form-control" id="high_estimate" name="high_estimate" placeholder="0.0" value="" required>
 														 </div>
 														 <div style="float:right">
-														 <button type="button" onclick="zoom_list_save();" class="btn btn-info">Save</button>
+														 <button type="button" onclick="zoom_list_save();" class="btn btn-info"><?php echo $_SESSION[$_SESSION['lang']]['Save']; ?></button>
 														 </form>
 														 </div>
 														 </div>
@@ -564,8 +564,8 @@ echo "</pre>"; */
 											
 						</div>
 						<div class="modal-footer justify-content-between">
-						  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						  <button type="button" class="btn btn-primary" onclick="refreshDataByZoom();items_affecteds_register();" data-dismiss="modal">Save changes & refresh calculation</button>
+						  <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>
+						  <button type="button" class="btn btn-primary" onclick="refreshDataByZoom();items_affecteds_register();" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Save changes & refresh calculation']; ?></button>
 						</div>
 					  </div>
 					  <!-- /.modal-content -->
@@ -628,7 +628,7 @@ echo "</pre>"; */
 								success: function(data) {
 									if(data==1){
 										
-											alert('Register save successfull');
+											alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Register save successfull']."'"; ?>);
 											
 											
 									}else{ 
@@ -661,7 +661,7 @@ echo "</pre>"; */
 								success: function(data) {
 									if(data==1){
 										
-											alert('Register save successfull');
+											alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Register save successfull']."'"; ?>);
 											
 											
 									}else{ 

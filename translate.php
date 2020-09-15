@@ -79,7 +79,8 @@
 	$_SESSION['pt-br']['Linear triangle distribution'] 			= "Distribuição linear do triângulo";
 	$_SESSION['pt-br']['Simple use of problable value'] 			= "Uso simples de valor provável";
 	$_SESSION['pt-br']['Type of calculation used for expected values (used for the risk and any associated options)'] 			= "Tipo de cálculo usado para os valores esperados (usado para o risco e quaisquer opções associadas)";
-
+	$_SESSION['pt-br']['Save'] 									= "Salvar";
+	
 #analyze_risks_frequency_or_rate.php 
 	$_SESSION['pt-br']['Time horizon, years'] 														= "Horizonte de tempo, em anos";
 	$_SESSION['pt-br']['Select the type risk']														= "Selecione o tipo de risco";
@@ -113,7 +114,128 @@
 	$_SESSION['pt-br']['This time period has been selected for analysis of the loss to each item affected'] = "Este período de tempo foi selecionado para análise da perda de cada item afetado";
 	$_SESSION['pt-br']['A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss'] = "Uma perda específica para cada item afetado foi selecionada para análise, esta é a estimativa de anos necessários para atingir essa perda";
 	
+#analyze_risks_frequency_or_rate.php 	
+	$_SESSION['eng']['Option summary sentence'] 												= "Opção de resumo";
+	$_SESSION['eng']['Capital (one time) cost'] 												= "Custo de capital (uma vez)";
+	$_SESSION['eng']['Annual (maint.) cost'] 													= "Custo anual (manutenção)";
+	$_SESSION['eng']['Date implemented'] 														= "Data de implementação";
 
+
+	
+#analyze_risks_items_affecteds.php.php 	
+	$_SESSION['pt-br']['This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty']																		= "Essa pontuação deve ser menor ou igual à pontuação esperada. Não pode ser alterado se a pontuação esperada estiver vazia";
+	
+	$_SESSION['pt-br']['Uncertainty range']											= "Faixa de incerteza";
+	
+	$_SESSION['pt-br']['What fraction of the value will be affected?']				= "Qual fração do valor será afetada?";
+	
+	$_SESSION['pt-br']['Explain your estimates for frequency or rate']				= "Explique suas estimativas de frequência ou taxa";
+	
+	$_SESSION['pt-br']['Zoom explanation and notes']									= "Explicação e notas do zoom";
+	
+	$_SESSION['pt-br']['Select how this score will be entered:']						= "Selecione como essa pontuação será inserida:";
+	
+	$_SESSION['pt-br']['Steps scale, considering the heritage asset as a whole.']		= "Escala de etapas, considerando o patrimônio como um todo.";
+	
+	$_SESSION['pt-br']['More precise data using the value pie']						= "Dados mais precisos usando a pizza de valor";
+	
+	$_SESSION['pt-br']['High estimate']												= "Estimativa alta";
+	
+	$_SESSION['pt-br']['Select']														= "Selecione";
+	
+	$_SESSION['pt-br']['All or most of the whole asset value']						= "Todo ou quase todo o valor do ativo";
+	
+	$_SESSION['pt-br']['A large fraction of the whole asset value']					= "Uma grande fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['Between large and small fraction of the whole asset value']	= "Entre grande e pequena fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['A small fraction of the whole asset value']					= "Uma pequena fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['Between small and tiny fraction of the whole asset value']	= "Entre pequena e minúscula fração de todo o valor do ativo";
+
+	$_SESSION['pt-br']['Between small and tiny fraction of the whole asset value']	= "Entre pequena e minúscula fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['A tiny fraction of the whole asset value']					= "Uma pequena fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['Between a tiny fraction and a trace of the whole asset value']	= "Entre uma pequena fração e um traço de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['Less than a trace of the whole asset value but not zero']		= "Menos do que um traço de todo o valor do ativo, mas não zero";
+	
+	$_SESSION['pt-br']['All or most of the whole asset value'] 						= "Todo ou quase todo o valor do ativo";
+	
+	$_SESSION['pt-br']['Between most and a large fraction of the whole asset value']	= "Entre a maior parte e uma grande fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['A large fraction of the whole asset value'] 					= "Uma grande fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['Between large and small fraction of the whole asset value']	= "Entre grande e pequena fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['A small fraction of the whole asset value'] 					= "Uma pequena fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['Between small and tiny fraction of the whole asset value'] 	= "Entre pequena e minúscula fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['A tiny fraction of the whole asset value'] 						= "Uma pequena fração de todo o valor do ativoe";
+	
+	$_SESSION['pt-br']['Between a tiny fraction and a trace of the whole asset value']	= "Entre uma pequena fração e um traço de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['A trace of the whole asset value'] 								= "Um traço de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['Less than a trace of the whole asset value but not zero'] 		= "Menos do que um traço de todo o valor do ativo, mas não zero";
+	
+	$_SESSION['pt-br']['Low estimate'] 													= "Estimativa baixa";
+	
+	$_SESSION['pt-br']['All or most of the whole asset value'] 							= "Todo ou quase todo o valor do ativoe";
+	
+	$_SESSION['pt-br']['Between most and a large fraction of the whole asset value'] 		= "Entre a maior parte e uma grande fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['A large fraction of the whole asset value'] 						= "Uma grande fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['Between large and small fraction of the whole asset value'] 		= "Entre grande e pequena fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['A small fraction of the whole asset value'] 						= "Uma pequena fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['Between small and tiny fraction of the whole asset value'] 		= "Entre pequena e minúscula fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['A tiny fraction of the whole asset value'] 						= "Uma pequena fração de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['Between a tiny fraction and a trace of the whole asset value'] 	= "Entre uma pequena fração e um traço de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['A trace of the whole asset value'] 								= "Um traço de todo o valor do ativo";
+	
+	$_SESSION['pt-br']['Less than a trace of the whole asset value but not zero'] 		= "Menos do que um traço de todo o valor do ativo, mas não zero";
+	
+	$_SESSION['pt-br']['Zoom list of items affected'] 									= "Lista de zoom de itens afetados";
+	
+	$_SESSION['pt-br']['Analysis notes and documents'] 									= "Notas de análise e documentos";
+	
+	$_SESSION['pt-br']['Explain your estimates for items affecteds'] 					= "Explique suas estimativas para itens afetados";
+	
+	$_SESSION['pt-br']['Notes for this explanation'] 									= "Notas para esta explicação";
+	
+	$_SESSION['pt-br']['Documents associated with this risk its options'] 				= "Documentos associados a este risco suas opções";
+	
+	$_SESSION['pt-br']['Document name'] 												= "Nome do Documento";
+	
+	$_SESSION['pt-br']['Comment'] 														= "Comente";
+	
+	$_SESSION['pt-br']['Document file'] 												= "Arquivo de documento";
+	
+	$_SESSION['pt-br']['Original Risk'] 												= "Risco Original";
+	
+	$_SESSION['pt-br']['New register'] 													= "Novo cadastro";
+
+	$_SESSION['pt-br']['Register'] 														= "Registro";
+	
+	$_SESSION['pt-br']['numbers of itens'] 												= "número de itens";
+	
+	$_SESSION['pt-br']['Most probable'] 													= "Mais provável";
+	
+	$_SESSION['pt-br']['High estimate'] 													= "Estimativa alta";
+	
+	$_SESSION['pt-br']['Low estimate'] 													= "Estimativa baixa";
+	
+	$_SESSION['pt-br']['Save changes & refresh calculation'] 								= "Salvar alterações e atualizar o cálculo";
+	
+	$_SESSION['pt-br']['Register save successfull'] 										= "Registro salvo com sucesso";
 
 
 /* ----- ENGLISH ----- */
@@ -205,6 +327,7 @@
 	$_SESSION['eng']['Loss to each item affected'] 				= "Loss to each item affected";
 	$_SESSION['eng']['Items affected'] 							= "Items affected";
 	$_SESSION['eng']['Log triangle distribution (default)'] 	= "Log triangle distribution (default)";
+	$_SESSION['eng']['Save'] 									= "Save";
 	$_SESSION['eng']['Linear triangle distribution'] 			= "Linear triangle distribution";
 	$_SESSION['eng']['Simple use of problable value'] 			= "Simple use of problable value";
 	$_SESSION['eng']['Type of calculation used for expected values (used for the risk and any associated options)'] 			= "Type of calculation used for expected values (used for the risk and any associated options)";
@@ -243,6 +366,127 @@
 	$_SESSION['eng']['This time period has been selected for analysis of the loss to each item affected'] = "This time period has been selected for analysis of the loss to each item affected";
 	$_SESSION['eng']['A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss'] = "A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss";
 	
+	
+#analyze_risks_frequency_or_rate.php 	
+	$_SESSION['eng']['Option summary sentence'] 				= "Option summary sentence";
+	$_SESSION['eng']['Capital (one time) cost'] 				= "Capital (one time) cost";
+	$_SESSION['eng']['Annual (maint.) cost'] 					= "Annual (maint.) cost";
+	$_SESSION['eng']['Date implemented'] 						= "Date implemented";
+	
+	
+#analyze_risks_items_affecteds.php.php 	
+	$_SESSION['eng']['This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty']																		= "This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty";
+	
+	$_SESSION['eng']['Uncertainty range']											= "Uncertainty range";
+	
+	$_SESSION['eng']['What fraction of the value will be affected?']				= "What fraction of the value will be affected?";
+	
+	$_SESSION['eng']['Explain your estimates for frequency or rate']				= "Explain your estimates for frequency or rate";
+	
+	$_SESSION['eng']['Zoom explanation and notes']									= "Zoom explanation and notes";
+	
+	$_SESSION['eng']['Select how this score will be entered:']						= "Select how this score will be entered:";
+	
+	$_SESSION['eng']['Steps scale, considering the heritage asset as a whole.']		= "Steps scale, considering the heritage asset as a whole.";
+	
+	$_SESSION['eng']['More precise data using the value pie']						= "More precise data using the value pie";
+	
+	$_SESSION['eng']['High estimate']												= "High estimate";
+	
+	$_SESSION['eng']['Select']														= "Select";
+	
+	$_SESSION['eng']['All or most of the whole asset value']						= "All or most of the whole asset value";
+	
+	$_SESSION['eng']['A large fraction of the whole asset value']					= "A large fraction of the whole asset value";
+	
+	$_SESSION['eng']['Between large and small fraction of the whole asset value']	= "Between large and small fraction of the whole asset value";
+	
+	$_SESSION['eng']['A small fraction of the whole asset value']					= "A small fraction of the whole asset value";
+	
+	$_SESSION['eng']['Between small and tiny fraction of the whole asset value']	= "Between small and tiny fraction of the whole asset value";
+
+	$_SESSION['eng']['Between small and tiny fraction of the whole asset value']	= "Between small and tiny fraction of the whole asset value";
+	
+	$_SESSION['eng']['A tiny fraction of the whole asset value']					= "A tiny fraction of the whole asset value";
+	
+	$_SESSION['eng']['Between a tiny fraction and a trace of the whole asset value']	= " Between a tiny fraction and a trace of the whole asset value";
+	
+	$_SESSION['eng']['Less than a trace of the whole asset value but not zero']		= "Less than a trace of the whole asset value but not zero";
+	
+	$_SESSION['eng']['All or most of the whole asset value'] 						= "All or most of the whole asset value";
+	
+	$_SESSION['eng']['Between most and a large fraction of the whole asset value']	= "Between most and a large fraction of the whole asset value";
+	
+	$_SESSION['eng']['A large fraction of the whole asset value'] 					= "A large fraction of the whole asset value";
+	
+	$_SESSION['eng']['Between large and small fraction of the whole asset value']	= "Between large and small fraction of the whole asset value";
+	
+	$_SESSION['eng']['A small fraction of the whole asset value'] 					= "A small fraction of the whole asset value";
+	
+	$_SESSION['eng']['Between small and tiny fraction of the whole asset value'] 	= "Between small and tiny fraction of the whole asset value";
+	
+	$_SESSION['eng']['A tiny fraction of the whole asset value'] 						= "A tiny fraction of the whole asset value";
+	
+	$_SESSION['eng']['Between a tiny fraction and a trace of the whole asset value']	= "Between a tiny fraction and a trace of the whole asset value";
+	
+	$_SESSION['eng']['A trace of the whole asset value'] 								= "A trace of the whole asset value";
+	
+	$_SESSION['eng']['Less than a trace of the whole asset value but not zero'] 		= "Less than a trace of the whole asset value but not zero";
+	
+	$_SESSION['eng']['Low estimate'] 													= "Low estimate";
+	
+	$_SESSION['eng']['All or most of the whole asset value'] 							= "All or most of the whole asset value";
+	
+	$_SESSION['eng']['Between most and a large fraction of the whole asset value'] 		= "Between most and a large fraction of the whole asset value";
+	
+	$_SESSION['eng']['A large fraction of the whole asset value'] 						= "A large fraction of the whole asset value";
+	
+	$_SESSION['eng']['Between large and small fraction of the whole asset value'] 		= "Between large and small fraction of the whole asset value";
+	
+	$_SESSION['eng']['A small fraction of the whole asset value'] 						= "A small fraction of the whole asset value";
+	
+	$_SESSION['eng']['Between small and tiny fraction of the whole asset value'] 		= "Between small and tiny fraction of the whole asset value";
+	
+	$_SESSION['eng']['A tiny fraction of the whole asset value'] 						= "A tiny fraction of the whole asset value";
+	
+	$_SESSION['eng']['Between a tiny fraction and a trace of the whole asset value'] 	= "Between a tiny fraction and a trace of the whole asset value";
+	
+	$_SESSION['eng']['A trace of the whole asset value'] 								= "A trace of the whole asset valu";
+	
+	$_SESSION['eng']['Less than a trace of the whole asset value but not zero'] 		= "Less than a trace of the whole asset value but not zero";
+	
+	$_SESSION['eng']['Zoom list of items affected'] 									= "Zoom list of items affected";
+	
+	$_SESSION['eng']['Analysis notes and documents'] 									= "Analysis notes and documents";
+	
+	$_SESSION['eng']['Explain your estimates for items affecteds'] 						= "Explain your estimates for items affecteds";
+	
+	$_SESSION['eng']['Notes for this explanation'] 										= "Notes for this explanation";
+	
+	$_SESSION['eng']['Documents associated with this risk its options'] 				= "Documents associated with this risk its options";
+	
+	$_SESSION['eng']['Document name'] 													= "Document name";
+	
+	$_SESSION['eng']['Comment'] 														= "Comment";
+	
+	$_SESSION['eng']['Document file'] 													= "Document file";
+	
+	$_SESSION['eng']['Original Risk'] 													= "Original Risk";
+	
+	$_SESSION['eng']['New register'] 													= "New register";
+
+	$_SESSION['eng']['Register'] 														= "Register";
+	
+	$_SESSION['eng']['numbers of itens'] 												= "numbers of itens";
+	
+	$_SESSION['eng']['Most probable'] 													= "Most probable";
+	
+	$_SESSION['eng']['High estimate'] 													= "High estimate";
+	
+	$_SESSION['eng']['Low estimate'] 													= "Low estimate";
+	
+	$_SESSION['eng']['Save changes & refresh calculation'] 								= "Save changes & refresh calculation";
+	$_SESSION['eng']['Register save successfull'] 										= "Register save successfull";
 	
 	
 ?>

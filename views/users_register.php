@@ -121,18 +121,6 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
 									$email = ""; 
 								}
 																	
-								if(isset($_POST['cpf'])){ 
-									$cpf = removerCodigoMalicioso(trim($_POST['cpf'])); 
-								}else{ 
-									$cpf = ""; 
-								}
-									
-																	
-								if(isset($_POST['matriculation'])){ 
-									$matriculation = removerCodigoMalicioso(trim($_POST['matriculation'])); 
-								}else{ 
-									$matriculation = ""; 
-								}
 								
 								if(isset($_POST['telephone'])){ 
 									$telephone = removerCodigoMalicioso(trim($_POST['telephone'])); 
@@ -189,7 +177,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
 										
 									if ( $txterr == "" ){
 										
-										Users::insert_users($name, $email, $cpf, $matriculation, $telephone, sha1($password), $institutions_id, $profiles_id);
+										Users::insert_users($name, $email, '-', '-', $telephone, sha1($password), $institutions_id, $profiles_id);
 										
 										if($btn2 == "2"){
 											
@@ -246,18 +234,18 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
                     <input type="email" class="form-control" id="email"
 					name="email" placeholder="Enter email" value="<?php echo $email; ?>">
                   </div>
-				  
+				 <!-- 
 			    <div class="form-group">
                     <label for="Sigla">SSN / CPF</label>
                     <input type="text" class="form-control" id="cpf"
 					name="cpf" placeholder="Enter documentation"  required value="<?php echo $cpf; ?>">
-                </div>
-				  
+                </div>-->
+				<!--  
 				<div class="form-group">
                         <label>Matriculation</label>
                         <input type="text" class="form-control" id="matriculation"
 					name="matriculation" placeholder=""  required value="<?php echo $matriculation; ?>">
-                </div>
+                </div>-->
 				
 				<div class="form-group">
                         <label>Telephone</label>

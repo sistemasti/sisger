@@ -68,7 +68,7 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Risk Graphs</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Risk Graphs']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -92,7 +92,7 @@ require_once("header.php");
 			 
 			  <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Risk Graphs</h3>
+                <h3 class="card-title"><?php echo $_SESSION[$_SESSION['lang']]['Risk Graphs']; ?></h3>
 
                 <div class="card-tools">
 
@@ -131,40 +131,40 @@ require_once("header.php");
 						<div class="row">
 							<div class="col-sm-4 col-md-6">
 								<div style="background-color:#ecedf1;padding:10px;">
-									<center><strong>Use the Value Pie, then sort by</strong></center>
+									<center><strong><?php echo $_SESSION[$_SESSION['lang']]['Use the Value Pie, then sort by']; ?></strong></center>
 									<br>
 									
-									<a href="analyze_graphs" style="text-decoration:none;"><button type="button" class="btn btn-block btn-primary btn-sm">By Agent, Type</button></a>
-									<a href="analyze_graphs?order=m" style="text-decoration:none;"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;">By Magnitude of Risk</button></a>
+									<a href="analyze_graphs" style="text-decoration:none;"><button type="button" class="btn btn-block btn-primary btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['By Agent, Type']; ?></button></a>
+									<a href="analyze_graphs?order=m" style="text-decoration:none;"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Magnitude of Risk']; ?></button></a>
 									<!--<button type="button" class="btn btn-block btn-primary btn-sm">Include bars for all items equal</button>
 									<button type="button" class="btn btn-block btn-primary btn-sm">Rare events in top group</button>-->
-									<a href="analyze_graphs?order=f" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;">By Frequency or Rate</button></a>
-									<a href="analyze_graphs?order=l" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;">By Loss to Each Item Affected</button></a>
-									<a href="analyze_graphs?order=i" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;">By Items Affected</button></a>
+									<a href="analyze_graphs?order=f" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Frequency or Rate']; ?></button></a>
+									<a href="analyze_graphs?order=l" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Loss to Each Item Affected']; ?></button></a>
+									<a href="analyze_graphs?order=i" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Items Affected']; ?></button></a>
 									<!--<button type="button" class="btn btn-block btn-primary btn-sm">Franction on Risk (linear)</button>-->
 								</div>	
 							</div>
 							<div class="col-sm-4 col-md-6">
 								<div style="background-color:#ecedf1;padding:10px;">
-									<center><strong>Consider all items equal, then sort by</strong></center>
+									<center><strong><?php echo $_SESSION[$_SESSION['lang']]['Consider all items equal, then sort by']; ?></strong></center>
 									<br>
 									
-									<a href="analyze_graphs" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;">By Agent, Type</button></a>
-									<a href="analyze_graphs?order=m" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;">By Magnitude of Risk</button></a>
+									<a href="analyze_graphs" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Agent, Type']; ?></button></a>
+									<a href="analyze_graphs?order=m" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Magnitude of Risk']; ?></button></a>
 									
 								</div>	
 								<!--<br>
 								<button type="button" class="btn btn-block btn-primary btn-sm">Uncertainty bars on/off</button>	-->
 								<br>
-								Time horizon
+								<?php echo $_SESSION[$_SESSION['lang']]['Time horizon']; ?>
 								<input type="text" disabled="disabled" value="<?php echo $_SESSION['time_horizon']; ?>" style="width:100% !important">
 								<br>
 								<br>
 								<div style="background-color:#ecedf1;padding:10px;">
-									<center><strong>Risk Totals For Agents</strong></center>
+									<center><strong><?php echo $_SESSION[$_SESSION['lang']]['Risk Totals For Agents']; ?></strong></center>
 									<br>
 									
-									<a href="analyze_graphs?order=m" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;">By Magnitude of Risk</button></a>
+									<a href="analyze_graphs?order=m" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Magnitude of Risk']; ?></button></a>
 									
 								</div>	<!--<br>
 								<div style="background-color:#ecedf1;padding:10px;">
@@ -253,7 +253,7 @@ require_once("header.php");
 <?php
 
 require_once("footer.php");
-
+session_start();
 ?>
 
 <script>
@@ -306,19 +306,19 @@ require_once("footer.php");
 		var barChartData = {
 			labels: [<?php echo substr($labels,0,-1); ?>],
 			datasets: [{
-				label: 'Frequency / Rate',
+				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Frequency / Rate']."'"; ?>,
 				backgroundColor: window.chartColors.red,
 				data: [
 					<?php echo substr($fr,0,-1); ?>
 				]
 			}, {
-				label: 'Loss to object',
+				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
 				backgroundColor: window.chartColors.blue,
 				data: [
 					<?php echo substr($le,0,-1); ?>
 				]
 			}, {
-				label: 'Collection affected',
+				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Collection affected']."'"; ?>,
 				backgroundColor: window.chartColors.green,
 				data: [
 					<?php echo substr($ia,0,-1); ?>

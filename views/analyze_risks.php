@@ -380,8 +380,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 						success: function(data) {
 							//Magnitude
 							
+							$("#magnitude_FR_Low").html(data['fdLow']);
 							$("#magnitude_FR_Probable").html(data['fdProbable']);
-							$("#magnitude_FR_High").html(data['fdLow']);
+							$("#magnitude_FR_High").html(data['fdHigh']);
 							
 							$("#magnitude_LE_Min").html(data['B_fdLow']);
 							$("#magnitude_LE_Med").html(data['B_fdProbable']);
@@ -418,15 +419,20 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								
 							
 						    $("#fdLow").val(data['fdLow']);
-						    $("#fdProbable").val(data['fdProbable']);
-						    $("#fdUncert").val(data['fdUncert']);							
 						    $("#bxLow").html(data['fdLow']);
+							
+						    $("#fdProbable").val(data['fdProbable']);
 						    $("#bxProbable").html(data['fdProbable']);
+							
+						    $("#fdUncert").val(data['fdUncert']);							
+						    $("#bxUncert").html(data['fdUncert']);
+							
+						    $("#fdHigh").html(data['fdHigh']);
 						    $("#bxHigh").html(data['fdHigh']);
-						    $("#bxUncert").html(data['fdUncert']);							
+							
 						    $("#fr_zoom_obs").html(data['fr_zoom_obs']);							
 							document.getElementById('type_risk').value = data['type_risk'];						 
-							$("#fdUncert").val(data['fdUncert']);
+							
 						    $("#explain").val(data['explain']);
 						    $("#ley").val(data['ley']);
 						    $("#abey").val(data['abey']);

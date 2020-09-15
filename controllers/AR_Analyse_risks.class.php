@@ -261,7 +261,7 @@
 													   `C_type_list` =?
 													WHERE  `id_risk` =? ');
 											
-				$n->execute(array($C_min_score,$C_pro_score,$C_max_score,$C_unc_range,$C_explain,$C_field_value_1,$C_field_value_2,$C_field_value_3,$C_type_list,$C_type_list,$_SESSION['id_risk_temp']));
+				$n->execute(array($C_min_score,$C_pro_score,$C_max_score,$C_unc_range,$C_explain,$C_field_value_1,$C_field_value_2,$C_field_value_3,$C_type_score,$C_type_list,$_SESSION['id_risk_temp']));
 			
 		}
 	

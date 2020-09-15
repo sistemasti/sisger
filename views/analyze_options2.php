@@ -1,6 +1,4 @@
-<?php
-
-require_once("header.php");
+<?php require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){ 
 
 	echo'<script language= "JavaScript">alert("you dont have permission to access this page");location.href="index"</script>';
@@ -64,7 +62,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Analyze Options</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Analyze Options']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -1237,9 +1235,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 				<div class="col-sm-4 col-md-12">
 			  <!--Select options that haven been identified in the Identify Option form-->
 					<div class="form-group">
-							<label for="Name">Risk</label>
+							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Risk']; ?></label>
 							<select class="form-control" id="risk" name="risk" onchange="select_risk(this.value);select_option(document.getElementById('id_option').value,this.value);select_risk_option(document.getElementById('id_option').value,this.value);">
-							<option value="#" > select </option>
+							<option value="#" > <?php echo $_SESSION[$_SESSION['lang']]['select']; ?> </option>
 							   <?php 
 								$in = Risks::select_risks();												
 								foreach($in['dados'] as $in){
@@ -1268,9 +1266,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 				<div class="col-sm-4 col-md-12">
 			  <!--Select options that haven been identified in the Identify Option form-->
 					<div class="form-group">
-							<label for="Name">Options</label>
+							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Options']; ?></label>
 							<select class="form-control" id="id_option" name="id_option" onchange="select_option(this.value,document.getElementById('risk').value);select_risk_option(this.value,document.getElementById('risk').value)">
-							<option value="#" > select </option>
+							<option value="#" > <?php echo $_SESSION[$_SESSION['lang']]['select']; ?> </option>
 							   <?php 
 								$op = Analyze_options::select_options();												
 								foreach($op['dados'] as $op){
@@ -1303,16 +1301,16 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 					  <div class="card-header p-0 border-bottom-0">
 						<ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
 						  <li class="nav-item">
-							<a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="true">Frequency o Rate (A)</a>
+							<a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="true"><?php echo $_SESSION[$_SESSION['lang']]['Frequency o Rate (A)']; ?></a>
 						  </li>
 						  <li class="nav-item">
-							<a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="false">Loss to each item (B)</a>
+							<a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="false"><?php echo $_SESSION[$_SESSION['lang']]['Loss to each item (B)']; ?></a>
 						  </li>
 						  <li class="nav-item">
-							<a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill" href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages" aria-selected="false">Items Affected(C)</a>
+							<a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill" href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages" aria-selected="false"><?php echo $_SESSION[$_SESSION['lang']]['Items Affected(C)']; ?></a>
 						  </li>
 						  <li class="nav-item">
-							<a class="nav-link" id="custom-tabs-three-settings-tab" data-toggle="pill" href="#custom-tabs-three-settings" role="tab" aria-controls="custom-tabs-three-settings" aria-selected="false" >Magnitude of Risk</a>
+							<a class="nav-link" id="custom-tabs-three-settings-tab" data-toggle="pill" href="#custom-tabs-three-settings" role="tab" aria-controls="custom-tabs-three-settings" aria-selected="false" ><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of Risk']; ?></a>
 						  </li>
 						</ul>
 					  </div>
@@ -1369,16 +1367,16 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								  <thead style="">
 									<tr>
 									  <th style="padding:30px;color:#fff;">&nbsp;s</th>
-									  <th style="width: 40px;">Low</th>
-									  <th style="width: 40px">Probable</th>
-									  <th style="width: 40px">High</th>
-									  <th style="width: 40px">Uncertainty range</th>
-									  <th style="width: 80px">Expected Scores (average)</th>
+									  <th style="width: 40px;"><?php echo $_SESSION[$_SESSION['lang']]['Low']; ?></th>
+									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['Probable']; ?></th>
+									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['High']; ?></th>
+									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['Uncertainty range']; ?></th>
+									  <th style="width: 80px"><?php echo $_SESSION[$_SESSION['lang']]['Expected Scores (average)']; ?></th>
 									</tr>
 								  </thead>
 								  <tbody>
 									<tr>
-									  <td style="padding: 13px;">Frequency or Rate</td>
+									  <td style="padding: 13px;"><?php echo $_SESSION[$_SESSION['lang']]['Frequency or Rate']; ?></td>
 									  <td><div id="magnitude_FR_Low"><?php echo $magnitude_FR_Low; ?></div></td>
 									  <td><div id="magnitude_FR_Probable"><?php echo $magnitude_FR_Probable; ?></div></td>
 									  <td><div id="magnitude_FR_High"><?php echo $magnitude_FR_High; ?></div></td>
@@ -1386,7 +1384,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_FR_MEDIA"><?php echo $magnitude_FR_MEDIA; ?></div></span></td>
 									</tr>
 									<tr>
-									  <td style="padding: 12px;">Loss to each item affected</td>
+									  <td style="padding: 12px;"><?php echo $_SESSION[$_SESSION['lang']]['Loss to each item affected']; ?></td>
 									  <td><div id="magnitude_LE_Min"><?php echo $magnitude_LE_Min; ?></div></td>
 									  <td><div id="magnitude_LE_Med"><?php echo $magnitude_LE_Med; ?></div></td>
 									  <td><div id="magnitude_LE_Max"><?php echo $magnitude_LE_Max; ?></div></td>
@@ -1394,7 +1392,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_LE_MEDIA"><?php echo $magnitude_LE_MEDIA; ?></div></span></td>
 									</tr>
 									<tr>
-									  <td style="padding: 12px;">Items affected</td>
+									  <td style="padding: 12px;"><?php echo $_SESSION[$_SESSION['lang']]['Items affected']; ?></td>
 									  <td><div id="magnitude_IA_Min"><?php echo $magnitude_IA_Min; ?></div></td>
 									  <td><div id="magnitude_IA_Med"><?php echo $magnitude_IA_Med; ?></div></td>
 									  <td><div id="magnitude_IA_Max"><?php echo $magnitude_IA_Max; ?></div></td>
@@ -1402,7 +1400,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_IA_MEDIA"><?php echo $magnitude_IA_MEDIA; ?></a></span></td>
 									</tr>
 									<tr>
-									  <td style="padding: 12px;">Magnitude of risk</td>
+									  <td style="padding: 12px;"><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of risk']; ?></td>
 									  <td><div id="magnitude_SOMA_L"><?php echo $magnitude_SOMA_L; ?></div></td>
 									  <td><div id="magnitude_SOMA_P"><?php echo $magnitude_SOMA_P; ?></div></td>
 									  <td><div id="magnitude_SOMA_H"><?php echo $magnitude_SOMA_H; ?></div></td>
@@ -1422,16 +1420,16 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								  <thead>
 									<tr>
 									  <th ></th>
-									  <th style="width: 40px">Low</th>
-									  <th style="width: 40px">Probable</th>
-									  <th style="width: 40px">High</th>
-									  <th style="width: 40px">Unc. range</th>
-									  <th style="width: 80px">Expected Scores (average)</th>
+									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['Low']; ?></th>
+									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['Probable']; ?></th>
+									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['High']; ?></th>
+									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['Unc. range']; ?></th>
+									  <th style="width: 80px"><?php echo $_SESSION[$_SESSION['lang']]['Expected Scores (average)']; ?></th>
 									</tr>
 								  </thead>
 								  <tbody>
 									<tr>
-									  <td>Frequency or Rate</td>
+									  <td><?php echo $_SESSION[$_SESSION['lang']]['Frequency or Rate']; ?></td>
 									  <td><div id="magnitude_FR_Low_o"><?php echo $magnitude_FR_Low_o; ?></div></td>
 									  <td><div id="magnitude_FR_Probable_o"><?php echo $magnitude_FR_Probable_o; ?></div></td>
 									  <td><div id="magnitude_FR_High_o"><?php echo $magnitude_FR_High_o; ?></div></td>
@@ -1439,7 +1437,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_FR_MEDIA_o"><?php echo $magnitude_FR_MEDIA_o; ?></div></span></td>
 									</tr>
 									<tr>
-									  <td>Loss to each item affected</td>
+									  <td><?php echo $_SESSION[$_SESSION['lang']]['Loss to each item affected']; ?></td>
 									  <td><div id="magnitude_LE_Min_o"><?php echo $magnitude_LE_Min_o; ?></div></td>
 									  <td><div id="magnitude_LE_Med_o"><?php echo $magnitude_LE_Med_o; ?></div></td>
 									  <td><div id="magnitude_LE_Max_o"><?php echo $magnitude_LE_Max_o; ?></div></td>
@@ -1447,7 +1445,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_LE_MEDIA_o"><?php echo $magnitude_LE_MEDIA_o; ?></div></span></td>
 									</tr>
 									<tr>
-									  <td>Items affected</td>
+									  <td><?php echo $_SESSION[$_SESSION['lang']]['Items affected']; ?></td>
 									  <td><div id="magnitude_IA_Min_o"><?php echo $magnitude_IA_Min_o; ?></div></td>
 									  <td><div id="magnitude_IA_Med_o"><?php echo $magnitude_IA_Med_o; ?></div></td>
 									  <td><div id="magnitude_IA_Max_o"><?php echo $magnitude_IA_Max_o; ?></div></td>
@@ -1455,7 +1453,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_IA_MEDIA_o"><?php echo $magnitude_IA_MEDIA_o; ?></a></span></td>
 									</tr>
 									<tr>
-									  <td>Magnitude of risk</td>
+									  <td><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of risk']; ?></td>
 									  <td><div id="magnitude_SOMA_L_o"><?php echo $magnitude_SOMA_L_o; ?></div></td>
 									  <td><div id="magnitude_SOMA_P_o"><?php echo $magnitude_SOMA_P_o; ?></div></td>
 									  <td><div id="magnitude_SOMA_H_o"><?php echo $magnitude_SOMA_H_o; ?></div></td>

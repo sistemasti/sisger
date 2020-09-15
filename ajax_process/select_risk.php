@@ -23,8 +23,8 @@ if($ar['num'] > 0){
 	//A	
 	$dados['type_risk']		= $ar['A_type_risk'];
 	$dados['fdLow'] 		= ($ar['A_min_score'] != '')?$ar['A_min_score']:'0.0';
-	$dados['fdProbable'] 	= ($ar['A_min_score'] != '')?$ar['A_min_score']:'0.0';
-	$dados['fdHigh'] 		= ($ar['A_min_score'] != '')?$ar['A_min_score']:'0.0';
+	$dados['fdProbable'] 	= ($ar['A_pro_score'] != '')?$ar['A_pro_score']:'0.0';
+	$dados['fdHigh'] 		= ($ar['A_max_score'] != '')?$ar['A_max_score']:'0.0';
 	$dados['fdUncert'] 		= $ar['A_unc_range'];
 	$dados['explain'] 		= $ar['A_explain'];
 	$dados['ley'] 			= $ar['A_field_value_1'];

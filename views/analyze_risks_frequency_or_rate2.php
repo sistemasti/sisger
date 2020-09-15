@@ -1,15 +1,15 @@
 <script>
 									
-									function carregaFormulario(id){
+										function carregaFormulario(id){
 									
 										if(id < 3){
 											/* document.getElementById('bxFrm1').style.display = 'block';
 											document.getElementById('bxFrm2').style.display = 'none'; */
-											document.getElementById('title_id').innerHTML = 'How often will the event occur?';
+											document.getElementById('title_id').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['How often will the event occur?']."'"; ?>;
 										}else{
 											/* document.getElementById('bxFrm1').style.display = 'none';
 											document.getElementById('bxFrm2').style.display = 'block'; */
-											document.getElementById('title_id').innerHTML = 'How soon will the process cause the specified loss?';
+											document.getElementById('title_id').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['How soon will the process cause the specified loss?']."'"; ?>;
 										}		
 										
 										if(id ==1){
@@ -17,7 +17,7 @@
 											document.getElementById("abey").readOnly = false;
 											document.getElementById("ley").readOnly = false;
 											document.getElementById("hey").readOnly = false;
-											document.getElementById('label1').innerHTML = 'Most probable time period between events, years';
+											document.getElementById('label1').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['Most probable time period between events, years']."'"; ?>;
 										}
 										
 										if(id ==2){
@@ -25,7 +25,7 @@
 											document.getElementById("abey").readOnly = false;
 											document.getElementById("ley").readOnly = false;
 											document.getElementById("hey").readOnly = false;
-											document.getElementById('label1').innerHTML = 'Average time period between events (must be more than 1 year)';
+											document.getElementById('label1').innerHTML =  <?php echo "'".$_SESSION[$_SESSION['lang']]['Most probable time period between events, years']."'"; ?>;
 										}			
 										
 										if(id ==3){
@@ -33,7 +33,12 @@
 											document.getElementById("abey").readOnly = false;
 											document.getElementById("ley").readOnly = true;
 											document.getElementById("hey").readOnly = true;
-											document.getElementById('label1').innerHTML = 'This time period has been selected for analysis of the loss to each item affected';
+											
+											document.getElementById("ley").value = document.getElementById("abey").value;
+											document.getElementById("hey").value = document.getElementById("abey").value;
+											
+											
+											document.getElementById('label1').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['This time period has been selected for analysis of the loss to each item affected']."'"; ?>;
 										}	
 										
 										if(id ==4){
@@ -45,8 +50,10 @@
 											document.getElementById("abey").value = document.getElementById("time_horizon").value;
 											document.getElementById("ley").value = document.getElementById("time_horizon").value;
 											document.getElementById("hey").value = document.getElementById("time_horizon").value;
-											
-											document.getElementById('label1').innerHTML = 'The time horizon has been selected and entered automatically';
+											calculcaPontuacao(document.getElementById("time_horizon").value,'High');
+											calculcaPontuacao(document.getElementById("time_horizon").value,'Low');
+											calculcaPontuacao(document.getElementById("time_horizon").value,'Probable');
+											document.getElementById('label1').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['The time horizon has been selected and entered automatically']."'"; ?>;
 										}	
 										
 										if(id ==5){
@@ -54,10 +61,32 @@
 											document.getElementById("abey").readOnly = false;
 											document.getElementById("ley").readOnly = false;
 											document.getElementById("hey").readOnly = false;
-											document.getElementById('label1').innerHTML = 'A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss';
+											document.getElementById('label1').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss']."'"; ?>;
 										}
 										
 										if(id ==6){
+											
+											/* 
+												fdLow
+												fdProbable
+												fdHigh
+												fdUncert
+											  
+												bxHigh
+												bxProbable
+												bxLow 
+											  */
+											  
+											  document.getElementById('bxHigh').innerHTML='0.0';
+											  document.getElementById('bxProbable').innerHTML='0.0';
+											  document.getElementById('bxLow').innerHTML='0.0';
+											  document.getElementById('bxUncert').innerHTML='0.0';
+											
+											  document.getElementById('fdLow').value='';
+											  document.getElementById('fdProbable').value='';
+											  document.getElementById('fdHigh').value='';
+											  document.getElementById('fdUncert').value='';
+											
 											document.getElementById('bxFrm1').style.display = 'none';
 											//document.getElementById('bxFrm2').style.display = 'none';
 										}	
@@ -174,7 +203,7 @@
 	<div class="col-sm-4 col-md-6" style="padding:15px;">
 						<form method="post" name="ar_fr" id="ar_fr">
 						  <div style="float:right;width:50%">
-							Time horizon, years 
+							<?php echo $_SESSION[$_SESSION['lang']]['Time horizon, years']; ?> 
 							<input type="text" id="time_horizon" name="time_horizon" disabled value="<?php echo $_SESSION['time_horizon']; ?>" style="width:25%;float:right;padding-right:7px;">
 						
 							</div>
@@ -186,20 +215,20 @@
 						
 						  
 									<div class="form-group">
-										<label for="Name">Select the type risk</label>
+										<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Select the type risk']; ?></label>
 										 <select class="form-control" id="type_risk" name="type_risk" onchange="carregaFormulario(this.value)" readonly="readonly">
 											  
-											  <option value="1" <?php if($type_risk == "1"){ echo "selected"; } ?>>Event, rare (time between events greater than time horizon)</option>
+											  <option value="1" <?php if($type_risk == "1"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['Event, rare (time between events greater than time horizon)']; ?></option>
 											  
-											  <option value="2" <?php if($type_risk == "2"){ echo "selected"; } ?>>Event, frequent (must be at least one year between events)</option>
+											  <option value="2" <?php if($type_risk == "2"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['Event, frequent (must be at least one year between events)']; ?></option>
 											  
-											  <option value="3" <?php if($type_risk == "3"){ echo "selected"; } ?>>Process or cumulative events, analysed over a particular period of time</option>
+											  <option value="3" <?php if($type_risk == "3"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['Process or cumulative events, analysed over a particular period of time']; ?></option>
 											  
-											  <option value="4" <?php if($type_risk == "4"){ echo "selected"; } ?>>Process or cumulative events, analyzed at the time horizon</option>
+											  <option value="4" <?php if($type_risk == "4"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['Process or cumulative events, analyzed at the time horizon']; ?></option>
 											  
-											  <option value="5" <?php if($type_risk == "5"){ echo "selected"; } ?>>Process or cumulative events, analyzed at a particular stage of damage</option>
+											  <option value="5" <?php if($type_risk == "5"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['Process or cumulative events, analyzed at a particular stage of damage']; ?></option>
 											  
-											  <option value="6" <?php if($type_risk == "6"){ echo "selected"; } ?>>Not selected yet</option>
+											  <option value="6" <?php if($type_risk == "6"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['Not selected yet']; ?></option>
 											 
 											</select>
 									  </div>
@@ -224,12 +253,12 @@
 						  </div>
 						 
 
-						  <span >&nbsp;&nbsp;<small><em>Uncert. range</em></small></span>
+						  <span >&nbsp;&nbsp;<small><em><?php echo $_SESSION[$_SESSION['lang']]['Uncertainty range']; ?></em></small></span>
 						  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxUncert" value="<?php echo $bxUncert; ?>"><?php echo $bxUncert; ?></div>
 						  </div>
 						  <br>
 						 &nbsp;
-						   <span id="title_id" style="font-size:16px;">How often will the event occur?</span>
+						   <span id="title_id" style="font-size:16px;"><?php echo $_SESSION[$_SESSION['lang']]['How often will the event occur?']; ?></span>
 						  <br>
 						  <br>
 						  
@@ -239,11 +268,11 @@
 								  <input type="hidden" name="cadastrar" id="cadastrar" value="1">
 									
 									<div class="form-group">
-										<label for="Sigla">Explain your estimates for frequency or rate</label>
+										<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for frequency or rate']; ?></label>
 										<textarea class="form-control" name="explain" ID="explain" disabled="disabled"><?php echo $explain; ?></textarea>
 																	
 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg" style="float:right; margin-top:2px" onclick="return false">
-                  Zoom explanation and notes
+                  <?php echo $_SESSION[$_SESSION['lang']]['Zoom explanation and notes']; ?>
                 </button>	
 				<br>
 				<br>
@@ -262,7 +291,7 @@
 									<div class="form-group">
 										<div class="row">
 										<div class="col-sm-4 col-md-10" style="text-align:left;">
-											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;">Low estimate of years</label>
+											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate of years']; ?></label>
 										</div>	
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="ley"
@@ -275,7 +304,7 @@
 									
 										<div class="row">
 										<div class="col-sm-4 col-md-10" style="text-align:right;">
-											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;" id="label1">Average time period between events, years</label>
+											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;" id="label1"><?php echo $_SESSION[$_SESSION['lang']]['Average time period between events, years']; ?></label>
 										</div>	
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="abey"
@@ -293,7 +322,7 @@
 									
 									<div class="row">
 										<div class="col-sm-4 col-md-10" style="text-align:right;">
-											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;">High estimate of years</label>
+											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;"><?php echo $_SESSION[$_SESSION['lang']]['High estimate of years']; ?></label>
 										</div>	
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="hey"
@@ -323,7 +352,7 @@
 							<div class="modal-dialog modal-lg">
 							  <div class="modal-content">
 								<div class="modal-header">
-								  <h4 class="modal-title">Analysis notes and documents (A)</h4>
+								  <h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Analysis notes and documents (A)']; ?></h4>
 								 
 								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -345,38 +374,38 @@
 									<div class="row">
 												<div class="col-sm-6 col-md-6">
 													<div class="form-group">
-														<label for="Sigla">Explain your estimates for frequency or rate</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for frequency or rate']; ?></label>
 														<textarea class="form-control" name="fr_zoom_explanation_fields" ID="fr_zoom_explanation_fields" disabled="disabled"><?php echo $fr_zoom_explanation_fields; ?></textarea>
 													</div>	
 												</div>	
 												<div class="col-sm-6 col-md-6">
 												<div class="form-group">
-														<label for="Sigla">Notes for this explanation .</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Notes for this explanation']; ?> .</label>
 														<textarea class="form-control" name="fr_zoom_notes_explanation" ID="fr_zoom_notes_explanation" disabled="disabled"><?php echo $fr_zoom_notes_explanation; ?></textarea>
 													</div>	
 												</div>
 									</div>
 									<hr>
-									<h5>Documents associated with this risk its options</h5>
+									<h5><?php echo $_SESSION[$_SESSION['lang']]['Documents associated with this risk its options']; ?></h5>
 									<br>
 									<div class="row" >
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">Document name</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document name']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_document_name"
 													name="fr_zoom_document_name" placeholder=""  required value="<?php echo $fr_zoom_document_name; ?>" disabled="disabled">
 													</div>	
 												</div>	
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">Comment</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Comment']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_comment"
 													name="fr_zoom_comment" placeholder=""  required value="<?php echo $fr_zoom_comment; ?>" disabled="disabled">
 													</div>	
 												</div>
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">External Link..</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['External Link']; ?>..</label>
 														<input type="text" class="form-control" id="fr_zoom_link"
 													name="fr_zoom_link" placeholder=""  required value="<?php echo $fr_zoom_link; ?>" disabled="disabled">
 													<div id="fr_zoom_link_bx" style="background-color: #c5dcc6;padding:7px;">
@@ -390,7 +419,7 @@
 												</div>													
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">..or Document link</label>
+														<label for="Sigla">..<?php echo $_SESSION[$_SESSION['lang']]['or Document link']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_document_file"
 													name="fr_zoom_document_file" placeholder=""  required value="<?php echo $fr_zoom_document_file; ?>" disabled="disabled">
 													<div id="fr_zoom_document_file_bx" style="background-color: #c5dcc6;padding:7px;">
@@ -403,7 +432,7 @@
 													</div>	
 												<!--	
 													<div class="form-group">
-														<label for="Sigla">..or Document link</label>
+														<label for="Sigla">..<?php echo $_SESSION[$_SESSION['lang']]['or Document link']; ?></label>
 														
 <input type="text" class="form-control" id="fr_zoom_document_file" name="fr_zoom_document_file" value="<?php echo $fr_zoom_document_file; ?>" required>
 
@@ -448,22 +477,22 @@
 						 
 						
 									<div class="form-group">
-										<label for="Name">Option summary sentence</label>
+										<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Option summary sentence']; ?></label>
 										<textarea class="form-control" rows="2" name="summary" id="summary" readOnly="readOnly"></textarea>
 									</div>
 									  
 						
 						<div class="row">
 							<div class="col-sm-4 col-md-4">
-								<label for="Name"><small>Capital (one time) cost</small></label>
+								<label for="Name"><small><?php echo $_SESSION[$_SESSION['lang']]['Capital (one time) cost']; ?></small></label>
 								<input type="text" class="form-control" id="one_time_cost" name="one_time_cost" placeholder="" readOnly="readOnly" required value="" >
 							</div>
 							<div class="col-sm-4 col-md-4">
-								<label for="Name"><small>Annual (maint.) cost</small></label>
+								<label for="Name"><small><?php echo $_SESSION[$_SESSION['lang']]['Annual (maint.) cost']; ?></small></label>
 								<input type="text" class="form-control" id="annual_cost" name="annual_cost" placeholder=""  readOnly="readOnly" required value="" >
 							</div>
 							<div class="col-sm-4 col-md-4">
-								<label for="Name"><small>Date implemented</small></label>
+								<label for="Name"><small><?php echo $_SESSION[$_SESSION['lang']]['Date implemented']; ?></small></label>
 								<input type="text" class="form-control" id="data" name="data" placeholder=""  readOnly="readOnly" required value="" >
 							</div>
 						</div>
@@ -485,12 +514,12 @@
 						  </div>
 						 
 
-						  <span >&nbsp;&nbsp;<small><em>Uncert. range</em></small></span>
+						  <span >&nbsp;&nbsp;<small><em><?php echo $_SESSION[$_SESSION['lang']]['Uncertainty range']; ?></em></small></span>
 						  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxUncert_o" value="<?php echo $bxUncert_o; ?>"><?php echo $bxUncert_o; ?></div>
 						  </div>
 						  <br>
 						 &nbsp;
-						   <span id="title_id" style="font-size:16px;">How often will the event occur?</span>
+						   <span id="title_id" style="font-size:16px;"><?php echo $_SESSION[$_SESSION['lang']]['How often will the event occur?']; ?></span>
 						  <br>
 						  <br>
 							 <div class="col-sm-4 col-md-12">
@@ -499,11 +528,11 @@
 								  <input type="hidden" name="cadastrar" id="cadastrar" value="1">
 									
 									<div class="form-group">
-										<label for="Sigla">Explain your estimates for frequency or rate</label>
+										<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for frequency or rate']; ?></label>
 										<textarea class="form-control" name="explain_fr_o" id="explain_fr_o"><?php echo $explain_fr_o; ?></textarea>
 																	
 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg_o" style="float:right; margin-top:2px">
-                  Zoom explanation and notes
+                 <?php echo $_SESSION[$_SESSION['lang']]['Zoom explanation and notes']; ?>
                 </button>	
 				<br>
 				<br>
@@ -522,7 +551,7 @@
 									<div class="form-group">
 										<div class="row">
 										<div class="col-sm-4 col-md-9" style="text-align:right;">
-											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;">Low estimate of years</label>
+											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate of years']; ?></label>
 										</div>	
 										<div class="col-sm-4 col-md-3">
 											<input type="text" class="form-control" id="ley_o"
@@ -535,7 +564,7 @@
 									
 										<div class="row">
 										<div class="col-sm-4 col-md-9" style="text-align:right;">
-											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;" id="label1">Average time period between events, years</label>
+											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;" id="label1"><?php echo $_SESSION[$_SESSION['lang']]['Average time period between events, years']; ?></label>
 										</div>	
 										<div class="col-sm-4 col-md-3">
 											<input type="text" class="form-control" id="abey_o"
@@ -553,7 +582,7 @@
 									
 									<div class="row">
 										<div class="col-sm-4 col-md-9" style="text-align:right;">
-											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;">High estimate of years</label>
+											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;"><?php echo $_SESSION[$_SESSION['lang']]['High estimate of years']; ?></label>
 										</div>	
 										<div class="col-sm-4 col-md-3">
 											<input type="text" class="form-control" id="hey_o"
@@ -575,7 +604,7 @@
 								  </div> 
 								  <br>
 								
-									<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="frequency_or_rate_register_o()">Save</button>
+									<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="frequency_or_rate_register_o()"><?php echo $_SESSION[$_SESSION['lang']]['Save']; ?></button>
 								
 						  </div>
 						  </form>
@@ -591,7 +620,7 @@
 							<div class="modal-dialog modal-lg">
 							  <div class="modal-content">
 								<div class="modal-header">
-								  <h4 class="modal-title">Analysis notes and documents (A)</h4>
+								  <h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Analysis notes and documents (A)']; ?></h4>
 								 
 								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -613,38 +642,38 @@
 									<div class="row">
 												<div class="col-sm-6 col-md-6">
 													<div class="form-group">
-														<label for="Sigla">Explain your estimates for frequency or rate</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for frequency or rate']; ?></label>
 														<textarea class="form-control" name="fr_zoom_explanation_fields_o" ID="fr_zoom_explanation_fields_o" ><?php echo $fr_zoom_explanation_fields_o; ?></textarea>
 													</div>	
 												</div>	
 												<div class="col-sm-6 col-md-6">
 												<div class="form-group">
-														<label for="Sigla">Notes for this explanation .</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Notes for this explanation']; ?> .</label>
 														<textarea class="form-control" name="fr_zoom_notes_explanation_o" ID="fr_zoom_notes_explanation_o" ><?php echo $fr_zoom_notes_explanation_o; ?></textarea>
 													</div>	
 												</div>
 									</div>
 									<hr>
-									<h5>Documents associated with this risk its options</h5>
+									<h5><?php echo $_SESSION[$_SESSION['lang']]['Documents associated with this risk its options']; ?></h5>
 									<br>
 									<div class="row" >
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">Document name</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document name']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_document_name_o"
 													name="fr_zoom_document_name_o" placeholder=""  required value="<?php echo $fr_zoom_document_name; ?>" >
 													</div>	
 												</div>	
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">Comment</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Comment']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_comment_o"
 													name="fr_zoom_comment_o" placeholder=""  required value="<?php echo $fr_zoom_comment_o; ?>" >
 													</div>	
 												</div>
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">External Link..</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['External Link']; ?>..</label>
 														<input type="text" class="form-control" id="fr_zoom_link_o"
 													name="fr_zoom_link_o" placeholder=""  required value="<?php echo $fr_zoom_link_o; ?>" >
 													<div id="fr_zoom_link_bx_o" style="background-color: #c5dcc6;padding:7px;">
@@ -658,7 +687,7 @@
 												</div>													
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">..or Document link</label>
+														<label for="Sigla">..<?php echo $_SESSION[$_SESSION['lang']]['or Document link']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_document_file_o"
 													name="fr_zoom_document_file_o" placeholder=""  required value="<?php echo $fr_zoom_document_file_o; ?>" >
 													<div id="fr_zoom_document_file_bx_o" style="background-color: #c5dcc6;padding:7px;">
@@ -671,7 +700,7 @@
 													</div>	
 												<!--	
 													<div class="form-group">
-														<label for="Sigla">..or Document link</label>
+														<label for="Sigla">..<?php echo $_SESSION[$_SESSION['lang']]['or Document link']; ?></label>
 														
 <input type="text" class="form-control" id="fr_zoom_document_file" name="fr_zoom_document_file" value="<?php echo $fr_zoom_document_file; ?>" required>
 
@@ -690,8 +719,8 @@
 									
 								</div>
 								<div class="modal-footer justify-content-between">
-								  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_fr_save();">Save changes</button>
+								  <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>
+								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_fr_save();"><?php echo $_SESSION[$_SESSION['lang']]['Save changes']; ?></button>
 								</div>
 							  </div>
 							  <!-- /.modal-content -->
