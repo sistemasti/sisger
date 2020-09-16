@@ -25,7 +25,7 @@
 											document.getElementById("abey").readOnly = false;
 											document.getElementById("ley").readOnly = false;
 											document.getElementById("hey").readOnly = false;
-											document.getElementById('label1').innerHTML =  <?php echo "'".$_SESSION[$_SESSION['lang']]['Most probable time period between events, years']."'"; ?>;
+											document.getElementById('label1').innerHTML =  <?php echo "'".$_SESSION[$_SESSION['lang']]['Most probable time period between events, (must be more than 1 year)']."'"; ?>;
 										}			
 										
 										if(id ==3){
@@ -186,7 +186,7 @@
 											  
 											  <option value="5" <?php if($type_risk == "5"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['Process or cumulative events, analyzed at a particular stage of damage']; ?></option>
 											  
-											  <option value="6" <?php if($type_risk == "6"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['Not selected yet']; ?></option>
+											  <option value="6" <?php if($type_risk == "6"){ echo "selected"; } ?> selected><?php echo $_SESSION[$_SESSION['lang']]['Not selected yet']; ?></option>
 											 
 											</select>
 									  </div>
@@ -252,10 +252,23 @@
 										</div>	
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="ley"
-											name="ley" placeholder="0"  required value="<?php echo $ley; ?>"  onchange="calculcaPontuacao(this.value,'Low');if(
+											name="ley" placeholder="0"  required value="<?php echo $ley; ?>"  onchange="
+											
+											
+											if(
 											document.getElementById('abey').value > 0 &&
 											this.value > document.getElementById('abey').value
-											){alert('This number must be greater than 1; it must be LESS than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('abey').value}" onKeyUp="maskIt(this,event,'########.##',true)" maxlength="10">
+											){
+												alert('This number must be greater than 1; it must be LESS than or equal to expected years; it cannot be changed if expected years is empty');
+												this.value=document.getElementById('abey').value
+												
+											}else{ 
+											
+												calculcaPontuacao(this.value,'Low');
+											
+											}
+											
+											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10" <?php if($type_risk == 3){ echo "readonly"; } ?>>
 										</div>	
 										</div>
 									
@@ -265,11 +278,20 @@
 										</div>	
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="abey"
-											name="abey" placeholder="0"  required value="<?php echo $abey; ?>" onchange="if(
+											name="abey" placeholder="0"  required value="<?php echo $abey; ?>" onchange="
+											if(
 											this.value > 0 &&
 											this.value < document.getElementById('ley').value
-											){alert('This number must be greater than 1; it must be LARGER than or equal to low estimate of years; it cannot be changed if expected years is empty');this.value=document.getElementById('ley').value};
-											calculcaPontuacao(this.value,'Probable'); calculateProbab(this.value);" onKeyUp="maskIt(this,event,'########.##',true)" maxlength="10">
+											){
+												alert('This number must be greater than 1; it must be LARGER than or equal to low estimate of years; it cannot be changed if expected years is empty');
+												
+												this.value=document.getElementById('ley').value
+												
+											}else{
+												calculcaPontuacao(this.value,'Probable'); 
+												calculateProbab(this.value);
+											}
+											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10">
 										</div>	
 										</div>
 									
@@ -279,7 +301,18 @@
 										</div>	
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="hey"
-											name="hey" placeholder="0"  required value="<?php echo $hey; ?>"  onchange="calculcaPontuacao(this.value,'High');if(document.getElementById('abey').value > 0 && this.value < document.getElementById('abey').value){alert('This number be LARGER than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('abey').value}" onKeyUp="maskIt(this,event,'########.##',true)" maxlength="10">
+											name="hey" placeholder="0"  required value="<?php echo $hey; ?>"  onchange="
+											if(document.getElementById('abey').value > 0 && this.value < document.getElementById('abey').value){
+												
+												alert('This number be LARGER than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('abey').value
+												
+											}else{
+												
+												calculcaPontuacao(this.value,'High');
+												
+											}
+											
+											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10"  <?php if($type_risk == 3){ echo "readonly"; } ?>>
 										</div>	
 									</div>	
 									

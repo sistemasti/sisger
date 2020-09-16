@@ -188,7 +188,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 				  
 				  <div class="form-group">
                     <label for="Name">Weight</label>
-                    <input type="text" class="form-control" id="weight" name="weight" placeholder="" value="<?php echo $weight; ?>" maxlength="5" onKeyUp="maskIt(this,event,'###.###.##.##',true)" required>
+                    <input type="text" class="form-control" id="weight" name="weight" placeholder="" value="<?php echo $weight; ?>" maxlength="10" onKeyUp="maskIt(this,event,'##########',true)" required>
                   </div>
 				  
 				  

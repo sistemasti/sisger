@@ -213,11 +213,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$fdProbable 	= $ar['A_pro_score']; 
 								$fdHigh 		= $ar['A_max_score']; 
 								$fdUncert 		= $ar['A_unc_range']; 
-								$bxHigh 		= $ar['A_max_score']; 
-								$bxProbable 	= $ar['A_pro_score']; 
-								$bxLow 			= $ar['A_min_score']; 
-								$bxUncert 		= $ar['A_unc_range']; 
-								$explain 		= $ar['A_explain']; 
+								$bxHigh 		= ($ar['A_max_score'] != '')?$ar['A_max_score']:'0.0';
+								$bxProbable 	= ($ar['A_pro_score'] != '')?$ar['A_pro_score']:'0.0'; 
+								$bxLow 			= ($ar['A_min_score'] != '')?$ar['A_min_score']:'0.0'; 
+								$bxUncert 		= ($ar['A_unc_range'] != '')?$ar['A_unc_range']:'0.0'; 
+								$explain 		= ($ar['A_explain'] != '')?$ar['A_explain']:'0.0'; 
 								$ley 			= $ar['A_field_value_1']; 
 								$abey 			= $ar['A_field_value_2']; 
 								$hey 			= $ar['A_field_value_3']; 
@@ -236,9 +236,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$B_fdProbable	= $ar['B_pro_score']; 
 								$B_fdHigh 		= $ar['B_max_score']; 
 								$B_fdUncert 	= $ar['B_unc_range']; 
-								$B_bxLow 		= $ar['B_min_score']; 
-								$B_bxProbable 	= $ar['B_pro_score']; 
-								$B_bxHigh 		= $ar['B_max_score']; 
+								$B_bxLow 		= ($ar['B_min_score'] != '')?$ar['B_min_score']:'0.0'; 
+								$B_bxProbable 	= ($ar['B_pro_score'] != '')?$ar['B_pro_score']:'0.0';
+								$B_bxHigh 		= ($ar['B_max_score'] != '')?$ar['B_max_score']:'0.0';
 								$B_fdUncert 	= $ar['B_unc_range']; 
 								$explain_le 	= $ar['B_explain']; 
 								$steps 			= $ar['B_steps']; 
@@ -271,13 +271,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								
 							//C	
 								$ia_Inp_Min 	= $ar['C_min_score']; 
-								$ia_Div_Min 	= $ar['C_min_score']; 
-								$ia_Inp_Med 	= $ar['C_pro_score']; 
-								$ia_Div_Med 	= $ar['C_pro_score']; 
+								$ia_Div_Min 	= ($ar['C_min_score'] != '')?$ar['C_min_score']:'0.0';
+								$ia_Inp_med 	= $ar['C_pro_score']; 
+								$ia_Div_Med 	= ($ar['C_pro_score'] != '')?$ar['C_pro_score']:'0.0';
 								$ia_Inp_Max 	= $ar['C_max_score']; 
-								$ia_Div_Max 	= $ar['C_max_score']; 
+								$ia_Div_Max 	= ($ar['C_max_score'] != '')?$ar['C_max_score']:'0.0';
 								$ia_Inp_Range 	= $ar['C_unc_range']; 
-								$ia_Div_Range 	= $ar['C_unc_range']; 
+								$ia_Div_Range 	= ($ar['C_unc_range'] != '')?$ar['C_unc_range']:'0.0';
 								$explain_ia 	= $ar['C_explain']; 
 								$type_score 	= $ar['C_type_score']; 
 								$heia 			= $ar['C_field_value_1']; 
@@ -291,23 +291,23 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$ia_zoom_document_file 			= $ar['ia_zoom_document_file']; 
 								
 							//Magnitude	
-								$magnitude_FR_Low 			= $ar['A_min_score']; 
-								$magnitude_FR_Probable 		= $ar['A_pro_score']; 
-								$magnitude_FR_High 			= $ar['A_max_score']; 
-								$magnitude_FR_MEDIA 		= $ar['Expected_Scores_FR']; 
-								$magnitude_LE_Min 			= $ar['B_min_score']; 
-								$magnitude_LE_Med 			= $ar['B_pro_score']; 
-								$magnitude_LE_Max 			= $ar['B_max_score']; 
-								$magnitude_LE_MEDIA 		= $ar['Expected_Scores_LE']; 
-								$magnitude_IA_Min 			= $ar['C_min_score']; 
-								$magnitude_IA_Med 			= $ar['C_pro_score']; 
-								$magnitude_IA_Max 			= $ar['C_max_score']; 
-								$magnitude_IA_MEDIA 		= $ar['Expected_Scores_IA']; 
-								$magnitude_SOMA_L 			= $ar['MR_low']; 
-								$magnitude_SOMA_P 			= $ar['MR_Probable']; 
-								$magnitude_SOMA_H 			= $ar['MR_High']; 
-								$magnitude_SOMA_RANGE 		= $ar['MR_U_Range']; 
-								$magnitude_SOMA_MEDIA 		= $ar['magnitude_of_risk']; 
+								$magnitude_FR_Low 			= ($ar['A_min_score'] != '')?$ar['A_min_score']:'0.0'; 
+								$magnitude_FR_Probable 		= ($ar['A_pro_score'] != '')?$ar['A_pro_score']:'0.0'; 
+								$magnitude_FR_High 			= ($ar['A_max_score'] != '')?$ar['A_max_score']:'0.0'; 
+								$magnitude_FR_MEDIA 		= ($ar['Expected_Scores_FR'] != '')?$ar['Expected_Scores_FR']:'0.0'; 
+								$magnitude_LE_Min 			= ($ar['B_min_score'] != '')?$ar['B_min_score']:'0.0'; 
+								$magnitude_LE_Med 			= ($ar['B_pro_score'] != '')?$ar['B_pro_score']:'0.0'; 
+								$magnitude_LE_Max 			= ($ar['B_max_score'] != '')?$ar['B_max_score']:'0.0'; 
+								$magnitude_LE_MEDIA 		= ($ar['Expected_Scores_LE'] != '')?$ar['Expected_Scores_FR']:'0.0'; 
+								$magnitude_IA_Min 			= ($ar['C_min_score'] != '')?$ar['C_min_score']:'0.0'; 
+								$magnitude_IA_Med 			= ($ar['C_pro_score'] != '')?$ar['C_pro_score']:'0.0';
+								$magnitude_IA_Max 			= ($ar['C_max_score'] != '')?$ar['C_max_score']:'0.0'; 
+								$magnitude_IA_MEDIA 		= ($ar['Expected_Scores_IA'] != '')?$ar['Expected_Scores_IA']:'0.0'; 
+								$magnitude_SOMA_L 			= ($ar['MR_low'] != '')?$ar['MR_low']:'0.0'; 
+								$magnitude_SOMA_P 			= ($ar['MR_Probable'] != '')?$ar['MR_Probable']:'0.0'; 
+								$magnitude_SOMA_H 			= ($ar['MR_High'] != '')?$ar['MR_High']:'0.0'; 
+								$magnitude_SOMA_RANGE 		= ($ar['MR_U_Range'] != '')?$ar['MR_U_Range']:'0.0'; 
+								$magnitude_SOMA_MEDIA 		= ($ar['magnitude_of_risk'] != '')?$ar['magnitude_of_risk']:'0.0'; 
 								
 								
 							
@@ -414,8 +414,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							//document.getElementById('leia').options[0]=new Option("Selected by zoom", ca_low, true, true);
 							
 						    $("#type_risk").val(data['type_risk']);	
-							
-							
+							//ley
+							if(data['type_risk'] == 3){
+								
+								document.getElementById("ley").readOnly = true;
+								document.getElementById("hey").readOnly = true;
+							}
 								
 							
 						    $("#fdLow").val(data['fdLow']);
@@ -577,11 +581,16 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							$("#le_zoom_document_file").val(data['le_zoom_document_file']);
 							
 							$("#le_zoom_link_bx").html("<a href='"+data['le_zoom_link']+"' target='_blank'>"+data['le_zoom_link']+"</a>");	
+							
+							
+							
+							
 							//C
 							$("#ia_Inp_Min").val(data['ia_Inp_Min']);
 							$("#ia_Inp_Med").val(data['ia_Inp_Med']);
 							$("#ia_Inp_Max").val(data['ia_Inp_Max']);
 							$("#ia_Inp_Range").val(data['ia_Inp_Range']);
+							$("#explain_ia").val(data['explain_ia']);
 							
 							$("#ia_Div_Min").html(data['ia_Inp_Min']);
 							$("#ia_Div_Med").html(data['ia_Inp_Med']);
@@ -1028,13 +1037,18 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
   // Novo método para o objeto 'String'
   String.prototype.reverse = function(){
  return this.split('').reverse().join(''); };
+ 
+							
 </script>		
 <?php
 
 require_once("footer.php");
 
 ?>
-
+<?php if(isset($_GET['ca_high'])){ ?>
 <SCRIPT>
+							
+									  
 refreshDataByZoom(<?php echo $_GET['ca_high']; ?>,<?php echo $_GET['ca_media']; ?>,<?php echo $_GET['ca_low']; ?>);
 </SCRIPT>
+<?php } ?>

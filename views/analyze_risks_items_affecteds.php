@@ -17,7 +17,7 @@
 
 										if(value > document.getElementById('heia').value || value < document.getElementById('leia').value ){
 												f=1; 	
-												alert(<?php echo "'".$_SESSION[$_SESSION['lang']]["This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty"]."'"; ?>");
+												alert(<?php echo "'".$_SESSION[$_SESSION['lang']]["This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty"]."'"; ?>);
 										}
 
 									}
@@ -26,7 +26,7 @@
 
 										if(value > document.getElementById('plia').value ){
 												f=1; 	
-												alert(<?php echo "'".$_SESSION[$_SESSION['lang']]["This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty"]."'"; ?>");
+												alert(<?php echo "'".$_SESSION[$_SESSION['lang']]["This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty"]."'"; ?>);
 										}
 
 									}
@@ -79,13 +79,13 @@ echo "</pre>"; */
 											  <div style="float:right;"> 
 
 											  <input type="hidden" id="ia_Inp_Min"  name="ia_Inp_Min" value="<?php echo $ia_Inp_Min; ?>">
-											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="ia_Div_Min" ><?php echo $ia_Inp_Min; ?></div>
+											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="ia_Div_Min" ><?php echo $ia_Div_Min; ?></div>
 											  
 											  <input type="hidden" id="ia_Inp_Med" name="ia_Inp_Med" value="<?php echo $ia_Inp_Med; ?>">	
-											  <div style="display:inline-block; padding:14px; margin:1px; background-color:#d8d7de; font-size: 22px;"  id="ia_Div_Med" ><?php echo $ia_Inp_Med; ?></div>
+											  <div style="display:inline-block; padding:14px; margin:1px; background-color:#d8d7de; font-size: 22px;"  id="ia_Div_Med" ><?php echo $ia_Div_Med; ?></div>
 											  
 											  <input type="hidden" id="ia_Inp_Max" name="ia_Inp_Max" value="<?php echo $ia_Inp_Max; ?>">	
-											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="ia_Div_Max"><?php echo $ia_Inp_Max; ?></div>
+											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="ia_Div_Max"><?php echo $ia_Div_Max; ?></div>
 											  &nbsp;
 											  &nbsp;
 											  &nbsp;

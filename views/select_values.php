@@ -138,7 +138,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 											</div>	
 										</div>
 										<div class="col-sm-4 col-md-1">
-											<input type="text" class="form-control" id="ratio" name="ratio" value="<?php echo $ratio; ?>" required  onKeyUp="maskIt(this,event,'###.###.##.##',true)" maxlength="5">
+											<input type="text" class="form-control" id="ratio" name="ratio" value="<?php echo $ratio; ?>" required  onKeyUp="maskIt(this,event,'##########',true)" maxlength="5">
 										</div>
 										<div class="col-sm-4 col-md-5">
 											<div style="margin-top:6px;">

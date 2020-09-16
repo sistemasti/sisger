@@ -114,6 +114,10 @@
 	$_SESSION['pt-br']['This time period has been selected for analysis of the loss to each item affected'] = "Este período de tempo foi selecionado para análise da perda de cada item afetado";
 	$_SESSION['pt-br']['A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss'] = "Uma perda específica para cada item afetado foi selecionada para análise, esta é a estimativa de anos necessários para atingir essa perda";
 	
+	$_SESSION['pt-br']['Most probable time period between events, (must be more than 1 year)'] = "Most probable time period between events, (must be more than 1 year)";
+	
+	$_SESSION['pt-br']['The time horizon has been selected and entered automatically'] = "The time horizon has been selected and entered automatically";
+	
 #analyze_risks_frequency_or_rate.php 	
 	$_SESSION['eng']['Option summary sentence'] 												= "Opção de resumo";
 	$_SESSION['eng']['Capital (one time) cost'] 												= "Custo de capital (uma vez)";
@@ -364,7 +368,10 @@
 	$_SESSION['eng']['Most probable time period between events, years'] 						= "Most probable time period between events, years";
 	$_SESSION['eng']['Average time period between events (must be more than 1 year)'] 			= "Average time period between events (must be more than 1 year)";
 	$_SESSION['eng']['This time period has been selected for analysis of the loss to each item affected'] = "This time period has been selected for analysis of the loss to each item affected";
+	
 	$_SESSION['eng']['A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss'] = "A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss";
+	
+	$_SESSION['eng']['The time horizon has been selected and entered automatically'] = "The time horizon has been selected and entered automatically";
 	
 	
 #analyze_risks_frequency_or_rate.php 	
@@ -372,9 +379,9 @@
 	$_SESSION['eng']['Capital (one time) cost'] 				= "Capital (one time) cost";
 	$_SESSION['eng']['Annual (maint.) cost'] 					= "Annual (maint.) cost";
 	$_SESSION['eng']['Date implemented'] 						= "Date implemented";
+	$_SESSION['eng']['Most probable time period between events, (must be more than 1 year)'] = "Most probable time period between events, (must be more than 1 year)";
 	
-	
-#analyze_risks_items_affecteds.php.php 	
+#analyze_risks_items_affecteds.php	
 	$_SESSION['eng']['This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty']																		= "This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty";
 	
 	$_SESSION['eng']['Uncertainty range']											= "Uncertainty range";

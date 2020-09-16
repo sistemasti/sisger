@@ -2,117 +2,126 @@
 								function isNumber(val){
 									alert(typeof val);
 									  return typeof val === "number"
-									}
+								}
+									
+									
+									
 								function range_L_E_I(field,value){
-									var f=0;
-
-									if(field == "High"){
-										
-										
-										fieldM = "Max";
-										
-										if(value < document.getElementById('B_fdProbable').value){
-												f=1; 	
-												alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
-										}
-
-									}
-					
-									if(field == "Probable"){
-										fieldM = "Med";
-										document.getElementById('B_fdProbable').value = value;
-										if(value > document.getElementById('B_fdHigh').value || value < document.getElementById('B_fdLow').value ){
-												f=1; 	
-												alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
-										}
-
-									}
-					
-									if(field == "Low"){
-										fieldM = "Min";
-										if(value > document.getElementById('B_fdProbable').value){
-												f=1; 	
-												alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
-										}
-
-									}
 									
-									if(field == "DecimalsHigh"){
-										
-										field = "High";
-										fieldM = "Max";
-										if(value > 1){
-											alert("this number must be between 0.00001 and 1.0");
-										}	
-										
-										var res = value.replace(",", ".");
-										var value_r = 5+ (Math.log(res)/Math.log(10));	
-										var value = value_r.toFixed(1);		
-									}
+									
+									if(value == 0){
+											alert('Invalid value');
+									}else{
+											var f=0;									
+											var newValue = value.replace(",", ".");
+											
+											if(field == "High"){
+												
+												
+												fieldM = "Max";
+												
+												if(newValue < document.getElementById('B_fdProbable').value){
+														f=1; 	
+														alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+												}
+
+											}
+							
+											if(field == "Probable"){
+												fieldM = "Med";
+												document.getElementById('B_fdProbable').value = newValue;
+												if(newValue > document.getElementById('B_fdHigh').value || newValue < document.getElementById('B_fdLow').value ){
+														f=1; 	
+														alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+												}
+
+											}
+							
+											if(field == "Low"){
+												fieldM = "Min";
+												if(newValue > document.getElementById('B_fdProbable').value){
+														f=1; 	
+														alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+												}
+
+											}
+											
+											if(field == "DecimalsHigh"){
+												
+												field = "High";
+												fieldM = "Max";
+												if(newValue > 1){
+													alert("this number must be between 0.00001 and 1.0");
+												}	
+												
+												var res = value.replace(",", ".");
+												var value_r = 5+ (Math.log(res)/Math.log(10));	
+												var value = value_r.toFixed(1);		
+											}
+																				
+											if(field == "DecimalsProbable"){
+												
+												field = "Probable";
+												fieldM = "Med";
+												if(newValue > 1){
+													alert("this number must be between 0.00001 and 1.0");
+												}	
+												
+												var res = value.replace(",", ".");
+												var value_r = 5+ (Math.log(res)/Math.log(10));	
+												var value = value_r.toFixed(1);		
+											}
+																				
+											if(field == "DecimalsLow"){
+												
+												field = "Low";
+												fieldM = "Min";										
+												if(newValue > 1){
+													alert("this number must be between 0.00001 and 1.0");
+												}	
+												
+												var res = value.replace(",", ".");
+												var value_r = 5+ (Math.log(res)/Math.log(10));	
+												var value = value_r.toFixed(1);	
+											}
+											
+											if(f==0){
+						
+												document.getElementById('B_bx'+field).innerHTML = value;
+												
+												document.getElementById('B_fd'+field).value = value;
+												
+												if(fieldM=="Min"){
+															document.getElementById('magnitude_LE_Min').innerHTML = value;
+															
+												}
+												if(fieldM=="Med"){
+															document.getElementById('magnitude_LE_Med').innerHTML = value;
+												}
+												if(fieldM=="Max"){
+															document.getElementById('magnitude_LE_Max').innerHTML = value;
+												}
+												
+												if(
+												document.getElementById('B_fdProbable').value != "" &&
+												document.getElementById('B_fdHigh').value != "" &&
+												document.getElementById('B_fdLow').value != ""
+												){
+													var base = parseFloat(document.getElementById('B_fdProbable').value) + parseFloat(document.getElementById('B_fdHigh').value) + parseFloat(document.getElementById('B_fdLow').value);
+													var media = base / 3;		
 																		
-									if(field == "DecimalsProbable"){
-										
-										field = "Probable";
-										fieldM = "Med";
-										if(value > 1){
-											alert("this number must be between 0.00001 and 1.0");
-										}	
-										
-										var res = value.replace(",", ".");
-										var value_r = 5+ (Math.log(res)/Math.log(10));	
-										var value = value_r.toFixed(1);		
+													document.getElementById('magnitude_LE_MEDIA').innerHTML = media.toFixed(1);
+												}	
+												
+												var range = (document.getElementById('B_fdHigh').value)-(document.getElementById('B_fdLow').value);
+												
+												document.getElementById('lei_Div_Range').innerHTML = range.toFixed(1);
+												document.getElementById('B_fdUncert').value = range.toFixed(1);
+											
+											}
+												
+											magnitudeRisk();
 									}
-																		
-									if(field == "DecimalsLow"){
-										
-										field = "Low";
-										fieldM = "Min";										
-										if(value > 1){
-											alert("this number must be between 0.00001 and 1.0");
-										}	
-										
-										var res = value.replace(",", ".");
-										var value_r = 5+ (Math.log(res)/Math.log(10));	
-										var value = value_r.toFixed(1);	
-									}
-									
-									if(f==0){
-				
-										document.getElementById('B_bx'+field).innerHTML = value;
-										
-										document.getElementById('B_fd'+field).value = value;
-										
-										if(fieldM=="Min"){
-													document.getElementById('magnitude_LE_Min').innerHTML = value;
-													
-										}
-										if(fieldM=="Med"){
-													document.getElementById('magnitude_LE_Med').innerHTML = value;
-										}
-										if(fieldM=="Max"){
-													document.getElementById('magnitude_LE_Max').innerHTML = value;
-										}
-										
-										if(
-										document.getElementById('B_fdProbable').value != "" &&
-										document.getElementById('B_fdHigh').value != "" &&
-										document.getElementById('B_fdLow').value != ""
-										){
-											var base = parseFloat(document.getElementById('B_fdProbable').value) + parseFloat(document.getElementById('B_fdHigh').value) + parseFloat(document.getElementById('B_fdLow').value);
-											var media = base / 3;		
-																
-											document.getElementById('magnitude_LE_MEDIA').innerHTML = media.toFixed(1);
-										}	
-										
-										var range = (document.getElementById('B_fdHigh').value)-(document.getElementById('B_fdLow').value);
-										
-										document.getElementById('lei_Div_Range').innerHTML = range.toFixed(1);
-										document.getElementById('B_fdUncert').value = range.toFixed(1);
-									
-									}
-										
-										magnitudeRisk();
-
 								}
 
 							</script>
@@ -121,14 +130,14 @@
 											  <div style="float:right;"> 
 
 											  <input type="hidden" id="B_fdLow" name="B_fdLow" value="<?php echo $B_fdLow; ?>">
-											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="B_bxLow" ><?php echo $B_fdLow; ?></div>
+											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="B_bxLow" ><?php echo $B_bxLow; ?></div>
 											  
 											  <input type="hidden" id="B_fdProbable" name="B_fdProbable" value="<?php echo $B_bxProbable; ?>">	
 											  <div style="display:inline-block; padding:14px; margin:1px; background-color:#d8d7de; font-size: 22px;""  id="B_bxProbable" ><?php echo $B_bxProbable; ?></div>
 											  
 											  
 											  <input type="hidden" id="B_fdHigh" name="B_fdHigh"  value="<?php echo $B_fdHigh; ?>">	
-											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="B_bxHigh"><?php echo $B_fdHigh; ?></div>
+											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="B_bxHigh"><?php echo $B_bxHigh; ?></div>
 											  &nbsp;
 											  &nbsp;
 											  &nbsp;
@@ -464,23 +473,51 @@
 												<?php }else{ ?> 
 													<div id="bxAnyDecimals" style="display: none">												
 												<?php } ?> 			
-												
-													<div class="form-group">
+												<!-- onkeypress='return event.charCode >= 48 && event.charCode <= 57' -->
+													<div class="form-group"> 
 														<label for="Sigla">High estimate</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5" onchange="range_L_E_I('DecimalsHigh',this.value)" value="<?php echo $he5; ?>" onKeyUp="maskIt(this,event,'###.###.##.##',true)" maxlength="5">
+														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="0.0" onchange="range_L_E_I('DecimalsHigh',this.value)" value="" onkeypress="return keypressed( this , event );"   maxlength="12">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5" onchange="range_L_E_I('DecimalsProbable',this.value)" value="<?php echo $pl5; ?>" onKeyUp="maskIt(this,event,'###.###.##.##',true)" maxlength="5">
+														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="0.0" onchange="range_L_E_I('DecimalsProbable',this.value)" value="" onkeypress="return keypressed( this , event );">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label><br>
-														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" onchange="range_L_E_I('DecimalsLow',this.value)" value="<?php echo $le5; ?>" onKeyUp="maskIt(this,event,'###.###.##.##',true)" maxlength="5">
+														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder="0.0" onchange="range_L_E_I('DecimalsLow',this.value)" value="" onkeypress="return keypressed( this , event );">
 													</div>
 													</div>
 													
 												</div>	
 											</div>
+											
+											<script>
+											
+											function keypressed( obj , e ) {
+												 var tecla = ( window.event ) ? e.keyCode : e.which;
+												 var texto = obj.value
+												 var indexvir = texto.indexOf(",")
+												 var indexpon = texto.indexOf(".")
+												
+												if ( tecla == 8 || tecla == 0 )
+													return true;
+												if ( tecla != 44 && tecla != 46 && tecla < 48 || tecla > 57 )
+													return false;
+												if (tecla == 44) { if (indexvir !== -1 || indexpon !== -1) {return false} }
+												if (tecla == 46) { if (indexvir !== -1 || indexpon !== -1) {return false} }
+											}
+											
+											function formataAnyDecimal (value,id){
+												
+												var d1 = value.substring(0,1);
+												var d2 = value.substring(1,10);
+												
+												document.getElementById(id).value = d1+','+d2;
+												
+												
+											}
+											
+											</script>
 											<br>
 											<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="loss_to_each_register()">Save</button>
 						    </form>
