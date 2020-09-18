@@ -65,7 +65,7 @@ $go = Build_value_pie::select_ec_groups_value_id($_REQUEST['id']);
 							
 								<?php
 								
-									$ins = Build_value_pie::insert_ec_value_pie_table($tg['total'],$in['group_name'],$ts['total'],($b*100)/$a['a'],$in['subgroup_name'],$in['numbers_of_items'],round(($c*100)/$a['a'],2),round(($c*100)/$b),round((($c*100)/$a['a'])/$d));
+									$ins = Build_value_pie::insert_ec_value_pie_table($tg['total'],$in['group_name'],$ts['total'],($b*100)/$a['a'],$in['subgroup_name'],$in['numbers_of_items'],round(($c*100)/$a['a'],2),round(($c*100)/$a2['a']),round((($c*100)/$a['a'])/$d,6));
 								
 								}
 								
