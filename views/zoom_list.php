@@ -333,7 +333,7 @@ require_once("header.php");
 																		  <span class="badge bg-info">
 																		  <div id="modalZoomDados"><?php 
 																		  
-																			$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table(); 
+																			$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
 																	
 																			$b = ((float)$formulaF*(float)$most_probable_general)/(float)$totalMost['total']; 
 																			  echo round($b,5);
@@ -368,7 +368,7 @@ require_once("header.php");
 															   <div id="bxExposedUsingHigh" style="display:none">
 																  <center>
 																		  <span class="badge bg-info"><div id="modalZoomDados"><?php  
-																			$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table(); 
+																			$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	
 																			$c = ((float)$formulaG*(float)$high_estimate_general)/(float)$totalHigh['total']; 
 																			  echo round($c,5); ?>%</div></span>
@@ -443,7 +443,7 @@ require_once("header.php");
 																<div id="bx_AllAffected_Assuming_Most">
 																	<center>
 																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
-																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table(); 
+																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
 																		  
 																		  $m = ((float)$totalMost['total']/(float)$items_in_asset)*100;
 																		  echo round($m,5);
@@ -462,7 +462,7 @@ require_once("header.php");
 																		  
 																		  
 																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
-																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table(); 
+																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
 																		  $l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
 																		  $l = round($l,5);
 																		   
@@ -491,7 +491,7 @@ require_once("header.php");
 																<div id="bx_AllAffected_Assuming_High">
 																	<center>
 																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
-																		  $totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table(); 
+																		  $totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																		  
 																		  $h = ((float)$totalHigh['total']/(float)$items_in_asset)*100;
 																		  echo round($h,5);
@@ -508,7 +508,7 @@ require_once("header.php");
 																<div id="bx_Exposed_Assuming_High" style="display:none">
 																	<center>
 																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
-																		  $totalMost = Build_value_pie::select_sum_high_estimate_ec_value_pie_table(); 
+																		  $totalMost = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																		  $l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
 																		  $l = round($l,5);
 																		   
@@ -797,7 +797,7 @@ require_once("header.php");
 																		  <span class="badge bg-info">
 																		  <div id="modalZoomDados"><?php 
 																		  
-																			$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table(); 
+																			$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
 																	
 																			$b = ((float)$formulaF*(float)$most_probable_general_o)/(float)$totalMost['total']; 
 																			  echo round($b,5);
@@ -832,7 +832,7 @@ require_once("header.php");
 															   <div id="bxExposedUsingHigh_o" style="display:none">
 																  <center>
 																		  <span class="badge bg-info"><div id="modalZoomDados"><?php  
-																			$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table(); 
+																			$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	
 																			$c = ((float)$formulaG*(float)$high_estimate_general_o)/(float)$totalHigh['total']; 
 																			  echo round($c,5); ?>%</div></span>
@@ -907,7 +907,7 @@ require_once("header.php");
 																<div id="bx_AllAffected_Assuming_Most_o">
 																	<center>
 																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
-																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table(); 
+																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
 																		  
 																		  $m = ((float)$totalMost['total']/(float)$items_in_asset_o)*100;
 																		  echo round($m,5);
@@ -926,7 +926,7 @@ require_once("header.php");
 																		  
 																		  
 																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
-																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table(); 
+																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
 																		  $l = ((float)$totalMost['total']/(float)$items_in_asset_o)*100;
 																		  $l = round($l,5);
 																		   
@@ -955,7 +955,7 @@ require_once("header.php");
 																<div id="bx_AllAffected_Assuming_High_o">
 																	<center>
 																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
-																		  $totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table(); 
+																		  $totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																		  
 																		  $h = ((float)$totalHigh['total']/(float)$items_in_asset_o)*100;
 																		  echo round($h,5);
@@ -972,7 +972,7 @@ require_once("header.php");
 																<div id="bx_Exposed_Assuming_High_o" style="display:none">
 																	<center>
 																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
-																		  $totalMost = Build_value_pie::select_sum_high_estimate_ec_value_pie_table(); 
+																		  $totalMost = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																		  $l = ((float)$totalMost['total']/(float)$items_in_asset_o)*100;
 																		  $l = round($l,5);
 																		   
