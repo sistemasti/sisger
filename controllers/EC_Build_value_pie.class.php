@@ -121,10 +121,10 @@ update their_scores
 			return $d;
 		}
 
-		static function select_sum_low_estimate_ec_value_pie_table(){
+		static function select_sum_low_estimate_ec_value_pie_table($id){
 			
-			$n1 = self::getConn()->prepare('SELECT sum(low_estimate) as total FROM `ar_zoom_list_items_affected` WHERE project_id="'.$_SESSION['project_id'].'"');
-			$n1->execute(array()); 
+			$n1 = self::getConn()->prepare('SELECT sum(low_estimate) as total FROM `ar_zoom_list_items_affected` WHERE project_id="'.$_SESSION['project_id'].'" AND risk_id=?');
+			$n1->execute(array($id)); 
 			$d = $n1->fetch();	
 			$d['num'] = $n1->rowCount();				
 			return $d;

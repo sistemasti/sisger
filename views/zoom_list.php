@@ -216,7 +216,7 @@ require_once("header.php");
 																	
 																$vp = Build_value_pie::select_ec_value_pie_table_id($ia['id_ec_value_pie_table']);	
 																
-																if($vp['num'] > 0){
+																//if($vp['num'] > 0){
 																
 																if($vp['items_value_as_percent_of_asset'] ==0 || $vp['items_value_as_percent_of_asset'] ==''){
 																	$items_value_as_percent_of_asset = 1;
@@ -234,7 +234,7 @@ require_once("header.php");
 																$low_estimate_general = $ia['low_estimate_general'];
 																$most_probable_general = $ia['most_probable_general'];
 																$high_estimate_general = $ia['high_estimate_general'];
-																	
+															///echo "----->".$ia['id_ec_value_pie_table'];		
 														?>
 															<tr id="row<?php  echo $ia['id']; ?>">
 															  <td><?php  echo $ia['identification']; ?></td>
@@ -258,7 +258,7 @@ require_once("header.php");
 															</tr>
 															
 															<?php 
-																}
+																//}
 																}
 																
 															?>
@@ -295,7 +295,7 @@ require_once("header.php");
 																 <div id="bxExposedUsingLow" style="display:none">
 																  <center>
 																	  <span class="badge bg-info"><div id=""><?php  
-																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table(); 
+																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	
 																	 $a = ((float)$formulaE*(float)$low_estimate_general)/(float)$totalLow['total']; 
 																	  echo round($a,5);
@@ -396,7 +396,7 @@ require_once("header.php");
 																  <center>
 																	  <span class="badge bg-info"><div id="modalZoomDados">
 																	  <?php 
-																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table(); 
+																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	  
 																	  $l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
 																	  echo round($l,5);
@@ -415,7 +415,7 @@ require_once("header.php");
 																  <center>
 																	  <span class="badge bg-info"><div id="modalZoomDados">
 																	  <?php  
-																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table(); 
+																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	  $l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
 																	  $l = round($l,5);
 																	   
@@ -759,7 +759,7 @@ require_once("header.php");
 																 <div id="bxExposedUsingLow_o" style="display:none">
 																  <center>
 																	  <span class="badge bg-info"><div id=""><?php  
-																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table(); 
+																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	
 																	 $a = ((float)$formulaE*(float)$low_estimate_general_o)/(float)$totalLow['total']; 
 																	  echo round($a,5);
@@ -860,7 +860,7 @@ require_once("header.php");
 																  <center>
 																	  <span class="badge bg-info"><div id="modalZoomDados">
 																	  <?php 
-																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table(); 
+																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	  
 																	  $l = ((float)$totalLow['total']/(float)$items_in_asset_o)*100;
 																	  echo round($l,5);
@@ -879,7 +879,7 @@ require_once("header.php");
 																  <center>
 																	  <span class="badge bg-info"><div id="modalZoomDados">
 																	  <?php  
-																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table(); 
+																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	  $l = ((float)$totalLow['total']/(float)$items_in_asset_o)*100;
 																	  $l = round($l,5);
 																	   
