@@ -303,7 +303,7 @@ require_once("header.php");
 																	  <br>
 																	  C: <?php 
 																	  
-																			$ca = log10(round($a,5)/100);
+																			$ca = 5 + log10(round($a,5)/100);
 																			echo round($ca,1);
 																		?>
 																		<input type="hidden" id="ca_low" name="ca_low" value="<?php echo round($ca,1); ?>">
@@ -342,7 +342,7 @@ require_once("header.php");
 																		  <br>
 																		   <?php 
 																		  
-																				$cb = log10(round($b,5)/100);
+																				$cb = 5 + log10(round($b,5)/100);
 																				echo round($cb,1);
 																			?>
 																			 <input type="hidden" id="ca_media" name="ca_media" value="<?php echo round($cb,1); ?>">
@@ -375,7 +375,7 @@ require_once("header.php");
 																		  <br>
 																		   <?php 
 																		  
-																				$cc = log10(round($c,5)/100);
+																				$cc = 5 + log10(round($c,5)/100);
 																				echo round($cc,1);
 																			?>
 																			<input type="hidden" id="ca_high" name="ca_high" value="<?php echo round($cc,1); ?>">
@@ -428,7 +428,7 @@ require_once("header.php");
 																	  <br>
 																	  C:  <?php 
 																	  
-																			$cd =log10(round($d,5)/100);
+																			$cd =5 + log10(round($d,5)/100);
 																			echo round($cd,1);
 																		?>
 																		 <input type="hidden" id="cd_low" name="cd_low" value="<?php echo round($cd,1); ?>">
@@ -476,7 +476,7 @@ require_once("header.php");
 																		 <br>
 																		   <?php 
 																		  
-																				$ce =log10(round($e,5)/100);
+																				$ce =5 + log10(round($e,5)/100);
 																				echo round($ce,1);
 																			?>
 																			
@@ -520,7 +520,7 @@ require_once("header.php");
 																		  <br>
 																		 <?php 
 																		  
-																				$cf =log10(round($f,5)/100);
+																				$cf = 5 + log10(round($f,5)/100);
 																				echo round($cf,1);
 																			?>
 																			<input type="hidden" id="cf_high" name="cf_high" value="<?php echo round($cf,1); ?>">
