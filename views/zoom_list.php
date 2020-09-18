@@ -285,7 +285,7 @@ require_once("header.php");
 																	  <br>
 																	  C: <?php 
 																	  
-																			$ca = log10($formulaE/100);
+																			$ca = 5 + log10($formulaE/100);
 																			echo round($ca,1);
 																		?>
 																  </center>
@@ -321,7 +321,7 @@ require_once("header.php");
 																		  <br>
 																		   <?php 
 																		  
-																				$cb = log10($formulaF/100);
+																				$cb = 5 + log10($formulaF/100);
 																				echo round($cb,1);
 																			?>
 																  </center>
@@ -359,7 +359,7 @@ require_once("header.php");
 																	  <br>
 																	 <?php 
 																	  
-																			$cc =log10($formulaG/100);
+																			$cc =5 + log10($formulaG/100);
 																			echo round($cc,1);
 																		?>
 																  </center>
@@ -405,7 +405,7 @@ require_once("header.php");
 																	  <br>
 																	  C:  <?php 
 																	  
-																			$cd =log10(round($l,5)/100);
+																			$cd =5 + log10(round($l,5)/100);
 																			echo round($cd,1);
 																		?>
 																		  <input type="hidden" id="cd_low" name="cd_low" value="<?php echo round($cd,1); ?>">
@@ -451,7 +451,7 @@ require_once("header.php");
 																		  <br>
 																		   <?php 
 																		  
-																				$ce =log10(round($m,5)/100);
+																				$ce =5 + log10(round($m,5)/100);
 																				echo round($ce,1);
 																			?>
 																			<input type="hidden" id="ce_most" name="ce_most" value="<?php echo round($ce,1); ?>">
@@ -499,7 +499,7 @@ require_once("header.php");
 																		  <br>
 																		 <?php 
 																		  
-																				$cf =log10(round($h,5)/100);
+																				$cf =5 + log10(round($h,5)/100);
 																				echo round($cf,1);
 																			?>
 																			<input type="hidden" id="cf_high" name="cf_high" value="<?php echo round($cf,1); ?>">
