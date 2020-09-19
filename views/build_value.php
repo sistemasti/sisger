@@ -109,7 +109,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								<tr>
 									
 									<td id="row_group<?php echo $in['id'];?>">
-									<input type="text" class="form-control" id="group_name<?php echo $in['id']; ?>" name="group_name<?php echo $in['id']; ?>" value="<?php echo $in['name']; ?>" onkeyup="if(this.value != ''){group_edit_name(this.value,<?php echo $in['id']; ?>)}" onclick="view_subgroup(<?php echo $in['id']; ?>);$('#groupOption').show();$('#group_selected_for_all').val(<?php echo $in['id']; ?>); $('#group_selected').val(<?php echo $in['id']; ?>); this.style.backgroundColor='#f5f2c9';document.getElementById('scores_column').style.display='none';" onblur="this.style.backgroundColor='#fff';if(this.value==''){ alert('Fill in the name fiel'); }" style="width:86%;display:inline-block" required> 
+									<input type="text" class="form-control" id="group_name<?php echo $in['id']; ?>" name="group_name<?php echo $in['id']; ?>" value="<?php echo $in['name']; ?>" onkeyup="if(this.value != ''){group_edit_name(this.value,<?php echo $in['id']; ?>)}" onclick="view_subgroup(<?php echo $in['id']; ?>);$('#groupOption').show();$('#group_selected_for_all').val(<?php echo $in['id']; ?>); $('#group_selected').val(<?php echo $in['id']; ?>); this.style.backgroundColor='#f5f2c9';document.getElementById('scores_column').style.display='none';atualiza_value_pie_table();" onblur="this.style.backgroundColor='#fff';if(this.value==''){ alert('Fill in the name fiel'); }" style="width:86%;display:inline-block" required> 
 									
 									<a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ group_delete(<?php echo $in['id'];?>)}">
 									<button type="button" class="btn btn-danger btn-sm" style="float:right;">
@@ -149,6 +149,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									},
 									success: function(data) {
 									  //$(i).css({"display":"none"});
+									  atualiza_value_pie_table();
 									  location.reload();
 									}
 								  });
@@ -169,7 +170,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									processData: false,
 									contentType: false,
 									success: function(data) {
-										
+										atualiza_value_pie_table();
 										//location.reload();
 									}
 									});
@@ -189,7 +190,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									processData: false,
 									contentType: false,
 									success: function(data) {
-										
+										atualiza_value_pie_table();
 										//location.reload();
 									}
 									});
@@ -210,6 +211,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									contentType: false,
 									success: function(data) {
 										//alert(data);
+										atualiza_value_pie_table();
 										document.getElementById('totalNumberOfItens').innerHTML=data;
 									}
 									});
@@ -285,8 +287,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 										//alert(data['total']);
 										//alert(data['total_group']);
 										//html_points_subgroup
+										
 										document.getElementById('html_points_subgroup').innerHTML=data['total'];
 										document.getElementById('html_points_subgroup_subgroup').innerHTML=data['total_group'];
+										atualiza_value_pie_table();
 									}
 									});
 
@@ -310,6 +314,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									success: function(data) {
 										
 										view_subgroup(group_id);
+										atualiza_value_pie_table();
 										window.scrollto(0,0);
 									}
 									});
@@ -329,10 +334,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									processData: false,
 									contentType: false,
 									success: function(data) {
-										
+										atualiza_value_pie_table();
 										view_subgroup(document.getElementById('group_selected_for_all').value);
 										view_scores(subgroup_id);
 										document.getElementById('html_points_subgroup_subgroup').innerHTML=data;
+										
 										window.scrollto(0,0);
 									}
 									});
@@ -369,6 +375,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									contentType: false,
 									success: function(data) {
 										//document.getElementById('pb_'+id).value; 
+										atualiza_value_pie_table();
 										location.reload();
 									}
 									});
@@ -439,6 +446,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									},
 									success: function(data) {
 									  //$(i).css({"display":"none"});
+									  atualiza_value_pie_table();
 									  document.getElementById('scores_column').style.display='none';
 									  view_subgroup(group_id);
 									}
@@ -456,6 +464,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									},
 									success: function(data) {
 									  //$(i).css({"display":"none"});
+									  atualiza_value_pie_table();
 									  view_subgroup(document.getElementById('group_selected_for_all').value);
 									  view_scores(subgroup);
 									}
@@ -558,7 +567,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								contentType: false,
 								success: function(data) {
 									
-									
+									atualiza_value_pie_table();
 									
 								},
 								error: function(){
@@ -587,6 +596,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								contentType: false,
 								success: function(data) {
 									alert(document.getElementById('group_selected_for_all').value);
+									atualiza_value_pie_table();
 									view_subgroup(document.getElementById('group_selected_for_all').value);
 									
 								},
@@ -944,6 +954,22 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 		  $(i).css({"display":"none"});
 		  alert('Record deleted successfully');
 		  location.reload();
+		}
+	  });
+	}
+	
+  function atualiza_value_pie_table() {			
+	  //var i = '#row'+id;
+	  $.ajax({
+		type: "POST",
+		url: "ajax_process/atualiza_value_pie_table.php",
+		data: {
+			
+		},
+		success: function(data) {
+		 /*  $(i).css({"display":"none"});
+		  alert('Record deleted successfully');
+		  location.reload(); */
 		}
 	  });
 	}

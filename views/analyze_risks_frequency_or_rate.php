@@ -186,7 +186,7 @@
 											  
 											  <option value="5" <?php if($type_risk == "5"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['Process or cumulative events, analyzed at a particular stage of damage']; ?></option>
 											  
-											  <option value="6" <?php if($type_risk == "6"){ echo "selected"; } ?> selected><?php echo $_SESSION[$_SESSION['lang']]['Not selected yet']; ?></option>
+											  <option value="6" <?php if($type_risk == "6"){ echo "selected"; } ?> ><?php echo $_SESSION[$_SESSION['lang']]['Not selected yet']; ?></option>
 											 
 											</select>
 									  </div>
@@ -243,8 +243,14 @@
 									
 									<!-- FRM1 -->
 									
-									
+									<?php 
+									//echo "----> ".$type_risk;
+									if($type_risk == 6){ ?>
+									<div id="bxFrm1" style="display:none">		
+									<?php }else{ ?>
 									<div id="bxFrm1">		
+									<?php } ?>
+									
 									<div class="form-group">
 										<div class="row">
 										<div class="col-sm-4 col-md-10" style="text-align:right;">
@@ -252,7 +258,7 @@
 										</div>	
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="ley"
-											name="ley" placeholder="0"  required value="<?php echo $ley; ?>"  onchange="
+											name="ley" placeholder=""  required value="<?php echo $ley; ?>"  onchange="
 											
 											
 											if(
@@ -278,19 +284,31 @@
 										</div>	
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="abey"
-											name="abey" placeholder="0"  required value="<?php echo $abey; ?>" onchange="
-											if(
-											this.value > 0 &&
-											this.value < document.getElementById('ley').value
-											){
-												alert('This number must be greater than 1; it must be LARGER than or equal to low estimate of years; it cannot be changed if expected years is empty');
-												
-												this.value=document.getElementById('ley').value
-												
+											name="abey" placeholder=""  required value="<?php echo $abey; ?>" onchange="
+											if(document.getElementById('type_risk').value != 3){
+												if(
+												(this.value > 0 &&
+												this.value < document.getElementById('ley').value) 
+												||
+												(this.value > document.getElementById('hey').value) )
+												{
+													alert('This number must be greater than 1; it must be LARGER than or equal to low estimate of years; it cannot be changed if expected years is empty');
+													
+													this.value=document.getElementById('ley').value
+													
+												}else{
+													calculcaPontuacao(this.value,'Probable'); 
+													calculateProbab(this.value);
+												}
 											}else{
+												
+												document.getElementById('ley').value = this.value;
+												document.getElementById('hey').value = this.value;
 												calculcaPontuacao(this.value,'Probable'); 
 												calculateProbab(this.value);
-											}
+												
+											}	
+											
 											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10">
 										</div>	
 										</div>
@@ -320,70 +338,11 @@
 									<br>		
 									<br>		
 									
-									<!--
-									<div class="row">
-									<div class="col-sm-4 col-md-10" style="text-align:right;">
-										<label for="Sigla" style="vertical-align:baseline;margin-top:7px;">Probability of this event during the time horizon</label>
-									</div>	
-									<div class="col-sm-4 col-md-2">
-										<input type="text" class="form-control" id="ped_th"
-										name="ped_th" placeholder="0"  required value="" readonly>
-									</div>	
-									</div>
-									
-									<br>		
-								<br>		
 								
-									
-									<div class="row">
-									<div class="col-sm-4 col-md-10" style="text-align:right;">
-										<label for="Sigla" style="vertical-align:baseline;">If you wish to cross-check frequency or probability in terms of another time period, enter a time period in years here:</label>
-									</div>	
-									<div class="col-sm-4 col-md-2">
-										<input type="text" class="form-control" id="sigla"
-										name="sigla" placeholder="0" onblur="calculateEstimate(this.value)" required value="">
-									</div>	
 									</div>
-									
-									<br>											
-									
-									
-									<div class="row">
-									<div class="col-sm-4 col-md-8" style="text-align:right;">
-										<label for="Sigla" style="vertical-align:baseline;margin-top:7px;">High estimate</label>
-									</div>	
-									<div class="col-sm-4 col-md-2">
-										<input type="text" class="form-control" id="high_estimate_value" name="high_estimate_value" placeholder="0"  required value="">
-									</div>		
-									<div class="col-sm-4 col-md-2">
-										<input type="text" class="form-control" id="high_estimate_percent" name="high_estimate_percents" placeholder="0"  required value="">
-									</div>	
-									</div>
-									
-									<div class="row">
-									<div class="col-sm-4 col-md-8" style="text-align:right;">
-										<label for="Sigla" style="vertical-align:baseline;margin-top:7px;">To obtain the frequency/probability here (as fraction, and percent):</label>
-									</div>	
-									<div class="col-sm-4 col-md-2">
-										<input type="text" class="form-control" id="to_obtain_value" name="to_obtain_value" placeholder="0"  required value="">
-									</div>		
-									<div class="col-sm-4 col-md-2">
-										<input type="text" class="form-control" id="to_obtain_percent" name="to_obtain_percent" placeholder="0"  required value="">
-									</div>	
-									</div>
+									<br>
 								
-									<div class="row">
-									<div class="col-sm-4 col-md-8" style="text-align:right;">
-										<label for="Sigla" style="vertical-align:baseline;margin-top:7px;">Low estimate:</label>
-									</div>	
-									<div class="col-sm-4 col-md-2">
-										<input type="text" class="form-control" id="low_estimate_value" name="low_estimate_value" placeholder="0"  required value="">
-									</div>		
-									<div class="col-sm-4 col-md-2">
-										<input type="text" class="form-control" id="low_estimate_percent" name="low_estimate_percent" placeholder="0"  required value="">
-									</div>	
-									</div>-->
-									</div>
+									<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="frequency_or_rate_register()"><?php echo $_SESSION[$_SESSION['lang']]['Save']; ?></button>
 									</div>
 									
 									
@@ -429,9 +388,7 @@
 									
 								  </form>
 								  </div> 
-								  <br>
-								
-									<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="frequency_or_rate_register()"><?php echo $_SESSION[$_SESSION['lang']]['Save']; ?></button>
+								  
 								
 						  </div>
 						  </form>
@@ -452,7 +409,7 @@
 								  
 								</div>
 								<div class="modal-body">
-								<span id="zoomRisk" style="padding:10px;margin-bottom:7px;background-color:#E3F5EA"></span>
+								<span id="zoomRisk" style="padding:10px;margin-bottom:7px;background-color:#fff"></span>
 								<br>&nbsp;
 								
 								

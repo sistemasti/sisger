@@ -100,10 +100,22 @@ update their_scores
 		}
 
 
-		static function select_ec_value_pie_table_all($id){
+		static function select_ec_value_pie_table_all(){
 			
 			$n1 = self::getConn()->prepare('SELECT * FROM ec_value_pie_table WHERE project_id="'.$_SESSION['project_id'].'"');
-			$n1->execute(array($id)); 
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+			
+		}
+
+
+		static function select_ec_value_pie_table_all_by_group_subgroup($group_id,$subgroup_id){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM ec_value_pie_table WHERE project_id="'.$_SESSION['project_id'].'" and group_id=? and subgroup_id=?');
+			$n1->execute(array($group_id,$subgroup_id)); 
 			$d['dados'] = $n1->fetchAll();	
 			$d['num'] = $n1->rowCount();	
 			return $d;
@@ -341,6 +353,7 @@ update their_scores
 			
 			$n1 = self::getConn()->prepare('SELECT 
 												*, 
+												g.id as group_id,
 												g.name as group_name, 
 												s.name as subgroup_name, 
 												s.id as subgroup_id, 
@@ -493,10 +506,12 @@ update their_scores
 		}
 		
 		
-		static function insert_ec_value_pie_table($items_in_asset,$group_value,$items_in_group,$group_as_percent_of_asset,$subgroup_value,$items_ind_subgroup,$subgroup_as_percent_of_asset,$subgroup_as_percent_of_group,$items_value_as_percent_of_asset){
+		static function insert_ec_value_pie_table($group_id,$subgroup_id,$items_in_asset,$group_value,$items_in_group,$group_as_percent_of_asset,$subgroup_value,$items_ind_subgroup,$subgroup_as_percent_of_asset,$subgroup_as_percent_of_group,$items_value_as_percent_of_asset){
 			
 			$n = self::getConn()->prepare('INSERT INTO `ec_value_pie_table` SET 
 											project_id="'.$_SESSION['project_id'].'",	
+											group_id=?,	
+											subgroup_id=?,	
 											items_in_asset=?,
 											group_value=?,
 											items_in_group=?,
@@ -507,7 +522,7 @@ update their_scores
 											subgroup_as_percent_of_group=?,
 											items_value_as_percent_of_asset=?
 										  ');											
-			$n->execute(array($items_in_asset,$group_value,$items_in_group,$group_as_percent_of_asset,$subgroup_value,$items_ind_subgroup,$subgroup_as_percent_of_asset,$subgroup_as_percent_of_group,$items_value_as_percent_of_asset));
+			$n->execute(array($group_id,$subgroup_id,$items_in_asset,$group_value,$items_in_group,$group_as_percent_of_asset,$subgroup_value,$items_ind_subgroup,$subgroup_as_percent_of_asset,$subgroup_as_percent_of_group,$items_value_as_percent_of_asset));
 			
 			$id = self::getConn()->prepare('SELECT LAST_INSERT_ID() as id_last_insert');	
 			$id->execute(array());
@@ -693,6 +708,27 @@ update their_scores
 													WHERE  `id_risk` =? ');
 											
 					$n->execute(array($le_zoom_link, $le_zoom_obs, $le_zoom_explanation_fields, $le_zoom_notes_explanation, $le_zoom_document_name, $le_zoom_comment, $le_zoom_document_file, $id));
+		}
+		
+		static function update_ec_value_pie_table($items_in_asset, $group_value, $items_in_group, $group_as_percent_of_asset, $subgroup_value, $items_ind_subgroup, $subgroup_as_percent_of_asset, $subgroup_as_percent_of_group, $items_value_as_percent_of_asset, $group_id, $subgroup_id){
+					$n = self::getConn()->prepare('
+													UPDATE `ec_value_pie_table` SET 
+														   `items_in_asset` =?,
+														   `group_value` =?,
+														   `items_in_group` =?,
+														   `group_as_percent_of_asset` =?,
+														   `subgroup_value` =?,
+														   `items_ind_subgroup` =?,
+														   `subgroup_as_percent_of_asset` =?,
+														   `subgroup_as_percent_of_group` =?,
+														   `items_value_as_percent_of_asset` =?
+														   
+													WHERE  `group_id` =? AND
+														   `subgroup_id` =? 
+														   
+														   ');
+											
+					$n->execute(array($items_in_asset, $group_value, $items_in_group, $group_as_percent_of_asset, $subgroup_value, $items_ind_subgroup, $subgroup_as_percent_of_asset, $subgroup_as_percent_of_group, $items_value_as_percent_of_asset, $group_id, $subgroup_id));
 		}
 		
 		static function update_group_name($name, $id){

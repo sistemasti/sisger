@@ -420,6 +420,16 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								document.getElementById("ley").readOnly = true;
 								document.getElementById("hey").readOnly = true;
 							}
+							
+							if(data['type_risk'] == 6){
+								
+								document.getElementById('bxFrm1').style.display = 'none';
+								
+							}else{
+								
+								document.getElementById('bxFrm1').style.display = 'block';
+								
+							}	
 								
 							
 						    $("#fdLow").val(data['fdLow']);

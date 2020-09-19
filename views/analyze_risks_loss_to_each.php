@@ -10,7 +10,7 @@
 									
 									
 									if(value == 0){
-											alert('Invalid value');
+											//alert('Invalid value');
 									}else{
 											var f=0;									
 											var newValue = value.replace(",", ".");
@@ -23,6 +23,7 @@
 												if(newValue < document.getElementById('B_fdProbable').value){
 														f=1; 	
 														alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+														return false;
 												}
 
 											}
@@ -33,6 +34,7 @@
 												if(newValue > document.getElementById('B_fdHigh').value || newValue < document.getElementById('B_fdLow').value ){
 														f=1; 	
 														alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+														return false;
 												}
 
 											}
@@ -42,6 +44,7 @@
 												if(newValue > document.getElementById('B_fdProbable').value){
 														f=1; 	
 														alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+														return false;
 												}
 
 											}
@@ -52,6 +55,7 @@
 												fieldM = "Max";
 												if(newValue > 1){
 													alert("this number must be between 0.00001 and 1.0");
+													return false;
 												}	
 												
 												var res = value.replace(",", ".");
@@ -65,6 +69,7 @@
 												fieldM = "Med";
 												if(newValue > 1){
 													alert("this number must be between 0.00001 and 1.0");
+													return false;
 												}	
 												
 												var res = value.replace(",", ".");
@@ -78,6 +83,7 @@
 												fieldM = "Min";										
 												if(newValue > 1){
 													alert("this number must be between 0.00001 and 1.0");
+													return false;
 												}	
 												
 												var res = value.replace(",", ".");
@@ -476,15 +482,15 @@
 												<!-- onkeypress='return event.charCode >= 48 && event.charCode <= 57' -->
 													<div class="form-group"> 
 														<label for="Sigla">High estimate</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="0.0" onchange="range_L_E_I('DecimalsHigh',this.value)" value="" onkeypress="return keypressed( this , event );"   maxlength="12">
+														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onchange="if(this.value == 0){ alert('Invalid value');this.value='' } else { range_L_E_I('DecimalsHigh',this.value); }" value="" onkeypress="return keypressed( this , event );"   maxlength="12">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="0.0" onchange="range_L_E_I('DecimalsProbable',this.value)" value="" onkeypress="return keypressed( this , event );">
+														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onchange=" if(this.value == 0){ alert('Invalid value');this.value='' } else { range_L_E_I('DecimalsProbable',this.value) }" value="" onkeypress="return keypressed( this , event );">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label><br>
-														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder="0.0" onchange="range_L_E_I('DecimalsLow',this.value)" value="" onkeypress="return keypressed( this , event );">
+														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder="" onchange="if(this.value == 0){ alert('Invalid value');this.value='' } else { range_L_E_I('DecimalsLow',this.value) }" value="" onkeypress="return keypressed( this , event );">
 													</div>
 													</div>
 													

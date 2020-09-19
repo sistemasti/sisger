@@ -197,7 +197,7 @@ require_once("header.php");
 														
 														</script>
 						<div class="form-group">
-							<label for="Name">numbers of itens</label>
+							<label for="Name">Numbers of itens in subgroup</label>
 							<div class="row">
 														<div class="col-sm-12 col-md-12">
 															<input type="text" class="form-control" id="numbers_itens_inp" name="numbers_itens_inp" placeholder="0" value="" readonly required>
@@ -217,19 +217,19 @@ require_once("header.php");
 														 <div class="col-sm-4 col-md-4">
 														 <div class="form-group">
 															<label for="Name">Low estimate</label>
-															<input type="text" class="form-control" id="low_estimate" name="low_estimate" placeholder="0.0" value="<?php echo $low_estimate; ?>" required>
+															<input type="text" class="form-control" id="low_estimate" name="low_estimate" placeholder="" value="<?php echo $low_estimate; ?>" onkeypress="return keypressed( this , event );" required>
 														 </div>
 														 </div> 
 														 <div class="col-sm-4 col-md-4">
 														  <div class="form-group">
 															<label for="Name">Most Probable</label>
-															<input type="text" class="form-control" id="most_probable" name="most_probable" placeholder="0.0" value="" required>
+															<input type="text" class="form-control" id="most_probable" name="most_probable" placeholder="" value="" onkeypress="return keypressed( this , event );" required>
 														 </div>
 														 </div> 
 														 <div class="col-sm-4 col-md-4">
 														 <div class="form-group">
 															<label for="Name">High estimate</label>
-															<input type="text" class="form-control" id="high_estimate" name="high_estimate" placeholder="0.0" value="" required>
+															<input type="text" class="form-control" id="high_estimate" name="high_estimate" placeholder="" value="" required onkeypress="return keypressed( this , event );">
 														 </div>
 														 <!--<div style="float:right">
 														 <button type="button" onclick="zoom_list_save();" class="btn btn-info">Save</button>
@@ -237,7 +237,33 @@ require_once("header.php");
 														 </div>-->
 														 </div>
 														 </div> 
-						
+						<script>
+											
+											function keypressed( obj , e ) {
+												 var tecla = ( window.event ) ? e.keyCode : e.which;
+												 var texto = obj.value
+												 //var indexvir = texto.indexOf(",")
+												 var indexpon = texto.indexOf(".")
+												
+												if ( tecla == 8 || tecla == 0 )
+													return true;
+												if ( tecla != 46 && tecla < 48 || tecla > 57 )
+													return false;
+												/* if (tecla == 44) { if (indexvir !== -1 || indexpon !== -1) {return false} } */
+												if (tecla == 46) { if (indexvir !== -1 || indexpon !== -1) {return false} }
+											}
+											
+											function formataAnyDecimal (value,id){
+												
+												var d1 = value.substring(0,1);
+												var d2 = value.substring(1,10);
+												
+												document.getElementById(id).value = d1+','+d2;
+												
+												
+											}
+											
+											</script>
 						
 						<button type="button" onclick="zoom_list_save(1)" name="btn1" class="btn btn-block bg-gradient-primary btn-sm" value="1">Save & Add New</button>
 				
@@ -256,37 +282,49 @@ require_once("header.php");
 
 							function zoom_list_save(r) {	
 							   
-								var formulario = document.getElementById('frmZoomLista');
-								var dados = new FormData(formulario);
+							   if( 
+							   
+							   document.getElementById('low_estimate').value == '' ||
+							   document.getElementById('most_probable').value == '' ||
+							   document.getElementById('high_estimate').value == '' 
+							   
+							   ){
+								   alert('Low estimate, Most probable and High estimate fields are required');
+							   }else{   
+							   
+										var formulario = document.getElementById('frmZoomLista');
+										var dados = new FormData(formulario);
 							  
-							  $.ajax({
-								dataType: 'json',
-								type: "POST",
-								url: "ajax_process/zoom_list_save.php?risk_id="+<?php echo $_REQUEST['risk_id']; ?>,
-								data: dados,
-								processData: false,
-								contentType: false,
-								success: function(data) {
-									if(data==1){
+										  $.ajax({
+											dataType: 'json',
+											type: "POST",
+											url: "ajax_process/zoom_list_save.php?risk_id="+<?php echo $_REQUEST['risk_id']; ?>,
+											data: dados,
+											processData: false,
+											contentType: false,
+											success: function(data) {
+												if(data==1){
+													
+														alert('Register save successfull');
+														
+														if(r == 1){
+															location.reload();
+														}else{
+															location.href = "zoom_list?risk_id="+<?php echo $_GET['risk_id']; ?>;
+														}		
+														
+														
+												}else{ 
+												
+														alert('Falha');
+														
 										
-											alert('Register save successfull');
-											
-											if(r == 1){
-												location.reload();
-											}else{
-												location.href = "zoom_list?risk_id="+<?php echo $_GET['risk_id']; ?>;
-											}		
-											
-											
-									}else{ 
-									
-											alert('Falha');
-											
-							
-									}	
-									window.scrollTo(0, 0);
-								}
-							  });
+												}	
+												window.scrollTo(0, 0);
+											}
+										  });
+							  
+							   }
 							}
 						</script>	
               <!-- /.col -->
