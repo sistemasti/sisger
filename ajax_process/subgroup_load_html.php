@@ -43,7 +43,19 @@ include("../controllers/EC_Build_value_pie.class.php");
 					
 					<td><input type="text" class="form-control" id="group_name<?php echo $in['id']; ?>" name="group_name<?php echo $in['id']; ?>" value="<?php echo $in['name']; ?>" onkeyup="if(this.value!=''){subgroup_edit_name(this.value,<?php echo $in['id']; ?>)}" required onclick="view_scores(<?php echo $in['id']; ?>,<?php echo $_GET['group_id']; ?>);this.style.backgroundColor='#f5f2c9';$('#zoomSubgroup').show();" onblur="this.style.backgroundColor='#fff';loadZoomSubgroup(<?php echo $in['id']; ?>);document.getElementById('subgroup_selected').value=<?php echo $in['id']; ?>;if(this.value==''){ alert('Fill in the name fiel'); }"></td>
 					
-					<td><input type="text" class="form-control" id="numbers_of_items<?php echo $in['id']; ?>" name="numbers_of_items<?php echo $in['id']; ?>" value="<?php echo $in['numbers_of_items']; ?>" onkeyup="subgroup_edit_item(this.value,<?php echo $in['id']; ?>);Mascara(this,Integer);"  required onclick="view_scores(<?php echo $in['id']; ?>,<?php echo $_GET['group_id']; ?>);document.getElementById('group_name<?php echo $in['id']; ?>').style.backgroundColor='#f5f2c9';$('#zoomSubgroup').show();loadZoomSubgroup(<?php echo $in['id']; ?>);;document.getElementById('subgroup_selected').value=<?php echo $in['id']; ?>;" onblur="document.getElementById('group_name<?php echo $in['id']; ?>').style.backgroundColor='#fff'" style="display:inline-block;width:70%" onKeyDown="Mascara(this,Integer);" onKeyPress="Mascara(this,Integer);" >
+					<td><input 
+						type="text" 
+						class="form-control" 
+						id="numbers_of_items<?php echo $in['id']; ?>" 
+						name="numbers_of_items<?php echo $in['id']; ?>" 
+						value="<?php echo $in['numbers_of_items']; ?>" 
+						onkeyup="Mascara(this,Integer);"  
+						required 
+						onclick="view_scores(<?php echo $in['id']; ?>,<?php echo $_GET['group_id']; ?>);document.getElementById('group_name<?php echo $in['id']; ?>').style.backgroundColor='#f5f2c9';$('#zoomSubgroup').show();loadZoomSubgroup(<?php echo $in['id']; ?>);;document.getElementById('subgroup_selected').value=<?php echo $in['id']; ?>;" 
+						onblur="if(this.value==0 || this.value ==  ''){ alert('Invalid value'); }else{ subgroup_edit_item(this.value,<?php echo $in['id']; ?>); }document.getElementById('group_name<?php echo $in['id']; ?>').style.backgroundColor='#fff'" 
+						style="display:inline-block;width:70%" 
+						onKeyDown="Mascara(this,Integer);" 
+						onKeyPress="Mascara(this,Integer);" >
 					
 					<a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ subgroup_delete(<?php echo $in['id'];?>,<?php echo $_GET['group_id']; ?>)}">
 									<button type="button" class="btn btn-danger btn-sm" style="float:right;">
@@ -131,8 +143,30 @@ include("../controllers/EC_Build_value_pie.class.php");
 			">insert a new subgroup</button>
 			<div id="fd_new_subgroup" style="display:none">
 			<input type="text" class="form-control" id="subgroup_name"	name="subgroup_name" value="" required placeholder="Subgroup name">
-			<input type="text" class="form-control" id="subgroup_itens"	name="subgroup_itens" value="" required placeholder="Number of itemns" onKeyDown="Mascara(this,Integer);" onKeyPress="Mascara(this,Integer);" onKeyUp="Mascara(this,Integer);">
-			<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="if(document.getElementById('subgroup_name').value==''){alert('fill in the name field')}else{subgroup_register(document.getElementById('subgroup_name').value,document.getElementById('subgroup_itens').value,<?php echo $_GET['group_id']; ?>)}">save</button>
+			
+			<input 
+			type="text" 
+			class="form-control" 
+			id="subgroup_itens"	
+			name="subgroup_itens" 
+			value="" 
+			required 
+			placeholder="Number of itemns" 
+			onKeyDown="Mascara(this,Integer);" 
+			onKeyPress="Mascara(this,Integer);" 
+			onKeyUp="Mascara(this,Integer);">
+			
+			<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="
+				if(document.getElementById('subgroup_name').value==''){
+				
+					alert('fill in the name field')
+					
+				}else if(document.getElementById('subgroup_itens').value=='' || document.getElementById('subgroup_itens').value==0 ){
+					alert('Invalid number of itemns')
+				}else{
+					subgroup_register(document.getElementById('subgroup_name').value,document.getElementById('subgroup_itens').value,<?php echo $_GET['group_id']; ?>)
+				}
+				">save</button>
 			</div>
 			
 				

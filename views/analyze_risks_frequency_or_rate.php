@@ -455,11 +455,11 @@
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['External Link']; ?>..</label>
 														<input type="text" class="form-control" id="fr_zoom_link"
-													name="fr_zoom_link" placeholder=""  required value="<?php echo $fr_zoom_link; ?>" >
+													name="fr_zoom_link" placeholder=""  required value="<?php echo $fr_zoom_link; ?>" onkeyup="atualizaFileField ('fr_zoom_link_bx',this.value)">
 													<div id="fr_zoom_link_bx" style="background-color: #c5dcc6;padding:7px;">
 													<?php 
 													if($fr_zoom_link != "undefined"){
-													echo "<a href='".$fr_zoom_link."' target='_blank'>".$fr_zoom_link."</a>"; 
+													echo "Link: <a href='".$fr_zoom_link."' target='_blank'>".$fr_zoom_link."</a>"; 
 													}
 													?>
 													</div>	
@@ -469,14 +469,17 @@
 													<div class="form-group">
 														<label for="Sigla">..<?php echo $_SESSION[$_SESSION['lang']]['or Document link']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_document_file"
-													name="fr_zoom_document_file" placeholder=""  required value="<?php echo $fr_zoom_document_file; ?>" >
+													name="fr_zoom_document_file" placeholder=""  required value="<?php echo $fr_zoom_document_file; ?>" onkeyup="atualizaFileField ('fr_zoom_document_file_bx',this.value)">
 													<div id="fr_zoom_document_file_bx" style="background-color: #c5dcc6;padding:7px;">
 													<?php 
 													if($fr_zoom_document_file != "undefined"){
-													echo "<a href='".$fr_zoom_document_file."' target='_blank'>".$fr_zoom_document_file."</a>"; 
+													echo "Link: <a href='".$fr_zoom_document_file."' target='_blank'>".$fr_zoom_document_file."</a>"; 
 													}
 													?>
 													</div>	
+												
+													
+													
 													</div>	
 												<!--	
 													<div class="form-group">

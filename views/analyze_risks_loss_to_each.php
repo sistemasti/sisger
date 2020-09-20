@@ -545,7 +545,7 @@
 								</div>
 								<div class="modal-body">
 								
-									<span id="zoomRisk_le" style="padding:10px;margin-bottom:7px;background-color:#E3F5EA"></span>
+								
 								<br>&nbsp;												
 								
 									<div class="row">
@@ -592,7 +592,7 @@
 													<div class="form-group">
 														<label for="Sigla">Link..</label>
 														<input type="text" class="form-control" id="le_zoom_link"
-													name="le_zoom_link" placeholder=""  required value="<?php echo $le_zoom_link; ?>" >
+													name="le_zoom_link" placeholder=""  required value="<?php echo $le_zoom_link; ?>" onkeyup="atualizaFileField ('le_zoom_link_bx',this.value)">
 													<div id="le_zoom_link_bx" style="background-color: #c5dcc6;padding:7px;">
 													<?php 
 													if($le_zoom_link != "undefined"){
@@ -608,7 +608,7 @@
 														<!--<input type="file" class="form-control" id="le_zoom_document_file"
 													name="le_zoom_document_file" placeholder=""  required value="" >-->
 													<input type="text" class="form-control" id="le_zoom_document_file"
-													name="le_zoom_document_file" placeholder=""  required value="<?php echo $le_zoom_document_file; ?>" >
+													name="le_zoom_document_file" placeholder=""  required value="<?php echo $le_zoom_document_file; ?>"  onkeyup="atualizaFileField ('le_zoom_document_file_bx',this.value)">
 													<div id="le_zoom_document_file_bx" style="background-color: #c5dcc6;padding:7px;">
 													<?php 
 													if($le_zoom_document_file != "undefined"){

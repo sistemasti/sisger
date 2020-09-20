@@ -270,7 +270,8 @@ require_once("header.php");
 															</tr>
 															<tr id="row">
 															  <td colspan="2" style="text-align:right"><small>Using value pie:</small></td>
-															 
+															  
+															 <!-- LOW ESTIMATE -->
 															  <td>
 															  <!-- 
 															  ###########################################
@@ -281,49 +282,53 @@ require_once("header.php");
 																
 															   <div id="bxAllAffectedUsingLow">
 																  <center>
-																	  <span class="badge bg-info"><div id="modalZoomDados"><?php echo $formulaE; ?>%</div></span>
+																	  <span class="badge bg-info"><div id="uvp_le_percent"><?php echo $formulaE; ?>%</div></span>
 																	  <br>
-																	  C: <?php 
+																	  <div id="uvp_le_c">C: <?php 
 																	  
 																			$ca = 5 + log10($formulaE/100);
 																			echo round($ca,1);
 																		?>
+																		</div>
 																  </center>
 																  <input type="hidden" id="ca_low" name="ca_low" value="<?php echo round($ca,1); ?>">
 																</div>  
 																
 																 <div id="bxExposedUsingLow" style="display:none">
 																  <center>
-																	  <span class="badge bg-info"><div id=""><?php  
+																	  <span class="badge bg-info"><div id="ex_uvp_le_percent"><?php  
 																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	
 																	 $a = ((float)$formulaE*(float)$low_estimate_general)/(float)$totalLow['total']; 
 																	  echo round($a,5);
 																	  ?>%</div></span>
 																	  <br>
-																	  C: <?php 
+																		<div id="ex_uvp_le_c">C: <?php 
 																	  
 																			$ca = 5 + log10(round($a,5)/100);
 																			echo round($ca,1);
 																		?>
+																		</div>
 																		<input type="hidden" id="ca_low" name="ca_low" value="<?php echo round($ca,1); ?>">
 																  </center>
 																</div>  
 																
 																
 															  </td>
-															  
+															  <!-- MOST PROBABLE -->
 															  <td> 
 															  
 															  <div id="bxAllAffectedUsingMost">
 																  <center>
-																		  <span class="badge bg-info"><div id="modalZoomDados"><?php echo $formulaF; ?>%</div></span>
+																		  <span class="badge bg-info"><div id="uvp_mp_percent"><?php echo $formulaF; ?>%</div></span>
 																		  <br>
-																		   <?php 
-																		  
-																				$cb = 5 + log10($formulaF/100);
-																				echo round($cb,1);
-																			?>
+																		    <div id="uvp_mp_c">
+																				<?php 
+																			  
+																					$cb = 5 + log10($formulaF/100);
+																					echo round($cb,1);
+																				?>
+																			</div>
 																  </center>
 																  <input type="hidden" id="ca_media" name="ca_media" value="<?php echo round($cb,1); ?>">
 																</div>  
@@ -331,7 +336,7 @@ require_once("header.php");
 															  <div id="bxExposedUsingMost" style="display:none">
 																  <center>
 																		  <span class="badge bg-info">
-																		  <div id="modalZoomDados"><?php 
+																		  <div id="ex_uvp_mp_percent"><?php 
 																		  
 																			$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
 																	
@@ -340,44 +345,52 @@ require_once("header.php");
 
 																	  ?>%</div></span>
 																		  <br>
+																		   <div id="ex_uvp_mp_c">
 																		   <?php 
 																		  
 																				$cb = 5 + log10(round($b,5)/100);
 																				echo round($cb,1);
 																			?>
+																			</div>
 																			 <input type="hidden" id="ca_media" name="ca_media" value="<?php echo round($cb,1); ?>">
 																  </center>
 																</div>  
 																
 															 </td>
-															  
+															 
+															 
+															  <!-- HIGH ESTIMATE -->
 															  <td> 
 															  
 															  <div id="bxAllAffectedUsingHigh">
 																<center>
-																	  <span class="badge bg-info"><div id="modalZoomDados"><?php echo $formulaG; ?>%</div></span>
+																	  <span class="badge bg-info"><div id="uvp_he_percent"><?php echo $formulaG; ?>%</div></span>
 																	  <br>
-																	 <?php 
-																	  
-																			$cc =5 + log10($formulaG/100);
-																			echo round($cc,1);
-																		?>
+																		 <div id="uvp_he_c">
+																			<?php 
+																		  
+																				$cc =5 + log10($formulaG/100);
+																				echo round($cc,1);
+																			?>
+																			
+																		</div>
 																  </center>
 																   <input type="hidden" id="ca_high" name="ca_high" value="<?php echo round($cc,1); ?>">
 															  </div>
 															   <div id="bxExposedUsingHigh" style="display:none">
 																  <center>
-																		  <span class="badge bg-info"><div id="modalZoomDados"><?php  
+																		  <span class="badge bg-info"><div id="ex_uvp_he_percent"><?php  
 																			$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	
 																			$c = ((float)$formulaG*(float)$high_estimate_general)/(float)$totalHigh['total']; 
 																			  echo round($c,5); ?>%</div></span>
 																		  <br>
-																		   <?php 
+																		    <div id="ex_uvp_he_c"><?php 
 																		  
 																				$cc = 5 + log10(round($c,5)/100);
 																				echo round($cc,1);
 																			?>
+																			</div>
 																			<input type="hidden" id="ca_high" name="ca_high" value="<?php echo round($cc,1); ?>">
 																  </center>
 																</div> 
@@ -394,7 +407,7 @@ require_once("header.php");
 															  
 															  <div id="bx_AllAffected_Assuming_Low">
 																  <center>
-																	  <span class="badge bg-info"><div id="modalZoomDados">
+																	  <span class="badge bg-info"><div id="aev_le_percent">
 																	  <?php 
 																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	  
@@ -403,17 +416,18 @@ require_once("header.php");
 																	  ?>
 																	  %</div></span>
 																	  <br>
-																	  C:  <?php 
+																	    <div id="aev_le_c">C:  <?php 
 																	  
 																			$cd =5 + log10(round($l,5)/100);
 																			echo round($cd,1);
 																		?>
+																		</div>
 																		  <input type="hidden" id="cd_low" name="cd_low" value="<?php echo round($cd,1); ?>">
 																  </center>
 																</div> 
 																<div id="bx_Exposed_Assuming_Low" style="display:none">
 																  <center>
-																	  <span class="badge bg-info"><div id="modalZoomDados">
+																	  <span class="badge bg-info"><div id="ex_aev_le_percent">
 																	  <?php  
 																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	  $l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
@@ -426,11 +440,12 @@ require_once("header.php");
 																	  ?>
 																	  %</div></span>
 																	  <br>
-																	  C:  <?php 
-																	  
-																			$cd =5 + log10(round($d,5)/100);
-																			echo round($cd,1);
-																		?>
+																		  <div id="ex_aev_le_c"> C:  <?php 
+																		  
+																				$cd =5 + log10(round($d,5)/100);
+																				echo round($cd,1);
+																			?>
+																		</div>
 																		 <input type="hidden" id="cd_low" name="cd_low" value="<?php echo round($cd,1); ?>">
 																  </center>
 																</div> 
@@ -441,19 +456,20 @@ require_once("header.php");
 															  <td> 
 															  
 																<div id="bx_AllAffected_Assuming_Most">
-																	<center>
-																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
+																	<center> 
+																		  <span class="badge bg-info"><div id="aev_mp_percent"><?php 
 																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
 																		  
 																		  $m = ((float)$totalMost['total']/(float)$items_in_asset)*100;
 																		  echo round($m,5);
 																		  ?>%</div></span>
 																		  <br>
-																		   <?php 
+																		  <div id="aev_mp_c"> <?php 
 																		  
 																				$ce =5 + log10(round($m,5)/100);
 																				echo round($ce,1);
 																			?>
+																			</div>
 																			<input type="hidden" id="ce_most" name="ce_most" value="<?php echo round($ce,1); ?>">
 																	</center>
 																</div>
@@ -461,25 +477,23 @@ require_once("header.php");
 																	<center>
 																		  
 																		  
-																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
-																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
-																		  $l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
-																		  $l = round($l,5);
-																		   
-																		   
-																		   
-																		 $e = ((float)$l*(float)$most_probable_general)/(float)$totalMost['total']; 
+																		  <span class="badge bg-info"><div id="ex_aev_mp_percent"><?php 
+																			$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
+																			$l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
+																			$l = round($l,5);
+																			$e = ((float)$l*(float)$most_probable_general)/(float)$totalMost['total']; 
+																			
 																		  echo round($e,5);
 																		  ?>%</div></span>
 																		 
 	
 																		 <br>
-																		   <?php 
+																		  <div id="ex_aev_mp_c">  <?php 
 																		  
 																				$ce =5 + log10(round($e,5)/100);
 																				echo round($ce,1);
 																			?>
-																			
+																			</div>
 																			<input type="hidden" id="ce_most" name="ce_most" value="<?php echo round($ce,1); ?>">
 																	</center>
 																</div>  
@@ -490,39 +504,39 @@ require_once("header.php");
 															  
 																<div id="bx_AllAffected_Assuming_High">
 																	<center>
-																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
+																		  <span class="badge bg-info"><div id="aev_he_percent"><?php 
 																		  $totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																		  
 																		  $h = ((float)$totalHigh['total']/(float)$items_in_asset)*100;
 																		  echo round($h,5);
 																		  ?>%</div></span>
 																		  <br>
-																		 <?php 
+																		 <div id="aev_he_c"><?php 
 																		  
 																				$cf =5 + log10(round($h,5)/100);
 																				echo round($cf,1);
 																			?>
+																			</div>
 																			<input type="hidden" id="cf_high" name="cf_high" value="<?php echo round($cf,1); ?>">
 																	</center>
 																</div>
 																<div id="bx_Exposed_Assuming_High" style="display:none">
 																	<center>
-																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
+																		  <span class="badge bg-info"><div id="ex_aev_he_percent"><?php 
+																		 
 																		  $totalMost = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																		  $l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
-																		  $l = round($l,5);
-																		   
-																		   
-																		   
-																		 $f = ((float)$l*(float)$high_estimate_general)/(float)$totalMost['total']; 
+																		  $l = round($l,5);$f = ((float)$l*(float)$high_estimate_general)/(float)$totalMost['total']; 
 																		  echo round($f,5);
+																		  
 																		  ?>%</div></span>
 																		  <br>
-																		 <?php 
+																		<div id="ex_aev_he_c"> <?php 
 																		  
 																				$cf = 5 + log10(round($f,5)/100);
 																				echo round($cf,1);
 																			?>
+																		</div>
 																			<input type="hidden" id="cf_high" name="cf_high" value="<?php echo round($cf,1); ?>">
 																	</center>
 																</div>
@@ -1031,7 +1045,90 @@ require_once("header.php");
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
+  
   <script>
+  
+  
+				function atualia_calculos_zoom_list(risk_id) {			
+					/* alert(document.getElementById("type_list_1").checked);
+					alert(document.getElementById("type_list_2").checked); */
+					 
+					  $.ajax({
+						type: "POST",
+						url: "ajax_process/atualia_calculos_zoom_list.php",
+						data: {
+							risk_id: risk_id
+						},
+						dataType: 'json',
+						success: function(data) {
+							/* alert('asd');
+							alert(document.getElementById("type_list_2").checked); */
+						if(document.getElementById("type_list_1").checked == true){
+							
+							//seta as divs
+							$("#uvp_le_percent").html(data['uvp_le_percent']);
+							$("#uvp_le_c").html(data['uvp_le_c']);								
+							$("#uvp_mp_percent").html(data['uvp_mp_percent']);
+							$("#uvp_mp_c").html(data['uvp_mp_c']);							//
+							$("#uvp_he_percent").html(data['uvp_he_percent']);
+							$("#uvp_he_c").html(data['uvp_he_c']);
+								
+							$("#aev_le_percent").html(data['aev_le_percent']);
+							$("#aev_le_c").html(data['aev_le_c']);
+							$("#aev_mp_percent").html(data['aev_mp_percent']);
+							$("#aev_mp_c").html(data['aev_mp_c']);
+							$("#aev_he_percent").html(data['aev_he_percent']);
+							$("#aev_he_c").html(data['aev_he_c']);
+							
+							//seta os campos
+							$("#ca_low").val(data['uvp_le_c']);
+							$("#ca_media").val(data['uvp_mp_c']);						
+							$("#ca_high").val(data['uvp_he_c']);	
+							
+							$("#cd_low").val(data['aev_le_c']);						
+							$("#ce_most").val(data['aev_mp_c']);						
+							$("#cf_high").val(data['aev_he_c']);	
+							
+						}
+						
+						if(document.getElementById("type_list_2").checked == true){								
+							
+							//seta as divs
+							$("#ex_uvp_le_percent").html(data['ex_uvp_le_percent']);
+							$("#ex_uvp_le_c").html(data['ex_uvp_le_c']);
+							$("#ex_aev_le_percent").html(data['ex_aev_le_percent']);
+							$("#ex_aev_le_c").html(data['ex_aev_le_c']);	
+							$("#ex_uvp_mp_percent").html(data['ex_uvp_mp_percent']);
+							$("#ex_uvp_mp_c").html(data['ex_uvp_mp_c']);							
+							$("#ex_aev_mp_percent").html(data['ex_aev_mp_percent']);
+							$("#ex_aev_mp_c").html(data['ex_aev_mp_c']);													
+							$("#ex_uvp_he_percent").html(data['ex_uvp_he_percent']);
+							$("#ex_uvp_he_c").html(Math.log10(data['ex_uvp_he_c']));
+							$("#ex_aev_he_percent").html(data['ex_aev_he_percent']);
+							$("#ex_aev_he_c").html(Math.log10(data['ex_aev_he_c']));	
+							
+							
+							//seta os campos
+							$("#ca_low").val(data['ex_uvp_le_c']);
+							$("#ca_media").val(data['ex_uvp_mp_c']);						
+							$("#ca_high").val(Math.log10(data['ex_uvp_he_c']));	
+							
+							$("#cd_low").val(data['ex_aev_le_c']);						
+							$("#ce_most").val(data['ex_aev_mp_c']);						
+							$("#cf_high").val(Math.log10(data['ex_aev_he_c']));	
+							
+							
+						}
+
+							
+						},
+						error: function(data) {
+							alert('erro');
+						}
+					  });
+					}
+  
+  
 											
 											function keypressed( obj , e ) {
 												 var tecla = ( window.event ) ? e.keyCode : e.which;
@@ -1069,7 +1166,7 @@ require_once("header.php");
 																
 																dataType: 'json',
 																success: function(data) {
-																	
+																	atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
 																	//alert('ok');																  
 																	
 																}
@@ -1147,7 +1244,7 @@ require_once("header.php");
 																	high_estimate: high_estimate																},
 																dataType: 'json',
 																success: function(data) {
-																	
+																	atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
 																	//alert('ok');
 																  
 																	
@@ -1203,6 +1300,7 @@ require_once("header.php");
 			id: id
 		},
 		success: function(data) {
+			atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
 		  $(i).css({"display":"none"});
 		}
 	  });

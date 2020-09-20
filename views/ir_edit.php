@@ -241,7 +241,7 @@ require_once("header.php");
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                     </div>
-                    <input type="text" class="form-control"  id="data_analyzed"
+                    <input type="date" class="form-control"  id="data_analyzed"
 					name="data_analyzed"  value="<?php echo $data_analyzed; ?>"  onKeyDown="Mascara(this,Data);" onKeyPress="Mascara(this,Data);" onKeyUp="Mascara(this,Data);" maxlength="10" required>
                   </div>
                   <!-- /.input group -->

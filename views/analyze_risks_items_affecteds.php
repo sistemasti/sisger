@@ -366,7 +366,7 @@ echo "</pre>"; */
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Link']; ?>..</label>
 														<input type="text" class="form-control" id="ia_zoom_link"
-													name="ia_zoom_link" placeholder=""  required value="<?php echo $ia_zoom_link; ?>" >
+													name="ia_zoom_link" placeholder=""  required value="<?php echo $ia_zoom_link; ?>"  onkeyup="atualizaFileField ('ia_zoom_link_bx',this.value)">
 													<div id="ia_zoom_link_bx" style="background-color: #c5dcc6;padding:7px;">
 													<?php 
 													if($ia_zoom_link != "undefined"){
@@ -381,7 +381,7 @@ echo "</pre>"; */
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document file']; ?></label>
 														
 													<input type="text" class="form-control" id="ia_zoom_document_file"
-													name="ia_zoom_document_file" placeholder=""  required value="<?php echo $ia_zoom_document_file; ?>" >
+													name="ia_zoom_document_file" placeholder=""  required value="<?php echo $ia_zoom_document_file; ?>" onkeyup="atualizaFileField ('ia_zoom_document_file_bx',this.value)">
 													<div id="ia_zoom_document_file_bx" style="background-color: #c5dcc6;padding:7px;">
 													<?php 
 													if($ia_zoom_document_file != "undefined"){

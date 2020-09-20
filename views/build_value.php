@@ -595,7 +595,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								processData: false,
 								contentType: false,
 								success: function(data) {
-									alert(document.getElementById('group_selected_for_all').value);
+									//alert(document.getElementById('group_selected_for_all').value);
 									atualiza_value_pie_table();
 									view_subgroup(document.getElementById('group_selected_for_all').value);
 									

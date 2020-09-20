@@ -1021,8 +1021,19 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-						  
+<script>
+
+function atualizaFileField (id,value) {
+	
+	document.getElementById(id).innerHTML ="Link: <a href='"+value+"' target='_blank'>"+value+"</a>";
+	
+}
+
+</script>
 	<script type="text/javascript">
+	
+	
+	
  function maskIt(w,e,m,r,a){
   // Cancela se o evento for Backspace
   if (!e) var e = window.event
