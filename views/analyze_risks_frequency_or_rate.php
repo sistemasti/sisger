@@ -319,7 +319,7 @@
 										</div>	
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="hey"
-											name="hey" placeholder="0"  required value="<?php echo $hey; ?>"  onchange="
+											name="hey" placeholder=""  required value="<?php echo $hey; ?>"  onchange="
 											if(document.getElementById('abey').value > 0 && this.value < document.getElementById('abey').value){
 												
 												alert('This number be LARGER than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('abey').value

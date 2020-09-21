@@ -294,6 +294,16 @@
 				$n->execute(array($uncertainty_range,$expected_scores,$id));
 			
 		}
+		static function atualiza_type_score($value,$id_risk){
+			
+				$n = self::getConn()->prepare('
+													UPDATE  `ar_analyze_risks` SET 
+													   `C_type_score` =?
+													WHERE  `id_risk` =? ');
+											
+				$n->execute(array($value,$id_risk));
+			
+		}
 	
 /*=================================================delete======================================================*/		
 		

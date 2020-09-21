@@ -116,7 +116,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								}else{ 
 									$comment = ""; 
 								}
-																							
+								
+								
+								
 								if(isset($_POST['link'])){ 
 									$link = removerCodigoMalicioso(trim($_POST['link'])); 
 								}else{ 
@@ -126,6 +128,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								 								
 								if ( isset($_POST['cadastrar']) ){
 									
+									
+									$pos = strpos($link, 'http');
+									if($pos === false){
+										$txterr .= "- Link inválido (use http ou https) <br>";		
+									}	
 									
 									if($_FILES['att']['type'] != "" && $_FILES['att']['type'] != "image/png" && $_FILES['att']['type'] != "image/jpg" && $_FILES['att']['type'] != "image/jpeg"  && $_FILES['att']['type'] != "application/pdf" ){	
 												$txterr .= "- File type not allowed; Type files only .jpg, .jpeg, .png and .pdf<br>";		
@@ -161,7 +168,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 											$nname="";
 											$ext="";
 										}
-										
+										/* $n_link = str_ireplace("http://","",$link);
+										$n_link = str_ireplace("https://","",$n_link); */
 										Documents::insert_document($name,$comment,$link,$nname.$ext,$_SESSION['institutions_id']);
 										
 										if($btn2 == "2"){

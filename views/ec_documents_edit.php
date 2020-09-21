@@ -135,7 +135,8 @@ require_once("header.php");
 									}	
 									
 									if ( $txterr == "" ){
-										
+										/* $n_link = str_ireplace("http://","",$link);
+										$n_link = str_ireplace("https://","",$n_link); */
 											//upload da logo
 										if($_FILES['att']['name'] != ""){
                                             $uploaddir = './files/';

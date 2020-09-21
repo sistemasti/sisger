@@ -112,7 +112,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 					  <td><?php echo $in['id']; ?></td>
 					  <td><?php echo $in['name']; ?></td>
 					  <td><?php echo $in['comment']; ?></td>
-					  <td><a href="http://<?php echo $in['link']; ?>" target="_blank"><?php echo $in['link']; ?></a></td>
+					  <td><a href="<?php echo $in['link']; ?>" target="_blank"><?php echo $in['link']; ?></a></td>
 					  <td>
 						<?php if($in['file'] != ""){ ?>
 						<a href="./files/<?php echo $in['file']; ?>" target="_blank">

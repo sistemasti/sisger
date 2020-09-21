@@ -100,9 +100,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$bxLow 			= "0.0"; 
 								$bxUncert 		= "0.0"; 
 								$explain 		= "";
-								$ley 			= "0.0"; 
-								$abey 			= "0.0"; 
-								$hey 			= "0.0"; 
+								$ley 			= ""; 
+								$abey 			= ""; 
+								$hey 			= ""; 
 								
 								$fr_zoom_explanation_fields 	= ''; 
 								$fr_zoom_notes_explanation 		= ''; 
@@ -163,7 +163,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$ia_Inp_Range 	= "0.0";
 								$ia_Div_Range 	= "0.0";
 								$explain_ia 	= ""; 
-								$type_score 	= "0.0";
+								$type_score 	= "";
 								$heia 			= "0.0";
 								$plia 			= "0.0";
 								$leia 			= "0.0"; 
@@ -1022,7 +1022,21 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
   </aside>
   <!-- /.control-sidebar -->
 <script>
-
+  function atualiza_type_score(type_score,id_risk) {			
+	
+	  $.ajax({
+		type: "POST",
+		url: "ajax_process/atualiza_type_score.php",
+		data: {
+			id_risk: id_risk,
+			type_score: type_score
+		},
+		success: function(data) {
+		  //$(i).css({"display":"none"});
+		  //location.reload();
+		}
+	  });
+	}
 function atualizaFileField (id,value) {
 	
 	document.getElementById(id).innerHTML ="Link: <a href='"+value+"' target='_blank'>"+value+"</a>";

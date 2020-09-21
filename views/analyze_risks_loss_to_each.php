@@ -23,7 +23,10 @@
 												if(newValue < document.getElementById('B_fdProbable').value){
 														f=1; 	
 														alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+														document.getElementById('valid1').value = 1;
 														return false;
+												}else{
+														document.getElementById('valid1').value = 0;
 												}
 
 											}
@@ -34,7 +37,10 @@
 												if(newValue > document.getElementById('B_fdHigh').value || newValue < document.getElementById('B_fdLow').value ){
 														f=1; 	
 														alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+														document.getElementById('valid2').value = 1;
 														return false;
+												}else{
+														document.getElementById('valid2').value = 0;
 												}
 
 											}
@@ -44,7 +50,10 @@
 												if(newValue > document.getElementById('B_fdProbable').value){
 														f=1; 	
 														alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+														document.getElementById('valid3').value = 1;
 														return false;
+												}else{
+														document.getElementById('valid3').value = 0;
 												}
 
 											}
@@ -131,6 +140,9 @@
 								}
 
 							</script>
+							<input type="hidden" name="valid1" id="valid1" value="0">
+							<input type="hidden" name="valid2" id="valid2" value="0">
+							<input type="hidden" name="valid3" id="valid3" value="0">
 							<div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">
 								 <form method="post" name="ar_le" id="ar_le">									  
 											  <div style="float:right;"> 
@@ -525,7 +537,23 @@
 											
 											</script>
 											<br>
-											<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="loss_to_each_register()">Save</button>
+											<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
+											
+											if(
+											
+												document.getElementById('valid1').value== 1|| document.getElementById('valid2').value== 1|| document.getElementById('valid3').value== 1
+												
+											){
+
+												alert('This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty');
+
+											}else{		
+											
+											loss_to_each_register()
+											
+											}
+											
+											">Save</button>
 						    </form>
 							</div>
 							

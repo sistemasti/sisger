@@ -147,6 +147,7 @@ require_once("header.php");
 										$summary = ''; 	
 										$ec_groups_id = ""; 
 										$ir_agents_id = ""; 
+										$data_analyzed = ""; 
 										unset($_POST);
 										
 									?>	
