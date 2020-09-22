@@ -1,4 +1,5 @@
   	<script>
+  	
 								function isNumber(val){
 									alert(typeof val);
 									  return typeof val === "number"
@@ -6,8 +7,9 @@
 									
 									
 									
-								function range_L_E_I(field,value){
-									
+								function range_L_E_I(field,value,y=0){
+									/* alert(value);
+												alert(document.getElementById('B_fdProbable').value); */
 									
 									if(value == 0){
 											//alert('Invalid value');
@@ -20,40 +22,47 @@
 												
 												fieldM = "Max";
 												
-												if(newValue < document.getElementById('B_fdProbable').value){
-														f=1; 	
-														alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
-														document.getElementById('valid1').value = 1;
-														return false;
-												}else{
-														document.getElementById('valid1').value = 0;
+												if(y==-0){
+													if(newValue < document.getElementById('B_fdProbable').value){
+															f=1; 	
+															alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+															document.getElementById('valid1').value = 1;
+															return false;
+													}else{
+															document.getElementById('valid1').value = 0;
+													}
 												}
+												
 
 											}
 							
 											if(field == "Probable"){
 												fieldM = "Med";
 												document.getElementById('B_fdProbable').value = newValue;
-												if(newValue > document.getElementById('B_fdHigh').value || newValue < document.getElementById('B_fdLow').value ){
-														f=1; 	
-														alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
-														document.getElementById('valid2').value = 1;
-														return false;
-												}else{
-														document.getElementById('valid2').value = 0;
+												if(y==-0){
+													if(newValue > document.getElementById('B_fdHigh').value || newValue < document.getElementById('B_fdLow').value ){
+															f=1; 	
+															alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+															document.getElementById('valid2').value = 1;
+															return false;
+													}else{
+															document.getElementById('valid2').value = 0;
+													}
 												}
 
 											}
 							
 											if(field == "Low"){
 												fieldM = "Min";
-												if(newValue > document.getElementById('B_fdProbable').value){
-														f=1; 	
-														alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
-														document.getElementById('valid3').value = 1;
-														return false;
-												}else{
-														document.getElementById('valid3').value = 0;
+												if(y==-0){
+													if(newValue > document.getElementById('B_fdProbable').value){
+															f=1; 	
+															alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+															document.getElementById('valid3').value = 1;
+															return false;
+													}else{
+															document.getElementById('valid3').value = 0;
+													}
 												}
 
 											}
@@ -63,8 +72,13 @@
 												field = "High";
 												fieldM = "Max";
 												if(newValue > 1){
-													alert("this number must be between 0.00001 and 1.0");
+													alert("this number must be between 0.00001 and 1.0 .");
+													document.getElementById('valid4').value = 1;
+													
 													return false;
+												
+												}else{
+													document.getElementById('valid4').value = 0;
 												}	
 												
 												var res = value.replace(",", ".");
@@ -77,8 +91,12 @@
 												field = "Probable";
 												fieldM = "Med";
 												if(newValue > 1){
-													alert("this number must be between 0.00001 and 1.0");
+													alert("this number must be between 0.00001 and 1.0 ..");
+													document.getElementById('valid5').value = 1;
 													return false;
+												
+												}else{
+													document.getElementById('valid5').value = 0;
 												}	
 												
 												var res = value.replace(",", ".");
@@ -91,8 +109,12 @@
 												field = "Low";
 												fieldM = "Min";										
 												if(newValue > 1){
-													alert("this number must be between 0.00001 and 1.0");
+													alert("this number must be between 0.00001 and 1.0 ...");
+													document.getElementById('valid6').value = 1;
 													return false;
+												
+												}else{
+													document.getElementById('valid6').value = 0;
 												}	
 												
 												var res = value.replace(",", ".");
@@ -143,6 +165,10 @@
 							<input type="hidden" name="valid1" id="valid1" value="0">
 							<input type="hidden" name="valid2" id="valid2" value="0">
 							<input type="hidden" name="valid3" id="valid3" value="0">
+							<input type="hidden" name="valid4" id="valid4" value="0">
+							<input type="hidden" name="valid5" id="valid5" value="0">
+							<input type="hidden" name="valid6" id="valid6" value="0">
+							<input type="hidden" name="valid7" id="valid7" value="0">
 							<div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">
 								 <form method="post" name="ar_le" id="ar_le">									  
 											  <div style="float:right;"> 
@@ -431,7 +457,7 @@
 												
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="he4" name="he4" onchange="range_L_E_I('High',this.value)">
+														<select class="form-control" id="he4" name="he4" onchange="range_L_E_I('High',this.value,1)">
                            
 																<option value="5.0" <?php if($he4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($he4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
@@ -451,7 +477,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="pl4" name="pl4"  onchange="range_L_E_I('Probable',this.value)">
+														<select class="form-control" id="pl4" name="pl4"  onchange="range_L_E_I('Probable',this.value,1)">
                            
 																<option value="5.0" <?php if($pl4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($pl4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
@@ -469,7 +495,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="le4" name="le4"  onchange="range_L_E_I('Low',this.value)">
+														<select class="form-control" id="le4" name="le4"  onchange="range_L_E_I('Low',this.value,1)">
                            
 																<option value="5.0" <?php if($le4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($le4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
@@ -494,15 +520,15 @@
 												<!-- onkeypress='return event.charCode >= 48 && event.charCode <= 57' -->
 													<div class="form-group"> 
 														<label for="Sigla">High estimate</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onchange="if(this.value == 0){ alert('Invalid value');this.value='' } else { range_L_E_I('DecimalsHigh',this.value); }" value="" onkeypress="return keypressed( this , event );"   maxlength="12">
+														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onblur="if(this.value == 0){ alert('Invalid value'); document.getElementById('valid7').value = 1; this.value='' } else { range_L_E_I('DecimalsHigh',this.value);  document.getElementById('valid7').value = 0; }" value="" onkeypress="return keypressed( this , event );"   maxlength="7">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onchange=" if(this.value == 0){ alert('Invalid value');this.value='' } else { range_L_E_I('DecimalsProbable',this.value) }" value="" onkeypress="return keypressed( this , event );">
+														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onblur=" if(this.value == 0){ alert('Invalid value');this.value='';document.getElementById('valid7').value = 1;  } else { range_L_E_I('DecimalsProbable',this.value) document.getElementById('valid7').value = 0;  }" value="" onkeypress="return keypressed( this , event );" maxlength="7">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label><br>
-														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder="" onchange="if(this.value == 0){ alert('Invalid value');this.value='' } else { range_L_E_I('DecimalsLow',this.value) }" value="" onkeypress="return keypressed( this , event );">
+														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder="" onblur="if(this.value == 0){ alert('Invalid value');this.value='';document.getElementById('valid7').value = 1;  } else { range_L_E_I('DecimalsLow',this.value); document.getElementById('valid7').value = 0;  }" value="" onkeypress="return keypressed( this , event );" maxlength="7">
 													</div>
 													</div>
 													
@@ -547,7 +573,14 @@
 
 												alert('This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty');
 
-											}else{		
+											}else if(
+											document.getElementById('valid4').value== 1 || document.getElementById('valid5').value== 1 || document.getElementById('valid6').value== 1 || document.getElementById('valid7').value== 1
+											){		
+											
+												alert('this number must be between 0.00001 and 1.0');
+											
+											}
+											else{		
 											
 											loss_to_each_register()
 											

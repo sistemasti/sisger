@@ -313,13 +313,13 @@ session_start();
 				]
 			}, {
 				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
-				backgroundColor: window.chartColors.blue,
+				backgroundColor: window.chartColors.yellow,
 				data: [
 					<?php echo substr($le,0,-1); ?>
 				]
 			}, {
 				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Collection affected']."'"; ?>,
-				backgroundColor: window.chartColors.green,
+				backgroundColor: window.chartColors.blue,
 				data: [
 					<?php echo substr($ia,0,-1); ?>
 				]

@@ -386,6 +386,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							
 							<div id="groupOption" style="display:none">
 								<button type="button" class="btn btn-block bg-gradient-warning btn-sm" data-toggle="modal" data-target="#modal-lg" onclick="loadZoom(document.getElementById('group_selected_for_all').value)">Zoom Description</button>
+								<div id="btnChart" style="margin-top:7px;">
+								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm"  data-toggle="modal" data-target="#modal-graph2">Value Pie for the select group</button>
+								</div>
 								
 							</div>
 <script>
@@ -472,11 +475,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								}
 								
 				</script>
-							<br>
-								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-graph">Value Pie for all the asset</button>
-								<div id="btnChart">
-								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm"  data-toggle="modal" data-target="#modal-graph2">Value Pie for the select group</button>
-								</div>
+							
+								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-graph" style="margin-top:7px;">Value Pie for all the asset</button>
 								
 								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-table" onclick="view_value_type(document.getElementById('group_selected_for_all').value)">Value Pie as a table</button>
 								

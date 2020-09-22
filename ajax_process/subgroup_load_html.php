@@ -130,7 +130,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 				?></span>
 			<br>
 			<br>
-			<div style="display:block" id="zoomSubgroup">
+			<div style="display:none" id="zoomSubgroup">
 			<button type="button" class="btn btn-block bg-gradient-warning btn-sm" data-toggle="modal" data-target="#modal-sub">Zoom Description</button>
 			</div>
 			
