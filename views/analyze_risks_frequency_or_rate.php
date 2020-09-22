@@ -260,19 +260,19 @@
 											<input type="text" class="form-control" id="ley"
 											name="ley" placeholder=""  required value="<?php echo $ley; ?>"  onchange="
 											
-											
-											if(
-											document.getElementById('abey').value > 0 &&
-											this.value > document.getElementById('abey').value
-											){
-												alert('This number must be greater than 1; it must be LESS than or equal to expected years; it cannot be changed if expected years is empty');
-												this.value=document.getElementById('abey').value
+											//COMENTADO PARA RETIRAR A VALIDAÇÃO E FICAR DE ACORDO COM O ACCESS
+											//if(
+											//document.getElementById('abey').value > 0 &&
+											//this.value > document.getElementById('abey').value
+											//){
+											//	alert('This number must be greater than 1; it must be LESS than or equal to expected years; it cannot be changed if expected years is empty');
+											//	this.value=document.getElementById('abey').value
 												
-											}else{ 
+											//}else{ 
 											
 												calculcaPontuacao(this.value,'Low');
 											
-											}
+											//}
 											
 											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10" <?php if($type_risk == 3){ echo "readonly"; } ?>>
 										</div>	
@@ -286,20 +286,21 @@
 											<input type="text" class="form-control" id="abey"
 											name="abey" placeholder=""  required value="<?php echo $abey; ?>" onchange="
 											if(document.getElementById('type_risk').value != 3){
-												if(
-												(this.value > 0 &&
-												this.value < document.getElementById('ley').value) 
-												||
-												(this.value > document.getElementById('hey').value) )
-												{
-													alert('This number must be greater than 1; it must be LARGER than or equal to low estimate of years; it cannot be changed if expected years is empty');
+												//COMENTADO PARA RETIRAR A VALIDAÇÃO E FICAR DE ACORDO COM O ACCESS
+												//if(
+												//(this.value > 0 &&
+												//this.value < document.getElementById('ley').value) 
+												//||
+												//(this.value > document.getElementById('hey').value) )
+												//{
+												//	alert('This number must be greater than 1; it must be LARGER than or equal to low estimate of years; it cannot be changed if expected years is empty');
 													
-													this.value=document.getElementById('ley').value
+												//	this.value=document.getElementById('ley').value
 													
-												}else{
+												//}else{
 													calculcaPontuacao(this.value,'Probable'); 
 													calculateProbab(this.value);
-												}
+												//}
 											}else{
 												
 												document.getElementById('ley').value = this.value;
@@ -320,15 +321,16 @@
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="hey"
 											name="hey" placeholder=""  required value="<?php echo $hey; ?>"  onchange="
-											if(document.getElementById('abey').value > 0 && this.value < document.getElementById('abey').value){
+											//COMENTADO PARA RETIRAR A VALIDAÇÃO E FICAR DE ACORDO COM O ACCESS
+											//if(document.getElementById('abey').value > 0 && this.value < document.getElementById('abey').value){
 												
-												alert('This number be LARGER than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('abey').value
+											//	alert('This number be LARGER than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('abey').value
 												
-											}else{
+											//}else{
 												
 												calculcaPontuacao(this.value,'High');
 												
-											}
+											//}
 											
 											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10"  <?php if($type_risk == 3){ echo "readonly"; } ?>>
 										</div>	
