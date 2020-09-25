@@ -204,6 +204,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							$id_risk 		= $_GET['id'];
 							$agent 			= $agente['agent'];
 							$description 	= $status['summary'];
+							$risk_name 		= $status['name'];
 							
 							if($ar['num'] > 0)
 								
@@ -419,6 +420,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								
 								document.getElementById("ley").readOnly = true;
 								document.getElementById("hey").readOnly = true;
+							}
+							
+							if(data['type_risk'] == 4){
+								
+								document.getElementById("ley").readOnly = true;
+								document.getElementById("hey").readOnly = true;
+								document.getElementById("abey").readOnly = true;
 							}
 							
 							if(data['type_risk'] == 6){

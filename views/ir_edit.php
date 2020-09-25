@@ -114,7 +114,7 @@ require_once("header.php");
 								if(isset($_POST['data_analyzed'])){ 
 									$data_analyzed = removerCodigoMalicioso(trim($_POST['data_analyzed'])); 
 								}else{ 
-									$data_analyzed =databr($i['data_analyzed']); 
+									$data_analyzed =$i['data_analyzed']; 
 								}																
 																					
 								if(isset($_POST['ir_agents_id'])){ 
@@ -235,7 +235,7 @@ require_once("header.php");
                 </div>
 						
 				 <div class="form-group">
-                  <label>Date analyzed</label>
+                  <label>Date analyzed <?php echo $data_analyzed; ?></label>
 
                   <div class="input-group">
                     <div class="input-group-prepend">

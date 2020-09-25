@@ -74,7 +74,7 @@ include("../controllers/EC_Enter_values.class.php");
 						<option value="<?php echo $i['medium']; ?>" <?php if($in['value_scale_value'] == $i['medium']){ echo "selected"; } ?>>medium</option>
 						<option value="<?php echo $i['large']; ?>"  <?php if($in['value_scale_value'] == $i['large']){ echo "selected"; } ?>>large</option>
 						<option value="<?php echo $i['very_large']; ?>" <?php if($in['value_scale_value'] == $i['very_large']){ echo "selected"; } ?>>very_large</option>
-						<option value="<?php echo $i['excepitional']; ?>" <?php if($in['value_scale_value'] == $i['excepitional']){ echo "selected"; } ?>>excepitional</option>
+						<option value="<?php echo $i['exceptional']; ?>" <?php if($in['value_scale_value'] == $i['exceptional']){ echo "selected"; } ?>>exceptional</option>
 					</select>
 					<br>
 					<span id="prob_<?php echo $in['id']; ?>"><?php echo $in['value_scale_value']; ?></span>&nbsp;&nbsp;&nbsp;  <div style="padding:7px; background-color:#ccc">total: <strong><span id="total_<?php echo $in['id']; ?>"><?php echo $in['result']; ?></span></strong></div>
@@ -141,7 +141,7 @@ include("../controllers/EC_Enter_values.class.php");
 						<option value="<?php echo $i['medium']; ?>">medium</option>
 						<option value="<?php echo $i['large']; ?>">large</option>
 						<option value="<?php echo $i['very_large']; ?>">very_large</option>
-						<option value="<?php echo $i['excepitional']; ?>">excepitional</option>
+						<option value="<?php echo $i['exceptional']; ?>">exceptional</option>
 					</select>
 			
 			<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="if(document.getElementById('new_ev').value=='0'){alert('fill in the name field')}else{score_register(<?php echo $_GET['subgroup_id']; ?>,document.getElementById('new_ev').value,document.getElementById('new_pb').value)}">save</button>

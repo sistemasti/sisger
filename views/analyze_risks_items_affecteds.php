@@ -321,7 +321,7 @@ echo "</pre>"; */
 								  </button>
 								</div>
 								<div class="modal-body">
-									<span id="zoomRisk_ia" style="padding:10px;margin-bottom:7px;background-color:#E3F5EA"></span>
+									<span id="zoomRisk_ia" style="padding:10px;margin-bottom:7px;background-color:#E3F5EA"><?php echo $risk_name; ?></span>
 								<br>&nbsp;								
 								
 									<div class="row">

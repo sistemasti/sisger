@@ -134,6 +134,18 @@ require_once("header.php");
 												$txterr .= "- Please write a link or attach a document<br>";		
 									}	
 									
+									
+									$pos = strpos($link, 'http://');
+									$pos2 = strpos($link, 'https://');
+									
+									if($pos === false && $pos2 === false){
+										
+											$txterr .= "- Link inválido (use http ou https) <br>";		
+										
+										
+									}	
+									
+									
 									if ( $txterr == "" ){
 										/* $n_link = str_ireplace("http://","",$link);
 										$n_link = str_ireplace("https://","",$n_link); */

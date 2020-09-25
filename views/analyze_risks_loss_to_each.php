@@ -15,7 +15,7 @@
 											//alert('Invalid value');
 									}else{
 											var f=0;									
-											var newValue = value.replace(",", ".");
+											var newValue = value;
 											
 											if(field == "High"){
 												
@@ -520,15 +520,27 @@
 												<!-- onkeypress='return event.charCode >= 48 && event.charCode <= 57' -->
 													<div class="form-group"> 
 														<label for="Sigla">High estimate</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onblur="if(this.value == 0){ alert('Invalid value'); document.getElementById('valid7').value = 1; this.value='' } else { range_L_E_I('DecimalsHigh',this.value);  document.getElementById('valid7').value = 0; }" value="" onkeypress="return keypressed( this , event );"   maxlength="7">
+														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onblur="if(this.value == 0){ alert('Invalid value'); document.getElementById('valid7').value = 1; this.value='' } else { range_L_E_I('DecimalsHigh',this.value);  document.getElementById('valid7').value = 0; }" value="" onkeypress="return keypressed( this , event );"   maxlength="10">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onblur=" if(this.value == 0){ alert('Invalid value');this.value='';document.getElementById('valid7').value = 1;  } else { range_L_E_I('DecimalsProbable',this.value) document.getElementById('valid7').value = 0;  }" value="" onkeypress="return keypressed( this , event );" maxlength="7">
+														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onblur=" 
+														
+														if(this.value == 0){ 
+														
+														alert('Invalid value');
+														this.value='';
+														document.getElementById('valid7').value = 1;
+
+														} else { 
+														
+														range_L_E_I('DecimalsProbable',this.value);
+														document.getElementById('valid7').value = 0;
+														}" value="" onkeypress="return keypressed( this , event );" maxlength="10">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label><br>
-														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder="" onblur="if(this.value == 0){ alert('Invalid value');this.value='';document.getElementById('valid7').value = 1;  } else { range_L_E_I('DecimalsLow',this.value); document.getElementById('valid7').value = 0;  }" value="" onkeypress="return keypressed( this , event );" maxlength="7">
+														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder="" onblur="if(this.value == 0){ alert('Invalid value');this.value='';document.getElementById('valid7').value = 1;  } else { range_L_E_I('DecimalsLow',this.value); document.getElementById('valid7').value = 0;  }" value="" onkeypress="return keypressed( this , event );" maxlength="10">
 													</div>
 													</div>
 													
@@ -540,14 +552,14 @@
 											function keypressed( obj , e ) {
 												 var tecla = ( window.event ) ? e.keyCode : e.which;
 												 var texto = obj.value
-												 var indexvir = texto.indexOf(",")
+												// var indexvir = texto.indexOf(",")
 												 var indexpon = texto.indexOf(".")
 												
 												if ( tecla == 8 || tecla == 0 )
 													return true;
-												if ( tecla != 44 && tecla != 46 && tecla < 48 || tecla > 57 )
+												if ( tecla != 46 && tecla < 48 || tecla > 57 )
 													return false;
-												if (tecla == 44) { if (indexvir !== -1 || indexpon !== -1) {return false} }
+												
 												if (tecla == 46) { if (indexvir !== -1 || indexpon !== -1) {return false} }
 											}
 											
@@ -605,9 +617,9 @@
 								  </button>
 								</div>
 								<div class="modal-body">
-								
-								
-								<br>&nbsp;												
+								<span id="zoomRisk_le" style="padding:10px;margin-bottom:7px;background-color:#E3F5EA"><?php echo $risk_name; ?></span>
+								<br>&nbsp;	
+																			
 								
 									<div class="row">
 										<div class="col-sm-12 col-md-12">

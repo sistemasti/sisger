@@ -13,6 +13,7 @@ if($sel['num']>0){
 }
 
 $ds  = Build_value_pie::delete_ec_subgroups_value_by_group($_REQUEST['id']);
+$dg  = Build_value_pie::delete_ec_value_pie_table_by_group($_REQUEST['id']);
 
 
 //return dados

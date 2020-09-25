@@ -129,9 +129,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								if ( isset($_POST['cadastrar']) ){
 									
 									
-									$pos = strpos($link, 'http');
-									if($pos === false){
-										$txterr .= "- Link inválido (use http ou https) <br>";		
+									$pos = strpos($link, 'http://');
+									$pos2 = strpos($link, 'https://');
+									
+									if($pos === false && $pos2 === false){
+										
+											$txterr .= "- Link inválido (use http ou https) <br>";		
+										
+										
 									}	
 									
 									if($_FILES['att']['type'] != "" && $_FILES['att']['type'] != "image/png" && $_FILES['att']['type'] != "image/jpg" && $_FILES['att']['type'] != "image/jpeg"  && $_FILES['att']['type'] != "application/pdf" ){	

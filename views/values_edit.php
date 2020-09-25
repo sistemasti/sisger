@@ -178,9 +178,26 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 				  
 				  <div class="form-group">
                     <label for="Name">Weight</label>
-                    <input type="text" class="form-control" id="weight" name="weight" placeholder="" value="<?php echo $weight; ?>" maxlength="10" onKeyUp="maskIt(this,event,'##########',true)"  required>
+                    <input type="text" class="form-control" id="weight" name="weight" placeholder="" value="<?php echo $weight; ?>" maxlength="10" onkeypress="return keypressed( this , event );"  required>
                   </div>
 				  
+					<script>
+					
+											
+					function keypressed( obj , e ) {
+												 var tecla = ( window.event ) ? e.keyCode : e.which;
+												 var texto = obj.value
+												 var indexvir = texto.indexOf(",")
+												 var indexpon = texto.indexOf(".")
+												
+												if ( tecla == 8 || tecla == 0 )
+													return true;
+												if ( tecla != 44 && tecla != 46 && tecla < 48 || tecla > 57 )
+													return false;
+												if (tecla == 44) { if (indexvir !== -1 || indexpon !== -1) {return false} }
+												if (tecla == 46) { if (indexvir !== -1 || indexpon !== -1) {return false} }
+											}
+					</script>
 				  
 				  <div class="form-group">
                     <label for="Name">Definition</label>

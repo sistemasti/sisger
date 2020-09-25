@@ -136,7 +136,7 @@ require_once("header.php");
 																				
 										//Documents::insert_document($name,$summary,$risk_group,$_SESSION['institutions_id'],$_SESSION['project_id'],$ir_agents_id);
 										
-										Risks::insert_document($name,$summary,$ec_groups_id,$_SESSION['institutions_id'],$_SESSION['project_id'],$ir_agents_id,datasql($data_analyzed));
+										Risks::insert_document($name,$summary,$ec_groups_id,$_SESSION['institutions_id'],$_SESSION['project_id'],$ir_agents_id,$data_analyzed);
 										
 										if($btn2 == "2"){
 											

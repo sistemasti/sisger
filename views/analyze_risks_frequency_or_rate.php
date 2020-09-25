@@ -111,7 +111,19 @@
 													document.getElementById('magnitude_FR_High').innerHTML = result.toFixed(1);
 												}
 												if(field=="Probable"){
-													document.getElementById('magnitude_FR_Probable').innerHTML = result.toFixed(1);
+													if(document.getElementById('type_risk').value == 3){
+														document.getElementById('bxHigh').innerHTML = result.toFixed(1);
+														document.getElementById('fdHigh').value = result.toFixed(1);
+														
+														document.getElementById('bxLow').innerHTML = result.toFixed(1);
+														document.getElementById('fdLow').value = result.toFixed(1);
+														
+														document.getElementById('magnitude_FR_Low').innerHTML = result.toFixed(1);
+														document.getElementById('magnitude_FR_Probable').innerHTML = result.toFixed(1);
+														document.getElementById('magnitude_FR_High').innerHTML = result.toFixed(1);
+													}else{
+														document.getElementById('magnitude_FR_Probable').innerHTML = result.toFixed(1);
+													}
 												}
 												
 											}	
@@ -193,7 +205,13 @@
 									  
 						
 						<br>
-						  
+						  <?php 
+									//echo "----> ".$type_risk;
+									if($type_risk == 6){ ?>
+									<div id="bxFrm1" style="display:none">		
+									<?php }else{ ?>
+									<div id="bxFrm1">		
+									<?php } ?>
 						  
 						  <input type="hidden" name="fdLow" id="fdLow" value="<?php echo $fdLow; ?>">
 						  <input type="hidden" name="fdProbable" id="fdProbable" value="<?php echo $fdProbable; ?>">
@@ -243,13 +261,7 @@
 									
 									<!-- FRM1 -->
 									
-									<?php 
-									//echo "----> ".$type_risk;
-									if($type_risk == 6){ ?>
-									<div id="bxFrm1" style="display:none">		
-									<?php }else{ ?>
-									<div id="bxFrm1">		
-									<?php } ?>
+									
 									
 									<div class="form-group">
 										<div class="row">
@@ -409,8 +421,9 @@
 								  
 								</div>
 								<div class="modal-body">
-								<span id="zoomRisk" style="padding:10px;margin-bottom:7px;background-color:#fff"></span>
-								<br>&nbsp;
+								<span id="zoomRisk" style="padding:10px;margin-bottom:7px;background-color:#E3F5EA"><?php echo $risk_name; ?></span>
+								<br>&nbsp;	
+												
 								
 								
 									<div class="row">

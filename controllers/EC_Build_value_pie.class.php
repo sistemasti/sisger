@@ -843,6 +843,16 @@ update their_scores
 				$n1 = self::getConn()->prepare('DELETE FROM `ec_value_pie_table` WHERE project_id="'.$_SESSION['project_id'].'"');		
 				$n1->execute(array());	
 		}
+		
+		static function delete_ec_value_pie_table_by_group($id){
+				$n1 = self::getConn()->prepare('DELETE FROM `ec_value_pie_table` WHERE group_id=?');		
+				$n1->execute(array($id));	
+		}
+			
+		static function delete_ec_value_pie_table_by_subgroup($id){
+				$n1 = self::getConn()->prepare('DELETE FROM `ec_value_pie_table` WHERE subgroup_id=?');		
+				$n1->execute(array($id));	
+		}
 			
 		static function delete_ec_groups_value($id){
 				$n1 = self::getConn()->prepare('DELETE FROM `ec_groups_value` WHERE id=?');
