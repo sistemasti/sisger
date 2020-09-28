@@ -82,6 +82,7 @@
 	$_SESSION['pt-br']['Save'] 									= "Salvar";
 	
 #analyze_risks_frequency_or_rate.php 
+	$_SESSION['pt-br']['Risk Name'] 																= "Nome do risco";
 	$_SESSION['pt-br']['Time horizon, years'] 														= "Horizonte de tempo, em anos";
 	$_SESSION['pt-br']['Select the type risk']														= "Selecione o tipo de risco";
 	$_SESSION['pt-br']['Event, rare (time between events greater than time horizon)'] 				= "Evento, raro (tempo entre eventos maior que o horizonte de tempo)";
@@ -115,6 +116,7 @@
 	$_SESSION['pt-br']['A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss'] = "Uma perda específica para cada item afetado foi selecionada para análise, esta é a estimativa de anos necessários para atingir essa perda";
 	
 	$_SESSION['pt-br']['Most probable time period between events, (must be more than 1 year)'] = "Most probable time period between events, (must be more than 1 year)";
+	$_SESSION['pt-br']['Probable loss to each item affected']												= "Probable loss to each item affected";
 	
 	$_SESSION['pt-br']['The time horizon has been selected and entered automatically'] = "The time horizon has been selected and entered automatically";
 	
@@ -130,6 +132,7 @@
 	$_SESSION['pt-br']['This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty']																		= "Essa pontuação deve ser menor ou igual à pontuação esperada. Não pode ser alterado se a pontuação esperada estiver vazia";
 	
 	$_SESSION['pt-br']['Uncertainty range']											= "Faixa de incerteza";
+	$_SESSION['pt-br']['Explain the estimates of items affected']					= "Explain the estimates of items affected";
 	
 	$_SESSION['pt-br']['What fraction of the value will be affected?']				= "Qual fração do valor será afetada?";
 	
@@ -338,9 +341,10 @@
 	 /* */
 	
 #analyze_risks_frequency_or_rate.php 
+	$_SESSION['eng']['Risk Name'] 																= "Risk Name";
 	$_SESSION['eng']['Time horizon, years'] 													= "Time horizon, years";
-	$_SESSION['eng']['Select the type risk']													= "Select the type risk";
-	$_SESSION['eng']['Event, rare (time between events greater than time horizon)'] 			= "Event, rare (time between events greater than time horizon)";
+	$_SESSION['eng']['Select the type risk']													= "Select the type of risk";
+	$_SESSION['eng']['Event, rare (time between events greater than time horizon)'] 			= "Event, rare (time between events greater than the time horizon)";
 	$_SESSION['eng']['Event, frequent (must be at least one year between events)'] 				= "Event, frequent (must be at least one year between events)";
 	$_SESSION['eng']['Process or cumulative events, analysed over a particular period of time'] = "Process or cumulative events, analysed over a particular period of time";
 	$_SESSION['eng']['Process or cumulative events, analyzed at the time horizon'] 				= "Process or cumulative events, analyzed at the time horizon";
@@ -386,6 +390,8 @@
 	
 	$_SESSION['eng']['Uncertainty range']											= "Uncertainty range";
 	
+	$_SESSION['eng']['Explain the estimates of items affected']						= "Explain the estimates of items affected";
+	
 	$_SESSION['eng']['What fraction of the value will be affected?']				= "What fraction of the value will be affected?";
 	
 	$_SESSION['eng']['Explain your estimates for frequency or rate']				= "Explain your estimates for frequency or rate";
@@ -399,6 +405,7 @@
 	$_SESSION['eng']['More precise data using the value pie']						= "More precise data using the value pie";
 	
 	$_SESSION['eng']['High estimate']												= "High estimate";
+	$_SESSION['eng']['Probable loss to each item affected']												= "Probable loss to each item affected";
 	
 	$_SESSION['eng']['Select']														= "Select";
 	

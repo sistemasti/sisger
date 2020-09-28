@@ -80,7 +80,7 @@ include("../controllers/EC_Enter_values.class.php");
 					<span id="prob_<?php echo $in['id']; ?>"><?php echo $in['value_scale_value']; ?></span>&nbsp;&nbsp;&nbsp;  <div style="padding:7px; background-color:#ccc">total: <strong><span id="total_<?php echo $in['id']; ?>"><?php echo $in['result']; ?></span></strong></div>
 				</center> 
 			</div>
-			<a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ value_their_delete(<?php echo $in['id'];?>,<?php echo $_GET['subgroup_id']; ?>)}" style="text-decoration: none; color:#fff;">
+			<a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ value_their_delete(<?php echo $in['id'];?>,<?php echo $_GET['subgroup_id']; ?>); atualiza_value_pie_table(); }" style="text-decoration: none; color:#fff;">
 									<div  style="padding:3px;background-color:#c82333;margin-top:3px;"><SMALL>
 <i class="fas fa-trash-alt"></i></SMALL></div></a>
 		</div>

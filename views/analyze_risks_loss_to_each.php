@@ -520,27 +520,15 @@
 												<!-- onkeypress='return event.charCode >= 48 && event.charCode <= 57' -->
 													<div class="form-group"> 
 														<label for="Sigla">High estimate</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onblur="if(this.value == 0){ alert('Invalid value'); document.getElementById('valid7').value = 1; this.value='' } else { range_L_E_I('DecimalsHigh',this.value);  document.getElementById('valid7').value = 0; }" value="" onkeypress="return keypressed( this , event );"   maxlength="10">
+														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onblur="range_L_E_I('DecimalsHigh',this.value);" value="" onkeypress="return keypressed( this , event );"   maxlength="10">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onblur=" 
-														
-														if(this.value == 0){ 
-														
-														alert('Invalid value');
-														this.value='';
-														document.getElementById('valid7').value = 1;
-
-														} else { 
-														
-														range_L_E_I('DecimalsProbable',this.value);
-														document.getElementById('valid7').value = 0;
-														}" value="" onkeypress="return keypressed( this , event );" maxlength="10">
+														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onblur="range_L_E_I('DecimalsProbable',this.value);" value="" onkeypress="return keypressed( this , event );" maxlength="10">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label><br>
-														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder="" onblur="if(this.value == 0){ alert('Invalid value');this.value='';document.getElementById('valid7').value = 1;  } else { range_L_E_I('DecimalsLow',this.value); document.getElementById('valid7').value = 0;  }" value="" onkeypress="return keypressed( this , event );" maxlength="10">
+														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder="" onblur="range_L_E_I('DecimalsLow',this.value); " value="" onkeypress="return keypressed( this , event );" maxlength="10">
 													</div>
 													</div>
 													
@@ -577,27 +565,68 @@
 											<br>
 											<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
 											
-											if(
-											
-												document.getElementById('valid1').value== 1|| document.getElementById('valid2').value== 1|| document.getElementById('valid3').value== 1
+											if(document.getElementById('he5').value.split('.').length - 1 > 1){
 												
-											){
+												alert('Invalid high estimate field value');
+												
+											}else if(document.getElementById('pl5').value.split('.').length - 1 > 1){
+												
+												alert('Invalid Probable loss field value');
+												
+											}else if(document.getElementById('le5').value.split('.').length - 1 > 1){
+												
+												alert('Invalid Low estimate field value');
+												
+											}else if(document.getElementById('steps5').checked == true){
+												 
+												if(document.getElementById('he5').value < 0.00001 || document.getElementById('he5').value > 1 ){
+													
+													alert('Invalid high estimate field value');
+												
+												}else if(document.getElementById('pl5').value < 0.00001 || document.getElementById('pl5').value > 1 ){
+													
+													alert('Invalid Probable loss field value');
+													
+												}else if(document.getElementById('le5').value < 0.00001 || document.getElementById('le5').value > 1 ){
+													
+													alert('Invalid Low estimate field value');
+													
+												}else if(document.getElementById('he5').value < document.getElementById('pl5').value ){
+													
+													alert('Field high estimate cannot be less than field Probable loss');
+													
+												}else if(document.getElementById('pl5').value <  document.getElementById('le5').value ){
+													
+													alert('Field Probable loss cannot be less than field Low estimate');
+												
+												}else{
+													
+													loss_to_each_register();
+													
+												}
+												
+											}else{
+												if(
+												
+													document.getElementById('valid1').value== 1|| document.getElementById('valid2').value== 1|| document.getElementById('valid3').value== 1
+													
+												){
 
-												alert('This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty');
+													alert('This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty');
 
-											}else if(
-											document.getElementById('valid4').value== 1 || document.getElementById('valid5').value== 1 || document.getElementById('valid6').value== 1 || document.getElementById('valid7').value== 1
-											){		
-											
-												alert('this number must be between 0.00001 and 1.0');
-											
+												}else if(
+												document.getElementById('valid4').value== 1 || document.getElementById('valid5').value== 1 || document.getElementById('valid6').value== 1 || document.getElementById('valid7').value== 1
+												){		
+												
+													alert('this number must be between 0.00001 and 1.0');
+												
+												}
+												else{		
+												
+												loss_to_each_register()
+												
+												}
 											}
-											else{		
-											
-											loss_to_each_register()
-											
-											}
-											
 											">Save</button>
 						    </form>
 							</div>

@@ -108,9 +108,7 @@ require_once("header.php");
 								}else{ 
 									$ec_groups_id = $i['ec_groups_id']; 
 								}
-																								
 								
-																					
 								if(isset($_POST['data_analyzed'])){ 
 									$data_analyzed = removerCodigoMalicioso(trim($_POST['data_analyzed'])); 
 								}else{ 
@@ -132,7 +130,7 @@ require_once("header.php");
 																				
 										//Documents::insert_document($name,$summary,$risk_group,$_SESSION['institutions_id'],$_SESSION['project_id'],$ir_agents_id);
 										
-										Risks::update_risk($name, $summary, $ec_groups_id, $ir_agents_id, datasql($data_analyzed), $_REQUEST['id']);
+										Risks::update_risk($name, $summary, $ec_groups_id, $ir_agents_id, $data_analyzed, $_REQUEST['id']);
 										
 										
 										
@@ -173,7 +171,7 @@ require_once("header.php");
 						  
 						<div class="form-group">
 							<label for="Name">Summary</label>
-							<textarea class="form-control" id="summary" name="summary" placeholder="Risk summary sentence" <?php echo $readonly; ?>><?php echo $summary; ?></textarea>
+							<textarea class="form-control" id="summary" name="summary" placeholder="Risk summary sentence" <?php echo $readonly; ?> maxlength="500"><?php echo $summary; ?></textarea>
 						</div>
 						  
 						<div class="form-group">	
@@ -235,7 +233,7 @@ require_once("header.php");
                 </div>
 						
 				 <div class="form-group">
-                  <label>Date analyzed <?php echo $data_analyzed; ?></label>
+                  <label>Date analyzed </label>
 
                   <div class="input-group">
                     <div class="input-group-prepend">

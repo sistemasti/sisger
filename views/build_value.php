@@ -456,7 +456,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								  });
 								}
 
-								function value_their_delete(id, subgroup) {			
+								function value_their_delete(id, subgroup) {	
+																
 								  var i = '#row_group'+id;
 								  $.ajax({
 									type: "POST",
@@ -467,11 +468,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									},
 									success: function(data) {
 									  //$(i).css({"display":"none"});
-									  atualiza_value_pie_table();
+									 
 									  view_subgroup(document.getElementById('group_selected_for_all').value);
 									  view_scores(subgroup);
+									   atualiza_value_pie_table();
 									}
 								  });
+								   atualiza_value_pie_table();
 								}
 								
 				</script>

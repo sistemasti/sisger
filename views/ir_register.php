@@ -184,7 +184,7 @@ require_once("header.php");
 						  
 						<div class="form-group">
 							<label for="Name">Summary</label>
-							<textarea class="form-control" id="summary" name="summary" placeholder="Risk summary sentence" ><?php echo $summary; ?></textarea>
+							<textarea class="form-control" id="summary" name="summary" placeholder="Risk summary sentence" maxlength="500"><?php echo $summary; ?></textarea>
 						</div>
 						  
 						<div class="form-group">	

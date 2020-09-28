@@ -139,7 +139,7 @@
           <li class="nav-item">
             <a href="analyze_risks" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
-              <p>Analyze Risk</p>
+              <p>Analyze Risks</p>
             </a>
           </li>
           

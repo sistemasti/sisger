@@ -57,6 +57,15 @@ update their_scores
 			return $d;
 			
 		}
+		static function select_ar_zoom_list_items_affected_checked($risk_id){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM ar_zoom_list_items_affected WHERE project_id="'.$_SESSION['project_id'].'" AND risk_id=? ORDER BY id DESC');
+			$n1->execute(array($risk_id)); 
+			$d = $n1->fetch();	
+			$d['num'] = $n1->rowCount();				
+			return $d;
+			
+		}
 
 		static function select_ar_zoom_list_items_affected_o($risk_id,$option_id){
 			
@@ -786,6 +795,7 @@ update their_scores
 											
 					$n->execute(array($numbers_of_items, $id));
 		}
+		
 		static function update_subgroup_soma_for_single($soma_for_single, $id){
 					$n = self::getConn()->prepare('
 													UPDATE  `ec_subgroups_value` SET 
@@ -793,6 +803,15 @@ update their_scores
 													WHERE  `id` =? ');
 											
 					$n->execute(array($soma_for_single, $id));
+		}
+
+		static function update_zoom_list_type_list($type_list, $id){
+					$n = self::getConn()->prepare('
+													UPDATE  `ar_zoom_list_items_affected` SET 
+												   `type_list` =?
+													WHERE  `risk_id` =? ');
+											
+					$n->execute(array($type_list, $id));
 		}
 
 		static function update_group($name,$definition,$notes,$id){

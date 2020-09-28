@@ -322,7 +322,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 					<div class="col-lg-6">
 						
 							<div class="form-group">
-							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Name']; ?></label>
+							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Risk Name']; ?></label>
 							<select class="form-control" id="risk" name="risk" onchange="select_risk(this.value)">
 							<option value="#" > <?php echo $_SESSION[$_SESSION['lang']]['select']; ?> </option>
 							   <?php 
@@ -1088,7 +1088,7 @@ function atualizaFileField (id,value) {
 require_once("footer.php");
 
 ?>
-<?php if(isset($_GET['ca_high'])){ ?>
+<?php if(isset($_GET['ca_high']) && !isset($_GET['id']) ){ ?>
 <SCRIPT>
 							
 									  

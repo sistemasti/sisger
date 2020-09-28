@@ -133,6 +133,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								
 								if ( isset($_POST['cadastrar']) ){
 									
+									
 										
 									if ( $txterr == "" ){
 										

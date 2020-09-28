@@ -87,7 +87,12 @@ require_once("header.php");
 				
 				<a href="javascript:void(0)" onclick="location.href = 'analyze_risks?id='+<?php echo $_GET['risk_id']; ?>+'&ca_high='+document.getElementById('ca_high').value+'&ca_media='+document.getElementById('ca_media').value+'&ca_low='+document.getElementById('ca_low').value+'&view=1';"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << Return</button></a>
 				
-			<?php } ?>
+			<?php } 
+			
+			
+			$ia = Build_value_pie::select_ar_zoom_list_items_affected($_GET['risk_id']); 
+			$iac = Build_value_pie::select_ar_zoom_list_items_affected_checked($_GET['risk_id']); 
+			?>
 			
           </div>
         </div>
@@ -104,6 +109,7 @@ require_once("header.php");
 			<br>
 											
 		<input type="radio" name="type_list" id="type_list_1" value="1"  onclick="
+				zoom_list_update_type_list(1,<?php echo $_GET['risk_id']; ?>);
 				document.getElementById('low_estimate_top').style.display='none';
 				document.getElementById('most_probable_top').style.display='none';
 				document.getElementById('high_estimate_top').style.display='none';				
@@ -125,10 +131,11 @@ require_once("header.php");
 				document.getElementById('C_type_list').value=1;			
 				
 				
-				" checked> Items listed are all affected
+				" <?php if($iac['type_list'] == 1){ echo "checked"; $displayTop="none"; } ?>> <?php//  echo $iac['type_list']; ?> Items listed are all affected
 				
 				<br>
 		<input type="radio" name="type_list" id="type_list_2" value="2" onclick="
+		zoom_list_update_type_list(2,<?php echo $_GET['risk_id']; ?>);
 				document.getElementById('low_estimate_top').style.display='block';
 				document.getElementById('most_probable_top').style.display='block';
 				document.getElementById('high_estimate_top').style.display='block';
@@ -147,14 +154,67 @@ require_once("header.php");
 				document.getElementById('bx_AllAffected_Assuming_Most').style.display='none';			
 				document.getElementById('bx_AllAffected_Assuming_High').style.display='none';	
 				
-				document.getElementById('C_type_list').value=2;	
+				document.getElementById('C_type_list').value=2;		
 				
-				"> Items listed are exposed, but only this many affected:
+				
+				" <?php if($iac['type_list'] == 2){ echo "checked"; $displayTop="block"; } ?>> Items listed are exposed, but only this many affected:
 				
 													<br>
 													<br>
 			
-			
+				<script>
+				
+				<?php if($iac['type_list'] == 1){ ?> 
+					
+					document.getElementById('low_estimate_top').style.display='none';
+					document.getElementById('most_probable_top').style.display='none';
+					document.getElementById('high_estimate_top').style.display='none';				
+					
+					document.getElementById('bx_Exposed_Assuming_High').style.display='none';			
+					document.getElementById('bx_Exposed_Assuming_Low').style.display='none';			
+					document.getElementById('bx_Exposed_Assuming_Most').style.display='none';			
+					document.getElementById('bxExposedUsingLow').style.display='none';			
+					document.getElementById('bxExposedUsingMost').style.display='none';			
+					document.getElementById('bxExposedUsingHigh').style.display='none';			
+					
+					document.getElementById('bxAllAffectedUsingLow').style.display='block';			
+					document.getElementById('bxAllAffectedUsingMost').style.display='block';			
+					document.getElementById('bxAllAffectedUsingHigh').style.display='block';			
+					document.getElementById('bx_AllAffected_Assuming_Low').style.display='block';			
+					document.getElementById('bx_AllAffected_Assuming_Most').style.display='block';			
+					document.getElementById('bx_AllAffected_Assuming_High').style.display='block';		
+					
+					document.getElementById('C_type_list').value=1;	
+					
+				<?php } ?>
+				
+				
+				<?php if($iac['type_list'] == 2){ ?> 
+						
+					document.getElementById('low_estimate_top').style.display='block';
+					document.getElementById('most_probable_top').style.display='block';
+					document.getElementById('high_estimate_top').style.display='block';
+					
+					document.getElementById('bx_Exposed_Assuming_High').style.display='block';			
+					document.getElementById('bx_Exposed_Assuming_Low').style.display='block';			
+					document.getElementById('bx_Exposed_Assuming_Most').style.display='block';			
+					document.getElementById('bxExposedUsingLow').style.display='block';			
+					document.getElementById('bxExposedUsingMost').style.display='block';			
+					document.getElementById('bxExposedUsingHigh').style.display='block';			
+					
+					document.getElementById('bxAllAffectedUsingLow').style.display='none';			
+					document.getElementById('bxAllAffectedUsingMost').style.display='none';			
+					document.getElementById('bxAllAffectedUsingHigh').style.display='none';			
+					document.getElementById('bx_AllAffected_Assuming_Low').style.display='none';			
+					document.getElementById('bx_AllAffected_Assuming_Most').style.display='none';			
+					document.getElementById('bx_AllAffected_Assuming_High').style.display='none';	
+					
+					document.getElementById('C_type_list').value=2;	
+						
+				<?php } ?>
+				
+				
+				</script>
 			
               <table id="example1" class="table table-bordered table-striped">
               <?php  
@@ -192,11 +252,12 @@ require_once("header.php");
 															<tr>
 															  <th></th>
 															  <th></th>                
-															  <th><input type="text" class="form-control" id="low_estimate_top" name="low_estimate_top" placeholder="Enter document name" value="<?php echo $low_estimate_general; ?> " onkeyup="if(this.value != ''){ zoom_list_update_top() }" required style="display:none" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );">
+															  <th><input type="text" class="form-control" id="low_estimate_top" name="low_estimate_top" placeholder="Enter document name" 
+															  value="<?php echo $low_estimate_general; ?>" onblur="if(this.value != ''){ zoom_list_update_top() }" required style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );">
 															  
 															  </th>                
-															  <th><input type="text" class="form-control" id="most_probable_top" name="most_probable_top" placeholder="Enter document name" value="<?php echo $most_probable_top; ?>" onkeyup="if(this.value != ''){ zoom_list_update_top() }" required style="display:none" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></th>                
-															  <th><input type="text" class="form-control" id="high_estimate_top" name="high_estimate_top" placeholder="Enter document name" onkeyup="if(this.value != ''){  zoom_list_update_top() }" value="<?php echo $high_estimate_top; ?>" required style="display:none" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></th>    
+															  <th><input type="text" class="form-control" id="most_probable_top" name="most_probable_top" placeholder="Enter document name" value="<?php echo $most_probable_top; ?>" onblur="if(this.value != ''){ zoom_list_update_top() }" required style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></th>                
+															  <th><input type="text" class="form-control" id="high_estimate_top" name="high_estimate_top" placeholder="Enter document name" onblur="if(this.value != ''){  zoom_list_update_top() }" value="<?php echo $high_estimate_top; ?>" required style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></th>    
 															
 															</tr>
 														</thead>
@@ -1151,7 +1212,7 @@ require_once("header.php");
 							
 						},
 						error: function(data) {
-							alert('erro');
+							//alert('erro');
 						}
 					  });
 					}
@@ -1303,6 +1364,61 @@ require_once("header.php");
 														
 														</script>
   <script>
+ /*  
+  function zoom_list_update_top() {			
+															 
+	  $.ajax({
+		type: "POST",
+		url: "ajax_process/zoom_list_update_top.php?low_estimate_top="+document.getElementById('low_estimate_top').value+"&most_probable_top="+document.getElementById('most_probable_top').value+"&high_estimate_top="+document.getElementById('high_estimate_top').value,
+		
+		dataType: 'json',
+		success: function(data) {
+			atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
+			//alert('ok');																  
+			
+		}
+	  });
+	} 
+	
+	*/
+	
+		function zoom_list_update_type_list(type_list,id) {			
+															 
+			  $.ajax({
+				type: "POST",
+				url: "ajax_process/zoom_list_update_type_list.php",
+				data: {
+					id: id,
+					type_list: type_list
+				},
+				dataType: 'json',
+				success: function(data) {
+					//atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
+					//alert('ok');																  
+					
+				}
+			  });
+		} 
+  
+  
+/*    function zoom_list_update_type_list(type_list,id) {			
+	  //var i = '#row'+id;
+	  $.ajax({
+		type: "POST",
+		url: "ajax_process/zoom_list_update_type_list.php",
+		data: {
+			id: id,
+			type_list: type_list
+		},
+		dataType: 'json',
+		success: function(data) {
+			//atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
+		  //$(i).css({"display":"none"});
+		}
+	  });
+	}
+	 */
+  
   function institution_active(id,status) {			
 	  var i = '#row'+id;
 	  $.ajax({
@@ -1319,6 +1435,7 @@ require_once("header.php");
 	  });
 	}
 	
+
 	function zoom_list_delete(id) {			
 	  var i = '#row'+id;
 	  $.ajax({
