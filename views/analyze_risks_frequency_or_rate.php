@@ -244,7 +244,7 @@
 									
 									<div class="form-group">
 										<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for frequency or rate']; ?></label>
-										<textarea class="form-control" name="explain" ID="explain"><?php echo $explain; ?></textarea>
+										<textarea class="form-control" name="explain" ID="explain" onkeyup="document.getElementById('fr_zoom_explanation_fields').value=this.value"><?php echo $explain; ?></textarea>
 																	
 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg" style="float:right; margin-top:2px" onclick="return false">
                   <?php echo $_SESSION[$_SESSION['lang']]['Zoom explanation and notes']; ?>
@@ -332,7 +332,7 @@
 										</div>	
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="hey"
-											name="hey" placeholder=""  required value="<?php echo $hey; ?>"  onchange="
+											name="hey" placeholder=""  required value="<?php echo $hey; ?>"  onKeyUp="
 											//COMENTADO PARA RETIRAR A VALIDAÇÃO E FICAR DE ACORDO COM O ACCESS
 											//if(document.getElementById('abey').value > 0 && this.value < document.getElementById('abey').value){
 												
@@ -438,7 +438,7 @@
 												<div class="col-sm-6 col-md-6">
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for frequency or rate']; ?></label>
-														<textarea class="form-control" name="fr_zoom_explanation_fields" ID="fr_zoom_explanation_fields"><?php echo $fr_zoom_explanation_fields; ?></textarea>
+														<textarea class="form-control" name="fr_zoom_explanation_fields" ID="fr_zoom_explanation_fields" onkeyup="document.getElementById('explain').value=this.value"><?php echo $fr_zoom_explanation_fields; ?></textarea>
 													</div>	
 												</div>	
 												<div class="col-sm-6 col-md-6">
@@ -518,7 +518,7 @@
 								</div>
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>
-								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_fr_save();"><?php echo $_SESSION[$_SESSION['lang']]['Save changes']; ?></button>
+								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_fr_save();frequency_or_rate_register();"><?php echo $_SESSION[$_SESSION['lang']]['Save changes']; ?></button>
 								</div>
 							  </div>
 							  <!-- /.modal-content -->

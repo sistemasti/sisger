@@ -105,7 +105,7 @@ echo "</pre>"; */
 										  <BR>
 											<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain the estimates of items affected']; ?></label>
-														<textarea class="form-control" name="explain_ia" id="explain_ia"><?php echo $explain_ia; ?></textarea>
+														<textarea class="form-control" name="explain_ia" id="explain_ia" onkeyup="document.getElementById('ia_zoom_explanation_fields').value=this.value"><?php echo $explain_ia; ?></textarea>
 														
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg_ia" style="float:right; margin-top:2px">
                  <?php echo $_SESSION[$_SESSION['lang']]['Zoom explanation and notes']; ?>
@@ -338,7 +338,7 @@ echo "</pre>"; */
 												<div class="col-sm-6 col-md-6">
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for items affecteds']; ?></label>
-														<textarea class="form-control" name="ia_zoom_explanation_fields" ID="ia_zoom_explanation_fields"><?php echo $ia_zoom_explanation_fields; ?></textarea>
+														<textarea class="form-control" name="ia_zoom_explanation_fields" ID="ia_zoom_explanation_fields" onkeyup="document.getElementById('explain_ia').value=this.value"><?php echo $ia_zoom_explanation_fields; ?></textarea>
 													</div>	
 												</div>	
 												<div class="col-sm-6 col-md-6">
@@ -406,7 +406,7 @@ echo "</pre>"; */
 								</div>
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>
-								  <button type="button" class="btn btn-primary" onclick="zoom_ia_save()" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Save changes']; ?></button>
+								  <button type="button" class="btn btn-primary" onclick="zoom_ia_save();items_affecteds_register();" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Save changes']; ?></button>
 								</div>
 							  </div>
 							  <!-- /.modal-content -->

@@ -359,7 +359,7 @@
 	$_SESSION['eng']['Analysis notes and documents (A)'] 										= "Analysis notes and documents (A)";
 	$_SESSION['eng']['Explain your estimates for frequency or rate'] 							= "Explain your estimates for frequency or rate";
 	$_SESSION['eng']['Notes for this explanation'] 												= "Notes for this explanation";
-	$_SESSION['eng']['Documents associated with this risk its options'] 						= "Documents associated with this risk its options";
+	$_SESSION['eng']['Documents associated with this risk its options'] 						= "List of all documents associated with this risk";
 	$_SESSION['eng']['Document name'] 															= "Document name";
 	$_SESSION['eng']['Comment'] 																= "Comment";
 	$_SESSION['eng']['External Link'] 															= "External Link";
@@ -473,11 +473,11 @@
 	
 	$_SESSION['eng']['Analysis notes and documents'] 									= "Analysis notes and documents";
 	
-	$_SESSION['eng']['Explain your estimates for items affecteds'] 						= "Explain your estimates for items affecteds";
+	$_SESSION['eng']['Explain your estimates for items affecteds'] 						= "Explain the estimates of items affected";
 	
 	$_SESSION['eng']['Notes for this explanation'] 										= "Notes for this explanation";
 	
-	$_SESSION['eng']['Documents associated with this risk its options'] 				= "Documents associated with this risk its options";
+	$_SESSION['eng']['Documents associated with this risk its options'] 				= "List of all documents associated with this risk";
 	
 	$_SESSION['eng']['Document name'] 													= "Document name";
 	

@@ -71,7 +71,7 @@
 												
 												field = "High";
 												fieldM = "Max";
-												if(newValue > 1){
+												/* if(newValue > 1){
 													alert("this number must be between 0.00001 and 1.0 .");
 													document.getElementById('valid4').value = 1;
 													
@@ -79,7 +79,7 @@
 												
 												}else{
 													document.getElementById('valid4').value = 0;
-												}	
+												}	 */
 												
 												var res = value.replace(",", ".");
 												var value_r = 5+ (Math.log(res)/Math.log(10));	
@@ -90,14 +90,14 @@
 												
 												field = "Probable";
 												fieldM = "Med";
-												if(newValue > 1){
+												/* if(newValue > 1){
 													alert("this number must be between 0.00001 and 1.0 ..");
 													document.getElementById('valid5').value = 1;
 													return false;
 												
 												}else{
 													document.getElementById('valid5').value = 0;
-												}	
+												} */	
 												
 												var res = value.replace(",", ".");
 												var value_r = 5+ (Math.log(res)/Math.log(10));	
@@ -108,14 +108,14 @@
 												
 												field = "Low";
 												fieldM = "Min";										
-												if(newValue > 1){
+												/* if(newValue > 1){
 													alert("this number must be between 0.00001 and 1.0 ...");
 													document.getElementById('valid6').value = 1;
 													return false;
 												
 												}else{
 													document.getElementById('valid6').value = 0;
-												}	
+												}	 */
 												
 												var res = value.replace(",", ".");
 												var value_r = 5+ (Math.log(res)/Math.log(10));	
@@ -198,8 +198,8 @@
 										  <BR>
 										  <BR>
 											<div class="form-group">
-														<label for="Sigla">Explain your estimates for frequency or rate</label>
-														<textarea class="form-control" name="explain_le" id="explain_le" ><?php echo $explain_le; ?></textarea>	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg_le" style="float:right; margin-top:2px">
+														<label for="Sigla">Explain your estimates for items affected.</label>
+														<textarea class="form-control" name="explain_le" id="explain_le"  onkeyup="document.getElementById('le_zoom_explanation_fields').value=this.value"><?php echo $explain_le; ?></textarea>	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg_le" style="float:right; margin-top:2px" >
                   Zoom explanation and notes
                 </button>	
 				<br>
@@ -520,15 +520,15 @@
 												<!-- onkeypress='return event.charCode >= 48 && event.charCode <= 57' -->
 													<div class="form-group"> 
 														<label for="Sigla">High estimate</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onblur="range_L_E_I('DecimalsHigh',this.value);" value="" onkeypress="return keypressed( this , event );"   maxlength="10">
+														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onblur="range_L_E_I('DecimalsHigh',this.value);" onchange="valida_high_any_decimals(this.value);" value="" onkeypress="return keypressed( this , event );"   maxlength="10">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onblur="range_L_E_I('DecimalsProbable',this.value);" value="" onkeypress="return keypressed( this , event );" maxlength="10">
+														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onblur="range_L_E_I('DecimalsProbable',this.value);" onchange="valida_probable_any_decimals(this.value);" value="" onkeypress="return keypressed( this , event );" maxlength="10">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label><br>
-														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder="" onblur="range_L_E_I('DecimalsLow',this.value); " value="" onkeypress="return keypressed( this , event );" maxlength="10">
+														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder=""  onchange="valida_low_any_decimals(this.value);"  onblur="range_L_E_I('DecimalsLow',this.value); " value="" onkeypress="return keypressed( this , event );" maxlength="10">
 													</div>
 													</div>
 													
@@ -565,45 +565,9 @@
 											<br>
 											<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
 											
-											if(document.getElementById('he5').value.split('.').length - 1 > 1){
-												
-												alert('Invalid high estimate field value');
-												
-											}else if(document.getElementById('pl5').value.split('.').length - 1 > 1){
-												
-												alert('Invalid Probable loss field value');
-												
-											}else if(document.getElementById('le5').value.split('.').length - 1 > 1){
-												
-												alert('Invalid Low estimate field value');
-												
-											}else if(document.getElementById('steps5').checked == true){
+											 if(document.getElementById('steps5').checked == true){
 												 
-												if(document.getElementById('he5').value < 0.00001 || document.getElementById('he5').value > 1 ){
-													
-													alert('Invalid high estimate field value');
-												
-												}else if(document.getElementById('pl5').value < 0.00001 || document.getElementById('pl5').value > 1 ){
-													
-													alert('Invalid Probable loss field value');
-													
-												}else if(document.getElementById('le5').value < 0.00001 || document.getElementById('le5').value > 1 ){
-													
-													alert('Invalid Low estimate field value');
-													
-												}else if(document.getElementById('he5').value < document.getElementById('pl5').value ){
-													
-													alert('Field high estimate cannot be less than field Probable loss');
-													
-												}else if(document.getElementById('pl5').value <  document.getElementById('le5').value ){
-													
-													alert('Field Probable loss cannot be less than field Low estimate');
-												
-												}else{
-													
-													loss_to_each_register();
-													
-												}
+												valida_by_button()
 												
 											}else{
 												if(
@@ -631,6 +595,134 @@
 						    </form>
 							</div>
 							
+							<script>
+	
+								function valida_any_decimals(valor){
+									if (valor < 0.00001 || valor > 1 ) {
+										return true;
+									} else {
+										return false;
+									}
+								}
+								
+								function valida_pontuacao(valor){
+									qtdPonto = 0;
+									var tamanho = valor.length;
+									for(i = 0; i < tamanho; i++){ //verifica se foi digitado mais de 1 ponto
+										if(valor.charAt(i) == '.'){
+											qtdPonto += 1;
+										}			
+									}		
+									
+									if(tamanho == ''){//verifica se está vazio
+											return "It cannot be empty.";
+									}
+									
+									if(valor.charAt(tamanho-1) == '.'){//verifica se o último caracter é um ponto
+											return "The last character cannot be a dot.";
+									}	
+									
+									if(valor.charAt(0) == '.'){//verifica se o primeiro caracter é um ponto
+											return "The first character cannot be a dot.";
+									}
+									
+									if(qtdPonto > 1) {
+										return "Incorrect value format. Use only one dot.";
+									} else {
+										return "";
+									}
+								}
+								
+								function valida_high_any_decimals(valor){
+									msg = "High estimate must be between 0.00001 and 1.0.";
+									
+									validacao_1 = valida_pontuacao(valor);
+									if (valida_any_decimals(valor) || validacao_1 != ""){
+									
+										if (validacao_1 != ""){
+											alert(validacao_1);
+										} else {
+											alert(msg);			
+										}
+										document.getElementById('he5').focus();
+										document.getElementById('pl5').disabled = true;
+										document.getElementById('le5').disabled = true;
+										return false;			
+									
+									} else {
+									
+										document.getElementById('pl5').disabled = false;
+										document.getElementById('le5').disabled = false;
+										return true;
+										
+									}
+								}
+								
+								function valida_probable_any_decimals(valor){
+									msg = "Probable loss must be between 0.00001 and 1.0.";	
+									
+									validacao_1 = valida_pontuacao(valor);
+									if (valida_any_decimals(valor) || validacao_1 != ""){
+									
+										if (validacao_1 != ""){
+											alert(validacao_1);
+										} else {
+											alert(msg);			
+										}		
+										document.getElementById('pl5').focus();			
+										document.getElementById('he5').disabled = true;
+										document.getElementById('le5').disabled = true;			
+										return false;			
+									
+									} else {
+									
+										document.getElementById('he5').disabled = false;
+										document.getElementById('le5').disabled = false;
+										return true;
+									
+									}
+									
+								}
+								
+								function valida_low_any_decimals(valor){
+									msg = "Low estimate must be between 0.00001 and 1.0.";	
+									
+									validacao_1 = valida_pontuacao(valor);
+									if (valida_any_decimals(valor) || validacao_1 != ""){
+									
+										if (validacao_1 != ""){
+											alert(validacao_1);
+										} else {
+											alert(msg);			
+										}		
+										document.getElementById('le5').focus();
+										document.getElementById('he5').disabled = true;
+										document.getElementById('pl5').disabled = true;
+										return false;			
+									
+									} else {
+									
+										document.getElementById('he5').disabled = false;
+										document.getElementById('pl5').disabled = false;
+										return true;
+									
+									}
+								}
+								
+								function valida_by_button(){
+									
+									if(valida_high_any_decimals(document.getElementById('he5').value)){
+										if(valida_probable_any_decimals(document.getElementById('pl5').value)){		
+											valida_low_any_decimals(document.getElementById('le5').value);
+											loss_to_each_register();
+										}
+									}
+									
+								}
+								
+								
+								
+								</script>
 							
 							
 				<div class="modal fade" id="modal-lg_le">
@@ -658,8 +750,8 @@
 									<div class="row">
 												<div class="col-sm-6 col-md-6">
 													<div class="form-group">
-														<label for="Sigla">Explain your estimates of loss to each items affecteds.</label>
-														<textarea class="form-control" name="le_zoom_explanation_fields" ID="le_zoom_explanation_fields"><?php echo $le_zoom_explanation_fields; ?></textarea>
+														<label for="Sigla">Explain your estimates for items affected.</label>
+														<textarea class="form-control" name="le_zoom_explanation_fields" ID="le_zoom_explanation_fields"  onkeyup="document.getElementById('explain_le').value=this.value"><?php echo $le_zoom_explanation_fields; ?></textarea>
 													</div>	
 												</div>	
 												<div class="col-sm-6 col-md-6">
@@ -726,7 +818,7 @@
 								</div>
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_le_save()">Save changes</button>
+								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_le_save();loss_to_each_register()">Save changes</button>
 								</div>
 							  </div>
 							  <!-- /.modal-content -->

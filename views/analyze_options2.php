@@ -198,7 +198,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$magnitude_SOMA_MEDIA 		= "0.0";  
 						
 						if(isset($_GET['view'])){
-							
+							echo "<script>list_options_html(".$_GET['id'].");</script>";
 							$status = Risks::select_risk_id($_GET['id']);
 							$agente = Agents::select_ir_agents_id($status['ir_agents_id']);
 							$ar 	= AR_Analyse_risks::select_analyse_risk_id_risk($_REQUEST['id']);
@@ -1236,7 +1236,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 			  <!--Select options that haven been identified in the Identify Option form-->
 					<div class="form-group">
 							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Risk']; ?></label>
-							<select class="form-control" id="risk" name="risk" onchange="select_risk(this.value);select_option(document.getElementById('id_option').value,this.value);select_risk_option(document.getElementById('id_option').value,this.value);">
+							<select class="form-control" id="risk" name="risk" onchange="list_options_html(this.value);select_risk(this.value);select_option(document.getElementById('id_option').value,this.value);select_risk_option(document.getElementById('id_option').value,this.value);">
 							<option value="#" > <?php echo $_SESSION[$_SESSION['lang']]['select']; ?> </option>
 							   <?php 
 								$in = Risks::select_risks();												
@@ -1265,34 +1265,31 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 				<div class="row">
 				<div class="col-sm-4 col-md-12">
 			  <!--Select options that haven been identified in the Identify Option form-->
-					<div class="form-group">
-							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Options']; ?></label>
-							<select class="form-control" id="id_option" name="id_option" onchange="select_option(this.value,document.getElementById('risk').value);select_risk_option(this.value,document.getElementById('risk').value)">
-							<option value="#" > <?php echo $_SESSION[$_SESSION['lang']]['select']; ?> </option>
-							   <?php 
-								$op = Analyze_options::select_options();												
-								foreach($op['dados'] as $op){
-									
-									if($op['id'] == $id_option){
-									
-							  ?>
-									<option value="<?php echo $op['id']; ?>" selected><?php echo $op['option']; ?></option>
-							  <?php 
-							  
-									}else{
-												
-							  ?>
-									<option value="<?php echo $op['id']; ?>"><?php echo $op['option']; ?></option>
-							  <?php
-									}	
-								}
-							  ?>
-							  
-							 
-							</select>
+					<div class="form-group" id="bxOptions">
+							
 							</div>
                 </div>
                 </div>
+				<script>
+								function list_options_html(id) {	
+									
+									
+									$.ajax({
+									dataType: 'html',
+									type: "POST",
+									url: "ajax_process/list_options_html.php?id="+id,
+									data: {
+										id:id		
+									},
+									processData: false,
+									contentType: false,
+									success: function(data) {
+										
+										document.getElementById('bxOptions').innerHTML=data;
+									}
+									});
+								}
+								</script>
                 <div class="row">
              
               <div class="col-sm-4 col-md-12">

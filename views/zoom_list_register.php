@@ -157,18 +157,21 @@ require_once("header.php");
 							<label for="Name">Register</label>
 							<select class="form-control" id="value_table" name="value_table" onchange="select_dados_value_table_id(this.value)">
 							<option value="" >select</option>
-																					<?php 
-																					$in = Build_value_pie::select_ec_value_pie_table_all(1);
-																					
-																					foreach($in['dados'] as $in){
-																					?>
-																								
-																								   <option value="<?php echo $in['id']; ?>" >
-																								   <?php echo $in['group_value'].", ".$in['subgroup_value']; ?>
-																								   </option>
-																								
-																								 
-																					<?php } ?>
+				<?php 
+				$in = Build_value_pie::select_ec_value_pie_table_all(1);
+				
+				foreach($in['dados'] as $in){
+					
+				$gr = Build_value_pie::select_ec_groups_value_id($in['group_id']);
+				$sb = Build_value_pie::select_ec_subgroups_value_id($in['subgroup_id']);
+				?>
+							
+							   <option value="<?php echo $in['id']; ?>" >
+							   <?php echo $gr['name'].", ".$sb['name']; ?>
+							   </option>
+							
+							 
+				<?php } ?>
 
 																					
 																								</select>

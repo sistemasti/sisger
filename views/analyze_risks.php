@@ -218,12 +218,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$bxProbable 	= ($ar['A_pro_score'] != '')?$ar['A_pro_score']:'0.0'; 
 								$bxLow 			= ($ar['A_min_score'] != '')?$ar['A_min_score']:'0.0'; 
 								$bxUncert 		= ($ar['A_unc_range'] != '')?$ar['A_unc_range']:'0.0'; 
-								$explain 		= ($ar['A_explain'] != '')?$ar['A_explain']:'0.0'; 
+								$explain 		= ($ar['A_explain'] != '')?$ar['A_explain']:''; 
 								$ley 			= $ar['A_field_value_1']; 
 								$abey 			= $ar['A_field_value_2']; 
 								$hey 			= $ar['A_field_value_3']; 
 								
-								$fr_zoom_explanation_fields 	= $ar['fr_zoom_explanation_fields']; 
+								$fr_zoom_explanation_fields 	= $explain; 
 								$fr_zoom_notes_explanation 		= $ar['fr_zoom_notes_explanation']; 
 								$fr_zoom_document_name 			= $ar['fr_zoom_document_name']; 
 								$fr_zoom_comment 				= $ar['fr_zoom_comment']; 
@@ -264,7 +264,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$pl5 			= $ar['B_field_value_2']; 
 								$le5 			= $ar['B_field_value_3']; 
 								
-								$le_zoom_explanation_fields 	= $ar['le_zoom_explanation_fields']; 
+								$le_zoom_explanation_fields 	= $explain_le; 
 								$le_zoom_notes_explanation 		= $ar['le_zoom_notes_explanation']; 
 								$le_zoom_document_name 			= $ar['le_zoom_document_name']; 
 								$le_zoom_comment 				= $ar['le_zoom_comment']; 
@@ -285,7 +285,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$plia 			= $ar['C_field_value_2']; 
 								$leia 			= $ar['C_field_value_3']; 
 								
-								$ia_zoom_explanation_fields 	= $ar['ia_zoom_explanation_fields']; 
+								$ia_zoom_explanation_fields 	= $explain_ia; 
 								$ia_zoom_notes_explanation 		= $ar['ia_zoom_notes_explanation']; 
 								$ia_zoom_document_name 			= $ar['ia_zoom_document_name']; 
 								$ia_zoom_comment 				= $ar['ia_zoom_comment']; 
@@ -464,7 +464,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								document.getElementById('type_risk').value = 6;								
 							}	
 						   
-						    $("#fr_zoom_explanation_fields").val(data['fr_zoom_explanation_fields']);
+						    $("#fr_zoom_explanation_fields").val(data['explain']);
 						    $("#fr_zoom_notes_explanation").val(data['fr_zoom_notes_explanation']);
 						    $("#fr_zoom_document_name").val(data['fr_zoom_document_name']);
 						    $("#fr_zoom_comment").val(data['fr_zoom_comment']);						
@@ -491,7 +491,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							
 							$("#le_zoom_obs").val(data['le_zoom_obs']);						
 						    $("#le_zoom_link").val(data['le_zoom_link']);	
-							$("#le_zoom_explanation_fields").val(data['le_zoom_explanation_fields']);
+							$("#le_zoom_explanation_fields").val(data['explain_le']);
 						    $("#le_zoom_notes_explanation").val(data['le_zoom_notes_explanation']);
 						    $("#le_zoom_document_name").val(data['le_zoom_document_name']);
 						    $("#le_zoom_comment").val(data['le_zoom_comment']);						
@@ -648,7 +648,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							$("#plia").val(data['plia']);
 							$("#leia").val(data['leia']);
 							//alert(data['ia_zoom_explanation_fields']);
-							$("#ia_zoom_explanation_fields").val(data['ia_zoom_explanation_fields']);
+							$("#ia_zoom_explanation_fields").val(data['explain_ia']);
 						    $("#ia_zoom_notes_explanation").val(data['ia_zoom_notes_explanation']);
 						    $("#ia_zoom_document_name").val(data['ia_zoom_document_name']);
 						    $("#ia_zoom_comment").val(data['ia_zoom_comment']);			
@@ -838,9 +838,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								  <tbody>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Frequency or Rate']; ?></td>
-									  <td><div id="magnitude_FR_Low"><?php echo $magnitude_FR_Low; ?></div></td>
-									  <td><div id="magnitude_FR_Probable"><?php echo $magnitude_FR_Probable; ?></div></td>
 									  <td><div id="magnitude_FR_High"><?php echo $magnitude_FR_High; ?></div></td>
+									  <td><div id="magnitude_FR_Probable"><?php echo $magnitude_FR_Probable; ?></div></td>
+									  <td><div id="magnitude_FR_Low"><?php echo $magnitude_FR_Low; ?></div></td>
 									  <!--<td></td>-->
 									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_FR_MEDIA"><?php echo $magnitude_FR_MEDIA; ?></div></span></td>
 									</tr>

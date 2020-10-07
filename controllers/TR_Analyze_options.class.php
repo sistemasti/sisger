@@ -24,6 +24,18 @@
 			
 		}
 		
+		static function select_options_by_risk($id_risk){
+			
+			
+			$n1 = self::getConn()->prepare('SELECT ti.id_option as id_option, tr.option as option FROM `tr_identify_options` as ti INNER JOIN tr_options AS tr WHERE ti.id_option = tr.id And ti.id_risk=? ORDER BY tr.id
+');
+			$n1->execute(array($id_risk)); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+		
 		static function select_tr_analyze_options_by_risk($id_risk){
 			
 			
