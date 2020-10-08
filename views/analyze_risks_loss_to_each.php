@@ -880,7 +880,7 @@
 								success: function(data) {
 									if(data==1){
 										
-											alert('Register save successfull');
+											//alert('Register save successfull');
 											
 											
 									}else{ 

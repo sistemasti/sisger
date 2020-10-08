@@ -632,7 +632,7 @@ echo "</pre>"; */
 								success: function(data) {
 									if(data==1){
 										
-											alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Register save successfull']."'"; ?>);
+											//alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Register save successfull']."'"; ?>);
 											
 											
 									}else{ 
