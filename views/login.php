@@ -129,7 +129,7 @@ $logado = $objAccess->logado();
 				  <!-- /.col -->
 				</div>
 				<br>
-				<center><small>Version 1.0.4</small></center>
+				<center><small>Version 1.0.5</small></center>
 			  </form>
 		<!--
 			  <div class="social-auth-links text-center mb-3">
