@@ -555,6 +555,12 @@
 				$n1->execute(array($id));
 		}
 		
+			
+		static function delete_tr_identify_options($id){
+				$n1 = self::getConn()->prepare('DELETE FROM `tr_identify_options` WHERE id=?');
+				$n1->execute(array($id));
+		}
+		
 		
 	
 		

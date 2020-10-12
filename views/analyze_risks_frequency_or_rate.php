@@ -578,6 +578,10 @@
 									
 									alert("Select a risk");
 									
+								}else if(document.getElementById('ley').value == '' || document.getElementById('abey').value == '' || document.getElementById('hey').value == ''){
+									
+									alert("All fields are required");
+									
 								}else{	
 								  var formulario = document.getElementById('ar_fr');
 								  var dados = new FormData(formulario);

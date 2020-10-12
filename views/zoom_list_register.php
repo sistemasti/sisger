@@ -268,9 +268,9 @@ require_once("header.php");
 											
 											</script>
 						
-						<button type="button" onclick="zoom_list_save(1)" name="btn1" class="btn btn-block bg-gradient-primary btn-sm" value="1">Save & Add New</button>
+						<button type="button" onclick="if( document.getElementById('value_table').value==''){ alert('select a register'); }else{ zoom_list_save(1) }" name="btn1" class="btn btn-block bg-gradient-primary btn-sm" value="1">Save & Add New</button>
 				
-						<button type="button" name="btn2" class="btn btn-block bg-gradient-info btn-sm" value="2" onclick="zoom_list_save(2)" >Save & Return</button>
+						<button type="button" name="btn2" class="btn btn-block bg-gradient-info btn-sm" value="2" onclick="if( document.getElementById('value_table').value==''){  alert('select a register'); }else{ zoom_list_save(2) }" >Save & Return</button>
 					  </form>
               </div> 
 			  <div class="col-sm-4 col-md-6">

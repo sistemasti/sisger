@@ -252,12 +252,12 @@ require_once("header.php");
 															<tr>
 															  <th></th>
 															  <th></th>                
-															  <th><input type="text" class="form-control" id="low_estimate_top" name="low_estimate_top" placeholder="Enter document name" 
+															  <th><input type="text" class="form-control" id="low_estimate_top" name="low_estimate_top" 
 															  value="<?php echo $low_estimate_general; ?>" onblur="if(this.value != ''){ zoom_list_update_top() }" required style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );">
 															  
 															  </th>                
-															  <th><input type="text" class="form-control" id="most_probable_top" name="most_probable_top" placeholder="Enter document name" value="<?php echo $most_probable_top; ?>" onblur="if(this.value != ''){ zoom_list_update_top() }" required style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></th>                
-															  <th><input type="text" class="form-control" id="high_estimate_top" name="high_estimate_top" placeholder="Enter document name" onblur="if(this.value != ''){  zoom_list_update_top() }" value="<?php echo $high_estimate_top; ?>" required style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></th>    
+															  <th><input type="text" class="form-control" id="most_probable_top" name="most_probable_top" value="<?php echo $most_probable_top; ?>" onblur="if(this.value != ''){ zoom_list_update_top() }" required style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></th>                
+															  <th><input type="text" class="form-control" id="high_estimate_top" name="high_estimate_top" onblur="if(this.value != ''){  zoom_list_update_top() }" value="<?php echo $high_estimate_top; ?>" required style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></th>    
 															
 															</tr>
 														</thead>
@@ -302,7 +302,7 @@ require_once("header.php");
 															  
 															  <td><?php  echo $ia['number_subgroups']; ?></td>
 															 
-					<td><input type="text" class="form-control" id="low_estimate_<?php  echo $ia['id']; ?>" name="low_estimate_<?php  echo $ia['id']; ?>" placeholder="Enter document name" value="<?php  echo $ia['low_estimate']; ?>" 
+					<td><input type="text" class="form-control" id="low_estimate_<?php  echo $ia['id']; ?>" name="low_estimate_<?php  echo $ia['id']; ?>" value="<?php  echo $ia['low_estimate']; ?>" 
 					 required onblur="
 					 
 					 if(this.value != ''){ 
@@ -313,10 +313,10 @@ require_once("header.php");
 					
 					" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></td>
 											  
-					<td><input type="text" class="form-control" id="most_probable_<?php  echo $ia['id']; ?>" name="most_probable_<?php  echo $ia['id']; ?>" placeholder="Enter document name" value="<?php  echo $ia['most_probable']; ?>" 
+					<td><input type="text" class="form-control" id="most_probable_<?php  echo $ia['id']; ?>" name="most_probable_<?php  echo $ia['id']; ?>" value="<?php  echo $ia['most_probable']; ?>" 
 					onblur="if(this.value != ''){ zoom_list_update(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>').value,this.value,document.getElementById('high_estimate_<?php  echo $ia['id']; ?>').value) }" required  <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></td>
 															  
-															  <td><input type="text" class="form-control" id="high_estimate_<?php  echo $ia['id']; ?>" name="high_estimate_<?php  echo $ia['id']; ?>" placeholder="Enter document name" value="<?php  echo $ia['high_estimate']; ?>" required onblur="if(this.value != ''){  zoom_list_update(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>').value,document.getElementById('most_probable_<?php  echo $ia['id']; ?>').value,this.value) } " <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></td>
+															  <td><input type="text" class="form-control" id="high_estimate_<?php  echo $ia['id']; ?>" name="high_estimate_<?php  echo $ia['id']; ?>" value="<?php  echo $ia['high_estimate']; ?>" required onblur="if(this.value != ''){  zoom_list_update(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>').value,document.getElementById('most_probable_<?php  echo $ia['id']; ?>').value,this.value) } " <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></td>
 															  
 															  <td>
 															  <?php if(!isset($_GET['type'])){ ?>
@@ -741,11 +741,11 @@ require_once("header.php");
 															<tr>
 															  <th></th>
 															  <th></th>                
-															  <th><input type="text" class="form-control" id="low_estimate_top_o" name="low_estimate_top_o" placeholder="Enter document name" value="<?php echo $low_estimate_general_o; ?> " onkeyup="if(this.value != ''){ zoom_list_update_top_o() }" onkeypress="return keypressed( this , event );" required style="display:none" >
+															  <th><input type="text" class="form-control" id="low_estimate_top_o" name="low_estimate_top_o" value="<?php echo $low_estimate_general_o; ?> " onkeyup="if(this.value != ''){ zoom_list_update_top_o() }" onkeypress="return keypressed( this , event );" required style="display:none" >
 															  
 															  </th>                
-															  <th><input type="text" class="form-control" id="most_probable_top_o" name="most_probable_top_o" placeholder="Enter document name" value="<?php echo $most_probable_top_o; ?>" onkeyup=" if(this.value != ''){ zoom_list_update_top_o() }" onkeypress="return keypressed( this , event );" required style="display:none" ></th>                
-															  <th><input type="text" class="form-control" id="high_estimate_top_o" name="high_estimate_top_o" placeholder="Enter document name" onkeyup="if(this.value != ''){ zoom_list_update_top_o() }" value="<?php echo $high_estimate_top_o; ?>" onkeypress="return keypressed( this , event );" required style="display:none" ></th>    
+															  <th><input type="text" class="form-control" id="most_probable_top_o" name="most_probable_top_o" value="<?php echo $most_probable_top_o; ?>" onkeyup=" if(this.value != ''){ zoom_list_update_top_o() }" onkeypress="return keypressed( this , event );" required style="display:none" ></th>                
+															  <th><input type="text" class="form-control" id="high_estimate_top_o" name="high_estimate_top_o" onkeyup="if(this.value != ''){ zoom_list_update_top_o() }" value="<?php echo $high_estimate_top_o; ?>" onkeypress="return keypressed( this , event );" required style="display:none" ></th>    
 															
 															</tr>
 														</thead>
@@ -796,7 +796,7 @@ require_once("header.php");
 					class="form-control" 
 					id="low_estimate_<?php  echo $ia['id']; ?>_o" 
 					name="low_estimate_<?php  echo $ia['id']; ?>_o" 
-					placeholder="Enter document name" 
+					
 					value="<?php  echo $ia['low_estimate']; ?>" 
 					onkeyup=" 
 					if(this.value != ''){ 
@@ -810,9 +810,9 @@ require_once("header.php");
 					onkeypress="return keypressed( this , event );" 
 					required  ></td>
 											  
-					<td><input type="text" class="form-control" id="most_probable_<?php  echo $ia['id']; ?>_o" name="most_probable_<?php  echo $ia['id']; ?>_o" placeholder="Enter document name" value="<?php  echo $ia['most_probable']; ?>" onkeyup=" if(this.value != ''){ zoom_list_update_o(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>_o').value,this.value,document.getElementById('high_estimate_<?php  echo $ia['id']; ?>_o').value) }" required onkeypress="return keypressed( this , event );"  ></td>
+					<td><input type="text" class="form-control" id="most_probable_<?php  echo $ia['id']; ?>_o" name="most_probable_<?php  echo $ia['id']; ?>_o" value="<?php  echo $ia['most_probable']; ?>" onkeyup=" if(this.value != ''){ zoom_list_update_o(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>_o').value,this.value,document.getElementById('high_estimate_<?php  echo $ia['id']; ?>_o').value) }" required onkeypress="return keypressed( this , event );"  ></td>
 															  
-															  <td><input type="text" class="form-control" id="high_estimate_<?php  echo $ia['id']; ?>_o" name="high_estimate_<?php  echo $ia['id']; ?>_o" placeholder="Enter document name" value="<?php  echo $ia['high_estimate']; ?>" required onkeyup=" if(this.value != ''){ zoom_list_update_o(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>_o').value,document.getElementById('most_probable_<?php  echo $ia['id']; ?>_o').value,this.value) }" onkeypress="return keypressed( this , event );" ></td>
+															  <td><input type="text" class="form-control" id="high_estimate_<?php  echo $ia['id']; ?>_o" name="high_estimate_<?php  echo $ia['id']; ?>_o" value="<?php  echo $ia['high_estimate']; ?>" required onkeyup=" if(this.value != ''){ zoom_list_update_o(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>_o').value,document.getElementById('most_probable_<?php  echo $ia['id']; ?>_o').value,this.value) }" onkeypress="return keypressed( this , event );" ></td>
 															  
 															  <td>
 															 

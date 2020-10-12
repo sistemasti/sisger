@@ -475,6 +475,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									}
 								  });
 								   atualiza_value_pie_table();
+								   
+								   
+								   
+								    
+
+
 								}
 								
 				</script>

@@ -102,6 +102,11 @@ require_once("header.php");
 									
 								if ( isset($_POST['cadastrar']) ){
 									
+									if(trim($_POST['option']) == ""){
+										
+										$txterr .= "Option field cannot be empty<br>";
+										
+									}	
 								
 										
 									if ( $txterr == "" ){

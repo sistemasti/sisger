@@ -121,6 +121,28 @@ update their_scores
 		}
 
 
+		static function select_ec_value_pie_table_all_by_group($group_id){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM ec_value_pie_table WHERE project_id="'.$_SESSION['project_id'].'" and group_id=?');
+			$n1->execute(array($group_id)); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+			
+		}
+
+		static function select_ec_value_pie_table_all_by_subgroup($subgroup_id){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM ec_value_pie_table WHERE project_id="'.$_SESSION['project_id'].'" and subgroup_id=?');
+			$n1->execute(array($subgroup_id)); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+			
+		}
+
 		static function select_ec_value_pie_table_all_by_group_subgroup($group_id,$subgroup_id){
 			
 			$n1 = self::getConn()->prepare('SELECT * FROM ec_value_pie_table WHERE project_id="'.$_SESSION['project_id'].'" and group_id=? and subgroup_id=?');
@@ -900,6 +922,11 @@ update their_scores
 		
 		static function delete_ar_zoom_list_items_affected($id){
 				$n1 = self::getConn()->prepare('DELETE FROM `ar_zoom_list_items_affected` WHERE id=?');		
+				$n1->execute(array($id));	
+		}
+		
+		static function delete_ar_zoom_list_items_affected_by_table($id){
+				$n1 = self::getConn()->prepare('DELETE FROM `ar_zoom_list_items_affected` WHERE id_ec_value_pie_table=?');		
 				$n1->execute(array($id));	
 		}
 		
