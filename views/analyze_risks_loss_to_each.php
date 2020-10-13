@@ -23,14 +23,14 @@
 												fieldM = "Max";
 												
 												if(y==-0){
-													if(newValue < document.getElementById('B_fdProbable').value){
-															f=1; 	
-															alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
-															document.getElementById('valid1').value = 1;
-															return false;
-													}else{
+													//if(newValue < document.getElementById('B_fdProbable').value){
+													//		f=1; 	
+													//		alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+													//		document.getElementById('valid1').value = 1;
+													//		return false;
+													//}else{
 															document.getElementById('valid1').value = 0;
-													}
+													//}
 												}
 												
 
@@ -40,14 +40,14 @@
 												fieldM = "Med";
 												document.getElementById('B_fdProbable').value = newValue;
 												if(y==-0){
-													if(newValue > document.getElementById('B_fdHigh').value || newValue < document.getElementById('B_fdLow').value ){
-															f=1; 	
-															alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
-															document.getElementById('valid2').value = 1;
-															return false;
-													}else{
+													//if(newValue > document.getElementById('B_fdHigh').value || newValue < document.getElementById('B_fdLow').value ){
+													//		f=1; 	
+													//		alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+													//		document.getElementById('valid2').value = 1;
+													//		return false;
+													//}else{
 															document.getElementById('valid2').value = 0;
-													}
+													//}
 												}
 
 											}
@@ -55,14 +55,14 @@
 											if(field == "Low"){
 												fieldM = "Min";
 												if(y==-0){
-													if(newValue > document.getElementById('B_fdProbable').value){
-															f=1; 	
-															alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
-															document.getElementById('valid3').value = 1;
-															return false;
-													}else{
+													//if(newValue > document.getElementById('B_fdProbable').value){
+													//		f=1; 	
+													//		alert("This score must be less than or equal to the Expected score. It cannot be changed if the Expected score is empty");
+													//		document.getElementById('valid3').value = 1;
+													//		return false;
+													//}else{
 															document.getElementById('valid3').value = 0;
-													}
+													//}
 												}
 
 											}
