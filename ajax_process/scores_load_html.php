@@ -114,7 +114,7 @@ include("../controllers/EC_Enter_values.class.php");
 			}else{
 				document.getElementById('fd_scores').style.display='none'
 			}
-			">insert a new scores</button>
+			">Insert a new score</button>
 			<div id="fd_scores" style="display:none">
 			<select class="form-control" id="new_ev" name="new_ev" >
 						<option value="0">select</option>

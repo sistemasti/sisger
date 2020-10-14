@@ -64,7 +64,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Enther the values</h1>
+            <h1>Enter the values</h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
