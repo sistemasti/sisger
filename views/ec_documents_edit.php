@@ -138,7 +138,7 @@ require_once("header.php");
 									$pos = strpos($link, 'http://');
 									$pos2 = strpos($link, 'https://');
 									
-									if($pos === false && $pos2 === false){
+									if(($pos === false && $pos2 === false) && $i['file']==""){
 										
 											$txterr .= "- Link inválido (use http ou https) <br>";		
 										
