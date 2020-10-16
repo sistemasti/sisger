@@ -123,14 +123,14 @@ echo "</pre>"; */
 											<input type="radio" name="type_score" id="type_score_1" value="1"  onclick="
 													document.getElementById('bxFractionAffected').style.display='block';
 													document.getElementById('bxValuePieAffected').style.display='none';
-													atualiza_type_score(1,document.getElementById('risk').value);
+													
 													" <?php if (!isset($_GET['ca_high']) || $type_score==1){ echo "checked";}else{echo "";} ?> > <?php echo $_SESSION[$_SESSION['lang']]['Steps scale, considering the heritage asset as a whole.']; ?>
 													
 													<br>
 											<input type="radio" name="type_score" id="type_score_2" value="2" onclick="
 													document.getElementById('bxFractionAffected').style.display='none';
 													document.getElementById('bxValuePieAffected').style.display='block';
-													atualiza_type_score(2,document.getElementById('risk').value);
+													
 													" <?php if ((isset($_GET['ca_high']) && !isset($_GET['id'])) || $type_score==2){ echo "checked";}else{echo "";} ?>> <?php echo $_SESSION[$_SESSION['lang']]['More precise data using the value pie']; ?><br>
 											
 											<input type="hidden" name="C_type_list" id="C_type_list" value='1'>

@@ -119,7 +119,15 @@ update their_scores
 			
 			
 		}
-
+		
+		static function select_ar_zoom_list_items_affected_id($id){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM ar_zoom_list_items_affected WHERE id=?');
+			$n1->execute(array($id)); 
+			$d = $n1->fetch();	
+			$d['num'] = $n1->rowCount();				
+			return $d;
+		}
 
 		static function select_ec_value_pie_table_all_by_group($group_id){
 			
@@ -659,6 +667,28 @@ update their_scores
 											
 					$n->execute(array($low_estimate, $most_probable, $high_estimate, $id));
 		}
+		
+		
+		static function update_analyze_risk_by_zoom_ia($C_min_score,$C_pro_score,$C_max_score,$C_unc_range, $id_risk){
+			
+					/* echo 'UPDATE `ar_analyze_risks` SET 
+														   `C_min_score` ="'.$C_min_score.'",
+														   `C_pro_score` ="'.$C_pro_score.'",
+														   `C_max_score` ="'.$C_max_score.'",
+														   `C_unc_range` ="'.$C_unc_range.'"
+													WHERE  `id_risk` ="'.$id_risk.'" '; */
+			
+					$n = self::getConn()->prepare('
+													UPDATE `ar_analyze_risks` SET 
+														   `C_min_score` =?,
+														   `C_pro_score` =?,
+														   `C_max_score` =?,
+														   `C_unc_range` =?
+													WHERE  `id_risk` =? ');
+											
+					$n->execute(array($C_min_score,$C_pro_score,$C_max_score,$C_unc_range, $id_risk));
+		}
+		
 		
 		static function update_ar_zoom_list_items_affected_o($low_estimate, $most_probable, $high_estimate, $id){
 					$n = self::getConn()->prepare('

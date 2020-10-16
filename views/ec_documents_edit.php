@@ -135,7 +135,7 @@ require_once("header.php");
 									}	
 									
 									
-									$pos = strpos($link, 'http://');
+										$pos = strpos($link, 'http://');
 									$pos2 = strpos($link, 'https://');
 									
 									if($pos === false && $pos2 === false){

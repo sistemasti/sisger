@@ -100,7 +100,24 @@ include("../controllers/EC_Build_value_pie.class.php");
 					
 					$cc 							= 5 + round($c,5)/100;
 					$dados['ex_uvp_he_c'] 			= round($cc,1);
-				
+					
+					
+					if($_GET['type_list_1'] == 'true'){
+						
+						$C_unc_range = (float)$dados['uvp_he_c'] - (float)$dados['uvp_le_c'];
+						
+						$u = Build_value_pie::update_analyze_risk_by_zoom_ia(str_ireplace("C:","",$dados['uvp_le_c']),$dados['uvp_mp_c'], $dados['uvp_he_c'],$C_unc_range, $_POST['risk_id']);
+						
+					}
+					
+					if($_GET['type_list_2'] == 'true'){
+						
+						$C_unc_range = (float)$dados['ex_uvp_he_c'] - (float)$dados['ex_uvp_le_c'];
+						
+						$u = Build_value_pie::update_analyze_risk_by_zoom_ia(str_ireplace("C:","",$dados['ex_uvp_le_c']),str_ireplace("C:","",$dados['ex_uvp_mp_c']), $dados['ex_uvp_he_c'],$C_unc_range, $_POST['risk_id']);
+						
+					}
+					
 					/* ASSUMING ALL ITEMS OF EQUAL VALUE::	*/
 				
 				

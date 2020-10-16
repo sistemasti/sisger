@@ -682,7 +682,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 													
 								document.getElementById('magnitude_IA_MEDIA').innerHTML = media.toFixed(1);
 								 
-								$("#ia_Div_Max").html('ca_high');
+								//$("#ia_Div_Max").html('ca_high');
 								document.getElementById('ia_Div_Max').innerHTML = ca_high;
 								document.getElementById('ia_Inp_Max').value = ca_high;
 								
@@ -924,28 +924,31 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 										//Math.pow(base, expoente)
 										
 										//A
-										var a_l_p = Math.pow((document.getElementById('magnitude_FR_Low').innerHTML)-5, 10);
-										var a_p_p = Math.pow((document.getElementById('magnitude_FR_Probable').innerHTML)-5, 10);
-										var a_h_p = Math.pow((document.getElementById('magnitude_FR_High').innerHTML)-5, 10);
+										var a_h_p = Math.pow(10, ((document.getElementById('magnitude_FR_High').innerHTML)-5)*-1);
+										var a_p_p = Math.pow(10, ((document.getElementById('magnitude_FR_Probable').innerHTML)-5)*-1);
+										var a_l_p = Math.pow(10, ((document.getElementById('magnitude_FR_Low').innerHTML)-5)*-1);
 										
 										var total_a_p = 5-Math.log10((a_l_p + a_p_p + a_h_p)/3);
-										document.getElementById('magnitude_FR_MEDIA').innerHTML = total_a_p.toFixed(1);
+										document.getElementById('magnitude_FR_MEDIA').innerHTML = Math.round10(total_a_p,-1);
+										//alert(a_h_p);
+										
 										
 										//B
-										var b_l_p = Math.pow((document.getElementById('magnitude_LE_Min').innerHTML)-5, 10);
-										var b_p_p = Math.pow((document.getElementById('magnitude_LE_Med').innerHTML)-5, 10);
-										var b_h_p = Math.pow((document.getElementById('magnitude_LE_Max').innerHTML)-5, 10);
+										var b_h_p = Math.pow(10, ((document.getElementById('magnitude_LE_Max').innerHTML)-5)*-1);
+										var b_p_p = Math.pow(10, ((document.getElementById('magnitude_LE_Med').innerHTML)-5)*-1);
+										var b_l_p = Math.pow(10, ((document.getElementById('magnitude_LE_Min').innerHTML)-5)*-1);
 										
-										var total_b_p = 4.9-Math.log10((b_l_p + b_p_p + b_h_p)/3);
-										document.getElementById('magnitude_LE_MEDIA').innerHTML = total_b_p.toFixed(1);
+										var total_b_p = 5-Math.log10((b_l_p + b_p_p + b_h_p)/3);
+										document.getElementById('magnitude_LE_MEDIA').innerHTML = Math.round10(total_b_p,-1);
+										//alert(Math.round10(10.24, -1));
 										
 										//C
-									 	var c_l_p = Math.pow((document.getElementById('magnitude_IA_Min').innerHTML)-5, 10);
-										var c_p_p = Math.pow((document.getElementById('magnitude_IA_Med').innerHTML)-5, 10);
-										var c_h_p = Math.pow((document.getElementById('magnitude_IA_Max').innerHTML)-5, 10);
+										var c_h_p = Math.pow(10, ((document.getElementById('magnitude_IA_Max').innerHTML)-5)*-1);
+										var c_p_p = Math.pow(10, ((document.getElementById('magnitude_IA_Med').innerHTML)-5)*-1);
+									 	var c_l_p = Math.pow(10, ((document.getElementById('magnitude_IA_Min').innerHTML)-5)*-1);
 										
-										var total_c_p = 4.9-Math.log10((c_l_p + c_p_p + c_h_p)/3);
-										document.getElementById('magnitude_LE_MEDIA').innerHTML = total_c_p.toFixed(1); 
+										var total_c_p = 5-Math.log10((c_l_p + c_p_p + c_h_p)/3);
+										document.getElementById('magnitude_IA_MEDIA').innerHTML = Math.round10(total_c_p,-1); 
 										
 										
 										var total = parseFloat((document.getElementById('magnitude_FR_MEDIA').innerHTML))+parseFloat((document.getElementById('magnitude_LE_MEDIA').innerHTML))+parseFloat((document.getElementById('magnitude_IA_MEDIA').innerHTML));
@@ -960,19 +963,81 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									 
 								 }	 
 								 
+								 
+								 
+								 
+								 
+								 
+								 
+								 
+								 // Closure
+								(function(){
+
+									/**
+									 * Decimal adjustment of a number.
+									 *
+									 * @param	{String}	type	The type of adjustment.
+									 * @param	{Number}	value	The number.
+									 * @param	{Integer}	exp		The exponent (the 10 logarithm of the adjustment base).
+									 * @returns	{Number}			The adjusted value.
+									 */
+									function decimalAdjust(type, value, exp) {
+										// If the exp is undefined or zero...
+										if (typeof exp === 'undefined' || +exp === 0) {
+											return Math[type](value);
+										}
+										value = +value;
+										exp = +exp;
+										// If the value is not a number or the exp is not an integer...
+										if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+											return NaN;
+										}
+										// Shift
+										value = value.toString().split('e');
+										value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+										// Shift back
+										value = value.toString().split('e');
+										return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+									}
+
+									// Decimal round
+									if (!Math.round10) {
+										Math.round10 = function(value, exp) {
+											return decimalAdjust('round', value, exp);
+										};
+									}
+									// Decimal floor
+									if (!Math.floor10) {
+										Math.floor10 = function(value, exp) {
+											return decimalAdjust('floor', value, exp);
+										};
+									}
+									// Decimal ceil
+									if (!Math.ceil10) {
+										Math.ceil10 = function(value, exp) {
+											return decimalAdjust('ceil', value, exp);
+										};
+									}
+
+								})();
+								 
+								 
+								 
+								 
+								 
 								 </script>	
 								 <script>	
 								 </script>	
 							<div class="row">	
 								<div class="col-sm-4 col-md-4">
-								<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="changeTypeCalc(1)"><?php echo $_SESSION[$_SESSION['lang']]['Log triangle distribution (default)']; ?></button>
+								<button type="button" class="btn btn-block  bg-gradient-info btn-sm" onclick="changeTypeCalc(2)">Linear triangle distribution </button>
 									
 								</div>
 								<div class="col-sm-4 col-md-4">
-									<button type="button" class="btn btn-block bg-gradient-info btn-sm" onclick="changeTypeCalc(2)"><?php echo $_SESSION[$_SESSION['lang']]['Linear triangle distribution']; ?> </button>
+									<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="changeTypeCalc(1)">Log triangle distribution  (default)</button>
 								</div>
 								<div class="col-sm-4 col-md-4">
-									<button type="button" class="btn btn-block bg-gradient-warning btn-sm" onclick="changeTypeCalc(3)"><?php echo $_SESSION[$_SESSION['lang']]['Simple use of problable value']; ?></button>
+									<button type="button" class="btn btn-block bg-gradient-warning btn-sm" onclick="changeTypeCalc(3)">Simple use of problable value</button>
 								</div>
 								
 							</div>	
@@ -1082,16 +1147,15 @@ function atualizaFileField (id,value) {
  return this.split('').reverse().join(''); };
  
 							
-</script>		
-<?php
-
-require_once("footer.php");
-
-?>
-<?php if(isset($_GET['ca_high']) && !isset($_GET['id']) ){ ?>
+</script>		<?php if(isset($_GET['ca_high']) ){ ?>
 <SCRIPT>
 							
 									  
 refreshDataByZoom(<?php echo $_GET['ca_high']; ?>,<?php echo $_GET['ca_media']; ?>,<?php echo $_GET['ca_low']; ?>);
 </SCRIPT>
 <?php } ?>
+<?php
+
+require_once("footer.php");
+
+?>
