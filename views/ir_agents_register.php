@@ -60,7 +60,7 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Agent Risks</h1>
+            <h1>Risk Agents</h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">

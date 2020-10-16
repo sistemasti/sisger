@@ -188,6 +188,8 @@
 										<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Select the type risk']; ?> </label>
 										 <select class="form-control" id="type_risk" name="type_risk" onchange="carregaFormulario(this.value)">
 											  
+										 	  <option value="6" <?php if($type_risk == "6"){ echo "selected"; } ?> ><?php echo $_SESSION[$_SESSION['lang']]['Not selected yet']; ?></option>
+											  
 											  <option value="1" <?php if($type_risk == "1"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['Event, rare (time between events greater than time horizon)']; ?></option>
 											  
 											  <option value="2" <?php if($type_risk == "2"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['Event, frequent (must be at least one year between events)']; ?></option>
@@ -198,12 +200,10 @@
 											  
 											  <option value="5" <?php if($type_risk == "5"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['Process or cumulative events, analyzed at a particular stage of damage']; ?></option>
 											  
-											  <option value="6" <?php if($type_risk == "6"){ echo "selected"; } ?> ><?php echo $_SESSION[$_SESSION['lang']]['Not selected yet']; ?></option>
-											 
 											</select>
 									  </div>
-									  
-						
+									 
+									 
 						<br>
 						  <?php 
 									//echo "----> ".$type_risk;
@@ -604,5 +604,6 @@
 								}  
 								  
 							}
-						</script>  
-			  
+						</script>  		
+
+						<?php if($type_risk == "6" || $type_risk == "" || $type_risk == null){ echo "<script>document.getElementById('bxFrm1').style.display = 'none';</script"; } ?>

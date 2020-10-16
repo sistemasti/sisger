@@ -7,6 +7,9 @@ require './routes/Router.php';
 //Instacia a classe de rotas
 $router = new Router();
 
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 //Configura rotas
 $router
@@ -80,54 +83,69 @@ $router
 	
 	//DOCUMENTS
 	->on('GET', '/document_register', function () {
+        $_SESSION['menu_active'] = "establish_context";  
         require './views/ec_documents_register.php';
     })	
 	->on('POST', '/document_register', function () {
+        $_SESSION['menu_active'] = "establish_context";  
         require './views/ec_documents_register.php';
     })	
 	->on('GET', '/documents_edit', function () {
+        $_SESSION['menu_active'] = "establish_context";  
         require './views/ec_documents_edit.php';
     })	
 	->on('POST', '/documents_edit', function () {
+        $_SESSION['menu_active'] = "establish_context";  
         require './views/ec_documents_edit.php';
     })	
 	->on('GET', '/documents_report', function () {
+        $_SESSION['menu_active'] = "establish_context";          
         require './views/ec_documents.php';
     })	
 	
 	
 	//PROJECTS
 	->on('GET', '/project_register', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/project_register.php';
     })	
 	->on('POST', '/project_register', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/project_register.php';
     })	
 	->on('GET', '/project_edit', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/project_edit.php';
     })	
 	->on('POST', '/project_edit', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/project_edit.php';
     })	
 	->on('GET', '/project_report', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/project_report.php';
     })	
 	
 	
 	//RISKS
 	->on('GET', '/ir_risks', function () {
+        $_SESSION['menu_active'] = "ir_risks";
         require './views/ir_risks.php';
     })
 	->on('GET', '/ir_register', function () {
+        $_SESSION['menu_active'] = "ir_risks";
         require './views/ir_register.php';
     })	
 	->on('POST', '/ir_register', function () {
+        $_SESSION['menu_active'] = "ir_risks";
         require './views/ir_register.php';
     })
 	->on('GET', '/ir_edit', function () {
+        $_SESSION['menu_active'] = "ir_risks";
         require './views/ir_edit.php';
     })	
 	->on('POST', '/ir_edit', function () {
+        $_SESSION['menu_active'] = "ir_risks";
         require './views/ir_edit.php';
     })	
 
@@ -140,16 +158,20 @@ $router
         require './views/mixed_values.php';
     })
 	->on('GET', '/values_register', function () {
+        $_SESSION['menu_active'] = "establish_context";
         require './views/values_register.php';
     })
 	->on('POST', '/values_register', function () {
+        $_SESSION['menu_active'] = "establish_context";
         require './views/values_register.php';
     })
 	
 	->on('GET', '/values_edit', function () {
+        $_SESSION['menu_active'] = "establish_context";
         require './views/values_edit.php';
     })
 	->on('POST', '/values_edit', function () {
+        $_SESSION['menu_active'] = "establish_context";
         require './views/values_edit.php';
     })
 	
@@ -185,75 +207,94 @@ $router
 
 	//AGENTS
 	->on('GET', '/ir_agents', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/ir_agents.php';
     })
 	->on('GET', '/ir_agents_register', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/ir_agents_register.php';
     })	
 	->on('POST', '/ir_agents_register', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/ir_agents_register.php';
     })
 	->on('GET', '/ir_agents_edit', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/ir_agents_edit.php';
     })	
 	->on('POST', '/ir_agents_edit', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/ir_agents_edit.php';
     })	
 
 
 	//RISK GROUP
 	->on('GET', '/ir_risk_group', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/ir_risk_group.php';
     })
 	->on('GET', '/ir_risk_group_register', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/ir_risk_group_register.php';
     })	
 	->on('POST', '/ir_risk_group_register', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/ir_risk_group_register.php';
     })
 	->on('GET', '/ir_risk_group_edit', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/ir_risk_group_edit.php';
     })	
 	->on('POST', '/ir_risk_group_edit', function () {
+        $_SESSION['menu_active'] = "admin";
         require './views/ir_risk_group_edit.php';
     })	
 
 
 	//OPTIONS RISK
 	->on('GET', '/tr_risk_option', function () {
+        $_SESSION['menu_active'] = "treat_risks";
         require './views/tr_risk_option.php';
     })
 	->on('GET', '/tr_risk_options_register', function () {
+        $_SESSION['menu_active'] = "treat_risks";
         require './views/tr_risk_options_register.php';
     })	
 	->on('POST', '/tr_risk_options_register', function () {
+        $_SESSION['menu_active'] = "treat_risks";
         require './views/tr_risk_options_register.php';
     })
 	->on('GET', '/tr_risk_options_edit', function () {
+        $_SESSION['menu_active'] = "treat_risks";
         require './views/tr_risk_options_edit.php';
     })	
 	->on('POST', '/tr_risk_options_edit', function () {
+        $_SESSION['menu_active'] = "treat_risks";
         require './views/tr_risk_options_edit.php';
     })	
 
 
 	//ANALYZE RISKS
 	->on('GET', '/analyze_risks', function () {
+        $_SESSION['menu_active'] = "analyze_risks";
         require './views/analyze_risks.php';
     })
 	
 	//MATRIX
 	->on('GET', '/matrix', function () {
+        $_SESSION['menu_active'] = "evaluate_risks";
         require './views/matrix.php';
     })
 	
 	
 	->on('GET', '/analyze_graphs', function () {
+        $_SESSION['menu_active'] = "evaluate_risks";
         require './views/analyze_graphs.php';
     })	
 	
 	//IDENIFY OPTIONS
 	->on('GET', '/identify_options', function () {
+        $_SESSION['menu_active'] = "treat_risks";
         require './views/identify_options.php';
     })
 	
@@ -284,37 +325,45 @@ $router
 	
 	//ENTER VALUES
 	->on('GET', '/enter_values', function () {
+        $_SESSION['menu_active'] = "establish_context";
         require './views/enter_values.php';
     })	
 	->on('POST', '/enter_values', function () {
+        $_SESSION['menu_active'] = "establish_context";
         require './views/enter_values.php';
     })	
 	
 	//SELECT THE VALUES PIE
 	->on('GET', '/select_values', function () {
+        $_SESSION['menu_active'] = "establish_context";
         require './views/select_values.php';
     })	
 	->on('POST', '/select_values', function () {
+        $_SESSION['menu_active'] = "establish_context";
         require './views/select_values.php';
     })	
 	
 	//BUILD VALUE
 	->on('GET', '/treat_risk', function () {
+        $_SESSION['menu_active'] = "treat_risks";
         require './views/treat_risk.php';
     })	
 	
 	//Analyze ptions
 	->on('GET', '/analyze_options', function () {
+        $_SESSION['menu_active'] = "treat_risks";
         require './views/analyze_options2.php';
     })	
 	
 	//communicate
 	->on('GET', '/risk_history', function () {
+        $_SESSION['menu_active'] = "treat_risks";
         require './views/risk_history.php';
     })	
 		
 	//BUILD VALUE
 	->on('GET', '/communicate', function () {
+        $_SESSION['menu_active'] = "comunicate";
         require './views/communicate.php';
     })	
 		

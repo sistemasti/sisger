@@ -1,5 +1,11 @@
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) {
+  session_start();
+}
 
-      <!-- Sidebar Menu -->
+?>
+
+<!-- Sidebar Menu -->
       <nav class="mt-2">
 	  <br>
 	  <br>
@@ -42,7 +48,7 @@
 		 
 		  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 		  <?php if(isset($_SESSION['project_id'])){ ?>
-		<li class="nav-item has-treeview">
+		<li class="nav-item has-treeview <?php if($_SESSION['menu_active'] == "establish_context"){ echo 'menu-open'; }?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-sign"></i>
               <p>
@@ -129,14 +135,14 @@
 		  </nav>
 		  <nav class="mt-2">
 		  <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
+          <li class="nav-item <?php if($_SESSION['menu_active'] == "ir_risks"){ echo 'menu-open'; }?>">
             <a href="ir_risks" class="nav-link">
               <i class="nav-icon fas fa-bullseye"></i>
               <p>Identify Risks</p>
             </a>
           </li>
                     
-          <li class="nav-item">
+          <li class="nav-item <?php if($_SESSION['menu_active'] == "analyze_risks"){ echo 'menu-open'; }?>">
             <a href="analyze_risks" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>Analyze Risks</p>
@@ -144,7 +150,7 @@
           </li>
           
 		  
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview <?php if($_SESSION['menu_active'] == "evaluate_risks"){ echo 'menu-open'; }?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-glasses"></i>
               <p>
@@ -169,7 +175,7 @@
             </ul>
           </li>
           
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview <?php if($_SESSION['menu_active'] == "treat_risks"){ echo 'menu-open'; }?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-wrench"></i>
               <p>
@@ -211,7 +217,7 @@
              
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <?php if($_SESSION['menu_active'] == "comunicate"){ echo 'menu-open'; }?>">
             <a href="communicate" class="nav-link">
               <i class="nav-icon fas fa-comments"></i>
               <p>Communicate</p>
@@ -231,7 +237,7 @@
 		  <?php } ?>
 		  
 		   <?php if($_SESSION['perfil_logado'] == "1" || $_SESSION['perfil_logado'] == "2" ){ ?>
-          <li class="nav-item has-treeview">
+          <li class="nav-item has-treeview <?php if($_SESSION['menu_active'] == "admin"){ echo 'menu-open'; }?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tools"></i>
               <p>

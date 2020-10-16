@@ -324,7 +324,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							<div class="form-group">
 							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Risk Name']; ?></label>
 							<select class="form-control" id="risk" name="risk" onchange="select_risk(this.value)">
-							<option value="#" > <?php echo $_SESSION[$_SESSION['lang']]['select']; ?> </option>
+							<option value="" > <?php echo $_SESSION[$_SESSION['lang']]['select']; ?> </option>
 							   <?php 
 								$in = Risks::select_risks();												
 								foreach($in['dados'] as $in){
@@ -369,7 +369,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 				<script>
 				
 					
-					function select_risk(id) {			
+					function select_risk(id) {		
+
+					  if($("#risk").val() == "" || $("#risk").val() == null){								
+						document.getElementById('bxFrm1').style.display = 'none';
+						document.getElementById('type_risk').value = 6;	
+					  }
+					  	
 					  var i = '#row'+id;
 					  $.ajax({
 						type: "POST",
@@ -429,7 +435,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								document.getElementById("abey").readOnly = true;
 							}
 							
-							if(data['type_risk'] == 6){
+							if(data['type_risk'] == 6 || data['type_risk'] == null){
 								
 								document.getElementById('bxFrm1').style.display = 'none';
 								
@@ -452,7 +458,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 						    $("#fdHigh").html(data['fdHigh']);
 						    $("#bxHigh").html(data['fdHigh']);
 							
-						    $("#fr_zoom_obs").html(data['fr_zoom_obs']);							
+						    $("#fr_zoom_obs").html(data['fr_zoom_obs']);
+														
 							document.getElementById('type_risk').value = data['type_risk'];						 
 							
 						    $("#explain").val(data['explain']);
@@ -460,7 +467,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 						    $("#abey").val(data['abey']);
 						    $("#hey").val(data['hey']);						
 						   
-							if(data['type_risk'] == ""){
+							if(data['type_risk'] == "" || data['type_risk'] == null){
 								document.getElementById('type_risk').value = 6;								
 							}	
 						   

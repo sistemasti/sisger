@@ -24,7 +24,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 				<tr>
 					<th style="width: 10px"></th>
 					<th>Subgroup</th>
-					<th>Number of itemns</th>
+					<th>Number of items</th>
 					
 				</tr>
 				

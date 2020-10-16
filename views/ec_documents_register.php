@@ -132,7 +132,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									$pos = strpos($link, 'http://');
 									$pos2 = strpos($link, 'https://');
 									
-									if($pos === false && $pos2 === false){
+									if(($pos == false && $pos2 == false) && $_FILES['att']['name']==""){
 										
 											$txterr .= "- Link inválido (use http ou https) <br>";		
 										
