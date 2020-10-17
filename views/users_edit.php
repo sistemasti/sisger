@@ -73,7 +73,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="users_report"><button type="button" class="btn btn-block btn-outline-success btn-xs">Report</button></a>
+			<a href="users_report"><button type="button" class="btn btn-block btn-outline-success btn-xs">Return</button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->

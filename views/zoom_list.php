@@ -131,7 +131,7 @@ require_once("header.php");
 				document.getElementById('C_type_list').value=1;			
 				
 				
-				" <?php if($iac['type_list'] == 1){ echo "checked"; $displayTop="none"; } ?>> <?php//  echo $iac['type_list']; ?> Items listed are all affected
+				" <?php if($iac['type_list'] == 1 || $iac['type_list'] == 0 ){ echo "checked"; $displayTop="none"; } ?>> <?php//  echo $iac['type_list']; ?> Items listed are all affected 
 				
 				<br>
 		<input type="radio" name="type_list" id="type_list_2" value="2" onclick="
@@ -252,12 +252,35 @@ require_once("header.php");
 															<tr>
 															  <th></th>
 															  <th></th>                
-															  <th><input type="text" class="form-control" id="low_estimate_top" name="low_estimate_top" 
-															  value="<?php echo $low_estimate_general; ?>" onblur="if(this.value != ''){ zoom_list_update_top() }" required style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );">
+															  <th>
+															  <input 
+															  type="text" 
+															  class="form-control" 
+															  id="low_estimate_top" 
+															  name="low_estimate_top" 
+															  value="<?php echo $low_estimate_general; ?>" 
+															  onkeyup="if(this.value != ''){ zoom_list_update_top() }"  
+															  required 
+															  style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> 
+															  onkeypress="return keypressed( this , event );">
 															  
 															  </th>                
-															  <th><input type="text" class="form-control" id="most_probable_top" name="most_probable_top" value="<?php echo $most_probable_top; ?>" onblur="if(this.value != ''){ zoom_list_update_top() }" required style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></th>                
-															  <th><input type="text" class="form-control" id="high_estimate_top" name="high_estimate_top" onblur="if(this.value != ''){  zoom_list_update_top() }" value="<?php echo $high_estimate_top; ?>" required style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></th>    
+															  <th>
+															  
+															  <input 
+															  type="text" 
+															  class="form-control" 
+															  id="most_probable_top" 
+															  name="most_probable_top" 
+															  value="<?php echo $most_probable_top; ?>" 
+															  onkeyup="if(this.value != '' && event.keyCode != 9){ zoom_list_update_top() }" 
+															 
+															  required 
+															  style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> 
+															  onkeypress="return keypressed( this , event );">
+															  
+															  </th>                
+															  <th><input type="text" class="form-control" id="high_estimate_top" name="high_estimate_top" onkeyup="if(this.value != ''){  zoom_list_update_top() }" value="<?php echo $high_estimate_top; ?>" required style="display:<?php echo $displayTop; ?>" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></th>    
 															
 															</tr>
 														</thead>
@@ -276,6 +299,11 @@ require_once("header.php");
 																foreach($ia['dados'] as $ia){
 																	
 																$vp = Build_value_pie::select_ec_value_pie_table_id($ia['id_ec_value_pie_table']);	
+																
+																
+																$gr = Build_value_pie::select_ec_groups_value_id($vp['group_id']);
+																$sb = Build_value_pie::select_ec_subgroups_value_id($vp['subgroup_id']);
+																
 																
 																//if($vp['num'] > 0){
 																
@@ -298,12 +326,12 @@ require_once("header.php");
 															///echo "----->".$ia['id_ec_value_pie_table'];		
 														?>
 															<tr id="row<?php  echo $ia['id']; ?>">
-															  <td><?php  echo $ia['identification']; ?></td>
+															  <td> <?php echo $gr['name'].", ".$sb['name']; ?></td>
 															  
-															  <td><?php  echo $ia['number_subgroups']; ?></td>
+															  <td><?php  echo $sb['numbers_of_items']; ?></td>
 															 
 					<td><input type="text" class="form-control" id="low_estimate_<?php  echo $ia['id']; ?>" name="low_estimate_<?php  echo $ia['id']; ?>" value="<?php  echo $ia['low_estimate']; ?>" 
-					 required onblur="
+					 required onkeyup="
 					 
 					 if(this.value != ''){ 
 						
@@ -314,9 +342,9 @@ require_once("header.php");
 					" <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></td>
 											  
 					<td><input type="text" class="form-control" id="most_probable_<?php  echo $ia['id']; ?>" name="most_probable_<?php  echo $ia['id']; ?>" value="<?php  echo $ia['most_probable']; ?>" 
-					onblur="if(this.value != ''){ zoom_list_update(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>').value,this.value,document.getElementById('high_estimate_<?php  echo $ia['id']; ?>').value) }" required  <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></td>
+					onkeyup="if(this.value != ''){ zoom_list_update(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>').value,this.value,document.getElementById('high_estimate_<?php  echo $ia['id']; ?>').value) }" required  <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></td>
 															  
-															  <td><input type="text" class="form-control" id="high_estimate_<?php  echo $ia['id']; ?>" name="high_estimate_<?php  echo $ia['id']; ?>" value="<?php  echo $ia['high_estimate']; ?>" required onblur="if(this.value != ''){  zoom_list_update(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>').value,document.getElementById('most_probable_<?php  echo $ia['id']; ?>').value,this.value) } " <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></td>
+															  <td><input type="text" class="form-control" id="high_estimate_<?php  echo $ia['id']; ?>" name="high_estimate_<?php  echo $ia['id']; ?>" value="<?php  echo $ia['high_estimate']; ?>" required onkeyup="if(this.value != ''){  zoom_list_update(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>').value,document.getElementById('most_probable_<?php  echo $ia['id']; ?>').value,this.value) } " <?php if(isset($_GET['type'])){ echo "readonly"; } ?> onkeypress="return keypressed( this , event );"></td>
 															  
 															  <td>
 															  <?php if(!isset($_GET['type'])){ ?>
@@ -353,12 +381,35 @@ require_once("header.php");
 																
 															   <div id="bxAllAffectedUsingLow">
 																  <center>
-																	  <span class="badge bg-info"><div id="uvp_le_percent"><?php echo $formulaE; ?>%</div></span>
+																	  <span class="badge bg-info"><div id="uvp_le_percent"><?php 
+																	  
+																		if($formulaE != -INF && !is_nan($formulaE)) {
+																				
+																				echo $formulaE;
+																				
+																		}else{
+																			
+																			echo "C: 0.0";
+																			
+																		}
+																	  
+																	  
+																	  
+																	  
+																	  ?>%</div></span>
 																	  <br>
-																	  <div id="uvp_le_c">C: <?php 
+																	  <div id="uvp_le_c"> <?php 
 																	  
 																			$ca = 5 + log10($formulaE/100);
-																			echo round($ca,1);
+																			
+																			if(round($ca,1) != -INF && !is_nan(round($ca,5)) ){
+																				
+																				echo "C: ". round($ca,1);
+																				
+																			}else{
+																				echo "C: 0.0";
+																			}
+																			
 																			$caForDB1 = round($ca,1);
 																		?>
 																		</div>
@@ -372,13 +423,31 @@ require_once("header.php");
 																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	
 																	 $a = ((float)$formulaE*(float)$low_estimate_general)/(float)$totalLow['total']; 
+																	 
+																	 if(round($a,5) != -INF && !is_nan(round($a,5))) {
+																				
+																				echo round($a,5);
+																				
+																		}else{
+																			
+																			echo "C: 0.0";
+																			
+																		}
 																	  echo round($a,5);
+																	  
+																	  
 																	  ?>%</div></span>
 																	  <br>
 																		<div id="ex_uvp_le_c">C: <?php 
 																	  
 																			$ca = 5 + log10(round($a,5)/100);
-																			echo round($ca,1);
+																			if(round($ca,1) != -INF && !is_nan(round($ca,5)) ){
+																				
+																				echo "". round($ca,1);
+																				
+																			}else{
+																				echo "0.0";
+																			}
 																			$caForDB2 = round($ca,1);
 																		?>
 																		</div>
@@ -393,13 +462,32 @@ require_once("header.php");
 															  
 															  <div id="bxAllAffectedUsingMost">
 																  <center>
-																		  <span class="badge bg-info"><div id="uvp_mp_percent"><?php echo $formulaF; ?>%</div></span>
+																		  <span class="badge bg-info"><div id="uvp_mp_percent"><?php 
+																		
+																				if($formulaF != -INF && !is_nan($formulaF)) {
+																				
+																					echo $formulaF;
+																				
+																				}else{
+																					
+																					echo "0.0";
+																					
+																				}
+																			
+																		  
+																		  ?>%</div></span>
 																		  <br>
 																		    <div id="uvp_mp_c">
 																				<?php 
 																			  
 																					$cb = 5 + log10($formulaF/100);
-																					echo round($cb,1);
+																					if(round($cb,1) != -INF && !is_nan(round($cb,5)) ){
+																				
+																						echo round($cb,1);
+																						
+																					}else{
+																						echo "0.0";
+																					}
 																					$cbForDB1 = round($cb,1);
 																				?>
 																			</div>
@@ -415,7 +503,19 @@ require_once("header.php");
 																			$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
 																	
 																			$b = ((float)$formulaF*(float)$most_probable_general)/(float)$totalMost['total']; 
-																			  echo round($b,5);
+																			
+																			
+																			if(round($b,5) != -INF && !is_nan(round($b,5))) {
+																				
+																					echo round($b,5);
+																				
+																				}else{
+																					
+																					echo "0.0";
+																					
+																				}
+																			
+																			 // echo round($b,5);
 
 																	  ?>%</div></span>
 																		  <br>
@@ -423,7 +523,13 @@ require_once("header.php");
 																		   <?php 
 																		  
 																				$cb = 5 + log10(round($b,5)/100);
-																				echo round($cb,1);
+																				if(round($cb,1) != -INF && !is_nan(round($cb,5)) ){
+																				
+																						echo round($cb,1);
+																						
+																					}else{
+																						echo "0.0";
+																					}
 																				$cbForDB2 = round($cb,1);
 																			?>
 																			</div>
@@ -439,13 +545,34 @@ require_once("header.php");
 															  
 															  <div id="bxAllAffectedUsingHigh">
 																<center>
-																	  <span class="badge bg-info"><div id="uvp_he_percent"><?php echo $formulaG; ?>%</div></span>
+																	  <span class="badge bg-info"><div id="uvp_he_percent"><?php  
+																	  
+																	  if( $formulaG != -INF && !is_nan($formulaG)) {
+																				
+																					echo  $formulaG;
+																				
+																				}else{
+																					
+																					echo "0.0";
+																					
+																				}
+																	  
+																	 // $formulaG;
+
+
+																	  ?>%</div></span>
 																	  <br>
 																		 <div id="uvp_he_c">
 																			<?php 
 																		  
 																				$cc =5 + log10($formulaG/100);
-																				echo round($cc,1);
+																				if(round($cc,1) != -INF && !is_nan(round($cc,5)) ){
+																				
+																						echo round($cc,1);
+																						
+																					}else{
+																						echo "0.0";
+																					}
 																				$ccForDB1 = round($cc,1);
 																			?>
 																			
@@ -459,12 +586,34 @@ require_once("header.php");
 																			$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	
 																			$c = ((float)$formulaG*(float)$high_estimate_general)/(float)$totalHigh['total']; 
-																			  echo round($c,5); ?>%</div></span>
+																			
+																			
+																			 // echo round($c,5); 
+																			  
+																			  
+																			  if( round($c,5) != -INF && !is_nan(round($c,5))) {
+																				
+																					echo  round($c,5);
+																				
+																				}else{
+																					
+																					echo "0.0";
+																					
+																				}
+																			  
+																			  
+																			  ?>%</div></span>
 																		  <br>
 																		    <div id="ex_uvp_he_c"><?php 
 																		  
 																				$cc = 5 + log10(round($c,5)/100);
-																				echo round($cc,1);
+																				if(round($cc,1) != -INF && !is_nan(round($cc,5)) ){
+																				
+																						echo round($cc,1);
+																						
+																					}else{
+																						echo "0.0";
+																					}
 																				$ccForDB2 = round($cc,1);
 																			?>
 																			</div>
@@ -501,14 +650,25 @@ require_once("header.php");
 																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	  
 																	  $l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
-																	  echo round($l,5);
+																	  
+																	  if(round($l,5) != -INF && !is_nan(round($l,5)) ){
+																		echo round($l,5);
+																	  }else{ 
+																		echo "0.0";		
+																	  }	
 																	  ?>
 																	  %</div></span>
 																	  <br>
 																	    <div id="aev_le_c">C:  <?php 
 																	  
 																			$cd =5 + log10(round($l,5)/100);
-																			echo round($cd,1);
+																			if(round($cd,1) != -INF && !is_nan(round($cd,5)) ){
+																				
+																						echo round($cd,1);
+																						
+																					}else{
+																						echo "0.0";
+																					}
 																		?>
 																		</div>
 																		  <input type="hidden" id="cd_low" name="cd_low" value="<?php echo round($cd,1); ?>">
@@ -525,14 +685,32 @@ require_once("header.php");
 																	   
 																	   
 																	 $d = ((float)$l*(float)$low_estimate_general)/(float)$totalLow['total']; 
-																	  echo round($d,5);
+																	 // echo round($d,5);
+																	  
+																	  
+																	  if( round($d,5) != -INF && !is_nan(round($d,5))) {
+																				
+																					echo  round($d,5);
+																				
+																				}else{
+																					
+																					echo "0.0";
+																					
+																				}
+																	  
 																	  ?>
 																	  %</div></span>
 																	  <br>
 																		  <div id="ex_aev_le_c"> C:  <?php 
 																		  
 																				$cd =5 + log10(round($d,5)/100);
-																				echo round($cd,1);
+																				if(round($cd,1) != -INF && !is_nan(round($cd,5)) ){
+																				
+																						echo round($cd,1);
+																						
+																					}else{
+																						echo "0.0";
+																					}
 																			?>
 																		</div>
 																		 <input type="hidden" id="cd_low" name="cd_low" value="<?php echo round($cd,1); ?>">
@@ -550,13 +728,34 @@ require_once("header.php");
 																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
 																		  
 																		  $m = ((float)$totalMost['total']/(float)$items_in_asset)*100;
-																		  echo round($m,5);
+																		  															  
+																		 // echo round($m,5);
+																		  
+																		    if( round($m,5) != -INF && !is_nan(round($m,5))) {
+																				
+																					echo  round($m,5);
+																				
+																				}else{
+																					
+																					echo "0.0";
+																					
+																				}
+																		  
+																		  
 																		  ?>%</div></span>
 																		  <br>
 																		  <div id="aev_mp_c"> <?php 
 																		  
 																				$ce =5 + log10(round($m,5)/100);
-																				echo round($ce,1);
+																				if(round($ce,1) != -INF && !is_nan(round($ce,5)) ){
+																				
+																						echo round($ce,1);
+																						
+																				}else{
+																					
+																						echo "0.0";
+																						
+																				}
 																			?>
 																			</div>
 																			<input type="hidden" id="ce_most" name="ce_most" value="<?php echo round($ce,1); ?>">
@@ -572,7 +771,18 @@ require_once("header.php");
 																			$l = round($l,5);
 																			$e = ((float)$l*(float)$most_probable_general)/(float)$totalMost['total']; 
 																			
-																		  echo round($e,5);
+																		 // echo round($e,5);
+																		  
+																		    if( round($e,5) != -INF && !is_nan(round($e,5))) {
+																				
+																					echo  round($e,5);
+																				
+																				}else{
+																					
+																					echo "0.0";
+																					
+																				}
+																		  
 																		  ?>%</div></span>
 																		 
 	
@@ -580,7 +790,15 @@ require_once("header.php");
 																		  <div id="ex_aev_mp_c">  <?php 
 																		  
 																				$ce =5 + log10(round($e,5)/100);
-																				echo round($ce,1);
+																				if(round($ce,1) != -INF && !is_nan(round($ce,5)) ){
+																				
+																						echo round($ce,1);
+																						
+																				}else{
+																					
+																						echo "0.0";
+																						
+																				}
 																			?>
 																			</div>
 																			<input type="hidden" id="ce_most" name="ce_most" value="<?php echo round($ce,1); ?>">
@@ -597,13 +815,32 @@ require_once("header.php");
 																		  $totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																		  
 																		  $h = ((float)$totalHigh['total']/(float)$items_in_asset)*100;
-																		  echo round($h,5);
+																		  //echo round($h,5);
+																		  
+																		   if( round($h,5) != -INF && !is_nan(round($h,5))) {
+																				
+																					echo  round($h,5);
+																				
+																				}else{
+																					
+																					echo "0.0";
+																					
+																				}
+																		  
 																		  ?>%</div></span>
 																		  <br>
 																		 <div id="aev_he_c"><?php 
 																		  
 																				$cf =5 + log10(round($h,5)/100);
-																				echo round($cf,1);
+																				if(round($cf,1) != -INF && !is_nan(round($cf,5)) ){
+																				
+																						echo round($cf,1);
+																						
+																				}else{
+																					
+																						echo "0.0";
+																						
+																				}
 																			?>
 																			</div>
 																			<input type="hidden" id="cf_high" name="cf_high" value="<?php echo round($cf,1); ?>">
@@ -616,14 +853,33 @@ require_once("header.php");
 																		  $totalMost = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																		  $l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
 																		  $l = round($l,5);$f = ((float)$l*(float)$high_estimate_general)/(float)$totalMost['total']; 
-																		  echo round($f,5);
+																		 // echo round($f,5);
+																		  
+																		  
+																		   if( round($f,5) != -INF && !is_nan(round($f,5))) {
+																				
+																					echo  round($f,5);
+																				
+																				}else{
+																					
+																					echo "0.0";
+																					
+																				}
 																		  
 																		  ?>%</div></span>
 																		  <br>
 																		<div id="ex_aev_he_c"> <?php 
 																		  
 																				$cf = 5 + log10(round($f,5)/100);
-																				echo round($cf,1);
+																				if(round($cf,1) != -INF && !is_nan(round($cf,5)) ){
+																				
+																						echo round($cf,1);
+																						
+																				}else{
+																					
+																						echo "0.0";
+																						
+																				}
 																			?>
 																		</div>
 																			<input type="hidden" id="cf_high" name="cf_high" value="<?php echo round($cf,1); ?>">
@@ -1260,7 +1516,62 @@ require_once("header.php");
 							
 						},
 						error: function(data) {
-							//alert('erro');
+							if(document.getElementById("type_list_1").checked == true){
+							
+							//seta as divs
+							$("#uvp_le_percent").html("0.0");
+							$("#uvp_le_c").html("0.0");								
+							$("#uvp_mp_percent").html("0.0");
+							$("#uvp_mp_c").html("0.0");							//
+							$("#uvp_he_percent").html("0.0");
+							$("#uvp_he_c").html("0.0");
+								
+							$("#aev_le_percent").html("0.0");
+							$("#aev_le_c").html("0.0");
+							$("#aev_mp_percent").html("0.0");
+							$("#aev_mp_c").html("0.0");
+							$("#aev_he_percent").html("0.0");
+							$("#aev_he_c").html("0.0");
+							
+							//seta os campos
+							$("#ca_low").val("0.0");
+							$("#ca_media").val("0.0");						
+							$("#ca_high").val("0.0");	
+							
+							$("#cd_low").val("0.0");						
+							$("#ce_most").val("0.0");						
+							$("#cf_high").val("0.0");	
+							
+						}
+						
+						if(document.getElementById("type_list_2").checked == true){								
+							
+							//seta as divs
+							$("#ex_uvp_le_percent").html("0.0");
+							$("#ex_uvp_le_c").html("0.0");
+							$("#ex_aev_le_percent").html("0.0");
+							$("#ex_aev_le_c").html("0.0");	
+							$("#ex_uvp_mp_percent").html("0.0");
+							$("#ex_uvp_mp_c").html("0.0");							
+							$("#ex_aev_mp_percent").html("0.0");
+							$("#ex_aev_mp_c").html("0.0");													
+							$("#ex_uvp_he_percent").html("0.0");
+							$("#ex_uvp_he_c").html("0.0");
+							$("#ex_aev_he_percent").html("0.0");
+							$("#ex_aev_he_c").html("0.0");	
+							
+							
+							//seta os campos
+							$("#ca_low").val("0.0");
+							$("#ca_media").val("0.0");						
+							$("#ca_high").val("0.0");	
+							
+							$("#cd_low").val("0.0");						
+							$("#ce_most").val("0.0");						
+							$("#cf_high").val("0.0");	
+							
+							
+						}
 						}
 					  });
 					}
@@ -1297,18 +1608,24 @@ require_once("header.php");
 
 															function zoom_list_update_top() {			
 															 
+															 
+															 if(document.getElementById('low_estimate_top').value != "" && document.getElementById('most_probable_top').value && document.getElementById('high_estimate_top').value){
+															 
 															  $.ajax({
 																type: "POST",
 																url: "ajax_process/zoom_list_update_top.php?low_estimate_top="+document.getElementById('low_estimate_top').value+"&most_probable_top="+document.getElementById('most_probable_top').value+"&high_estimate_top="+document.getElementById('high_estimate_top').value,
 																
 																dataType: 'json',
 																success: function(data) {
-																	alert('oi');
+																	//alert('oi');
 																	atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
 																	//alert('ok');																  
 																	
 																}
 															  });
+															  
+															 }
+															  
 															}
 														
 														
@@ -1372,6 +1689,8 @@ require_once("header.php");
 } */
 															function zoom_list_update(id,low_estimate,most_probable,high_estimate) {			
 															 
+															 if(low_estimate != "" && most_probable != "" && high_estimate != ""){
+															 
 															  $.ajax({
 																type: "POST",
 																url: "ajax_process/zoom_list_update.php",
@@ -1388,6 +1707,7 @@ require_once("header.php");
 																	
 																}
 															  });
+															 }
 															}
 														
 															function zoom_list_update_o(id,low_estimate,most_probable,high_estimate) {			

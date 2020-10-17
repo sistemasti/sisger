@@ -80,7 +80,7 @@ require_once("header.php");
             <div class="card">
               
               <!-- /.card-header -->
-            <div class="card-body">
+           <!-- <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -117,8 +117,49 @@ require_once("header.php");
 								}
 									
 					?>
+					</tbody>
+              </table>
+            </div>-->
+			
+			 <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <!--<th>ID</th>-->
+                  <th>id</th>
+                  <th>option</th>
+                  <th></th>
+                 
+                </tr>
+                </thead>
+                <tbody>
+				
+					<?php 
+							$in = Analyze_options::select_options();												
+							foreach($in['dados'] as $in){
+								
+								?>
+										  
+								<tr id="row<?php echo $in['id'];?>">
+								  <td><?php echo $in['id']; ?></td>
+								  <td><?php echo $in['option']; ?></td>
+								  <td>	
+							 <a href="tr_risk_options_edit?id=<?php echo $in['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm"><i class="fas fa-pencil-alt"></i> Edit</button></a>
+							
+							 
+							<a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ option_delete(<?php echo $in['id'];?>)}"><button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:2px;">
+<i class="fas fa-trash-alt"></i> Delete</button></a>
+					 
+					  </td>
+								</tr>
+								
+								<?php 
+								}
+									
+					?>
               </table>
             </div>
+			
               <!-- ./card-body -->
            
             </div>

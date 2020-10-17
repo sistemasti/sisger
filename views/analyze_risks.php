@@ -82,7 +82,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
           <div class="col-md-12">
             <div class="card">
               <?php 
-						
+						$displayBXALL = "none";	
 						echo $arquivo=""; 
 						echo $agent=""; 
 						echo $description=""; 
@@ -202,6 +202,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							$ar 	= AR_Analyse_risks::select_analyse_risk_id_risk($_REQUEST['id']);
 							
 							$id_risk 		= $_GET['id'];
+							$displayBXALL = "block";	
 							$agent 			= $agente['agent'];
 							$description 	= $status['summary'];
 							$risk_name 		= $status['name'];
@@ -370,8 +371,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 				
 					
 					function select_risk(id) {		
-
-					  if($("#risk").val() == "" || $("#risk").val() == null){								
+						document.getElementById('bxAll').style.display='block';
+					  if($("#risk").val() == "" || $("#risk").val() == null){	document.getElementById('bxAll').style.display='none';							
 						document.getElementById('bxFrm1').style.display = 'none';
 						document.getElementById('type_risk').value = 6;	
 					  }
@@ -762,7 +763,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								
 							}	
 							</script>
-                <div class="row">
+              
+			  
+			  <div class="row" style="display:<?php echo $displayBXALL; ?>;" id="bxAll">
              
               <div class="col-sm-4 col-md-12">
 				<div class="col-12 col-sm-6 col-lg-12">

@@ -121,18 +121,20 @@ require_once("header.php");
 				<div class="col-sm-4 col-md-11">
 					
 					
-					<div style="display: inline-block; background-color:#fff;width:50%;border-left-width: 5px;border-left-color: #7b0606;border-left-style: solid;border-bottom-width: 5px;border-bottom-color: #7b0606;border-bottom-style: solid;">
+					<div style="display: inline-block; background-color:#fff;width:50%;border-left-width: 5px;border-left-color: #7b0606;border-left-style: solid;border-bottom-width: 5px;border-bottom-color: #7b0606;border-bottom-style: solid;overflow: auto;">
 					
-					<!-- ############# INPUT #############-->
-					<div style=" position:absolute; top:37.2%; right:-7%; width:65px;background-color:#fff;"><small>Magnitude threshould:</small> <br><span style="padding:4px; color:#fff;"><strong>
-					<input type="text" name="expected_scores" id="expected_scores" style="width:82%;"  onblur="if( this.value != '' && (this.value < 6.0 || this.value > 15.0)){ alert('Enter a number between 6.0 and 15.0'); }else{loadMatrix(document.getElementById('uncertainty_range').value,this.value);ar_magnitudes_risk();	}" value="<?php echo $expected_scores; ?>" maxlength="5" onKeyUp="maskIt(this,event,'###.###.##.##',true)">
+					<!-- ############# INPUT ############# cidades_incosistentes.xls-->
+					
+					<div style=" position:absolute; top:37.2%; right:-5%; width:65px;background-color:#fff;"><small>Magnitude threshould:</small> <br><span style="padding:4px; color:#fff;"><strong>
+					<input type="text" name="expected_scores" id="expected_scores" style="width:82%;"  onblur="if( this.value != '' && (this.value < 8.0 || this.value > 14.0)){ alert('Enter a number between 8.0 and 14.0'); }else{loadMatrix(document.getElementById('uncertainty_range').value,this.value);ar_magnitudes_risk();	}" value="<?php echo $expected_scores; ?>" maxlength="5" required onkeypress="return keypressed( this , event );">
 					</strong></span>&nbsp;</div>
+					
 					<!-- ############# END INPUT #############-->
 					
 						<div style="width:95%;height:260px; background-color:#ffac9c;padding:12px;float:left;margin-top:30px;"> 
 						
 						<!-- ############# INPUT #############-->
-						<div style="float:left; position:static; right:30.2%;margin-top:-48px;"><input type="text" name="uncertainty_range" id="uncertainty_range" style="width:14%;" onblur="if(this.value !='' && (this.value < 0.1 || this.value > 5.0)){ alert('Enter a number between 0.1 and 5.0'); }else{loadMatrix(this.value,document.getElementById('expected_scores').value);	}; ar_magnitudes_risk();" value="<?php echo $uncertainty_range; ?>" maxlength="5" onKeyUp="maskIt(this,event,'###.###.##.##',true)"> <small>Uncertainty threshould</small> <span style="padding:4px; color:#fff"><strong>
+						<div style="float:left; position:static; right:30.2%;margin-top:-48px;"><input type="text" name="uncertainty_range" id="uncertainty_range" style="width:14%;" onblur="if(this.value !='' && (this.value < 0.1 || this.value > 5.0)){ alert('Enter a number between 0.1 and 5.0'); }else{loadMatrix(this.value,document.getElementById('expected_scores').value);	}; ar_magnitudes_risk();" value="<?php echo $uncertainty_range; ?>" maxlength="5" onkeypress="return keypressed( this , event );"> <small>Uncertainty threshould</small> <span style="padding:4px; color:#fff" required ><strong>
 						</strong></span>&nbsp;</div>
 						<!-- ############# END INPUT #############-->
 						
@@ -152,7 +154,7 @@ require_once("header.php");
 							<div id="matrix_r_t"></div>	
 						</div> 
 					</div>
-					<div style="display: inline-block; background-color:#fff;width:50%;float:left;border-bottom-width: 5px;border-bottom-color: #7b0606;border-bottom-style: solid;"> 
+					<div style="display: inline-block; background-color:#fff;width:50%;float:left;"> 
 					
 						<div style="float:left; position:absolute; right:30.2%;"> <span style="padding:4px; color:#fff"><strong>
 						
@@ -161,7 +163,7 @@ require_once("header.php");
 						
 						</strong></span>&nbsp;</div>
 
-						<div style="width:95%;height:260px; background-color:#ff775c;margin-right:0px;right:0px;margin-bottom:0px;padding:12px;float:right;margin-top:30px;border-right-color:#731c0e;border-bottom-color:#731c0e;"> 
+						<div style="width:95%;height:260px; background-color:#ff775c;margin-right:0px;right:0px;margin-bottom:0px;padding:12px;float:right;margin-top:30px;border-right-color:#731c0e;border-bottom-color:#731c0e;overflow: auto;"> 
 						
 						
 						
@@ -183,8 +185,18 @@ require_once("header.php");
 						</div>
 					</div>
 					<br>
-					<div style="display: inline-block; background-color:#fff;width:50%;border-left-width: 5px;border-left-color: #7b0606;border-left-style: solid;margin-top: -6px;">
-						<div style="width:95%;height:260px;background-color:#ffe6e1;margin-left:0px;left:0px;margin-bottom:0px;padding:12px;float:left;margin-bottom:30px;"> 
+					<div style="display: inline-block; background-color:#fff;width:50%;
+					
+					border-left-width: 5px;
+					border-left-color: #7b0606;
+					border-left-style: solid;
+					
+					border-top-width: 5px;
+					border-top-color: #7b0606;
+					border-top-style: solid;
+					
+					margin-top: -6px;">
+						<div style="width:95%;height:260px;background-color:#ffe6e1;margin-left:0px;left:0px;margin-bottom:0px;padding:12px;float:left;margin-bottom:30px;overflow: auto;"> 
 						<center>Low magnitude + High uncertainty =  Research later</center>
 						<br>
 							<table class="table-sm">
@@ -195,6 +207,8 @@ require_once("header.php");
 								  <th style="width: 8%">MR Exp</th>
 								  <th style="width: 8%">Unc</th>
 								</tr>
+							
+								
 							  </thead>
 							 
 							</table>
@@ -205,7 +219,13 @@ require_once("header.php");
 					</div>
 					<div style="display: inline-block; background-color:#fff;width:50%;float:left;">
 					
-						<div style="width:95%;height:260px;; background-color:#ececff;margin-left:0px;left:0px;margin-bottom:0px;padding:12px;float:right;margin-bottom:30px;margin-top: -6px;"> 
+						<div style="width:95%;height:260px;; background-color:#ececff;margin-left:0px;left:0px;margin-bottom:0px;padding:12px;float:right;margin-bottom:30px;margin-top: -6px;overflow: auto;
+						
+							
+					border-top-width: 5px;
+					border-top-color: #7b0606;
+					border-top-style: solid;
+						"> 
 						<center>Low magnitude + Low uncertainty =  Lowest priority</center>
 							<br>
 							<table class="table-sm">
@@ -262,6 +282,25 @@ require_once("header.php");
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
+  
+  <script>
+					
+											
+					function keypressed( obj , e ) {
+												 var tecla = ( window.event ) ? e.keyCode : e.which;
+												 var texto = obj.value
+												 var indexvir = texto.indexOf(",")
+												 var indexpon = texto.indexOf(".")
+												
+												if ( tecla == 8 || tecla == 0 )
+													return true;
+												if ( tecla != 44 && tecla != 46 && tecla < 48 || tecla > 57 )
+													return false;
+												if (tecla == 44) { if (indexvir !== -1 || indexpon !== -1) {return false} }
+												if (tecla == 46) { if (indexvir !== -1 || indexpon !== -1) {return false} }
+											}
+					</script>
+  
  <script>
 															function ar_magnitudes_risk() {			
 															 

@@ -74,7 +74,7 @@ require_once("header.php");
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="documents_report"><button type="button" class="btn btn-block btn-outline-success btn-xs">Report</button></a>
+			<a href="documents_report"><button type="button" class="btn btn-block btn-outline-success btn-xs">Return</button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
