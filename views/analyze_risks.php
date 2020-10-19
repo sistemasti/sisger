@@ -1010,7 +1010,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								 function registraMR(){
 									
 									//alert(document.getElementById('magnitude_SOMA_L').innerHTML);	
-									
+									var un_range = document.getElementById('magnitude_SOMA_H').innerHTML - document.getElementById('magnitude_SOMA_L').innerHTML;								
+								
+								//document.getElementById('magnitude_SOMA_RANGE').innerHTML = un_range.toFixed(1);
 									$.ajax({
 										type: "POST",
 										url: "ajax_process/magnitude_of_risk.php",
@@ -1019,7 +1021,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 											MR_low: document.getElementById('magnitude_SOMA_L').innerHTML,
 											MR_Probable: document.getElementById('magnitude_SOMA_P').innerHTML,
 											MR_High: document.getElementById('magnitude_SOMA_H').innerHTML,
-											MR_U_Range: 0,
+											MR_U_Range: un_range.toFixed(1),
 											Expected_Scores_FR: document.getElementById('magnitude_FR_MEDIA').innerHTML,
 											Expected_Scores_LE: document.getElementById('magnitude_LE_MEDIA').innerHTML,
 											Expected_Scores_IA: document.getElementById('magnitude_IA_MEDIA').innerHTML,
@@ -1281,15 +1283,18 @@ function atualizaFileField (id,value) {
  return this.split('').reverse().join(''); };
  
 							
-</script>		<?php if(isset($_GET['ca_high']) ){ ?>
-<SCRIPT>
-							
-									  
-refreshDataByZoom(<?php echo $_GET['ca_high']; ?>,<?php echo $_GET['ca_media']; ?>,<?php echo $_GET['ca_low']; ?>);
-</SCRIPT>
-<?php } ?>
+</script>		
 <?php
 
 require_once("footer.php");
 
 ?>
+<?php if(isset($_GET['ca_high']) ){ ?>
+<SCRIPT>
+							
+									  
+refreshDataByZoom(<?php echo $_GET['ca_high']; ?>,<?php echo $_GET['ca_media']; ?>,<?php echo str_ireplace("C: ","",$_GET['ca_low']); ?>);
+
+items_affecteds_register(1);
+</SCRIPT>
+<?php } ?>

@@ -743,7 +743,7 @@ echo "</pre>"; */
 					
 					<!-- /.modal-dialog -->
 						 <script>  
-							function items_affecteds_register() {	
+							function items_affecteds_register(x=0) {	
 							
 								if(document.getElementById('risk').value == '#'){
 									
@@ -765,8 +765,11 @@ echo "</pre>"; */
 									success: function(data) {
 										registraMR();
 										if(data==1){
-											alert('Registro atualizado com sucesso');
-											window.scrollTo(0, 0);
+											
+											if(x==0){
+												alert('Registro atualizado com sucesso');
+												window.scrollTo(0, 0);
+											}
 										}
 									},
 									error: function(data) {

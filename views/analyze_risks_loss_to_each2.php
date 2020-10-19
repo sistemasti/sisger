@@ -474,7 +474,7 @@
 												
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="he" name="he" onchange="range_L_E_I('High',this.value)" >
+														<select class="form-control" id="he" name="he" onchange="range_L_E_I('High',this.value)" disabled>
                            
 																<option value="5.0" <?php if($he == "5.0"){ echo "selected"; } ?> >TOTAL or almost total loss of value in each item affected.</option>
 																<option value="4.5" <?php if($he == "4.5"){ echo "selected"; } ?>>----------- (between total and large on the word scale)</option>
@@ -492,7 +492,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="pl" name="pl"  onchange="range_L_E_I('Probable',this.value)">
+														<select class="form-control" id="pl" name="pl"  onchange="range_L_E_I('Probable',this.value)" disabled>
                            
 																<option value="5.0" <?php if($pl == "5.0"){ echo "selected"; } ?>>TOTAL or almost total loss of value in each item affected.</option>
 																<option value="4.5" <?php if($pl == "4.5"){ echo "selected"; } ?>>----------- (between total and large on the word scale)</option>
@@ -510,7 +510,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="le" name="le"  onchange="range_L_E_I('Low',this.value)">
+														<select class="form-control" id="le" name="le"  onchange="range_L_E_I('Low',this.value)" disabled>
                            
 																<option value="5.0" <?php if($le == "5.0"){ echo "selected"; } ?>>TOTAL or almost total loss of value in each item affected.</option>
 																<option value="4.5" <?php if($le == "4.5"){ echo "selected"; } ?>>----------- (between total and large on the word scale)</option>
@@ -536,7 +536,7 @@
 												
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="he2" name="he2"  onchange="range_L_E_I('High',this.value)">
+														<select class="form-control" id="he2" name="he2"  onchange="range_L_E_I('High',this.value)" disabled>
                            
 																<option value="5.0" <?php if($he2 == "5.0"){ echo "selected"; } ?> >~1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($he2 == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
@@ -555,7 +555,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="pl2" name="pl2"  onchange="range_L_E_I('Probable',this.value)">
+														<select class="form-control" id="pl2" name="pl2"  onchange="range_L_E_I('Probable',this.value)" disabled>
                            
 																<option value="5.0" <?php if($pl2 == "5.0"){ echo "selected"; } ?>>~1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($pl2 == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
@@ -573,7 +573,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="le2" name="le2" onchange="range_L_E_I('Low',this.value)">
+														<select class="form-control" id="le2" name="le2" onchange="range_L_E_I('Low',this.value)" disabled>
                            
 																<option value="5.0" <?php if($le2 == "5.0"){ echo "selected"; } ?> >~1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($le2 == "4.5"){ echo "selected"; } ?> >~1/3  loss of value in each item affected.</option>
@@ -598,7 +598,7 @@
 												
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="he3" name="he3"  onchange="range_L_E_I('High',this.value)">
+														<select class="form-control" id="he3" name="he3"  onchange="range_L_E_I('High',this.value)" disabled>
                            
 																<option value="5.0" <?php if($he3 == "5.0"){ echo "selected"; } ?>>~100% total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($he3 == "4.5"){ echo "selected"; } ?>>~30%  loss of value in each item affected.</option>
@@ -616,7 +616,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="pl3" name="pl3" onchange="range_L_E_I('Probable',this.value)">
+														<select class="form-control" id="pl3" name="pl3" onchange="range_L_E_I('Probable',this.value)" disabled>
                            
 																<option value="5.0" <?php if($pl3 == "5.0"){ echo "selected"; } ?>>~100% total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($pl3 == "4.5"){ echo "selected"; } ?>>~30%  loss of value in each item affected.</option>
@@ -634,7 +634,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="le3" name="le3" onchange="range_L_E_I('Low',this.value)">
+														<select class="form-control" id="le3" name="le3" onchange="range_L_E_I('Low',this.value)" disabled>
                            
 																<option value="5.0"  <?php if($le3 == "5.0"){ echo "selected"; } ?>>~100% total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($le3 == "4.5"){ echo "selected"; } ?>>~30%  loss of value in each item affected.</option>
@@ -660,7 +660,7 @@
 												
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="he4" name="he4" onchange="range_L_E_I('High',this.value,1)">
+														<select class="form-control" id="he4" name="he4" onchange="range_L_E_I('High',this.value,1)" disabled>
                            
 																<option value="5.0" <?php if($he4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($he4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
@@ -680,7 +680,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="pl4" name="pl4"  onchange="range_L_E_I('Probable',this.value,1)">
+														<select class="form-control" id="pl4" name="pl4"  onchange="range_L_E_I('Probable',this.value,1)" disabled>
                            
 																<option value="5.0" <?php if($pl4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($pl4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
@@ -698,7 +698,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="le4" name="le4"  onchange="range_L_E_I('Low',this.value,1)">
+														<select class="form-control" id="le4" name="le4"  onchange="range_L_E_I('Low',this.value,1)" disabled>
                            
 																<option value="5.0" <?php if($le4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($le4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
@@ -723,15 +723,15 @@
 												<!-- onkeypress='return event.charCode >= 48 && event.charCode <= 57' -->
 													<div class="form-group"> 
 														<label for="Sigla">High estimate</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onblur="range_L_E_I('DecimalsHigh',this.value);" onchange="valida_high_any_decimals(this.value);" value="" onkeypress="return keypressed( this , event );"   maxlength="10">
+														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onblur="range_L_E_I('DecimalsHigh',this.value);" onchange="valida_high_any_decimals(this.value);" value="" onkeypress="return keypressed( this , event );"   maxlength="10" disabled>
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onblur="range_L_E_I('DecimalsProbable',this.value);" onchange="valida_probable_any_decimals(this.value);" value="" onkeypress="return keypressed( this , event );" maxlength="10">
+														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onblur="range_L_E_I('DecimalsProbable',this.value);" onchange="valida_probable_any_decimals(this.value);" value="" onkeypress="return keypressed( this , event );" maxlength="10" disabled>
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label><br>
-														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder=""  onchange="valida_low_any_decimals(this.value);"  onblur="range_L_E_I('DecimalsLow',this.value); " value="" onkeypress="return keypressed( this , event );" maxlength="10">
+														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder=""  onchange="valida_low_any_decimals(this.value);"  onblur="range_L_E_I('DecimalsLow',this.value); " value="" onkeypress="return keypressed( this , event );" maxlength="10" disabled>
 													</div>
 													</div>
 													

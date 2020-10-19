@@ -126,7 +126,20 @@ require_once("header.php");
 					<!-- ############# INPUT ############# cidades_incosistentes.xls-->
 					
 					<div style=" position:absolute; top:37.2%; right:-5%; width:65px;background-color:#fff;"><small>Magnitude threshould:</small> <br><span style="padding:4px; color:#fff;"><strong>
-					<input type="text" name="expected_scores" id="expected_scores" style="width:82%;"  onblur="if( this.value != '' && (this.value < 8.0 || this.value > 14.0)){ alert('Enter a number between 8.0 and 14.0'); }else{loadMatrix(document.getElementById('uncertainty_range').value,this.value);ar_magnitudes_risk();	}" value="<?php echo $expected_scores; ?>" maxlength="5" required onkeypress="return keypressed( this , event );">
+					<input type="text" name="expected_scores" id="expected_scores" style="width:82%;"  onblur="
+					
+					if( this.value != '' && (this.value < 8.0 || this.value > 14.0)){ 
+					
+							alert('Enter a number between 8.0 and 14.0'); 
+							
+					}else{
+						
+						loadMatrix(document.getElementById('uncertainty_range').value,this.value);
+						ar_magnitudes_risk();	
+						
+					}
+					
+					" value="<?php echo $expected_scores; ?>" maxlength="5" required onkeypress="return keypressed( this , event );">
 					</strong></span>&nbsp;</div>
 					
 					<!-- ############# END INPUT #############-->
@@ -134,7 +147,17 @@ require_once("header.php");
 						<div style="width:95%;height:260px; background-color:#ffac9c;padding:12px;float:left;margin-top:30px;"> 
 						
 						<!-- ############# INPUT #############-->
-						<div style="float:left; position:static; right:30.2%;margin-top:-48px;"><input type="text" name="uncertainty_range" id="uncertainty_range" style="width:14%;" onblur="if(this.value !='' && (this.value < 0.1 || this.value > 5.0)){ alert('Enter a number between 0.1 and 5.0'); }else{loadMatrix(this.value,document.getElementById('expected_scores').value);	}; ar_magnitudes_risk();" value="<?php echo $uncertainty_range; ?>" maxlength="5" onkeypress="return keypressed( this , event );"> <small>Uncertainty threshould</small> <span style="padding:4px; color:#fff" required ><strong>
+						<div style="float:left; position:static; right:30.2%;margin-top:-48px;"><input type="text" name="uncertainty_range" id="uncertainty_range" style="width:14%;" onblur="
+						
+							if(this.value !='' && (this.value < 0.1 || this.value > 5.0)){ 
+						
+							alert('Enter a number between 0.1 and 5.0'); 
+							
+							}else{
+								
+								loadMatrix(this.value,document.getElementById('expected_scores').value);	
+								ar_magnitudes_risk();
+							}; " value="<?php echo $uncertainty_range; ?>" maxlength="5" onkeypress="return keypressed( this , event );"> <small>Uncertainty threshould</small> <span style="padding:4px; color:#fff" required ><strong>
 						</strong></span>&nbsp;</div>
 						<!-- ############# END INPUT #############-->
 						
@@ -283,23 +306,33 @@ require_once("header.php");
   </aside>
   <!-- /.control-sidebar -->
   
-  <script>
-					
+<script>
 											
-					function keypressed( obj , e ) {
+											function keypressed( obj , e ) {
 												 var tecla = ( window.event ) ? e.keyCode : e.which;
 												 var texto = obj.value
-												 var indexvir = texto.indexOf(",")
+												// var indexvir = texto.indexOf(",")
 												 var indexpon = texto.indexOf(".")
 												
 												if ( tecla == 8 || tecla == 0 )
 													return true;
-												if ( tecla != 44 && tecla != 46 && tecla < 48 || tecla > 57 )
+												if ( tecla != 46 && tecla < 48 || tecla > 57 )
 													return false;
-												if (tecla == 44) { if (indexvir !== -1 || indexpon !== -1) {return false} }
-												if (tecla == 46) { if (indexvir !== -1 || indexpon !== -1) {return false} }
+												
+												if (tecla == 46) { if ( indexpon !== -1) {return false} }
 											}
-					</script>
+											
+											function formataAnyDecimal (value,id){
+												
+												var d1 = value.substring(0,1);
+												var d2 = value.substring(1,10);
+												
+												document.getElementById(id).value = d1+','+d2;
+												
+												
+											}
+											
+											</script>
   
  <script>
 															function ar_magnitudes_risk() {			
@@ -400,7 +433,7 @@ require_once("footer.php");
 							}		
 							
 							posicao<?php echo $go['id']; ?> = pos_x<?php echo $go['id']; ?>+'_'+pos_y<?php echo $go['id']; ?>;
-							
+							//alert(posicao<?php echo $go['id']; ?>);
 							if(posicao<?php echo $go['id']; ?> == 'l_b'){
 								
 								htmler1 += "<table class='table table-sm'><tbody><tr><td style='width: 82%'>"+label<?php echo $go['id']; ?>+"</td><td style='width: 8%'>"+mrExp<?php echo $go['id']; ?>+"</td><td style='width: 8%'><span class='badge bg-info'>"+unc<?php echo $go['id']; ?>+"</span></td></tr></tbody></table>";								

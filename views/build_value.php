@@ -383,10 +383,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							</script>
 							
 							<hr>
+							<button type="button" class="btn btn-block bg-gradient-warning btn-sm" data-toggle="modal" data-target="#modal-lg" onclick="loadZoom(document.getElementById('group_selected_for_all').value)">Zoom Description</button>
 							<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-graph" style="margin-top:4px;" onclick="$('#btnSBNTS').show();
 							$('#btnSBNTS2').hide();">Value Pie for all the asset</button>
 							<div id="groupOption" style="display:none;margin-top:4px;">
-								<button type="button" class="btn btn-block bg-gradient-warning btn-sm" data-toggle="modal" data-target="#modal-lg" onclick="loadZoom(document.getElementById('group_selected_for_all').value)">Zoom Description</button>
+								
 								<div id="btnChart" style="margin-top:4px;">
 								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm"  data-toggle="modal" data-target="#modal-graph2">Value Pie for the select group</button>
 								</div>
