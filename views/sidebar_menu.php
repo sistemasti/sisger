@@ -251,13 +251,16 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
             </a>
             <ul class="nav nav-treeview">
 			 
-			 <li class="nav-item">
+            <?php if($_SESSION['perfil_logado'] != "3"){ ?>
+              <li class="nav-item">
                 <a href="project_report" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Projects</p>
                 </a>
               </li>
-             <?php if($_SESSION['perfil_logado'] == "1" || $_SESSION['perfil_logado'] == "3" ){ ?>
+             <?php } ?>
+             
+             <?php if($_SESSION['perfil_logado'] == "1"){ ?>
               <li class="nav-item">
                 <a href="institution_report" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
