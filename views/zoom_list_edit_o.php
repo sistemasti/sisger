@@ -2,7 +2,11 @@
 
 require_once("header.php");
 
+if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
+	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+
+} 
 ?>
  <style>
     .color-palette {

@@ -286,6 +286,11 @@ $router
         require './views/matrix.php';
     })
 	
+	//SESSIONS
+	->on('GET', '/sessions', function () {        
+        require './sessions.php';
+    })
+	
 	
 	->on('GET', '/analyze_graphs', function () {
         $_SESSION['menu_active'] = "evaluate_risks";

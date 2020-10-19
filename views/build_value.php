@@ -1,9 +1,9 @@
 <?php
 
 require_once("header.php");
-if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){ 
+if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("you dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
 
 } 
 
@@ -383,10 +383,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							</script>
 							
 							<hr>
-							
-							<div id="groupOption" style="display:none">
+							<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-graph" style="margin-top:4px;" onclick="$('#btnSBNTS').show();
+							$('#btnSBNTS2').hide();">Value Pie for all the asset</button>
+							<div id="groupOption" style="display:none;margin-top:4px;">
 								<button type="button" class="btn btn-block bg-gradient-warning btn-sm" data-toggle="modal" data-target="#modal-lg" onclick="loadZoom(document.getElementById('group_selected_for_all').value)">Zoom Description</button>
-								<div id="btnChart" style="margin-top:7px;">
+								<div id="btnChart" style="margin-top:4px;">
 								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm"  data-toggle="modal" data-target="#modal-graph2">Value Pie for the select group</button>
 								</div>
 								
@@ -485,9 +486,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								
 				</script>
 							
-								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-graph" style="margin-top:7px;">Value Pie for all the asset</button>
 								
-								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-table" onclick="view_value_type(document.getElementById('group_selected_for_all').value)">Value Pie as a table</button>
+								
+								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-table" onclick="view_value_type(document.getElementById('group_selected_for_all').value)" style="margin-top:4px;">Value Pie as a table</button>
 								
 								<script>
 								function view_value_type(id) {	
@@ -707,6 +708,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							$('#bxPieChart2').hide();
 							$('#bxPieChart3').show();
 							$('#bxPieChart4').hide();
+							$('#btnSBNTS').hide();
+							$('#btnSBNTS2').show();
 							">sorted by size of the slice</button>
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
@@ -714,7 +717,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							$('#bxPieChart2').hide();
 							$('#bxPieChart3').hide();
 							$('#bxPieChart4').hide();
-							">sorted by name of the subgroup</button>
+							"  id="btnSBNTS">sorted by name of the subgroup</button>
+							
+							
+							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
+							$('#bxPieChart1').hide();
+							$('#bxPieChart2').hide();
+							$('#bxPieChart3').show();
+							$('#bxPieChart4').hide();
+							" id="btnSBNTS2" style="display:none;">sorted by name of the subgroup </button>
 							
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
@@ -1121,7 +1132,11 @@ require_once("footer.php");
 						
 						$bgColors2 	.= "'".random_color()."',";
 						$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-						$data2 		.= $in['numbers_of_items'].",";
+						if($in['numbers_of_items'] != ""){
+								$data2 		.= $in['numbers_of_items'].",";
+						}else{
+								$data2 		.= "0,";
+						}
 				}	
 		?>
 		/**/ 
@@ -1174,7 +1189,14 @@ require_once("footer.php");
 							
 							$bgColors2 	.= "'".random_color()."',";
 							$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-							$data2 		.= $in['numbers_of_items'].",";
+							
+							if($in['numbers_of_items'] != ""){
+								$data2 		.= $in['numbers_of_items'].",";
+							}else{
+								$data2 		.= "0,";
+							}
+							
+							//echo "ni: ".$data2 ."<br>";
 					}
 						
 					?>

@@ -1,10 +1,9 @@
 <?php require_once("header.php");
-if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){ 
+if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("you dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
 
 } 
-
 ?>
  <style>
     .color-palette {
@@ -85,6 +84,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 			  <?php 
 						
 						
+					$displayBXALL = "none";	
 						echo $arquivo=""; 
 						echo $agent=""; 
 						echo $description=""; 
@@ -102,9 +102,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$bxLow 			= "0.0"; 
 								$bxUncert 		= "0.0"; 
 								$explain 		= "";
-								$ley 			= "0.0"; 
-								$abey 			= "0.0"; 
-								$hey 			= "0.0"; 
+								$ley 			= ""; 
+								$abey 			= ""; 
+								$hey 			= ""; 
 								
 								$fr_zoom_explanation_fields 	= ''; 
 								$fr_zoom_notes_explanation 		= ''; 
@@ -165,7 +165,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$ia_Inp_Range 	= "0.0";
 								$ia_Div_Range 	= "0.0";
 								$explain_ia 	= ""; 
-								$type_score 	= "0.0";
+								$type_score 	= "";
 								$heia 			= "0.0";
 								$plia 			= "0.0";
 								$leia 			= "0.0"; 
@@ -198,15 +198,16 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$magnitude_SOMA_MEDIA 		= "0.0";  
 						
 						if(isset($_GET['view'])){
-							echo "<script>list_options_html(".$_GET['id'].");</script>";
+							
 							$status = Risks::select_risk_id($_GET['id']);
 							$agente = Agents::select_ir_agents_id($status['ir_agents_id']);
 							$ar 	= AR_Analyse_risks::select_analyse_risk_id_risk($_REQUEST['id']);
 							
 							$id_risk 		= $_GET['id'];
-							$id_option 		= $_GET['id_option'];
+							$displayBXALL = "block";	
 							$agent 			= $agente['agent'];
 							$description 	= $status['summary'];
+							$risk_name 		= $status['name'];
 							
 							if($ar['num'] > 0)
 								
@@ -216,16 +217,16 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$fdProbable 	= $ar['A_pro_score']; 
 								$fdHigh 		= $ar['A_max_score']; 
 								$fdUncert 		= $ar['A_unc_range']; 
-								$bxHigh 		= $ar['A_max_score']; 
-								$bxProbable 	= $ar['A_pro_score']; 
-								$bxLow 			= $ar['A_min_score']; 
-								$bxUncert 		= $ar['A_unc_range']; 
-								$explain 		= $ar['A_explain']; 
+								$bxHigh 		= ($ar['A_max_score'] != '')?$ar['A_max_score']:'0.0';
+								$bxProbable 	= ($ar['A_pro_score'] != '')?$ar['A_pro_score']:'0.0'; 
+								$bxLow 			= ($ar['A_min_score'] != '')?$ar['A_min_score']:'0.0'; 
+								$bxUncert 		= ($ar['A_unc_range'] != '')?$ar['A_unc_range']:'0.0'; 
+								$explain 		= ($ar['A_explain'] != '')?$ar['A_explain']:''; 
 								$ley 			= $ar['A_field_value_1']; 
 								$abey 			= $ar['A_field_value_2']; 
 								$hey 			= $ar['A_field_value_3']; 
 								
-								$fr_zoom_explanation_fields 	= $ar['fr_zoom_explanation_fields']; 
+								$fr_zoom_explanation_fields 	= $explain; 
 								$fr_zoom_notes_explanation 		= $ar['fr_zoom_notes_explanation']; 
 								$fr_zoom_document_name 			= $ar['fr_zoom_document_name']; 
 								$fr_zoom_comment 				= $ar['fr_zoom_comment']; 
@@ -239,9 +240,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$B_fdProbable	= $ar['B_pro_score']; 
 								$B_fdHigh 		= $ar['B_max_score']; 
 								$B_fdUncert 	= $ar['B_unc_range']; 
-								$B_bxLow 		= $ar['B_min_score']; 
-								$B_bxProbable 	= $ar['B_pro_score']; 
-								$B_bxHigh 		= $ar['B_max_score']; 
+								$B_bxLow 		= ($ar['B_min_score'] != '')?$ar['B_min_score']:'0.0'; 
+								$B_bxProbable 	= ($ar['B_pro_score'] != '')?$ar['B_pro_score']:'0.0';
+								$B_bxHigh 		= ($ar['B_max_score'] != '')?$ar['B_max_score']:'0.0';
 								$B_fdUncert 	= $ar['B_unc_range']; 
 								$explain_le 	= $ar['B_explain']; 
 								$steps 			= $ar['B_steps']; 
@@ -266,7 +267,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$pl5 			= $ar['B_field_value_2']; 
 								$le5 			= $ar['B_field_value_3']; 
 								
-								$le_zoom_explanation_fields 	= $ar['le_zoom_explanation_fields']; 
+								$le_zoom_explanation_fields 	= $explain_le; 
 								$le_zoom_notes_explanation 		= $ar['le_zoom_notes_explanation']; 
 								$le_zoom_document_name 			= $ar['le_zoom_document_name']; 
 								$le_zoom_comment 				= $ar['le_zoom_comment']; 
@@ -274,54 +275,62 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								
 							//C	
 								$ia_Inp_Min 	= $ar['C_min_score']; 
-								$ia_Div_Min 	= $ar['C_min_score']; 
-								$ia_Inp_Med 	= $ar['C_pro_score']; 
-								$ia_Div_Med 	= $ar['C_pro_score']; 
+								$ia_Div_Min 	= ($ar['C_min_score'] != '')?$ar['C_min_score']:'0.0';
+								$ia_Inp_med 	= $ar['C_pro_score']; 
+								$ia_Div_Med 	= ($ar['C_pro_score'] != '')?$ar['C_pro_score']:'0.0';
 								$ia_Inp_Max 	= $ar['C_max_score']; 
-								$ia_Div_Max 	= $ar['C_max_score']; 
+								$ia_Div_Max 	= ($ar['C_max_score'] != '')?$ar['C_max_score']:'0.0';
 								$ia_Inp_Range 	= $ar['C_unc_range']; 
-								$ia_Div_Range 	= $ar['C_unc_range']; 
+								$ia_Div_Range 	= ($ar['C_unc_range'] != '')?$ar['C_unc_range']:'0.0';
 								$explain_ia 	= $ar['C_explain']; 
 								$type_score 	= $ar['C_type_score']; 
 								$heia 			= $ar['C_field_value_1']; 
 								$plia 			= $ar['C_field_value_2']; 
 								$leia 			= $ar['C_field_value_3']; 
 								
-								$ia_zoom_explanation_fields 	= $ar['ia_zoom_explanation_fields']; 
+								$ia_zoom_explanation_fields 	= $explain_ia; 
 								$ia_zoom_notes_explanation 		= $ar['ia_zoom_notes_explanation']; 
 								$ia_zoom_document_name 			= $ar['ia_zoom_document_name']; 
 								$ia_zoom_comment 				= $ar['ia_zoom_comment']; 
 								$ia_zoom_document_file 			= $ar['ia_zoom_document_file']; 
 								
 							//Magnitude	
-								$magnitude_FR_Low 			= $ar['A_min_score']; 
-								$magnitude_FR_Probable 		= $ar['A_pro_score']; 
-								$magnitude_FR_High 			= $ar['A_max_score']; 
-								$magnitude_FR_MEDIA 		= $ar['Expected_Scores_FR']; 
-								$magnitude_LE_Min 			= $ar['B_min_score']; 
-								$magnitude_LE_Med 			= $ar['B_pro_score']; 
-								$magnitude_LE_Max 			= $ar['B_max_score']; 
-								$magnitude_LE_MEDIA 		= $ar['Expected_Scores_LE']; 
-								$magnitude_IA_Min 			= $ar['C_min_score']; 
-								$magnitude_IA_Med 			= $ar['C_pro_score']; 
-								$magnitude_IA_Max 			= $ar['C_max_score']; 
-								$magnitude_IA_MEDIA 		= $ar['Expected_Scores_IA']; 
-								$magnitude_SOMA_L 			= $ar['MR_low']; 
-								$magnitude_SOMA_P 			= $ar['MR_Probable']; 
-								$magnitude_SOMA_H 			= $ar['MR_High']; 
-								$magnitude_SOMA_RANGE 		= $ar['MR_U_Range']; 
-								$magnitude_SOMA_MEDIA 		= $ar['magnitude_of_risk']; 
+								$magnitude_FR_Low 			= ($ar['A_min_score'] != '')?$ar['A_min_score']:'0.0'; 
+								$magnitude_FR_Probable 		= ($ar['A_pro_score'] != '')?$ar['A_pro_score']:'0.0'; 
+								$magnitude_FR_High 			= ($ar['A_max_score'] != '')?$ar['A_max_score']:'0.0'; 
+								$magnitude_FR_MEDIA 		= ($ar['Expected_Scores_FR'] != '')?$ar['Expected_Scores_FR']:'0.0'; 
+								$magnitude_LE_Min 			= ($ar['B_min_score'] != '')?$ar['B_min_score']:'0.0'; 
+								$magnitude_LE_Med 			= ($ar['B_pro_score'] != '')?$ar['B_pro_score']:'0.0'; 
+								$magnitude_LE_Max 			= ($ar['B_max_score'] != '')?$ar['B_max_score']:'0.0'; 
+								$magnitude_LE_MEDIA 		= ($ar['Expected_Scores_LE'] != '')?$ar['Expected_Scores_FR']:'0.0'; 
+								$magnitude_IA_Min 			= ($ar['C_min_score'] != '')?$ar['C_min_score']:'0.0'; 
+								$magnitude_IA_Med 			= ($ar['C_pro_score'] != '')?$ar['C_pro_score']:'0.0';
+								$magnitude_IA_Max 			= ($ar['C_max_score'] != '')?$ar['C_max_score']:'0.0'; 
+								$magnitude_IA_MEDIA 		= ($ar['Expected_Scores_IA'] != '')?$ar['Expected_Scores_IA']:'0.0'; 
+								$magnitude_SOMA_L 			= ($ar['MR_low'] != '')?$ar['MR_low']:'0.0'; 
+								$magnitude_SOMA_P 			= ($ar['MR_Probable'] != '')?$ar['MR_Probable']:'0.0'; 
+								$magnitude_SOMA_H 			= ($ar['MR_High'] != '')?$ar['MR_High']:'0.0'; 
+								$magnitude_SOMA_RANGE 		= ($ar['MR_U_Range'] != '')?$ar['MR_U_Range']:'0.0'; 
+								$magnitude_SOMA_MEDIA 		= ($ar['magnitude_of_risk'] != '')?$ar['magnitude_of_risk']:'0.0'; 
 								
 								
 							
 						}	
+							
 						
 						?>
 			
 				<script>
 				
 					
-				function select_risk(id) {			
+				function select_risk(id) {		
+						
+					  if($("#risk").val() == "" || $("#risk").val() == null){	
+					  document.getElementById('bxAll').style.display='none';							
+						document.getElementById('bxFrm1').style.display = 'none';
+						document.getElementById('type_risk').value = 6;	
+					  }
+					  	
 					  var i = '#row'+id;
 					  $.ajax({
 						type: "POST",
@@ -332,9 +341,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 						dataType: 'json',
 						success: function(data) {
 							//Magnitude
-							$("#magnitude_FR_Low").html(data['fdHigh']);
+							
+							$("#magnitude_FR_Low").html(data['fdLow']);
 							$("#magnitude_FR_Probable").html(data['fdProbable']);
-							$("#magnitude_FR_High").html(data['fdLow']);
+							$("#magnitude_FR_High").html(data['fdHigh']);
 							
 							$("#magnitude_LE_Min").html(data['B_fdLow']);
 							$("#magnitude_LE_Med").html(data['B_fdProbable']);
@@ -347,7 +357,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							$("#magnitude_SOMA_L").html(data['magnitude_SOMA_L']);
 							$("#magnitude_SOMA_P").html(data['magnitude_SOMA_P']);
 							$("#magnitude_SOMA_H").html(data['magnitude_SOMA_H']);
-							$("#magnitude_SOMA_RANGE").html(data['magnitude_SOMA_RANGE']);
+							//$("#magnitude_SOMA_RANGE").html(data['magnitude_SOMA_RANGE']);
 							
 							$("#magnitude_FR_MEDIA").html(data['magnitude_FR_MEDIA']);
 							$("#magnitude_LE_MEDIA").html(data['magnitude_LE_MEDIA']);
@@ -360,29 +370,65 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 						    $("#explain_le").val('testeeeeeeeeeeee');						
 						    $("#zoomRisk").html("<strong>"+data['risk']+"</strong>");						
 						    $("#zoomRisk_le").html("<strong>"+data['risk']+"</strong>");						
-						    $("#zoomRisk_ia").html("<strong>"+data['risk']+"</strong>");						
-						    $("#zoomRisk_o").html("<strong>"+data['risk']+"</strong>");						
-						    $("#zoomRisk_le_o").html("<strong>"+data['risk']+"</strong>");						
-						    $("#zoomRisk_ia_o").html("<strong>"+data['risk']+"</strong>");						
+						    $("#zoomRisk_ia").html("<strong>"+data['risk']+"</strong>");	
+							
+												
 							
 							//A
-						    $("#type_risk").val(data['type_risk']);							
+							//document.getElementById('leia').options[0]=new Option("Selected by zoom", ca_low, true, true);
+							//alert(data['type_risk']);
+						    $("#type_risk").val(data['type_risk']);	
+							//ley
+							if(data['type_risk'] == 3){
+								
+								document.getElementById("ley").readOnly = true;
+								document.getElementById("hey").readOnly = true;
+							}
+							
+							if(data['type_risk'] == 4){
+								
+								document.getElementById("ley").readOnly = true;
+								document.getElementById("hey").readOnly = true;
+								document.getElementById("abey").readOnly = true;
+							}
+							
+							if(data['type_risk'] == 6 || data['type_risk'] == null){
+								
+								document.getElementById('bxFrm1').style.display = 'none';
+								
+							}else{
+								
+								document.getElementById('bxFrm1').style.display = 'block';
+								
+							}	
+								
+							
 						    $("#fdLow").val(data['fdLow']);
-						    $("#fdProbable").val(data['fdProbable']);
-						    $("#fdUncert").val(data['fdUncert']);							
 						    $("#bxLow").html(data['fdLow']);
+							
+						    $("#fdProbable").val(data['fdProbable']);
 						    $("#bxProbable").html(data['fdProbable']);
+							
+						    $("#fdUncert").val(data['fdUncert']);							
+						    $("#bxUncert").html(data['fdUncert']);
+							
+						    $("#fdHigh").html(data['fdHigh']);
 						    $("#bxHigh").html(data['fdHigh']);
-						    $("#bxUncert").html(data['fdUncert']);							
-						    $("#fr_zoom_obs").html(data['fr_zoom_obs']);							
+							
+						    $("#fr_zoom_obs").html(data['fr_zoom_obs']);
+														
 							document.getElementById('type_risk').value = data['type_risk'];						 
-							$("#fdUncert").val(data['fdUncert']);
+							
 						    $("#explain").val(data['explain']);
 						    $("#ley").val(data['ley']);
 						    $("#abey").val(data['abey']);
 						    $("#hey").val(data['hey']);						
 						   
-						    $("#fr_zoom_explanation_fields").val(data['fr_zoom_explanation_fields']);
+							if(data['type_risk'] == "" || data['type_risk'] == null){
+								document.getElementById('type_risk').value = 6;								
+							}	
+						   
+						    $("#fr_zoom_explanation_fields").val(data['explain']);
 						    $("#fr_zoom_notes_explanation").val(data['fr_zoom_notes_explanation']);
 						    $("#fr_zoom_document_name").val(data['fr_zoom_document_name']);
 						    $("#fr_zoom_comment").val(data['fr_zoom_comment']);						
@@ -409,7 +455,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							
 							$("#le_zoom_obs").val(data['le_zoom_obs']);						
 						    $("#le_zoom_link").val(data['le_zoom_link']);	
-							$("#le_zoom_explanation_fields").val(data['le_zoom_explanation_fields']);
+							$("#le_zoom_explanation_fields").val(data['explain_le']);
 						    $("#le_zoom_notes_explanation").val(data['le_zoom_notes_explanation']);
 						    $("#le_zoom_document_name").val(data['le_zoom_document_name']);
 						    $("#le_zoom_comment").val(data['le_zoom_comment']);						
@@ -518,11 +564,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							
 							$("#le_zoom_link_bx").html("<a href='"+data['le_zoom_link']+"' target='_blank'>"+data['le_zoom_link']+"</a>");	
 							
+							
+							
+							
 							//C
 							$("#ia_Inp_Min").val(data['ia_Inp_Min']);
 							$("#ia_Inp_Med").val(data['ia_Inp_Med']);
 							$("#ia_Inp_Max").val(data['ia_Inp_Max']);
 							$("#ia_Inp_Range").val(data['ia_Inp_Range']);
+							$("#explain_ia").val(data['explain_ia']);
 							
 							$("#ia_Div_Min").html(data['ia_Inp_Min']);
 							$("#ia_Div_Med").html(data['ia_Inp_Med']);
@@ -536,21 +586,17 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								
 								document.getElementById("type_score_1").checked = true;
 								document.getElementById("type_score_2").checked = false;
-								
 								document.getElementById('bxFractionAffected').style.display='block';
-								document.getElementById('bxValuePieAffected').style.display='none';
-								
-								
+								document.getElementById('bxFractionAffected_o').style.display='block';
+								document.getElementById('bxValuePieAffected_o').style.display='none';
 							}	
 							
 							if(data['type_score'] == 2){
 								document.getElementById("type_score_2").checked = true;
 								document.getElementById("type_score_1").checked = false;
-								
 								document.getElementById('bxFractionAffected').style.display='none';
-								document.getElementById('bxValuePieAffected').style.display='block';
-								
-								
+								document.getElementById('bxFractionAffected_o').style.display='none';
+								document.getElementById('bxValuePieAffected_o').style.display='block';
 								
 							}	
 							
@@ -565,11 +611,137 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								
 							}	
 							
-							$("#heia").val(data['heia']);
+							/* $("#heia").val(data['heia']);
 							$("#plia").val(data['plia']);
-							$("#leia").val(data['leia']);
+							$("#leia").val(data['leia']); */
+							
+							if(data['leia'] == "0.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/30 000, ".$_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "1.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/10 000, ".$_SESSION[$_SESSION['lang']]['A trace of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "1.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/3 000, ".$_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "2.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/1000, ".$_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "2.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/300, ".$_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "3.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/100, ".$_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "3.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/30, ".$_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "4.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/10, ".$_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "4.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/3, ".$_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "5.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/1, ".$_SESSION[$_SESSION['lang']]['All or most of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							//plia
+							if(data['plia'] == "0.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/30 000, ".$_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "1.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/10 000, ".$_SESSION[$_SESSION['lang']]['A trace of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "1.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/3 000, ".$_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "2.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/1000, ".$_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "2.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/300, ".$_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "3.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/100, ".$_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "3.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/30, ".$_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "4.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/10, ".$_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "4.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/3, ".$_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "5.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/1, ".$_SESSION[$_SESSION['lang']]['All or most of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							//heia
+							//alert(data['heia']);
+							if(data['heia'] == "0.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/30 000, ".$_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "1.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/10 000, ".$_SESSION[$_SESSION['lang']]['A trace of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "1.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/3 000, ".$_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "2.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/1000, ".$_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "2.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/300, ".$_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "3.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/100, ".$_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "3.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/30, ".$_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "4.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/10, ".$_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "4.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/3, ".$_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "5.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/1, ".$_SESSION[$_SESSION['lang']]['All or most of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							/* document.getElementById('plia').options[0] = new Option("Selected by zoom", ca_media, true, true);
+							document.getElementById('heia').options[0] = new Option("Selected by zoom", ca_high, true, true);	 */
 							//alert(data['ia_zoom_explanation_fields']);
-							$("#ia_zoom_explanation_fields").val(data['ia_zoom_explanation_fields']);
+							$("#ia_zoom_explanation_fields").val(data['explain_ia']);
 						    $("#ia_zoom_notes_explanation").val(data['ia_zoom_notes_explanation']);
 						    $("#ia_zoom_document_name").val(data['ia_zoom_document_name']);
 						    $("#ia_zoom_comment").val(data['ia_zoom_comment']);			
@@ -587,8 +759,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 					  });
 					}
 					
+					
+					
+					
+					
 				function select_risk_option(id_option,id_risk) {			
 				 //var i = '#row'+id;
+				 
+				 document.getElementById('bxAll').style.display='block';
 				  $.ajax({
 					type: "POST",
 					url: "ajax_process/select_risk_option.php",
@@ -599,30 +777,110 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 					dataType: 'json',
 					success: function(data) {
 						
-						//A
-						$("#fdLow_o").val(data['fdLow_o']);
-						$("#fdProbable_o").val(data['fdProbable_o']);
-						$("#fdHigh_o").val(data['fdHigh_o']);
-						$("#fdUncert_o").val(data['fdUncert_o']);
-						$("#bxHigh_o").html(data['bxHigh_o']);
-						$("#bxProbable_o").html(data['bxProbable_o']);
-						$("#bxLow_o").html(data['bxLow_o']);
-						$("#bxUncert_o").html(data['bxUncert_o']);
-						$("#explain_fr_o").val(data['explain_fr_o']);
-						$("#ley_o").val(data['ley_o']);
-						$("#abey_o").val(data['abey_o']);
-						$("#hey_o").val(data['hey_o']);
-						$("#fr_zoom_obs_o").val(data['fr_zoom_obs_o']);
-						$("#fr_zoom_explanation_fields_o").val(data['fr_zoom_explanation_fields_o']);
-						$("#fr_zoom_notes_explanation_o").val(data['fr_zoom_notes_explanation_o']);
-						$("#fr_zoom_document_name_o").val(data['fr_zoom_document_name_o']);
-						$("#fr_zoom_comment_o").val(data['fr_zoom_comment_o']);
-						$("#fr_zoom_link_o").val(data['fr_zoom_link_o']);
-						$("#fr_zoom_document_file_o").val(data['fr_zoom_document_file_o']);
-						
-						
-						//B							
+							//alert('1');
+							//Magnitude
+							
+							$("#magnitude_FR_Low_o").html(data['fdLow_o']);
+							$("#magnitude_FR_Probable_o").html(data['fdProbable_o']);
+							$("#magnitude_FR_High_o").html(data['fdHigh_o']);
+							
+							$("#magnitude_LE_Min_o").html(data['B_fdLow_o']);
+							$("#magnitude_LE_Med_o").html(data['B_fdProbable_o']);
+							$("#magnitude_LE_Max_o").html(data['B_fdHigh_o']);
+							
+							$("#magnitude_IA_Min_o").html(data['ia_Inp_Min_o']);
+							$("#magnitude_IA_Med_o").html(data['ia_Inp_Med_o']);
+							$("#magnitude_IA_Max_o").html(data['ia_Inp_Max_o']);
+							
+							$("#magnitude_SOMA_L_o").html(data['magnitude_SOMA_L_o']);
+							$("#magnitude_SOMA_P_o").html(data['magnitude_SOMA_P_o']);
+							$("#magnitude_SOMA_H_o").html(data['magnitude_SOMA_H_o']);
+							//$("#magnitude_SOMA_RANGE").html(data['magnitude_SOMA_RANGE']);
+							
+							$("#magnitude_FR_MEDIA_o").html(data['magnitude_FR_MEDIA_o']);
+							$("#magnitude_LE_MEDIA_o").html(data['magnitude_LE_MEDIA_o']);
+							$("#magnitude_IA_MEDIA_o").html(data['magnitude_IA_MEDIA_o']);
+							
+							$("#magnitude_SOMA_MEDIA_o").html(data['magnitude_SOMA_MEDIA_o']);
+							//alert('3');
+						    $("#agent_o").val(data['agent_o']);
+						    $("#description_o").val(data['summary_o']);						
+						    //alert(data['risk']);					
+						    $("#zoomRisk_o").html("<strong>"+data['risk']+"</strong>");						
+						    $("#zoomRisk_le_o").html("<strong>"+data['risk']+"</strong>");						
+						    $("#zoomRisk_ia_o").html("<strong>"+data['risk']+"</strong>");						
+							//alert('2');
+							//A
+							//document.getElementById('leia').options[0]=new Option("Selected by zoom", ca_low, true, true);
+							
+						  //  $("#type_risk").val(data['type_risk']);	
+							//ley
+						/* 	if(data['type_risk'] == 3){
+								
+								document.getElementById("ley_o").readOnly = true;
+								document.getElementById("hey_o").readOnly = true;
+							}
+							
+							if(data['type_risk'] == 4){
+								
+								document.getElementById("ley_o").readOnly = true;
+								document.getElementById("hey_o").readOnly = true;
+								document.getElementById("abey_o").readOnly = true;
+							}
+							
+							if(data['type_risk'] == 6 || data['type_risk'] == null){
+								
+								document.getElementById('bxFrm1').style.display = 'none';
+								
+							}else{
+								
+								document.getElementById('bxFrm1').style.display = 'block';
+								
+							} */	
+								//alert('3');
+							
+						    $("#fdLow_o").val(data['fdLow_o']);
+						    $("#bxLow_o").html(data['fdLow_o']);
+							
+						    $("#fdProbable_o").val(data['fdProbable_o']);
+						    $("#bxProbable_o").html(data['fdProbable_o']);
+							
+						    $("#fdUncert_o").val(data['fdUncert_o']);							
+						    $("#bxUncert_o").html(data['fdUncert_o']);
+							
+						    $("#fdHigh_o").val(data['fdHigh_o']);
+						    $("#bxHigh_o").html(data['fdHigh_o']);
+							
+							//alert("fdHigh_o "+data['fdHigh_o']);
+							
+						    $("#fr_zoom_obs_o").html(data['fr_zoom_obs_o']);
+														
+							//document.getElementById('type_risk').value = data['type_risk'];						 
+							
+						    $("#explain_o").val(data['explain_o']);
+						    $("#ley_o").val(data['ley_o']);
+						    $("#abey_o").val(data['abey_o']);
+						    $("#hey_o").val(data['hey_o']);						
+						   
+							/* if(data['type_risk'] == "" || data['type_risk'] == null){
+								document.getElementById('type_risk').value = 6;								
+							} */	
+						   
+						    $("#fr_zoom_explanation_fields_o").val(data['explain_o']);
+						    $("#fr_zoom_notes_explanation_o").val(data['fr_zoom_notes_explanation_o']);
+						    $("#fr_zoom_document_name_o").val(data['fr_zoom_document_name_o']);
+						    $("#fr_zoom_comment_o").val(data['fr_zoom_comment_o']);						
+						    $("#fr_zoom_obs_o").val(data['fr_zoom_obs_o']);						
+						    $("#fr_zoom_link_o").val(data['fr_zoom_link_o']);						
+						    $("#fr_zoom_document_file_o").val(data['fr_zoom_document_file_o']);						
+						    //alert(data['fr_zoom_document_file']);				
+							$("#fr_zoom_document_file_bx_o").html("<a href='"+data['fr_zoom_document_file_o']+"' target='_blank'>"+data['fr_zoom_document_file_o']+"</a>");				   
+							 				
+							$("#fr_zoom_link_bx_o").html("<a href='"+data['fr_zoom_link_o']+"' target='_blank'>"+data['fr_zoom_link_o']+"</a>");				   
+							
+							//B							
 							$("#B_fdLow_o").val(data['B_fdLow_o']);
+							//alert(data['B_fdLow_o']);
 							$("#B_fdProbable_o").val(data['B_fdProbable_o']);
 							$("#B_fdHigh_o").val(data['B_fdHigh_o']);
 							$("#B_fdUncert_o").val(data['B_fdUncert_o']);
@@ -636,14 +894,16 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							
 							$("#le_zoom_obs_o").val(data['le_zoom_obs_o']);						
 						    $("#le_zoom_link_o").val(data['le_zoom_link_o']);	
-							$("#le_zoom_explanation_fields_o").val(data['le_zoom_explanation_fields_o']);
+							$("#le_zoom_explanation_fields_o").val(data['explain_le_o']);
 						    $("#le_zoom_notes_explanation_o").val(data['le_zoom_notes_explanation_o']);
 						    $("#le_zoom_document_name_o").val(data['le_zoom_document_name_o']);
 						    $("#le_zoom_comment_o").val(data['le_zoom_comment_o']);						
 							// $("#le_zoom_document_file").val(data['le_zoom_document_file']);
 							
-							if(data['steps_o'] == "1"){
-								document.getElementById("steps1").checked = true;
+							
+							//alert($("#steps1").prop("checked"));
+							if($("#steps1").prop("checked")){
+								//document.getElementById("steps1_o").checked = true;
 								
 								document.getElementById('bxWords_o').style.display='block';
 								document.getElementById('bxFraction_o').style.display='none';
@@ -651,14 +911,16 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								document.getElementById('bxDecimals_o').style.display='none';
 								document.getElementById('bxAnyDecimals_o').style.display='none';
 								
+								document.getElementById('stepSelected').value='1';
+								
 								$("#he_o").val(data['he_o']);
 								$("#pl_o").val(data['pl_o']);
 								$("#le_o").val(data['le_o']);
 								
 							}	
 							
-							if(data['steps_o'] == "2"){
-								document.getElementById("steps2").checked = true;
+							if($("#steps2").prop("checked")){
+								//document.getElementById("steps2_o").checked = true;
 								
 								document.getElementById('bxWords_o').style.display='none';
 								document.getElementById('bxFraction_o').style.display='block';
@@ -666,30 +928,34 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								document.getElementById('bxDecimals_o').style.display='none';
 								document.getElementById('bxAnyDecimals_o').style.display='none';
 								
-								$("#he2_o").val(data['he2_o']);
-								$("#pl2_o").val(data['pl2_o']);
-								$("#le2_o").val(data['le2_o']);
+								document.getElementById('stepSelected').value='2';
+								
+								$("#he2").val(data['he2_o']);
+								$("#pl2").val(data['pl2_o']);
+								$("#le2").val(data['le2_o']);
 								
 							}	
 							
-							if(data['steps_o'] == "3"){
-								document.getElementById("steps3").checked = true;
+							if($("#steps3").prop("checked")){
+								//document.getElementById("steps3_o").checked = true;
 								
-								document.getElementById('bxWords_o').style.display='none';
+								document.getElementById('bxWords').style.display='none';
 								document.getElementById('bxFraction_o').style.display='none';
 								document.getElementById('bxPercentage_o').style.display='block';
 								document.getElementById('bxDecimals_o').style.display='none';
 								document.getElementById('bxAnyDecimals_o').style.display='none';
 								
-								$("#he3_o").val(data['he3_o']);
-								$("#pl3_o").val(data['pl3_o']);
-								$("#le3_o").val(data['le3_o']);
+								document.getElementById('stepSelected').value='3';
+								
+								$("#he3").val(data['he3_o']);
+								$("#pl3").val(data['pl3_o']);
+								$("#le3").val(data['le3_o']);
 								
 							}	
 							
-							if(data['steps_o'] == "4"){
+							if($("#steps4").prop("checked")){
 								
-								document.getElementById("steps4").checked = true;								
+								//document.getElementById("steps4_o").checked = true;								
 								
 								document.getElementById('bxWords_o').style.display='none';
 								document.getElementById('bxFraction_o').style.display='none';
@@ -697,15 +963,17 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								document.getElementById('bxDecimals_o').style.display='block';
 								document.getElementById('bxAnyDecimals_o').style.display='none';
 								
+								document.getElementById('stepSelected').value='4';
+								
 								$("#he4_o").val(data['he4_o']);
 								$("#pl4_o").val(data['pl4_o']);
 								$("#le4_o").val(data['le4_o']);
 								
 							}	
 							
-							if(data['steps_o'] == "5"){
+							if($("#steps5").prop("checked")){
 								
-								document.getElementById("steps5").checked = true;
+								//document.getElementById("steps5_o").checked = true;
 								
 								document.getElementById('bxWords_o').style.display='none';
 								document.getElementById('bxFraction_o').style.display='none';
@@ -713,15 +981,17 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								document.getElementById('bxDecimals_o').style.display='none';
 								document.getElementById('bxAnyDecimals_o').style.display='block';
 								
+								document.getElementById('stepSelected').value='5';
+								
 								$("#he5_o").val(data['he5_o']);
 								$("#pl5_o").val(data['pl5_o']);
 								$("#le5_o").val(data['le5_o']);
 								
 							}	
 							 
-							if(data['steps_o'] == ""){
+							/* if($("#steps4").prop("checked")){
 								
-								document.getElementById("steps1").checked = true;
+								//document.getElementById("steps1_o").checked = true;
 								
 								document.getElementById('bxWords_o').style.display='block';
 								document.getElementById('bxFraction_o').style.display='none';
@@ -737,7 +1007,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								$("#he_o").val("");
 								$("#pl_o").val("");
 								$("#le_o").val("");
-							}	
+							}	 */
 							
 							$("#le_zoom_document_file_bx_o").html("<a href='"+data['le_zoom_document_file_o']+"' target='_blank'>"+data['le_zoom_document_file_o']+"</a>");
 							
@@ -745,42 +1015,39 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							
 							$("#le_zoom_link_bx_o").html("<a href='"+data['le_zoom_link_o']+"' target='_blank'>"+data['le_zoom_link_o']+"</a>");	
 							
-							//C
-							<?php 
-							if(isset($_GET['ca_high'])){
-								$ca_high_url =$_GET['ca_high'];
-								
-							}else{
-								$ca_high_url =9999;
-							}	
-							?>
-							var ca_high_url = <?php echo $ca_high_url; ?>;
 							
-							if(ca_high_url == 9999){
+							
+							
+							//C
 							$("#ia_Inp_Min_o").val(data['ia_Inp_Min_o']);
 							$("#ia_Inp_Med_o").val(data['ia_Inp_Med_o']);
 							$("#ia_Inp_Max_o").val(data['ia_Inp_Max_o']);
 							$("#ia_Inp_Range_o").val(data['ia_Inp_Range_o']);
+							$("#explain_ia_o").val(data['explain_ia_o']);
 							
 							$("#ia_Div_Min_o").html(data['ia_Inp_Min_o']);
 							$("#ia_Div_Med_o").html(data['ia_Inp_Med_o']);
 							$("#ia_Div_Max_o").html(data['ia_Inp_Max_o']);
 							$("#ia_Div_Range_o").html(data['ia_Inp_Range_o']);
 							$("#ia_Div_Range_o").html(data['ia_Inp_Range_o']);
-							}
-							$("#type_score").val(data['type_score']);
-							//alert(data['type_score']);
-							if(data['type_score'] == 1){
+							
+							//$("#type_score_o").val(data['type_score_o']);
+							
+							if(data['type_score_o'] == 1){
 								
-								
-								//document.getElementById('bxFractionAffected_o').style.display='block';
-								//document.getElementById('bxValuePieAffected_o').style.display='none';
+								/* document.getElementById("type_score_1_o").checked = true;
+								document.getElementById("type_score_2_o").checked = false; */
+								/**/ 
+								document.getElementById('bxFractionAffected_o').style.display='block';
+								document.getElementById('bxValuePieAffected_o').style.display='none'; 
 							}	
 							
-							if(data['type_score'] == 2){
-								
-								//document.getElementById('bxFractionAffected_o').style.display='none';
-								//document.getElementById('bxValuePieAffected_o').style.display='block';
+							if(data['type_score_o'] == 2){
+								/* document.getElementById("type_score_2_o").checked = true;
+								document.getElementById("type_score_1_o").checked = false; */
+								/**/ 
+								document.getElementById('bxFractionAffected_o').style.display='none';
+								document.getElementById('bxValuePieAffected_o').style.display='block'; 
 							}	
 							
 							if(data['C_type_list'] == 1){
@@ -794,12 +1061,136 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								
 							}	
 							
-							$("#heia_o").val(data['leia_o']);
-							$("#plia_o").val(data['plia_o']);
-							$("#leia_o").val(data['heia_o']);
-							$("#explain_ia_o").val(data['explain_ia_o']);
+							/* $("#heia").val(data['heia']);
+							$("#plia").val(data['plia']);
+							$("#leia_o").val(data['leia_o']); */
+							
+							if(data['leia_o'] == "0.5"){
+								document.getElementById('leia_o').options[0]=new Option(<?php echo "'~1/30 000, ".$_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']."'"; ?>, data['leia_o'], true, true);
+							}
+							
+							if(data['leia_o'] == "1.0"){
+								document.getElementById('leia_o').options[0]=new Option(<?php echo "'~1/10 000, ".$_SESSION[$_SESSION['lang']]['A trace of the whole asset value']."'"; ?>, data['leia_o'], true, true);
+							}
+							
+							if(data['leia_o'] == "1.5"){
+								document.getElementById('leia_o').options[0]=new Option(<?php echo "'~1/3 000, ".$_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']."'"; ?>, data['leia_o'], true, true);
+							}
+							
+							if(data['leia_o'] == "2.0"){
+								document.getElementById('leia_o').options[0]=new Option(<?php echo "'~1/1000, ".$_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']."'"; ?>, data['leia_o'], true, true);
+							}
+							
+							if(data['leia_o'] == "2.5"){
+								document.getElementById('leia_o').options[0]=new Option(<?php echo "'~1/300, ".$_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']."'"; ?>, data['leia_o'], true, true);
+							}
+							
+							if(data['leia_o'] == "3.0"){
+								document.getElementById('leia_o').options[0]=new Option(<?php echo "'~1/100, ".$_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']."'"; ?>, data['leia_o'], true, true);
+							}
+							
+							if(data['leia_o'] == "3.5"){
+								document.getElementById('leia_o').options[0]=new Option(<?php echo "'~1/30, ".$_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']."'"; ?>, data['leia_o'], true, true);
+							}
+							
+							if(data['leia_o'] == "4.0"){
+								document.getElementById('leia_o').options[0]=new Option(<?php echo "'~1/10, ".$_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']."'"; ?>, data['leia_o'], true, true);
+							}
+							
+							if(data['leia_o'] == "4.5"){
+								document.getElementById('leia_o').options[0]=new Option(<?php echo "'~1/3, ".$_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']."'"; ?>, data['leia_o'], true, true);
+							}
+							
+							if(data['leia_o'] == "5.0"){
+								document.getElementById('leia_o').options[0]=new Option(<?php echo "'~1/1, ".$_SESSION[$_SESSION['lang']]['All or most of the whole asset value']."'"; ?>, data['leia_o'], true, true);
+							}
+							
+							//plia_o
+							if(data['plia_o'] == "0.5"){
+								document.getElementById('plia_o').options[0]=new Option(<?php echo "'~1/30 000, ".$_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']."'"; ?>, data['plia_o'], true, true);
+							}
+							
+							if(data['plia_o'] == "1.0"){
+								document.getElementById('plia_o').options[0]=new Option(<?php echo "'~1/10 000, ".$_SESSION[$_SESSION['lang']]['A trace of the whole asset value']."'"; ?>, data['plia_o'], true, true);
+							}
+							
+							if(data['plia_o'] == "1.5"){
+								document.getElementById('plia_o').options[0]=new Option(<?php echo "'~1/3 000, ".$_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']."'"; ?>, data['plia_o'], true, true);
+							}
+							
+							if(data['plia_o'] == "2.0"){
+								document.getElementById('plia_o').options[0]=new Option(<?php echo "'~1/1000, ".$_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']."'"; ?>, data['plia_o'], true, true);
+							}
+							
+							if(data['plia_o'] == "2.5"){
+								document.getElementById('plia_o').options[0]=new Option(<?php echo "'~1/300, ".$_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']."'"; ?>, data['plia_o'], true, true);
+							}
+							
+							if(data['plia_o'] == "3.0"){
+								document.getElementById('plia_o').options[0]=new Option(<?php echo "'~1/100, ".$_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']."'"; ?>, data['plia_o'], true, true);
+							}
+							
+							if(data['plia_o'] == "3.5"){
+								document.getElementById('plia_o').options[0]=new Option(<?php echo "'~1/30, ".$_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']."'"; ?>, data['plia_o'], true, true);
+							}
+							
+							if(data['plia_o'] == "4.0"){
+								document.getElementById('plia_o').options[0]=new Option(<?php echo "'~1/10, ".$_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']."'"; ?>, data['plia_o'], true, true);
+							}
+							
+							if(data['plia_o'] == "4.5"){
+								document.getElementById('plia_o').options[0]=new Option(<?php echo "'~1/3, ".$_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']."'"; ?>, data['plia_o'], true, true);
+							}
+							
+							if(data['plia_o'] == "5.0"){
+								document.getElementById('plia_o').options[0]=new Option(<?php echo "'~1/1, ".$_SESSION[$_SESSION['lang']]['All or most of the whole asset value']."'"; ?>, data['plia_o'], true, true);
+							}
+							
+							//heia_o
+							if(data['heia_o'] == "0.5"){
+								document.getElementById('heia_o').options[0]=new Option(<?php echo "'~1/30 000, ".$_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']."'"; ?>, data['heia_o'], true, true);
+							}
+							
+							if(data['heia_o'] == "1.0"){
+								document.getElementById('heia_o').options[0]=new Option(<?php echo "'~1/10 000, ".$_SESSION[$_SESSION['lang']]['A trace of the whole asset value']."'"; ?>, data['heia_o'], true, true);
+							}
+							
+							if(data['heia_o'] == "1.5"){
+								document.getElementById('heia_o').options[0]=new Option(<?php echo "'~1/3 000, ".$_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']."'"; ?>, data['heia_o'], true, true);
+							}
+							
+							if(data['heia_o'] == "2.0"){
+								document.getElementById('heia_o').options[0]=new Option(<?php echo "'~1/1000, ".$_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']."'"; ?>, data['heia_o'], true, true);
+							}
+							
+							if(data['heia_o'] == "2.5"){
+								document.getElementById('heia_o').options[0]=new Option(<?php echo "'~1/300, ".$_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']."'"; ?>, data['heia_o'], true, true);
+							}
+							
+							if(data['heia_o'] == "3.0"){
+								document.getElementById('heia_o').options[0]=new Option(<?php echo "'~1/100, ".$_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']."'"; ?>, data['heia_o'], true, true);
+							}
+							
+							if(data['heia_o'] == "3.5"){
+								document.getElementById('heia_o').options[0]=new Option(<?php echo "'~1/30, ".$_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']."'"; ?>, data['heia_o'], true, true);
+							}
+							
+							if(data['heia_o'] == "4.0"){
+								document.getElementById('heia_o').options[0]=new Option(<?php echo "'~1/10, ".$_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']."'"; ?>, data['heia_o'], true, true);
+							}
+							
+							if(data['heia_o'] == "4.5"){
+								document.getElementById('heia_o').options[0]=new Option(<?php echo "'~1/3, ".$_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']."'"; ?>, data['heia_o'], true, true);
+							}
+							
+							if(data['heia_o'] == "5.0"){
+								document.getElementById('heia_o').options[0]=new Option(<?php echo "'~1/1, ".$_SESSION[$_SESSION['lang']]['All or most of the whole asset value']."'"; ?>, data['heia_o'], true, true);
+							}
+							
+							/* document.getElementById('plia').options[0] = new Option("Selected by zoom", ca_media, true, true);
+							document.getElementById('heia_o').options[0] = new Option("Selected by zoom", ca_high, true, true);	 */
 							//alert(data['ia_zoom_explanation_fields']);
-							$("#ia_zoom_explanation_fields_o").val(data['ia_zoom_explanation_fields_o']);
+							$("#ia_zoom_explanation_fields_o").val(data['explain_ia_o']);
 						    $("#ia_zoom_notes_explanation_o").val(data['ia_zoom_notes_explanation_o']);
 						    $("#ia_zoom_document_name_o").val(data['ia_zoom_document_name_o']);
 						    $("#ia_zoom_comment_o").val(data['ia_zoom_comment_o']);			
@@ -810,36 +1201,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							
 							$("#ia_zoom_document_file_bx_o").html("<a href='"+data['ia_zoom_document_file_o']+"' target='_blank'>"+data['ia_zoom_document_file_o']+"</a>");
 							
-							$("#ia_zoom_link_bx_o").html("<a href='"+data['ia_zoom_link_o']+"' target='_blank'>"+data['ia_zoom_link_o']+"</a>");
-							
-							/////////
-							/////////
-							
-								$("#magnitude_FR_Low_o").html(data['fdHigh_o']);
-								$("#magnitude_FR_Probable_o").html(data['fdProbable_o']);
-								$("#magnitude_FR_High_o").html(data['fdLow_o']);
-								
-								$("#magnitude_LE_Min_o").html(data['B_fdLow_o']);
-								$("#magnitude_LE_Med_o").html(data['B_fdProbable_o']);
-								$("#magnitude_LE_Max_o").html(data['B_fdHigh_o']);
-								
-								$("#magnitude_IA_Min_o").html(data['ia_Inp_Min_o']);
-								$("#magnitude_IA_Med_o").html(data['ia_Inp_Med_o']);
-								$("#magnitude_IA_Max_o").html(data['ia_Inp_Max_o']);
-								
-								$("#magnitude_SOMA_L_o").html(data['magnitude_SOMA_L_o']);
-								$("#magnitude_SOMA_P_o").html(data['magnitude_SOMA_P_o']);
-								$("#magnitude_SOMA_H_o").html(data['magnitude_SOMA_H_o']);
-								$("#magnitude_SOMA_RANGE_o").html(data['magnitude_SOMA_RANGE_o']);
-								
-								$("#magnitude_FR_MEDIA_o").html(data['magnitude_FR_MEDIA_o']);
-								$("#magnitude_LE_MEDIA_o").html(data['magnitude_LE_MEDIA_o']);
-								$("#magnitude_IA_MEDIA_o").html(data['magnitude_IA_MEDIA_o']);
-								
-								$("#magnitude_SOMA_MEDIA_o").html(data['magnitude_SOMA_MEDIA_o']);
-							
-							/////////
-							/////////
+							$("#ia_zoom_link_bx_o").html("<a href='"+data['ia_zoom_link_o']+"' target='_blank'>"+data['ia_zoom_link_o']+"</a>");	
 							
 							
 						
@@ -869,263 +1231,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 					  });
 					}
 				
-				/*
-				function select_risk(id) {			
-					  var i = '#row'+id;
-					  $.ajax({
-						type: "POST",
-						url: "ajax_process/select_risk.php",
-						data: {
-							id: id
-						},
-						dataType: 'json',
-						success: function(data) {
-							//Magnitude
-							$("#magnitude_FR_Low").html(data['fdHigh']);
-							$("#magnitude_FR_Probable").html(data['fdProbable']);
-							$("#magnitude_FR_High").html(data['fdLow']);
-							
-							$("#magnitude_LE_Min").html(data['B_fdLow']);
-							$("#magnitude_LE_Med").html(data['B_fdProbable']);
-							$("#magnitude_LE_Max").html(data['B_fdHigh']);
-							
-							$("#magnitude_IA_Min").html(data['ia_Inp_Min']);
-							$("#magnitude_IA_Med").html(data['ia_Inp_Med']);
-							$("#magnitude_IA_Max").html(data['ia_Inp_Max']);
-							
-							$("#magnitude_SOMA_L").html(data['magnitude_SOMA_L']);
-							$("#magnitude_SOMA_P").html(data['magnitude_SOMA_P']);
-							$("#magnitude_SOMA_H").html(data['magnitude_SOMA_H']);
-							$("#magnitude_SOMA_RANGE").html(data['magnitude_SOMA_RANGE']);
-							
-							$("#magnitude_FR_MEDIA").html(data['magnitude_FR_MEDIA']);
-							$("#magnitude_LE_MEDIA").html(data['magnitude_LE_MEDIA']);
-							$("#magnitude_IA_MEDIA").html(data['magnitude_IA_MEDIA']);
-							
-							$("#magnitude_SOMA_MEDIA").html(data['magnitude_SOMA_MEDIA']);
-							
-						    $("#agent").val(data['agent']);
-						    $("#description").val(data['summary']);						
-						    $("#explain_le").val('testeeeeeeeeeeee');						
-						    $("#zoomRisk").html("<strong>"+data['risk']+"</strong>");						
-						    $("#zoomRisk_le").html("<strong>"+data['risk']+"</strong>");						
-						    $("#zoomRisk_ia").html("<strong>"+data['risk']+"</strong>");						
-							
-							//A
-						    $("#type_risk").val(data['type_risk']);							
-						    $("#fdLow").val(data['fdLow']);
-						    $("#fdProbable").val(data['fdProbable']);
-						    $("#fdUncert").val(data['fdUncert']);							
-						    $("#bxLow").html(data['fdLow']);
-						    $("#bxProbable").html(data['fdProbable']);
-						    $("#bxHigh").html(data['fdHigh']);
-						    $("#bxUncert").html(data['fdUncert']);							
-						    $("#fr_zoom_obs").html(data['fr_zoom_obs']);							
-							document.getElementById('type_risk').value = data['type_risk'];						 
-							$("#fdUncert").val(data['fdUncert']);
-						    $("#explain").val(data['explain']);
-						    $("#ley").val(data['ley']);
-						    $("#abey").val(data['abey']);
-						    $("#hey").val(data['hey']);						
-						   
-						    $("#fr_zoom_explanation_fields").val(data['fr_zoom_explanation_fields']);
-						    $("#fr_zoom_notes_explanation").val(data['fr_zoom_notes_explanation']);
-						    $("#fr_zoom_document_name").val(data['fr_zoom_document_name']);
-						    $("#fr_zoom_comment").val(data['fr_zoom_comment']);						
-						    $("#fr_zoom_obs").val(data['fr_zoom_obs']);						
-						    $("#fr_zoom_link").val(data['fr_zoom_link']);						
-						    $("#fr_zoom_document_file").val(data['fr_zoom_document_file']);						
-						    //alert(data['fr_zoom_document_file']);				
-							$("#fr_zoom_document_file_bx").html("<a href='"+data['fr_zoom_document_file']+"' target='_blank'>"+data['fr_zoom_document_file']+"</a>");				   
-							 				
-							$("#fr_zoom_link_bx").html("<a href='"+data['fr_zoom_link']+"' target='_blank'>"+data['fr_zoom_link']+"</a>");				   
-							
-							//B							
-							$("#B_fdLow").val(data['B_fdLow']);
-							$("#B_fdProbable").val(data['B_fdProbable']);
-							$("#B_fdHigh").val(data['B_fdHigh']);
-							$("#B_fdUncert").val(data['B_fdUncert']);
-														
-							$("#B_bxLow").html(data['B_fdLow']);
-							$("#B_bxProbable").html(data['B_fdProbable']);
-							$("#B_bxHigh").html(data['B_fdHigh']);
-							$("#lei_Div_Range").html(data['B_fdUncert']);
-							
-							$("#explain_le").val(data['explain_le']);
-							
-							$("#le_zoom_obs").val(data['le_zoom_obs']);						
-						    $("#le_zoom_link").val(data['le_zoom_link']);	
-							$("#le_zoom_explanation_fields").val(data['le_zoom_explanation_fields']);
-						    $("#le_zoom_notes_explanation").val(data['le_zoom_notes_explanation']);
-						    $("#le_zoom_document_name").val(data['le_zoom_document_name']);
-						    $("#le_zoom_comment").val(data['le_zoom_comment']);						
-							// $("#le_zoom_document_file").val(data['le_zoom_document_file']);
-							
-							if(data['steps'] == "1"){
-								document.getElementById("steps1").checked = true;
-								
-								document.getElementById('bxWords').style.display='block';
-								document.getElementById('bxFraction').style.display='none';
-								document.getElementById('bxPercentage').style.display='none';
-								document.getElementById('bxDecimals').style.display='none';
-								document.getElementById('bxAnyDecimals').style.display='none';
-								
-								$("#he").val(data['he']);
-								$("#pl").val(data['pl']);
-								$("#le").val(data['le']);
-								
-							}	
-							
-							if(data['steps'] == "2"){
-								document.getElementById("steps2").checked = true;
-								
-								document.getElementById('bxWords').style.display='none';
-								document.getElementById('bxFraction').style.display='block';
-								document.getElementById('bxPercentage').style.display='none';
-								document.getElementById('bxDecimals').style.display='none';
-								document.getElementById('bxAnyDecimals').style.display='none';
-								
-								$("#he2").val(data['he2']);
-								$("#pl2").val(data['pl2']);
-								$("#le2").val(data['le2']);
-								
-							}	
-							
-							if(data['steps'] == "3"){
-								document.getElementById("steps3").checked = true;
-								
-								document.getElementById('bxWords').style.display='none';
-								document.getElementById('bxFraction').style.display='none';
-								document.getElementById('bxPercentage').style.display='block';
-								document.getElementById('bxDecimals').style.display='none';
-								document.getElementById('bxAnyDecimals').style.display='none';
-								
-								$("#he3").val(data['he3']);
-								$("#pl3").val(data['pl3']);
-								$("#le3").val(data['le3']);
-								
-							}	
-							
-							if(data['steps'] == "4"){
-								
-								document.getElementById("steps4").checked = true;								
-								
-								document.getElementById('bxWords').style.display='none';
-								document.getElementById('bxFraction').style.display='none';
-								document.getElementById('bxPercentage').style.display='none';
-								document.getElementById('bxDecimals').style.display='block';
-								document.getElementById('bxAnyDecimals').style.display='none';
-								
-								$("#he4").val(data['he4']);
-								$("#pl4").val(data['pl4']);
-								$("#le4").val(data['le4']);
-								
-							}	
-							
-							if(data['steps'] == "5"){
-								
-								document.getElementById("steps5").checked = true;
-								
-								document.getElementById('bxWords').style.display='none';
-								document.getElementById('bxFraction').style.display='none';
-								document.getElementById('bxPercentage').style.display='none';
-								document.getElementById('bxDecimals').style.display='none';
-								document.getElementById('bxAnyDecimals').style.display='block';
-								
-								$("#he5").val(data['he5']);
-								$("#pl5").val(data['pl5']);
-								$("#le5").val(data['le5']);
-								
-							}	
-							 
-							if(data['steps'] == ""){
-								
-								document.getElementById("steps1").checked = true;
-								
-								document.getElementById('bxWords').style.display='block';
-								document.getElementById('bxFraction').style.display='none';
-								document.getElementById('bxPercentage').style.display='none';
-								document.getElementById('bxDecimals').style.display='none';
-								document.getElementById('bxAnyDecimals').style.display='none';
-								
-								$("#B_bxLow").html("0.0");
-								$("#B_bxProbable").html("0.0");
-								$("#B_bxHigh").html("0.0");
-								$("#lei_Div_Range").html("0.0");
-								
-								$("#he").val("");
-								$("#pl").val("");
-								$("#le").val("");
-							}	
-							
-							$("#le_zoom_document_file_bx").html("<a href='"+data['le_zoom_document_file']+"' target='_blank'>"+data['le_zoom_document_file']+"</a>");
-							
-							$("#le_zoom_document_file").val(data['le_zoom_document_file']);
-							
-							$("#le_zoom_link_bx").html("<a href='"+data['le_zoom_link']+"' target='_blank'>"+data['le_zoom_link']+"</a>");	
-							//C
-							$("#ia_Inp_Min").val(data['ia_Inp_Min']);
-							$("#ia_Inp_Med").val(data['ia_Inp_Med']);
-							$("#ia_Inp_Max").val(data['ia_Inp_Max']);
-							$("#ia_Inp_Range").val(data['ia_Inp_Range']);
-							
-							$("#ia_Div_Min").html(data['ia_Inp_Min']);
-							$("#ia_Div_Med").html(data['ia_Inp_Med']);
-							$("#ia_Div_Max").html(data['ia_Inp_Max']);
-							$("#ia_Div_Range").html(data['ia_Inp_Range']);
-							$("#ia_Div_Range").html(data['ia_Inp_Range']);
-							
-							$("#type_score").val(data['type_score']);
-							
-							if(data['type_score'] == 1){
-								
-								document.getElementById("type_score_1").checked = true;
-								document.getElementById("type_score_2").checked = false;
-								document.getElementById('bxFractionAffected').style.display='block';
-								document.getElementById('bxValuePieAffected').style.display='none';
-							}	
-							
-							if(data['type_score'] == 2){
-								document.getElementById("type_score_2").checked = true;
-								document.getElementById("type_score_1").checked = false;
-								document.getElementById('bxFractionAffected').style.display='none';
-								document.getElementById('bxValuePieAffected').style.display='block';
-							}	
-							
-							if(data['C_type_list'] == 1){
-							//	document.getElementById("type_list_1").checked = true;
-								//document.getElementById("type_list_2").checked = false;
-								
-							}	
-							if(data['C_type_list'] == 2){
-								//document.getElementById("type_list_1").checked = false;
-								//document.getElementById("type_list_2").checked = true;
-								
-							}	
-							
-							$("#heia").val(data['heia']);
-							$("#plia").val(data['plia']);
-							$("#leia").val(data['leia']);
-							//alert(data['ia_zoom_explanation_fields']);
-							$("#ia_zoom_explanation_fields").val(data['ia_zoom_explanation_fields']);
-						    $("#ia_zoom_notes_explanation").val(data['ia_zoom_notes_explanation']);
-						    $("#ia_zoom_document_name").val(data['ia_zoom_document_name']);
-						    $("#ia_zoom_comment").val(data['ia_zoom_comment']);			
-							$("#ia_zoom_obs").val(data['ia_zoom_obs']);						
-						    $("#ia_zoom_link").val(data['ia_zoom_link']);			
-						    $("#ia_zoom_document_file").val(data['ia_zoom_document_file']);			
-						    //$("#ia_zoom_document_file").val(data['ia_zoom_document_file']);
-							
-							$("#ia_zoom_document_file_bx").html("<a href='"+data['ia_zoom_document_file']+"' target='_blank'>"+data['ia_zoom_document_file']+"</a>");
-							
-							$("#ia_zoom_link_bx").html("<a href='"+data['ia_zoom_link']+"' target='_blank'>"+data['ia_zoom_link']+"</a>");	
-							
-							
-						}
-					  });
-					}
-				*/
-				
+			
 				
 				</script>
 			 <script>
@@ -1170,7 +1276,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								//
 								var un_range = document.getElementById('magnitude_SOMA_H').innerHTML - document.getElementById('magnitude_SOMA_L').innerHTML;								
 								
-								document.getElementById('magnitude_SOMA_RANGE').innerHTML = un_range.toFixed(1);
+								//document.getElementById('magnitude_SOMA_RANGE').innerHTML = un_range.toFixed(1);
 								
 								//
 								var somaTotal = parseFloat(document.getElementById('magnitude_FR_MEDIA').innerHTML) + parseFloat(document.getElementById('magnitude_LE_MEDIA').innerHTML) + parseFloat(document.getElementById('magnitude_IA_MEDIA').innerHTML);
@@ -1178,7 +1284,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								document.getElementById('magnitude_SOMA_MEDIA').innerHTML = somaTotal.toFixed(1);
 								
 								
-							}	
+							}		
 							
 							function magnitudeRisk_o(){
 								
@@ -1221,12 +1327,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								//
 								var un_range = document.getElementById('magnitude_SOMA_H_o').innerHTML - document.getElementById('magnitude_SOMA_L_o').innerHTML;								
 								
-								document.getElementById('magnitude_SOMA_RANGE_o').innerHTML = un_range.toFixed(1);
+								//document.getElementById('magnitude_SOMA_RANGE').innerHTML = un_range.toFixed(1);
 								
 								//
 								var somaTotal = parseFloat(document.getElementById('magnitude_FR_MEDIA_o').innerHTML) + parseFloat(document.getElementById('magnitude_LE_MEDIA_o').innerHTML) + parseFloat(document.getElementById('magnitude_IA_MEDIA_o').innerHTML);
 								
 								document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML = somaTotal.toFixed(1);
+								
 								
 								
 							}	
@@ -1290,7 +1397,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									});
 								}
 								</script>
-                <div class="row">
+                <div class="row" style="display:<?php echo $displayBXALL; ?>;" id="bxAll">
              
               <div class="col-sm-4 col-md-12">
 				<div class="col-12 col-sm-6 col-lg-12">
@@ -1361,51 +1468,65 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 							 -->
 							 
 							  <table class="table table-sm">
-								  <thead style="">
+								  <thead>
 									<tr>
-									  <th style="padding:30px;color:#fff;">&nbsp;s</th>
-									  <th style="width: 40px;"><?php echo $_SESSION[$_SESSION['lang']]['Low']; ?></th>
+									  <th ></th>
+									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['Low']; ?></th>
 									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['Probable']; ?></th>
 									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['High']; ?></th>
-									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['Uncertainty range']; ?></th>
+									  <!--<th style="width: 40px">Uncertainty range</th>-->
 									  <th style="width: 80px"><?php echo $_SESSION[$_SESSION['lang']]['Expected Scores (average)']; ?></th>
 									</tr>
 								  </thead>
 								  <tbody>
 									<tr>
-									  <td style="padding: 13px;"><?php echo $_SESSION[$_SESSION['lang']]['Frequency or Rate']; ?></td>
-									  <td><div id="magnitude_FR_Low"><?php echo $magnitude_FR_Low; ?></div></td>
-									  <td><div id="magnitude_FR_Probable"><?php echo $magnitude_FR_Probable; ?></div></td>
+									  <td><?php echo $_SESSION[$_SESSION['lang']]['Frequency or Rate']; ?></td>
 									  <td><div id="magnitude_FR_High"><?php echo $magnitude_FR_High; ?></div></td>
-									  <td></td>
+									  <td><div id="magnitude_FR_Probable"><?php echo $magnitude_FR_Probable; ?></div></td>
+									  <td><div id="magnitude_FR_Low"><?php echo $magnitude_FR_Low; ?></div></td>
+									  <!--<td></td>-->
 									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_FR_MEDIA"><?php echo $magnitude_FR_MEDIA; ?></div></span></td>
 									</tr>
 									<tr>
-									  <td style="padding: 12px;"><?php echo $_SESSION[$_SESSION['lang']]['Loss to each item affected']; ?></td>
+									  <td><?php echo $_SESSION[$_SESSION['lang']]['Loss to each item affected']; ?></td>
 									  <td><div id="magnitude_LE_Min"><?php echo $magnitude_LE_Min; ?></div></td>
 									  <td><div id="magnitude_LE_Med"><?php echo $magnitude_LE_Med; ?></div></td>
 									  <td><div id="magnitude_LE_Max"><?php echo $magnitude_LE_Max; ?></div></td>
-									  <td></td>
+									 <!-- <td></td>-->
 									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_LE_MEDIA"><?php echo $magnitude_LE_MEDIA; ?></div></span></td>
 									</tr>
 									<tr>
-									  <td style="padding: 12px;"><?php echo $_SESSION[$_SESSION['lang']]['Items affected']; ?></td>
+									  <td><?php echo $_SESSION[$_SESSION['lang']]['Items affected']; ?></td>
 									  <td><div id="magnitude_IA_Min"><?php echo $magnitude_IA_Min; ?></div></td>
 									  <td><div id="magnitude_IA_Med"><?php echo $magnitude_IA_Med; ?></div></td>
 									  <td><div id="magnitude_IA_Max"><?php echo $magnitude_IA_Max; ?></div></td>
-									  <td></td>
+									  <!--<td></td>-->
 									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_IA_MEDIA"><?php echo $magnitude_IA_MEDIA; ?></a></span></td>
 									</tr>
 									<tr>
-									  <td style="padding: 12px;"><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of risk']; ?></td>
+									  <td><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of risk']; ?></td>
 									  <td><div id="magnitude_SOMA_L"><?php echo $magnitude_SOMA_L; ?></div></td>
 									  <td><div id="magnitude_SOMA_P"><?php echo $magnitude_SOMA_P; ?></div></td>
 									  <td><div id="magnitude_SOMA_H"><?php echo $magnitude_SOMA_H; ?></div></td>
-									  <td><div id="magnitude_SOMA_RANGE"><?php echo $magnitude_SOMA_RANGE; ?></div><br></td>
+									  <!--<td><div id="magnitude_SOMA_RANGE"><?php echo $magnitude_SOMA_RANGE; ?></div><br></td>-->
 									  <td style="text-align:center;"><span class="badge bg-success" style="font-size:20px;"><div id="magnitude_SOMA_MEDIA"><?php echo $magnitude_SOMA_MEDIA; ?></div></span></td>
 									</tr>
 								  </tbody>
 								</table>
+								<div class="row">	
+								<div class="col-sm-4 col-md-4">
+								<button type="button" class="btn btn-block  bg-gradient-info btn-xs" onclick="changeTypeCalc(2)">Linear triangle distribution </button>
+									
+								</div>
+								<div class="col-sm-4 col-md-4">
+									<button type="button" class="btn btn-block bg-gradient-success btn-xs" onclick="changeTypeCalc(1)">Log triangle distribution  (default)</button>
+								</div>
+								<div class="col-sm-4 col-md-4">
+									<button type="button" class="btn btn-block bg-gradient-warning btn-xs" onclick="changeTypeCalc(3)">Simple use of problable value</button>
+								</div>
+								
+							</div>	
+											&nbsp; <small><?php echo $_SESSION[$_SESSION['lang']]['Type of calculation used for expected values (used for the risk and any associated options)']; ?></small>
 								</div>
 								
 								<!---- ##################################### --->
@@ -1413,24 +1534,24 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								<!---- ##################################### --->
 								<div class="col-sm-4 col-md-6" style="padding:7px;background-color:#f9f2d2">
 							 
-							  <table class="table">
+							   <table class="table table-sm">
 								  <thead>
 									<tr>
 									  <th ></th>
 									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['Low']; ?></th>
 									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['Probable']; ?></th>
 									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['High']; ?></th>
-									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['Unc. range']; ?></th>
+									  <!--<th style="width: 40px">Uncertainty range</th>-->
 									  <th style="width: 80px"><?php echo $_SESSION[$_SESSION['lang']]['Expected Scores (average)']; ?></th>
 									</tr>
 								  </thead>
 								  <tbody>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Frequency or Rate']; ?></td>
-									  <td><div id="magnitude_FR_Low_o"><?php echo $magnitude_FR_Low_o; ?></div></td>
-									  <td><div id="magnitude_FR_Probable_o"><?php echo $magnitude_FR_Probable_o; ?></div></td>
 									  <td><div id="magnitude_FR_High_o"><?php echo $magnitude_FR_High_o; ?></div></td>
-									 <td></td>
+									  <td><div id="magnitude_FR_Probable_o"><?php echo $magnitude_FR_Probable_o; ?></div></td>
+									  <td><div id="magnitude_FR_Low_o"><?php echo $magnitude_FR_Low_o; ?></div></td>
+									  <!--<td></td>-->
 									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_FR_MEDIA_o"><?php echo $magnitude_FR_MEDIA_o; ?></div></span></td>
 									</tr>
 									<tr>
@@ -1438,7 +1559,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									  <td><div id="magnitude_LE_Min_o"><?php echo $magnitude_LE_Min_o; ?></div></td>
 									  <td><div id="magnitude_LE_Med_o"><?php echo $magnitude_LE_Med_o; ?></div></td>
 									  <td><div id="magnitude_LE_Max_o"><?php echo $magnitude_LE_Max_o; ?></div></td>
-									 <td></td>
+									 <!-- <td></td>-->
 									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_LE_MEDIA_o"><?php echo $magnitude_LE_MEDIA_o; ?></div></span></td>
 									</tr>
 									<tr>
@@ -1446,7 +1567,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									  <td><div id="magnitude_IA_Min_o"><?php echo $magnitude_IA_Min_o; ?></div></td>
 									  <td><div id="magnitude_IA_Med_o"><?php echo $magnitude_IA_Med_o; ?></div></td>
 									  <td><div id="magnitude_IA_Max_o"><?php echo $magnitude_IA_Max_o; ?></div></td>
-									 <td></td>
+									  <!--<td></td>-->
 									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_IA_MEDIA_o"><?php echo $magnitude_IA_MEDIA_o; ?></a></span></td>
 									</tr>
 									<tr>
@@ -1454,7 +1575,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 									  <td><div id="magnitude_SOMA_L_o"><?php echo $magnitude_SOMA_L_o; ?></div></td>
 									  <td><div id="magnitude_SOMA_P_o"><?php echo $magnitude_SOMA_P_o; ?></div></td>
 									  <td><div id="magnitude_SOMA_H_o"><?php echo $magnitude_SOMA_H_o; ?></div></td>
-									   <td><div id="magnitude_SOMA_RANGE_o"><?php echo $magnitude_SOMA_RANGE_o; ?></div><br></td>
+									  <!--<td><div id="magnitude_SOMA_RANGE"><?php echo $magnitude_SOMA_RANGE_o; ?></div><br></td>-->
 									  <td style="text-align:center;"><span class="badge bg-success" style="font-size:20px;"><div id="magnitude_SOMA_MEDIA_o"><?php echo $magnitude_SOMA_MEDIA_o; ?></div></span></td>
 									</tr>
 								  </tbody>
@@ -1479,7 +1600,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 											MR_low: document.getElementById('magnitude_SOMA_L').innerHTML,
 											MR_Probable: document.getElementById('magnitude_SOMA_P').innerHTML,
 											MR_High: document.getElementById('magnitude_SOMA_H').innerHTML,
-											MR_U_Range: document.getElementById('magnitude_SOMA_RANGE').innerHTML,
+											MR_U_Range: 0,
 											Expected_Scores_FR: document.getElementById('magnitude_FR_MEDIA').innerHTML,
 											Expected_Scores_LE: document.getElementById('magnitude_LE_MEDIA').innerHTML,
 											Expected_Scores_IA: document.getElementById('magnitude_IA_MEDIA').innerHTML,
@@ -1506,7 +1627,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 											MR_low: document.getElementById('magnitude_SOMA_L_o').innerHTML,
 											MR_Probable: document.getElementById('magnitude_SOMA_P_o').innerHTML,
 											MR_High: document.getElementById('magnitude_SOMA_H_o').innerHTML,
-											MR_U_Range: document.getElementById('magnitude_SOMA_RANGE_o').innerHTML,
+											//MR_U_Range: document.getElementById('magnitude_SOMA_RANGE_o').innerHTML,
 											Expected_Scores_FR: document.getElementById('magnitude_FR_MEDIA_o').innerHTML,
 											Expected_Scores_LE: document.getElementById('magnitude_LE_Med_o').innerHTML,
 											Expected_Scores_IA: document.getElementById('magnitude_IA_MEDIA_o').innerHTML,
@@ -1556,6 +1677,121 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 //							alert(document.getElementById('ia_Inp_Med_o').value);
 
 						}
+						
+						
+						
+							 
+								 function changeTypeCalc(t){
+									
+									
+									if(t==3){
+										
+										document.getElementById('magnitude_FR_MEDIA').innerHTML=document.getElementById('magnitude_FR_Probable').innerHTML;
+										
+										document.getElementById('magnitude_LE_MEDIA').innerHTML=document.getElementById('magnitude_LE_Med').innerHTML;
+										
+										document.getElementById('magnitude_IA_MEDIA').innerHTML=document.getElementById('magnitude_IA_Med').innerHTML;
+										
+										var total = parseFloat((document.getElementById('magnitude_FR_MEDIA').innerHTML))+parseFloat((document.getElementById('magnitude_LE_MEDIA').innerHTML))+parseFloat((document.getElementById('magnitude_IA_MEDIA').innerHTML));
+										
+										document.getElementById('magnitude_SOMA_MEDIA').innerHTML=parseFloat(total.toFixed(1));
+										
+									}else if(t==2){
+										//Math.pow(base, expoente)
+										
+										//A
+										var a_h_p = Math.pow(10, ((document.getElementById('magnitude_FR_High').innerHTML)-5)*-1);
+										var a_p_p = Math.pow(10, ((document.getElementById('magnitude_FR_Probable').innerHTML)-5)*-1);
+										var a_l_p = Math.pow(10, ((document.getElementById('magnitude_FR_Low').innerHTML)-5)*-1);
+										
+										var total_a_p = 5-Math.log10((a_l_p + a_p_p + a_h_p)/3);
+										document.getElementById('magnitude_FR_MEDIA').innerHTML = Math.round10(total_a_p,-1);
+										//alert(a_h_p);
+										
+										
+										//B
+										var b_h_p = Math.pow(10, ((document.getElementById('magnitude_LE_Max').innerHTML)-5)*-1);
+										var b_p_p = Math.pow(10, ((document.getElementById('magnitude_LE_Med').innerHTML)-5)*-1);
+										var b_l_p = Math.pow(10, ((document.getElementById('magnitude_LE_Min').innerHTML)-5)*-1);
+										
+										var total_b_p = 5-Math.log10((b_l_p + b_p_p + b_h_p)/3);
+										document.getElementById('magnitude_LE_MEDIA').innerHTML = Math.round10(total_b_p,-1);
+										//alert(Math.round10(10.24, -1));
+										
+										//C
+										var c_h_p = Math.pow(10, ((document.getElementById('magnitude_IA_Max').innerHTML)-5)*-1);
+										var c_p_p = Math.pow(10, ((document.getElementById('magnitude_IA_Med').innerHTML)-5)*-1);
+									 	var c_l_p = Math.pow(10, ((document.getElementById('magnitude_IA_Min').innerHTML)-5)*-1);
+										
+										var total_c_p = 5-Math.log10((c_l_p + c_p_p + c_h_p)/3);
+										document.getElementById('magnitude_IA_MEDIA').innerHTML = Math.round10(total_c_p,-1); 
+										
+										
+										var total = parseFloat((document.getElementById('magnitude_FR_MEDIA').innerHTML))+parseFloat((document.getElementById('magnitude_LE_MEDIA').innerHTML))+parseFloat((document.getElementById('magnitude_IA_MEDIA').innerHTML));
+										
+										document.getElementById('magnitude_SOMA_MEDIA').innerHTML=parseFloat(total.toFixed(1)); 
+										
+									}else{
+										
+										 select_risk(document.getElementById('risk').value);
+									} 		
+									
+									 
+								 }	 
+								 
+								 
+								  
+								 // Closure
+								(function(){
+
+									/**
+									 * Decimal adjustment of a number.
+									 *
+									 * @param	{String}	type	The type of adjustment.
+									 * @param	{Number}	value	The number.
+									 * @param	{Integer}	exp		The exponent (the 10 logarithm of the adjustment base).
+									 * @returns	{Number}			The adjusted value.
+									 */
+									function decimalAdjust(type, value, exp) {
+										// If the exp is undefined or zero...
+										if (typeof exp === 'undefined' || +exp === 0) {
+											return Math[type](value);
+										}
+										value = +value;
+										exp = +exp;
+										// If the value is not a number or the exp is not an integer...
+										if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0)) {
+											return NaN;
+										}
+										// Shift
+										value = value.toString().split('e');
+										value = Math[type](+(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp)));
+										// Shift back
+										value = value.toString().split('e');
+										return +(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp));
+									}
+
+									// Decimal round
+									if (!Math.round10) {
+										Math.round10 = function(value, exp) {
+											return decimalAdjust('round', value, exp);
+										};
+									}
+									// Decimal floor
+									if (!Math.floor10) {
+										Math.floor10 = function(value, exp) {
+											return decimalAdjust('floor', value, exp);
+										};
+									}
+									// Decimal ceil
+									if (!Math.ceil10) {
+										Math.ceil10 = function(value, exp) {
+											return decimalAdjust('ceil', value, exp);
+										};
+									}
+
+								})();
+								 
 								 
 								 </script>	
 							 
@@ -1613,7 +1849,36 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
+  <script>
+  
+  function atualiza_type_score(type_score,id_risk) {			
+	
+	  $.ajax({
+		type: "POST",
+		url: "ajax_process/atualiza_type_score.php",
+		data: {
+			id_risk: id_risk,
+			type_score: type_score
+		},
+		success: function(data) {
+		  //$(i).css({"display":"none"});
+		  //location.reload();
+		}
+	  });
+	}
+	
+	
+	function atualizaFileField (id,value) {
+		
+		document.getElementById(id).innerHTML ="Link: <a href='"+value+"' target='_blank'>"+value+"</a>";
+		
+	}
+
+</script>
 <script type="text/javascript">
+	
+	
+	
  function maskIt(w,e,m,r,a){
   // Cancela se o evento for Backspace
   if (!e) var e = window.event
@@ -1638,6 +1903,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
   // Novo método para o objeto 'String'
   String.prototype.reverse = function(){
  return this.split('').reverse().join(''); };
+ 
+							
 </script>
 <?php
 

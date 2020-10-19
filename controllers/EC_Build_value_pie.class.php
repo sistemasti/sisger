@@ -397,6 +397,7 @@ update their_scores
 												s.name as subgroup_name, 
 												s.id as subgroup_id, 
 												g.points as groupPoints, 
+												g.value_ratio as groupRatio,
 												s.points as subgroupPoints, 
 												s.soma_for_single as subgroupRatio, 
 												s.numbers_of_items as numbers_of_items 
@@ -416,10 +417,13 @@ update their_scores
 			
 			$n1 = self::getConn()->prepare('SELECT 
 												*, 
+												g.id as group_id,
 												g.name as group_name, 
 												s.name as subgroup_name, 
 												s.id as subgroup_id, 
 												g.value_ratio as groupRatio,
+												g.points as groupPoints, 
+												s.points as subgroupPoints, 
 												s.soma_for_single as subgroupRatio, 
 												s.numbers_of_items as numbers_of_items 
 											FROM `ec_groups_value` as g 											

@@ -117,7 +117,7 @@
 													document.getElementById('type_score_selected').style.display='1';
 													document.getElementById('bxFractionAffected').style.display='block';
 													document.getElementById('bxFractionAffected_o').style.display='block';
-													document.getElementById('bxValuePieAffected').style.display='none';
+													document.getElementById('bxValuePieAffected_o').style.display='none';
 													
 													
 													" checked> Steps scale, considering the heritage asset as a whole.
@@ -128,7 +128,7 @@
 													document.getElementById('type_score_selected').style.display='2';
 													document.getElementById('bxFractionAffected').style.display='none';
 													document.getElementById('bxFractionAffected_o').style.display='none';
-													document.getElementById('bxValuePieAffected').style.display='block';
+													document.getElementById('bxValuePieAffected_o').style.display='block';
 													
 													
 													"> More precise data using the value pie<br>
@@ -142,7 +142,7 @@
 														<select class="form-control" id="heia" name="heia"  onchange="range_I_A('Max',this.value)">
                            
 																<option value="0.0" >Select</option>
-																<option value="5.0" <?php if($heia == "5.0"){ echo "selected"; } ?>>~1, total or almost total loss of value in each item affected</option>
+																<option value="5.0" <?php if($heia == "5.0"){ echo "selected"; } ?>>~1/1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($heia == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($heia == "4.0"){ echo "selected"; } ?>>~1/10  loss of value in each item affected.</option>
 																<option value="3.5" <?php if($heia == "3.5"){ echo "selected"; } ?>>~1/30  loss of value in each item affected.</option>
@@ -162,7 +162,7 @@
 														<select class="form-control" id="plia" name="plia" onchange="range_I_A('Med',this.value)">
 																
 																<option value="0.0" >Select</option>	
-																<option value="5.0" <?php if($plia == "5.0"){ echo "selected"; } ?>>~1, total or almost total loss of value in each item affected</option>
+																<option value="5.0" <?php if($plia == "5.0"){ echo "selected"; } ?>>~1/1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($plia == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($plia == "4.0"){ echo "selected"; } ?>>~1/10  loss of value in each item affected.</option>
 																<option value="3.5" <?php if($plia == "3.5"){ echo "selected"; } ?>>~1/30  loss of value in each item affected.</option>
@@ -181,7 +181,7 @@
 														<select class="form-control" id="leia" name="leia" onchange="range_I_A('Min',this.value)">
 																
 																<option value="0.0" >Select</option>
-																<option value="5.0" <?php if($leia == "5.0"){ echo "selected"; } ?>>~1, total or almost total loss of value in each item affected</option>
+																<option value="5.0" <?php if($leia == "5.0"){ echo "selected"; } ?>>~1/1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($leia == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($leia == "4.0"){ echo "selected"; } ?>>~1/10  loss of value in each item affected.</option>
 																<option value="3.5" <?php if($leia == "3.5"){ echo "selected"; } ?>>~1/30  loss of value in each item affected.</option>
@@ -299,7 +299,7 @@
 										  <BR>
 											<div class="form-group">
 														<label for="Sigla">Explain your estimates for frequency or rate</label>
-														<textarea class="form-control" name="explain_ia_o" id="explain_ia_o"><?php echo $explain_ia_o; ?></textarea>
+														<textarea class="form-control" name="explain_ia_o" id="explain_ia_o" onkeyup="document.getElementById('ia_zoom_explanation_fields_o').value=this.value"><?php echo $explain_ia_o; ?></textarea>
 														
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg_ia_o" style="float:right; margin-top:2px">
                   Zoom explanation and notes
@@ -327,7 +327,7 @@
 														<select class="form-control" id="heia_o" name="heia_o"  onchange="range_I_A('Max',this.value)">
                            
 																<option value="0.0" >Select</option>
-																<option value="5.0" <?php if($heia == "5.0"){ echo "selected"; } ?>>~1, total or almost total loss of value in each item affected</option>
+																<option value="5.0" <?php if($heia == "5.0"){ echo "selected"; } ?>>~1/1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($heia == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($heia == "4.0"){ echo "selected"; } ?>>~1/10  loss of value in each item affected.</option>
 																<option value="3.5" <?php if($heia == "3.5"){ echo "selected"; } ?>>~1/30  loss of value in each item affected.</option>
@@ -347,7 +347,7 @@
 														<select class="form-control" id="plia_o" name="plia_o" onchange="range_I_A('Med',this.value)">
 																
 																<option value="0.0" >Select</option>	
-																<option value="5.0" <?php if($plia == "5.0"){ echo "selected"; } ?>>~1, total or almost total loss of value in each item affected</option>
+																<option value="5.0" <?php if($plia == "5.0"){ echo "selected"; } ?>>~1/1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($plia == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($plia == "4.0"){ echo "selected"; } ?>>~1/10  loss of value in each item affected.</option>
 																<option value="3.5" <?php if($plia == "3.5"){ echo "selected"; } ?>>~1/30  loss of value in each item affected.</option>
@@ -366,7 +366,7 @@
 														<select class="form-control" id="leia_o" name="leia_o" onchange="range_I_A('Min',this.value)">
 																
 																<option value="0.0" >Select</option>
-																<option value="5.0" <?php if($leia == "5.0"){ echo "selected"; } ?>>~1, total or almost total loss of value in each item affected</option>
+																<option value="5.0" <?php if($leia == "5.0"){ echo "selected"; } ?>>~1/1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($leia == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($leia == "4.0"){ echo "selected"; } ?>>~1/10  loss of value in each item affected.</option>
 																<option value="3.5" <?php if($leia == "3.5"){ echo "selected"; } ?>>~1/30  loss of value in each item affected.</option>
@@ -382,7 +382,7 @@
 													</div>
 													</div>	
 													
-											<div id="bxValuePieAffected" style="display: none"><br>
+											<div id="bxValuePieAffected_o" style="display: none"><br>
 											<br>
 											<center>
 											<a href="javascript:void(0)" onclick="if(document.getElementById('risk').value=='' || document.getElementById('risk').value=='#' ){alert('select a risk');}else{items_affecteds_register_o(1);location.href = 'zoom_list?type=op&option_id='+document.getElementById('id_option').value+'&risk_id='+document.getElementById('risk').value;}"><center><button type="button" class="btn btn-block bg-gradient-info btn-sm" style="padding:20px;width:60%" >Zoom list of items affected</button></center></a>
@@ -461,7 +461,10 @@
 											}
 											</script>
 											
-											</div><br>
+											</div>
+											
+											
+											<br>
 									<input type="hidden" name="type_score_selected" id="type_score_selected" value="1">
 									<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="items_affecteds_register_o(2)">Save</button>
 						  </div>
@@ -575,27 +578,7 @@
 					</div>
 					
 				
-				<div class="modal fade" id="modal-lg_list_affected">
-					<div class="modal-dialog modal-lg">
-					  <div class="modal-content">
-						<div class="modal-header">
-						  <h4 class="modal-title">Original Risk</h4>
-						  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						  </button>
-						</div>
-						<div class="modal-body">
-							asdad
-						</div>
-						<div class="modal-footer justify-content-between">
-						  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						  <button type="button" class="btn btn-primary">Save changes</button>
-						</div>
-					  </div>
-					  <!-- /.modal-content -->
-					</div>
-					<!-- /.modal-dialog -->
-				  </div>	
+					
 				  
 				  
 				<div class="modal fade" id="modal-lg_ia_o">
@@ -605,73 +588,73 @@
 							<div class="modal-dialog modal-lg">
 							  <div class="modal-content">
 								<div class="modal-header">
-								  <h4 class="modal-title">Analysis notes and documents (C)</h4>
+								  <h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Analysis notes and documents']; ?> (C)</h4>
 								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								  </button>
 								</div>
 								<div class="modal-body">
-									<span id="zoomRisk_ia_o" style="padding:10px;margin-bottom:7px;background-color:#E3F5EA"></span>
+									<span id="zoomRisk_ia_o" style="padding:10px;margin-bottom:7px;background-color:#E3F5EA"><?php echo $risk_name; ?></span>
 								<br>&nbsp;								
 								
 									<div class="row">
 										<div class="col-sm-12 col-md-12">
-											<textarea class="form-control" placeholder="Obs" name="ia_zoom_obs_o" ID="ia_zoom_obs_o"><?php echo $ia_zoom_obs_o; ?></textarea>
+											<textarea class="form-control" placeholder="Obs" name="ia_zoom_obs_o" ID="ia_zoom_obs_o"><?php echo $ia_zoom_obs; ?></textarea>
 										</div>
 									</div>
 									<br>&nbsp;
 									<div class="row">
 												<div class="col-sm-6 col-md-6">
 													<div class="form-group">
-														<label for="Sigla">Explain your estimates for items affecteds</label>
-														<textarea class="form-control" name="ia_zoom_explanation_fields_o" ID="ia_zoom_explanation_fields_o"><?php echo $ia_zoom_explanation_fields_o; ?></textarea>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for items affecteds']; ?></label>
+														<textarea class="form-control" name="ia_zoom_explanation_fields_o" ID="ia_zoom_explanation_fields_o" onkeyup="document.getElementById('explain_ia_o').value=this.value"><?php echo $ia_zoom_explanation_fields_o; ?></textarea>
 													</div>	
 												</div>	
 												<div class="col-sm-6 col-md-6">
 												<div class="form-group">
-														<label for="Sigla">Notes for this explanation .</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Notes for this explanation']; ?> .</label>
 														<textarea class="form-control" name="ia_zoom_notes_explanation_o" ID="ia_zoom_notes_explanation_o"><?php echo $ia_zoom_notes_explanation_o; ?></textarea>
 													</div>	
 												</div>
 									</div>
 									<hr>
-									<h5>Documents associated with this risk its options</h5>
+									<h5><?php echo $_SESSION[$_SESSION['lang']]['Documents associated with this risk its options']; ?></h5>
 									<br>
 									<div class="row">
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">Document name</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document name']; ?></label>
 														<input type="text" class="form-control" id="ia_zoom_document_name_o"
-													name="ia_zoom_document_name_o" placeholder=""  required value="<?php echo $ia_zoom_document_name_o; ?>" >
+													name="ia_zoom_document_name_o" placeholder=""  required value="<?php echo $ia_zoom_document_name; ?>" >
 													</div>	
 												</div>	
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">Comment</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Comment']; ?></label>
 														<input type="text" class="form-control" id="ia_zoom_comment_o"
 													name="ia_zoom_comment_o" placeholder=""  required value="<?php echo $ia_zoom_comment_o; ?>" >
 													</div>	
 												</div>
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">Link..</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Link']; ?>..</label>
 														<input type="text" class="form-control" id="ia_zoom_link_o"
-													name="ia_zoom_link_o" placeholder=""  required value="<?php echo $ia_zoom_link_o; ?>" >
-													<div id="ia_zoom_link_bx_o" style="background-color: #c5dcc6;padding:7px;">
-													<?php 
-													if($ia_zoom_link_o != "undefined"){
-													echo "<a href='".$ia_zoom_link_o."' target='_blank'>".$ia_zoom_link_o."</a>"; 
-													}
-													?>
-													</div>
+														name="ia_zoom_link_o" placeholder=""  required value="<?php echo $ia_zoom_link_o; ?>"  onkeyup="atualizaFileField ('ia_zoom_link_bx_o',this.value)">
+														<div id="ia_zoom_link_bx_o" style="background-color: #c5dcc6;padding:7px;">
+															<?php 
+															if($ia_zoom_link_o != "undefined"){
+															echo "<a href='".$ia_zoom_link_o."' target='_blank'>".$ia_zoom_link_o."</a>"; 
+															}
+															?>
+														</div>
 													</div>	
 												</div>														
 												<div class="col-sm-3 col-md-3">
 													<div class="form-group">
-														<label for="Sigla">Document file</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document file']; ?></label>
 														
 													<input type="text" class="form-control" id="ia_zoom_document_file_o"
-													name="ia_zoom_document_file_o" placeholder=""  required value="<?php echo $ia_zoom_document_file_o; ?>" >
+													name="ia_zoom_document_file_o" placeholder=""  required value="<?php echo $ia_zoom_document_file_o; ?>" onkeyup="atualizaFileField ('ia_zoom_document_file_bx_o',this.value)">
 													<div id="ia_zoom_document_file_bx_o" style="background-color: #c5dcc6;padding:7px;">
 													<?php 
 													if($ia_zoom_document_file_o != "undefined"){
@@ -691,8 +674,8 @@
 									</div>
 								</div>
 								<div class="modal-footer justify-content-between">
-								  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								  <button type="button" class="btn btn-primary" onclick="zoom_ia_save_o(2)" data-dismiss="modal">Save changes</button>
+								  <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>
+								  <button type="button" class="btn btn-primary" onclick="zoom_ia_save_o(2);items_affecteds_register_o();" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Save changes']; ?></button>
 								</div>
 							  </div>
 							  <!-- /.modal-content -->

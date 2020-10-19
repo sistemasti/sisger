@@ -111,7 +111,19 @@
 													document.getElementById('magnitude_FR_High').innerHTML = result.toFixed(1);
 												}
 												if(field=="Probable"){
-													document.getElementById('magnitude_FR_Probable').innerHTML = result.toFixed(1);
+													if(document.getElementById('type_risk').value == 3){
+														document.getElementById('bxHigh').innerHTML = result.toFixed(1);
+														document.getElementById('fdHigh').value = result.toFixed(1);
+														
+														document.getElementById('bxLow').innerHTML = result.toFixed(1);
+														document.getElementById('fdLow').value = result.toFixed(1);
+														
+														document.getElementById('magnitude_FR_Low').innerHTML = result.toFixed(1);
+														document.getElementById('magnitude_FR_Probable').innerHTML = result.toFixed(1);
+														document.getElementById('magnitude_FR_High').innerHTML = result.toFixed(1);
+													}else{
+														document.getElementById('magnitude_FR_Probable').innerHTML = result.toFixed(1);
+													}
 												}
 												
 											}	
@@ -133,14 +145,12 @@
 									
 									function calculaPontuacaoOption(valor,field){
 										
-										//AScore: SeImed([TimeToLoss]>0;5-Log([TimeToLoss])/Log(10)) .toFixed(2)
-										
 										
 											if(valor > 0){	
 												var result = 5- (Math.log(valor)/Math.log(10));
 												document.getElementById('bx'+field+'_o').innerHTML = result.toFixed(1);
 												document.getElementById('fd'+field+'_o').value = result.toFixed(1);
-												
+												//alert('fd'+field+'_o');
 												if(field=="High"){
 													document.getElementById('magnitude_FR_Low_o').innerHTML = result.toFixed(1);
 												}
@@ -148,7 +158,19 @@
 													document.getElementById('magnitude_FR_High_o').innerHTML = result.toFixed(1);
 												}
 												if(field=="Probable"){
-													document.getElementById('magnitude_FR_Probable_o').innerHTML = result.toFixed(1);
+													if(document.getElementById('type_risk').value == 3){
+														document.getElementById('bxHigh_o').innerHTML = result.toFixed(1);
+														document.getElementById('fdHigh_o').value = result.toFixed(1);
+														
+														document.getElementById('bxLow_o').innerHTML = result.toFixed(1);
+														document.getElementById('fdLow_o').value = result.toFixed(1);
+														
+														document.getElementById('magnitude_FR_Low_o').innerHTML = result.toFixed(1);
+														document.getElementById('magnitude_FR_Probable_o').innerHTML = result.toFixed(1);
+														document.getElementById('magnitude_FR_High_o').innerHTML = result.toFixed(1);
+													}else{
+														document.getElementById('magnitude_FR_Probable_o').innerHTML = result.toFixed(1);
+													}
 												}
 												
 											}	
@@ -164,6 +186,7 @@
 										document.getElementById('fdUncert_o').value = range.toFixed(1);
 										
 										magnitudeRisk_o();
+												
 																				
 										
 									}	
@@ -200,8 +223,15 @@
 
  <div class="tab-pane fade show active" id="custom-tabs-three-home" role="tabpanel" aria-labelledby="custom-tabs-three-home-tab">
  <div class="row">
-	<div class="col-sm-4 col-md-6" style="padding:15px;">
-						<form method="post" name="ar_fr" id="ar_fr">
+				  <div class="col-sm-4 col-md-6" style="padding:15px;">
+								<!--########################################################-->
+								<!--########################################################-->
+								<!--###################$#### FORM ###################$$$$###-->
+								<!--########################################################-->
+								<!--########################################################-->
+								<!--########################################################-->
+								
+								<form method="post" name="ar_fr" id="ar_fr">
 						  <div style="float:right;width:50%">
 							<?php echo $_SESSION[$_SESSION['lang']]['Time horizon, years']; ?> 
 							<input type="text" id="time_horizon" name="time_horizon" disabled value="<?php echo $_SESSION['time_horizon']; ?>" style="width:25%;float:right;padding-right:7px;">
@@ -216,7 +246,7 @@
 						  
 									<div class="form-group">
 										<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Select the type risk']; ?></label>
-										 <select class="form-control" id="type_risk" name="type_risk" onchange="carregaFormulario(this.value)" readonly="readonly">
+										 <select class="form-control" id="type_risk" name="type_risk" onchange="carregaFormulario(this.value)" disabled>
 											  
 											  <option value="1" <?php if($type_risk == "1"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['Event, rare (time between events greater than time horizon)']; ?></option>
 											  
@@ -236,11 +266,24 @@
 						
 						<br>
 						<br>
-						  
+									<?php 
+									
+									if($type_risk == 6){ 
+										$displaybxFrm1 = "none";
+									}else{ 
+										$displaybxFrm1 = "block";
+									} 
+									
+									
+									?>
+									<div id="bxFrm1" style="display:<?php echo $displaybxFrm1; ?>">		
+									
+											
+									
 						  <input type="hidden" name="fdLow" id="fdLow" value="<?php echo $fdLow; ?>">
 						  <input type="hidden" name="fdProbable" id="fdProbable" value="<?php echo $fdProbable; ?>">
 						  <input type="hidden" name="fdHigh" id="fdHigh" value="<?php echo $fdHigh; ?>">
-						  <input type="hidden" name="fdUncert" id="fdUncert" value="<?php echo $fdHigh; ?>">
+						  <input type="hidden" name="fdUncert" id="fdUncert" value="<?php echo $fdUncert; ?>">
 						  
 						  <div style="float:right;"> &nbsp;&nbsp;&nbsp;
 						   <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxHigh"  value="<?php echo $bxHigh; ?>"><?php echo $bxHigh; ?>
@@ -269,7 +312,7 @@
 									
 									<div class="form-group">
 										<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for frequency or rate']; ?></label>
-										<textarea class="form-control" name="explain" ID="explain" disabled="disabled"><?php echo $explain; ?></textarea>
+										<textarea class="form-control" name="explain" ID="explain" onkeyup="document.getElementById('fr_zoom_explanation_fields').value=this.value" disabled><?php echo $explain; ?></textarea>
 																	
 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg" style="float:right; margin-top:2px" onclick="return false">
                   <?php echo $_SESSION[$_SESSION['lang']]['Zoom explanation and notes']; ?>
@@ -287,46 +330,89 @@
 									<!-- FRM1 -->
 									
 									
-									<div id="bxFrm1">		
-									<div class="form-group">
+											
+								<div class="form-group">
 										<div class="row">
-										<div class="col-sm-4 col-md-10" style="text-align:left;">
+										<div class="col-sm-4 col-md-10" style="text-align:right;">
 											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate of years']; ?></label>
 										</div>	
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="ley"
-											name="ley" placeholder="0"  required value="<?php echo $ley; ?>"  onchange="calculcaPontuacao(this.value,'Low');if(
-											document.getElementById('abey').value > 0 &&
-											this.value > document.getElementById('abey').value
-											){alert('This number must be greater than 1; it must be LESS than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('abey').value}" disabled="disabled">
+											name="ley" placeholder=""  required value="<?php echo $ley; ?>"  onchange="
+											
+											//COMENTADO PARA RETIRAR A VALIDAÇÃO E FICAR DE ACORDO COM O ACCESS
+											//if(
+											//document.getElementById('abey').value > 0 &&
+											//this.value > document.getElementById('abey').value
+											//){
+											//	alert('This number must be greater than 1; it must be LESS than or equal to expected years; it cannot be changed if expected years is empty');
+											//	this.value=document.getElementById('abey').value
+												
+											//}else{ 
+											
+												calculcaPontuacao(this.value,'Low');
+											
+											//}
+											
+											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10" <?php if($type_risk == 3){ echo "readonly"; } ?>>
 										</div>	
 										</div>
-									
+									<hr>
 										<div class="row">
 										<div class="col-sm-4 col-md-10" style="text-align:right;">
 											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;" id="label1"><?php echo $_SESSION[$_SESSION['lang']]['Average time period between events, years']; ?></label>
 										</div>	
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="abey"
-											name="abey" placeholder="0"  required value="<?php echo $abey; ?>" onchange="if(
-											this.value > 0 &&
-											this.value < document.getElementById('ley').value
-											){alert('This number must be greater than 1; it must be LARGER than or equal to low estimate of years; it cannot be changed if expected years is empty');this.value=document.getElementById('ley').value};
-											calculcaPontuacao(this.value,'Probable'); calculateProbab(this.value);
+											name="abey" placeholder=""  required value="<?php echo $abey; ?>" onchange="
+											if(document.getElementById('type_risk').value != 3){
+												//COMENTADO PARA RETIRAR A VALIDAÇÃO E FICAR DE ACORDO COM O ACCESS
+												//if(
+												//(this.value > 0 &&
+												//this.value < document.getElementById('ley').value) 
+												//||
+												//(this.value > document.getElementById('hey').value) )
+												//{
+												//	alert('This number must be greater than 1; it must be LARGER than or equal to low estimate of years; it cannot be changed if expected years is empty');
+													
+												//	this.value=document.getElementById('ley').value
+													
+												//}else{
+													calculcaPontuacao(this.value,'Probable'); 
+													calculateProbab(this.value);
+												//}
+											}else{
+												
+												document.getElementById('ley').value = this.value;
+												document.getElementById('hey').value = this.value;
+												calculcaPontuacao(this.value,'Probable'); 
+												calculateProbab(this.value);
+												
+											}	
 											
-											
-											
-											"  disabled="disabled">
+											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10">
 										</div>	
 										</div>
-									
+									<hr>
 									<div class="row">
 										<div class="col-sm-4 col-md-10" style="text-align:right;">
 											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;"><?php echo $_SESSION[$_SESSION['lang']]['High estimate of years']; ?></label>
 										</div>	
 										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="hey"
-											name="hey" placeholder="0"  required value="<?php echo $hey; ?>"  onchange="calculcaPontuacao(this.value,'High');if(document.getElementById('abey').value > 0 && this.value < document.getElementById('abey').value){alert('This number be LARGER than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('abey').value}" disabled="disabled">
+											name="hey" placeholder=""  required value="<?php echo $hey; ?>"  onKeyUp="
+											//COMENTADO PARA RETIRAR A VALIDAÇÃO E FICAR DE ACORDO COM O ACCESS
+											//if(document.getElementById('abey').value > 0 && this.value < document.getElementById('abey').value){
+												
+											//	alert('This number be LARGER than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('abey').value
+												
+											//}else{
+												
+												calculcaPontuacao(this.value,'High');
+												
+											//}
+											
+											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10"  <?php if($type_risk == 3){ echo "readonly"; } ?>>
 										</div>	
 									</div>	
 									
@@ -334,139 +420,35 @@
 									<br>		
 									<br>		
 									
-									
+								
+									</div>
 									</div>
 									</div>
 								
 									
 								  </form>
-								  </div> 
+								
+				  </div> 
 								  <!--<br>
 								
 									<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="frequency_or_rate_register()">Save!</button>-->
 								
-						  </div>
-
-<div class="modal fade" id="modal-lg">
-					<form id="frmZoomFR" method="post" enctype="multipart/form-data">
-							<div class="modal-dialog modal-lg">
-							  <div class="modal-content">
-								<div class="modal-header">
-								  <h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Analysis notes and documents (A)']; ?></h4>
-								 
-								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								  </button>
-								   <br>
-								  
-								</div>
-								<div class="modal-body">
-								<span id="zoomRisk" style="padding:10px;margin-bottom:7px;background-color:#E3F5EA"></span>
-								<br>&nbsp;
-								
-								
-									<div class="row">
-										<div class="col-sm-12 col-md-12">
-											<textarea class="form-control" name="fr_zoom_obs" ID="fr_zoom_obs" placeholder="Obs" disabled="disabled"><?php echo $fr_zoom_obs; ?></textarea>
-										</div>
-									</div>
-									<br>
-									<div class="row">
-												<div class="col-sm-6 col-md-6">
-													<div class="form-group">
-														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for frequency or rate']; ?></label>
-														<textarea class="form-control" name="fr_zoom_explanation_fields" ID="fr_zoom_explanation_fields" disabled="disabled"><?php echo $fr_zoom_explanation_fields; ?></textarea>
-													</div>	
-												</div>	
-												<div class="col-sm-6 col-md-6">
-												<div class="form-group">
-														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Notes for this explanation']; ?> .</label>
-														<textarea class="form-control" name="fr_zoom_notes_explanation" ID="fr_zoom_notes_explanation" disabled="disabled"><?php echo $fr_zoom_notes_explanation; ?></textarea>
-													</div>	
-												</div>
-									</div>
-									<hr>
-									<h5><?php echo $_SESSION[$_SESSION['lang']]['Documents associated with this risk its options']; ?></h5>
-									<br>
-									<div class="row" >
-												<div class="col-sm-3 col-md-3">
-													<div class="form-group">
-														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document name']; ?></label>
-														<input type="text" class="form-control" id="fr_zoom_document_name"
-													name="fr_zoom_document_name" placeholder=""  required value="<?php echo $fr_zoom_document_name; ?>" disabled="disabled">
-													</div>	
-												</div>	
-												<div class="col-sm-3 col-md-3">
-													<div class="form-group">
-														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Comment']; ?></label>
-														<input type="text" class="form-control" id="fr_zoom_comment"
-													name="fr_zoom_comment" placeholder=""  required value="<?php echo $fr_zoom_comment; ?>" disabled="disabled">
-													</div>	
-												</div>
-												<div class="col-sm-3 col-md-3">
-													<div class="form-group">
-														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['External Link']; ?>..</label>
-														<input type="text" class="form-control" id="fr_zoom_link"
-													name="fr_zoom_link" placeholder=""  required value="<?php echo $fr_zoom_link; ?>" disabled="disabled">
-													<div id="fr_zoom_link_bx" style="background-color: #c5dcc6;padding:7px;">
-													<?php 
-													if($fr_zoom_link != "undefined"){
-													echo "<a href='".$fr_zoom_link."' target='_blank'>".$fr_zoom_link."</a>"; 
-													}
-													?>
-													</div>	
-													</div>	
-												</div>													
-												<div class="col-sm-3 col-md-3">
-													<div class="form-group">
-														<label for="Sigla">..<?php echo $_SESSION[$_SESSION['lang']]['or Document link']; ?></label>
-														<input type="text" class="form-control" id="fr_zoom_document_file"
-													name="fr_zoom_document_file" placeholder=""  required value="<?php echo $fr_zoom_document_file; ?>" disabled="disabled">
-													<div id="fr_zoom_document_file_bx" style="background-color: #c5dcc6;padding:7px;">
-													<?php 
-													if($fr_zoom_document_file != "undefined"){
-													echo "<a href='".$fr_zoom_document_file."' target='_blank'>".$fr_zoom_document_file."</a>"; 
-													}
-													?>
-													</div>	
-													</div>	
-												<!--	
-													<div class="form-group">
-														<label for="Sigla">..<?php echo $_SESSION[$_SESSION['lang']]['or Document link']; ?></label>
-														
-<input type="text" class="form-control" id="fr_zoom_document_file" name="fr_zoom_document_file" value="<?php echo $fr_zoom_document_file; ?>" required>
-
-													<div id="fr_zoom_document_file_bx" style="background-color: #c5dcc6;padding:7px;">
-													<?php 
-													if($fr_zoom_document_file != "undefined"){
-													echo "<a href='".$fr_zoom_document_file."' target='_blank'>".$fr_zoom_document_file."</a>"; 
-													}
-													?>
-													</div>	
-												</div>	-->
-												
-												
-												
-									</div>
-									
-								</div>
-								<!--
-								<div class="modal-footer justify-content-between">
-								  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_fr_save();">Save changes</button>
-								</div>-->
-							  </div>
-							  <!-- /.modal-content -->
-							</div>
-					<!-- /.modal-dialog -->
-					</form>
-				  </div>		
-				  </div>		
+						 
 
 
-<!-- ###################################### -->
-<!-- ###################################### -->
-<!-- ANALISE -->
+
+
+<!-- ######################################## -->
+<!-- ######################################## -->
+<!-- ######################################## -->
+<!-- ######################################## -->
+<!-- ######################################## -->
+				<!-- ANALISE -->
+<!-- ######################################## -->
+<!-- ######################################## -->
+<!-- ######################################## -->
+<!-- ######################################## -->
+<!-- ######################################## -->
 
 
 
@@ -497,17 +479,18 @@
 							</div>
 						</div>
 						  <br>
-						  <br>
-						  <input type="hidden" name="fdLow_o" id="fdLow_o" value="<?php echo $fdLow_o; ?>">
+						 
+						 <div style="margin-top:5px;">&nbsp;</div>
+						   <input type="hidden" name="fdLow_o" id="fdLow_o" value="<?php echo $fdLow_o; ?>">
 						  <input type="hidden" name="fdProbable_o" id="fdProbable_o" value="<?php echo $fdProbable_o; ?>">
-						  <input type="hidden" name="fdHigh_o" id="fdHigh_o" value="<?php echo $fdHigh_o; ?>">
+						  <input type="hidden" name="fdHigh_o" id="fdHigh_o" value="">
 						  <input type="hidden" name="fdUncert_o" id="fdUncert_o" value="<?php echo $fdUncert_o; ?>">
 						  
 						  <div style="float:right;"> &nbsp;&nbsp;&nbsp;
-						   <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxHigh_o"  value="<?php echo $bxHigh_o; ?>"><?php echo $bxHigh_o; ?>
+						   <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxHigh_o" ><?php echo $bxHigh_o; ?>
 						  </div>
 						  
-						  <div style="display:inline-block; padding:10px; margin:1px; background-color:#aececc; " id="bxProbable_o" value="<?php echo $bxProbable_o; ?>"><?php echo $bxProbable_o; ?>
+						  <div style="display:inline-block; padding:10px; margin:1px; background-color:#aececc; font-size: 18px;" id="bxProbable_o" value="<?php echo $bxProbable_o; ?>"><?php echo $bxProbable_o; ?>
 						  </div>
 						  
 						  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxLow_o" value="<?php echo $bxLow_o; ?>"><?php echo $bxLow_o; ?>
@@ -519,74 +502,125 @@
 						  </div>
 						  <br>
 						 &nbsp;
-						   <span id="title_id" style="font-size:16px;"><?php echo $_SESSION[$_SESSION['lang']]['How often will the event occur?']; ?></span>
+						   <span id="title_id_o" style="font-size:16px;"><?php echo $_SESSION[$_SESSION['lang']]['How often will the event occur?']; ?></span>
 						  <br>
 						  <br>
 							 <div class="col-sm-4 col-md-12">
 							
 								  
-								  <input type="hidden" name="cadastrar" id="cadastrar" value="1">
+								  <input type="hidden" name="cadastrar_o" id="cadastrar_o" value="1">
 									
 									<div class="form-group">
 										<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for frequency or rate']; ?></label>
-										<textarea class="form-control" name="explain_fr_o" id="explain_fr_o"><?php echo $explain_fr_o; ?></textarea>
+										<textarea class="form-control" name="explain_o" ID="explain_o" onkeyup="document.getElementById('fr_zoom_explanation_fields_o').value=this.value"><?php echo $explain; ?></textarea>
 																	
-<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg_o" style="float:right; margin-top:2px">
-                 <?php echo $_SESSION[$_SESSION['lang']]['Zoom explanation and notes']; ?>
+										<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg_o" style="float:right; margin-top:2px" onclick="return false">
+                  <?php echo $_SESSION[$_SESSION['lang']]['Zoom explanation and notes']; ?>
                 </button>	
 				<br>
 				<br>
 				<br>
-
-
-
-										
+				
+						
+							
+							
 				
 									  </div>
 									
 									<!-- FRM1 -->
 									
 									
-									<div id="bxFrm1">		
-									<div class="form-group">
-										<div class="row">
-										<div class="col-sm-4 col-md-9" style="text-align:right;">
+									
+									<div class="form-group" style="text-align:left;">
+										<div class="row" style="text-align:left;">
+										<div class="col-sm-4 col-md-10" style="text-align:right;">
 											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate of years']; ?></label>
 										</div>	
-										<div class="col-sm-4 col-md-3">
+										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="ley_o"
-											name="ley_o" placeholder="0"  required value="<?php echo $ley_o; ?>"  onchange="calculaPontuacaoOption(this.value,'Low');if(
-											document.getElementById('abey_o').value > 0 &&
-											this.value > document.getElementById('abey_o').value
-											){alert('This number must be greater than 1; it must be LESS than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('abey_o').value}"  onKeyUp="maskIt(this,event,'###.###.##.##',true)" maxlength="5">
+											name="ley_o" placeholder=""  required value="<?php echo $ley_o; ?>"  onchange="
+											
+											//COMENTADO PARA RETIRAR A VALIDAÇÃO E FICAR DE ACORDO COM O ACCESS
+											//if(
+											//document.getElementById('abey').value > 0 &&
+											//this.value > document.getElementById('abey').value
+											//){
+											//	alert('This number must be greater than 1; it must be LESS than or equal to expected years; it cannot be changed if expected years is empty');
+											//	this.value=document.getElementById('abey').value
+												
+											//}else{ 
+											
+												calculaPontuacaoOption(this.value,'Low');
+											
+											//}
+											
+											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10" <?php if($type_risk == 3){ echo "readonly"; } ?>>
 										</div>	
 										</div>
-									
+									<hr>
 										<div class="row">
-										<div class="col-sm-4 col-md-9" style="text-align:right;">
-											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;" id="label1"><?php echo $_SESSION[$_SESSION['lang']]['Average time period between events, years']; ?></label>
+										<div class="col-sm-4 col-md-10" style="text-align:right;">
+											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;" id="label1_o"><?php echo $_SESSION[$_SESSION['lang']]['Average time period between events, years']; ?></label>
 										</div>	
-										<div class="col-sm-4 col-md-3">
+										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="abey_o"
-											name="abey_o" placeholder="0"  required value="<?php echo $abey_o; ?>" onchange="if(
-											this.value > 0 &&
-											this.value < document.getElementById('ley_o').value
-											){alert('This number must be greater than 1; it must be LARGER than or equal to low estimate of years; it cannot be changed if expected years is empty');this.value=document.getElementById('ley_o').value};
-											calculaPontuacaoOption(this.value,'Probable'); calculateProbab(this.value);
+											name="abey_o" placeholder=""  required value="<?php echo $abey_o; ?>" onchange="
 											
+											if(document.getElementById('type_risk').value != 3){
+												//COMENTADO PARA RETIRAR A VALIDAÇÃO E FICAR DE ACORDO COM O ACCESS
+												//if(
+												//(this.value > 0 &&
+												//this.value < document.getElementById('ley_o').value) 
+												//||
+												//(this.value > document.getElementById('hey_o').value) )
+												//{
+												//	alert('This number must be greater than 1; it must be LARGER than or equal to low estimate of years; it cannot be changed if expected years is empty');
+													
+												//	this.value=document.getElementById('ley_o').value
+													
+												//}else{
+													
+													calculaPontuacaoOption(this.value,'Probable'); 
+													
+													// calculateProbab(this.value);
+													
+												//}
+											}else{
+												
+												document.getElementById('ley_o').value = this.value;
+												
+												document.getElementById('hey_o').value = this.value;
+												
+												calculaPontuacaoOption(this.value,'Probable'); 
+												
+													// calculateProbab(this.value);
+												
+												
+											}	
 											
-											
-											"  onKeyUp="maskIt(this,event,'###.###.##.##',true)" maxlength="5">
+											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10">
 										</div>	
 										</div>
-									
+									<hr>
 									<div class="row">
-										<div class="col-sm-4 col-md-9" style="text-align:right;">
+										<div class="col-sm-4 col-md-10" style="text-align:right;">
 											<label for="Sigla" style="vertical-align:baseline;margin-top:7px;"><?php echo $_SESSION[$_SESSION['lang']]['High estimate of years']; ?></label>
 										</div>	
-										<div class="col-sm-4 col-md-3">
+										<div class="col-sm-4 col-md-2">
 											<input type="text" class="form-control" id="hey_o"
-											name="hey_o" placeholder="0"  required value="<?php echo $hey_o; ?>"  onchange="calculaPontuacaoOption(this.value,'High');if(document.getElementById('abey_o').value > 0 && this.value < document.getElementById('abey_o').value){alert('This number be LARGER than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('abey_o').value}"  onKeyUp="maskIt(this,event,'###.###.##.##',true)" maxlength="5"2>
+											name="hey_o" placeholder=""  required value="<?php echo $hey_o; ?>"  onKeyUp="
+											//COMENTADO PARA RETIRAR A VALIDAÇÃO E FICAR DE ACORDO COM O ACCESS
+											//if(document.getElementById('abey_o').value > 0 && this.value < document.getElementById('abey_o').value){
+												
+											//	alert('This number be LARGER than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('abey_o').value
+												
+											//}else{
+												
+												calculaPontuacaoOption(this.value,'High');
+												
+											//}
+											
+											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10"  <?php if($type_risk == 3){ echo "readonly"; } ?>>
 										</div>	
 									</div>	
 									
@@ -594,28 +628,65 @@
 									<br>		
 									<br>		
 									
+								
 									</div>
+									<br>
+								
+									<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="frequency_or_rate_register_o()"><?php echo $_SESSION[$_SESSION['lang']]['Save']; ?></button>
 									</div>
 									
 									
-									
+									<!-- FRM2  -->
+									<!--<div id="bxFrm2" style="display:none">	
+										<div class="form-group">
+										
+											<div class="row">
+											<div class="col-sm-4 col-md-10" style="text-align:right;">
+												<label for="Sigla" style="vertical-align:baseline;margin-top:7px;">Low estimate of years</label>
+											</div>	
+											<div class="col-sm-4 col-md-2">
+												<input type="text" class="form-control" id="leoy"
+												name="leoy" placeholder="0"  required value="" readonly onchange="calculcaPontuacao(this.value,'Low');if(this.value > document.getElementById('th_1').value){alert('This number must be greater than 1; it must be LESS than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('th_1').value}">
+											</div>	
+											</div>
+											
+											
+											<div class="row">
+											<div class="col-sm-4 col-md-10" style="text-align:right;">
+												<label for="Sigla" style="vertical-align:baseline;margin-top:7px;" id="label2"></label>
+											</div>	
+											<div class="col-sm-4 col-md-2">
+												<input type="text" class="form-control" id="th_1"
+												name="th_1" placeholder="0"  required value="" onchange="calculcaPontuacao(this.value,'Probable'); calculateProbab(this.value)">
+											</div>	
+											</div>
+											
+											
+											<div class="row">
+											<div class="col-sm-4 col-md-10" style="text-align:right;">
+												<label for="Sigla" style="vertical-align:baseline;margin-top:7px;">High estimate of years</label>
+											</div>	
+											<div class="col-sm-4 col-md-2">
+												<input type="text" class="form-control" id="heoy"
+												name="heoy" placeholder="0"  required value="" readonly onchange="calculcaPontuacao(this.value,'High');if(this.value < document.getElementById('th_1').value){alert('This number be LARGER than or equal to expected years; it cannot be changed if expected years is empty');this.value=document.getElementById('th_1').value}">
+											</div>	
+											</div>
+											
+										</div>
+									</div>-->
+									<!---->
 									
 								  </form>
 								  </div> 
-								  <br>
-								
-									<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="frequency_or_rate_register_o()"><?php echo $_SESSION[$_SESSION['lang']]['Save']; ?></button>
+								  
 								
 						  </div>
-						  </form>
-	</div>						  
-</div>						
-
-<!-- ########################################## -->				
-<!-- MODAL OPTION -->				
-<!-- ########################################## -->				
-
-<div class="modal fade" id="modal-lg_o">
+						 
+						  
+					  </div>	  
+					 	  
+					<!-- ZOOM -->	  
+					<div class="modal fade" id="modal-lg_o">
 					<form id="frmZoomFR2_o2" method="post" enctype="multipart/form-data">
 							<div class="modal-dialog modal-lg">
 							  <div class="modal-content">
@@ -629,13 +700,14 @@
 								  
 								</div>
 								<div class="modal-body">
-								<span id="zoomRisk_o" style="padding:10px;margin-bottom:7px;background-color:#E3F5EA"></span>
-								<br>&nbsp;
+								<span id="zoomRisk_o" style="padding:10px;margin-bottom:7px;background-color:#E3F5EA"><?php echo $risk_name; ?></span>
+								<br>&nbsp;	
+												
 								
 								
 									<div class="row">
 										<div class="col-sm-12 col-md-12">
-											<textarea class="form-control" name="fr_zoom_obs_o" ID="fr_zoom_obs_o" placeholder="Obs" ><?php echo $fr_zoom_obs_o; ?></textarea>
+											<textarea class="form-control" name="fr_zoom_obs_o" id="fr_zoom_obs_o" placeholder="Obs"><?php echo $fr_zoom_obs_o; ?></textarea>
 										</div>
 									</div>
 									<br>
@@ -643,13 +715,13 @@
 												<div class="col-sm-6 col-md-6">
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for frequency or rate']; ?></label>
-														<textarea class="form-control" name="fr_zoom_explanation_fields_o" ID="fr_zoom_explanation_fields_o" ><?php echo $fr_zoom_explanation_fields_o; ?></textarea>
+														<textarea class="form-control" name="fr_zoom_explanation_fields_o" id="fr_zoom_explanation_fields_o" onkeyup="document.getElementById('explain_o').value=this.value"><?php echo $fr_zoom_explanation_fields; ?></textarea>
 													</div>	
 												</div>	
 												<div class="col-sm-6 col-md-6">
 												<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Notes for this explanation']; ?> .</label>
-														<textarea class="form-control" name="fr_zoom_notes_explanation_o" ID="fr_zoom_notes_explanation_o" ><?php echo $fr_zoom_notes_explanation_o; ?></textarea>
+														<textarea class="form-control" name="fr_zoom_notes_explanation_o" ID="fr_zoom_notes_explanation_o"><?php echo $fr_zoom_notes_explanation_o; ?></textarea>
 													</div>	
 												</div>
 									</div>
@@ -661,7 +733,7 @@
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document name']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_document_name_o"
-													name="fr_zoom_document_name_o" placeholder=""  required value="<?php echo $fr_zoom_document_name; ?>" >
+													name="fr_zoom_document_name_o" placeholder=""  required value="<?php echo $fr_zoom_document_name_o; ?>" >
 													</div>	
 												</div>	
 												<div class="col-sm-3 col-md-3">
@@ -675,11 +747,11 @@
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['External Link']; ?>..</label>
 														<input type="text" class="form-control" id="fr_zoom_link_o"
-													name="fr_zoom_link_o" placeholder=""  required value="<?php echo $fr_zoom_link_o; ?>" >
+													name="fr_zoom_link_o" placeholder=""  required value="<?php echo $fr_zoom_link_o; ?>" onkeyup="atualizaFileField ('fr_zoom_link_bx_o',this.value)">
 													<div id="fr_zoom_link_bx_o" style="background-color: #c5dcc6;padding:7px;">
 													<?php 
-													if($fr_zoom_link_o != "undefined"){
-													echo "<a href='".$fr_zoom_link_o."' target='_blank'>".$fr_zoom_link_o."</a>"; 
+													if($fr_zoom_link != "undefined"){
+													echo "Link: <a href='".$fr_zoom_link."' target='_blank'>".$fr_zoom_link."</a>"; 
 													}
 													?>
 													</div>	
@@ -689,18 +761,141 @@
 													<div class="form-group">
 														<label for="Sigla">..<?php echo $_SESSION[$_SESSION['lang']]['or Document link']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_document_file_o"
-													name="fr_zoom_document_file_o" placeholder=""  required value="<?php echo $fr_zoom_document_file_o; ?>" >
+													name="fr_zoom_document_file_o" placeholder=""  required value="<?php echo $fr_zoom_document_file_o; ?>" onkeyup="atualizaFileField ('fr_zoom_document_file_bx_o',this.value)">
 													<div id="fr_zoom_document_file_bx_o" style="background-color: #c5dcc6;padding:7px;">
+													<?php 
+													if($fr_zoom_document_file_o != "undefined"){
+													echo "Link: <a href='".$fr_zoom_document_file_o."' target='_blank'>".$fr_zoom_document_file_o."</a>"; 
+													}
+													?>
+													</div>	
+												
+													
+													
+													</div>	
+												<!--	
+													<div class="form-group">
+														<label for="Sigla">..or Document link</label>
+														
+<input type="text" class="form-control" id="fr_zoom_document_file" name="fr_zoom_document_file" value="<?php echo $fr_zoom_document_file; ?>" required>
+
+													<div id="fr_zoom_document_file_bx" style="background-color: #c5dcc6;padding:7px;">
 													<?php 
 													if($fr_zoom_document_file_o != "undefined"){
 													echo "<a href='".$fr_zoom_document_file_o."' target='_blank'>".$fr_zoom_document_file_o."</a>"; 
 													}
 													?>
 													</div>	
+												</div>	-->
+												
+												
+												
+									</div>
+									
+								</div>
+								<div class="modal-footer justify-content-between">
+								  <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>
+								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_fr_save();frequency_or_rate_register();"><?php echo $_SESSION[$_SESSION['lang']]['Save changes']; ?></button>
+								</div>
+							  </div>
+							  <!-- /.modal-content -->
+							</div>
+					<!-- /.modal-dialog -->
+					</form>
+				  </div>		
+				  </div>		
+<!-- ########################################## -->					
+<!-- ########################################## -->	
+<div class="modal fade" id="modal-lg">
+					<form id="frmZoomFR" method="post" enctype="multipart/form-data">
+							<div class="modal-dialog modal-lg">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Analysis notes and documents (A)']; ?></h4>
+								 
+								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								  </button>
+								   <br>
+								  
+								</div>
+								<div class="modal-body">
+								<span id="zoomRisk" style="padding:10px;margin-bottom:7px;background-color:#E3F5EA"><?php echo $risk_name; ?></span>
+								<br>&nbsp;	
+								
+								
+								
+									<div class="row">
+										<div class="col-sm-12 col-md-12">
+											<textarea class="form-control" name="fr_zoom_obs" ID="fr_zoom_obs" placeholder="Obs" disabled><?php echo $fr_zoom_obs; ?></textarea>
+										</div>
+									</div>
+									<br>
+									<div class="row">
+												<div class="col-sm-6 col-md-6">
+													<div class="form-group">
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain your estimates for frequency or rate']; ?></label>
+														<textarea class="form-control" name="fr_zoom_explanation_fields" ID="fr_zoom_explanation_fields" onkeyup="document.getElementById('explain').value=this.value" disabled><?php echo $fr_zoom_explanation_fields; ?></textarea>
+													</div>	
+												</div>	
+												<div class="col-sm-6 col-md-6">
+												<div class="form-group">
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Notes for this explanation']; ?> .</label>
+														<textarea class="form-control" name="fr_zoom_notes_explanation" ID="fr_zoom_notes_explanation" disabled><?php echo $fr_zoom_notes_explanation; ?></textarea>
+													</div>	
+												</div>
+									</div>
+									<hr>
+									<h5><?php echo $_SESSION[$_SESSION['lang']]['Documents associated with this risk its options']; ?></h5>
+									<br>
+									<div class="row" >
+												<div class="col-sm-3 col-md-3">
+													<div class="form-group">
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document name']; ?></label>
+														<input type="text" class="form-control" id="fr_zoom_document_name"
+													name="fr_zoom_document_name" placeholder=""  required value="<?php echo $fr_zoom_document_name; ?>" disabled="disabled" disabled>
+													</div>	
+												</div>	
+												<div class="col-sm-3 col-md-3">
+													<div class="form-group">
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Comment']; ?></label>
+														<input type="text" class="form-control" id="fr_zoom_comment"
+													name="fr_zoom_comment" placeholder=""  required value="<?php echo $fr_zoom_comment; ?>" disabled="disabled">
+													</div>	
+												</div>
+												<div class="col-sm-3 col-md-3">
+													<div class="form-group">
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['External Link']; ?>..</label>
+														<input type="text" class="form-control" id="fr_zoom_link"
+													name="fr_zoom_link" placeholder=""  required value="<?php echo $fr_zoom_link; ?>" onkeyup="atualizaFileField ('fr_zoom_link_bx',this.value)">
+													<div id="fr_zoom_link_bx" style="background-color: #c5dcc6;padding:7px;" disabled>
+													<?php 
+													if($fr_zoom_link != "undefined"){
+													echo "Link: <a href='".$fr_zoom_link."' target='_blank'>".$fr_zoom_link."</a>"; 
+													}
+													?>
+													</div>	
+													</div>	
+												</div>													
+												<div class="col-sm-3 col-md-3">
+													<div class="form-group">
+														<label for="Sigla">..<?php echo $_SESSION[$_SESSION['lang']]['or Document link']; ?></label>
+														<input type="text" class="form-control" id="fr_zoom_document_file"
+													name="fr_zoom_document_file" placeholder=""  required value="<?php echo $fr_zoom_document_file; ?>" onkeyup="atualizaFileField ('fr_zoom_document_file_bx',this.value)">
+													<div id="fr_zoom_document_file_bx" style="background-color: #c5dcc6;padding:7px;" disabled>
+													<?php 
+													if($fr_zoom_document_file != "undefined"){
+													echo "Link: <a href='".$fr_zoom_document_file."' target='_blank'>".$fr_zoom_document_file."</a>"; 
+													}
+													?>
+													</div>	
+												
+													
+													
 													</div>	
 												<!--	
 													<div class="form-group">
-														<label for="Sigla">..<?php echo $_SESSION[$_SESSION['lang']]['or Document link']; ?></label>
+														<label for="Sigla">..or Document link</label>
 														
 <input type="text" class="form-control" id="fr_zoom_document_file" name="fr_zoom_document_file" value="<?php echo $fr_zoom_document_file; ?>" required>
 
@@ -718,10 +913,11 @@
 									</div>
 									
 								</div>
+								<!--
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>
-								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_fr_save();"><?php echo $_SESSION[$_SESSION['lang']]['Save changes']; ?></button>
-								</div>
+								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_fr_save();frequency_or_rate_register_o();"><?php echo $_SESSION[$_SESSION['lang']]['Save changes']; ?></button>
+								</div>-->
 							  </div>
 							  <!-- /.modal-content -->
 							</div>
@@ -729,8 +925,6 @@
 					</form>
 				  </div>		
 				  </div>		
-<!-- ########################################## -->					
-<!-- ########################################## -->	
 
 
   <script>

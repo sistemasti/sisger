@@ -150,25 +150,28 @@ require_once("header.php");
                 <div class="row">
              
               <div class="col-sm-4 col-md-6">
-			   <form name="frmZoomLista" id="frmZoomLista" method="post" action="ir_agents_register_o"  enctype="multipart/form-data">
+			   <form name="frmZoomLista" id="frmZoomLista" method="post" action="ir_agents_register"  enctype="multipart/form-data">
 					  <input type="hidden" name="cadastrar" id="cadastrar" value="1">
 					  <input type="hidden" id="risk_id" name="risk_id" value="<?php echo $_REQUEST['risk_id']; ?>">
 						<div class="form-group">
 							<label for="Name">Register</label>
 							<select class="form-control" id="value_table" name="value_table" onchange="select_dados_value_table_id(this.value)">
 							<option value="" >select</option>
-																					<?php 
-																					$in = Build_value_pie::select_ec_value_pie_table_all(1);
-																					
-																					foreach($in['dados'] as $in){
-																					?>
-																								
-																								   <option value="<?php echo $in['id']; ?>" >
-																								   <?php echo $in['group_value'].", ".$in['subgroup_value']; ?>
-																								   </option>
-																								
-																								 
-																					<?php } ?>
+				<?php 
+				$in = Build_value_pie::select_ec_value_pie_table_all(1);
+				
+				foreach($in['dados'] as $in){
+					
+				$gr = Build_value_pie::select_ec_groups_value_id($in['group_id']);
+				$sb = Build_value_pie::select_ec_subgroups_value_id($in['subgroup_id']);
+				?>
+							
+							   <option value="<?php echo $in['id']; ?>" >
+							   <?php echo $gr['name'].", ".$sb['name']; ?>
+							   </option>
+							
+							 
+				<?php } ?>
 
 																					
 																								</select>
@@ -197,7 +200,7 @@ require_once("header.php");
 														
 														</script>
 						<div class="form-group">
-							<label for="Name">numbers of itens</label>
+							<label for="Name">Numbers of itens in subgroup</label>
 							<div class="row">
 														<div class="col-sm-12 col-md-12">
 															<input type="text" class="form-control" id="numbers_itens_inp" name="numbers_itens_inp" placeholder="0" value="" readonly required>
@@ -217,19 +220,19 @@ require_once("header.php");
 														 <div class="col-sm-4 col-md-4">
 														 <div class="form-group">
 															<label for="Name">Low estimate</label>
-															<input type="text" class="form-control" id="low_estimate" name="low_estimate" placeholder="0.0" value="<?php echo $low_estimate; ?>" required>
+															<input type="text" class="form-control" id="low_estimate" name="low_estimate" placeholder="" value="<?php echo $low_estimate; ?>" onkeypress="return keypressed( this , event );" required>
 														 </div>
 														 </div> 
 														 <div class="col-sm-4 col-md-4">
 														  <div class="form-group">
 															<label for="Name">Most Probable</label>
-															<input type="text" class="form-control" id="most_probable" name="most_probable" placeholder="0.0" value="" required>
+															<input type="text" class="form-control" id="most_probable" name="most_probable" placeholder="" value="" onkeypress="return keypressed( this , event );" required>
 														 </div>
 														 </div> 
 														 <div class="col-sm-4 col-md-4">
 														 <div class="form-group">
 															<label for="Name">High estimate</label>
-															<input type="text" class="form-control" id="high_estimate" name="high_estimate" placeholder="0.0" value="" required>
+															<input type="text" class="form-control" id="high_estimate" name="high_estimate" placeholder="" value="" required onkeypress="return keypressed( this , event );">
 														 </div>
 														 <!--<div style="float:right">
 														 <button type="button" onclick="zoom_list_save();" class="btn btn-info">Save</button>
@@ -237,11 +240,37 @@ require_once("header.php");
 														 </div>-->
 														 </div>
 														 </div> 
+						<script>
+											
+											function keypressed( obj , e ) {
+												 var tecla = ( window.event ) ? e.keyCode : e.which;
+												 var texto = obj.value
+												 //var indexvir = texto.indexOf(",")
+												 var indexpon = texto.indexOf(".")
+												
+												if ( tecla == 8 || tecla == 0 )
+													return true;
+												if ( tecla != 46 && tecla < 48 || tecla > 57 )
+													return false;
+												/* if (tecla == 44) { if (indexvir !== -1 || indexpon !== -1) {return false} } */
+												if (tecla == 46) { if (indexvir !== -1 || indexpon !== -1) {return false} }
+											}
+											
+											function formataAnyDecimal (value,id){
+												
+												var d1 = value.substring(0,1);
+												var d2 = value.substring(1,10);
+												
+												document.getElementById(id).value = d1+','+d2;
+												
+												
+											}
+											
+											</script>
 						
-						
-						<button type="button" onclick="zoom_list_save(1)" name="btn1" class="btn btn-block bg-gradient-primary btn-sm" value="1">Save & Add New</button>
+						<button type="button" onclick="if( document.getElementById('value_table').value==''){ alert('select a register'); }else{ zoom_list_save(1) }" name="btn1" class="btn btn-block bg-gradient-primary btn-sm" value="1">Save & Add New</button>
 				
-						<button type="button" name="btn2" class="btn btn-block bg-gradient-info btn-sm" value="2" onclick="zoom_list_save(2)" >Save & Return</button>
+						<button type="button" name="btn2" class="btn btn-block bg-gradient-info btn-sm" value="2" onclick="if( document.getElementById('value_table').value==''){  alert('select a register'); }else{ zoom_list_save(2) }" >Save & Return</button>
 					  </form>
               </div> 
 			  <div class="col-sm-4 col-md-6">
@@ -255,6 +284,24 @@ require_once("header.php");
 
 
 							function zoom_list_save(r) {	
+							     if( 
+							   
+							   document.getElementById('low_estimate').value == '' ||
+							   document.getElementById('most_probable').value == '' ||
+							   document.getElementById('high_estimate').value == '' 
+							   
+							   ){
+								   alert('Low estimate, Most probable and High estimate fields are required');
+							   }else if( 
+							   
+							   document.getElementById('low_estimate').value > document.getElementById('most_probable').value || 							   
+							   document.getElementById('most_probable').value > document.getElementById('high_estimate').value ||
+							   document.getElementById('high_estimate').value <  document.getElementById('low_estimate').value
+							   
+							   ){
+								   alert('Invalid values, check the scale of values');
+							   }else{   
+							   
 							   
 								var formulario = document.getElementById('frmZoomLista');
 								var dados = new FormData(formulario);
@@ -286,7 +333,8 @@ require_once("header.php");
 									}	
 									window.scrollTo(0, 0);
 								}
-							  });
+							  })
+							   }
 							}
 						</script>	
               <!-- /.col -->

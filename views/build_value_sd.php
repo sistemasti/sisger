@@ -1,9 +1,9 @@
 <?php
 
 require_once("header.php");
-if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){ 
+if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("you dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
 
 } 
 
@@ -1010,6 +1010,21 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 	  });
 	}
 	
+	function atualiza_value_pie_table() {			
+	  //var i = '#row'+id;
+	  $.ajax({
+		type: "POST",
+		url: "ajax_process/atualiza_value_pie_table.php",
+		data: {
+			
+		},
+		success: function(data) {
+		 /*  $(i).css({"display":"none"});
+		  alert('Record deleted successfully');
+		  location.reload(); */
+		}
+	  });
+	}
 	
   </script>
   
@@ -1444,5 +1459,5 @@ require_once("footer.php");
 			
 		};
 
-		
+	
 	</script>

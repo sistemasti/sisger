@@ -1,12 +1,11 @@
 <?php
 
 require_once("header.php");
-if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){ 
+if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("you dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
 
 } 
-
 ?>
  <style>
     .color-palette {
@@ -456,7 +455,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 						    $("#fdUncert").val(data['fdUncert']);							
 						    $("#bxUncert").html(data['fdUncert']);
 							
-						    $("#fdHigh").html(data['fdHigh']);
+						    $("#fdHigh").val(data['fdHigh']);
 						    $("#bxHigh").html(data['fdHigh']);
 							
 						    $("#fr_zoom_obs").html(data['fr_zoom_obs']);
@@ -652,9 +651,134 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 								
 							}	
 							
-							$("#heia").val(data['heia']);
+							/* $("#heia").val(data['heia']);
 							$("#plia").val(data['plia']);
-							$("#leia").val(data['leia']);
+							$("#leia").val(data['leia']); */
+							
+							if(data['leia'] == "0.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/30 000, ".$_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "1.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/10 000, ".$_SESSION[$_SESSION['lang']]['A trace of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "1.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/3 000, ".$_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "2.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/1000, ".$_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "2.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/300, ".$_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "3.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/100, ".$_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "3.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/30, ".$_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "4.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/10, ".$_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "4.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/3, ".$_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "5.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/1, ".$_SESSION[$_SESSION['lang']]['All or most of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							//plia
+							if(data['plia'] == "0.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/30 000, ".$_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "1.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/10 000, ".$_SESSION[$_SESSION['lang']]['A trace of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "1.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/3 000, ".$_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "2.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/1000, ".$_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "2.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/300, ".$_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "3.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/100, ".$_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "3.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/30, ".$_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "4.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/10, ".$_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "4.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/3, ".$_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "5.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/1, ".$_SESSION[$_SESSION['lang']]['All or most of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							//heia
+							if(data['heia'] == "0.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/30 000, ".$_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "1.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/10 000, ".$_SESSION[$_SESSION['lang']]['A trace of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "1.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/3 000, ".$_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "2.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/1000, ".$_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "2.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/300, ".$_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "3.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/100, ".$_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "3.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/30, ".$_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "4.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/10, ".$_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "4.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/3, ".$_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "5.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/1, ".$_SESSION[$_SESSION['lang']]['All or most of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							/* document.getElementById('plia').options[0] = new Option("Selected by zoom", ca_media, true, true);
+							document.getElementById('heia').options[0] = new Option("Selected by zoom", ca_high, true, true);	 */
 							//alert(data['ia_zoom_explanation_fields']);
 							$("#ia_zoom_explanation_fields").val(data['explain_ia']);
 						    $("#ia_zoom_notes_explanation").val(data['ia_zoom_notes_explanation']);

@@ -64,7 +64,11 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                 </a>
               </li>
 			  
-			  <?php if($_SESSION['project_type'] == 1){ ?>
+			  <?php 
+			  
+			
+			  
+			  if($_SESSION['project_type'] == 1){ ?>
 			  
 			  
               <li class="nav-item has-treeview menu-open">
@@ -236,7 +240,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 		  
 		  <?php } ?>
 		  
-		   <?php if($_SESSION['perfil_logado'] == "1" || $_SESSION['perfil_logado'] == "2" ){ ?>
+		   <?php if($_SESSION['perfil_logado'] == "1" || $_SESSION['perfil_logado'] == "2" || $_SESSION['perfil_logado'] == "3" ){ ?>
           <li class="nav-item has-treeview <?php if($_SESSION['menu_active'] == "admin"){ echo 'menu-open'; }?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tools"></i>
@@ -253,7 +257,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                   <p>Projects</p>
                 </a>
               </li>
-             <?php if($_SESSION['perfil_logado'] == "1" ){ ?>
+             <?php if($_SESSION['perfil_logado'] == "1" || $_SESSION['perfil_logado'] == "3" ){ ?>
               <li class="nav-item">
                 <a href="institution_report" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

@@ -123,22 +123,185 @@ echo "</pre>"; */
 											<input type="radio" name="type_score" id="type_score_1" value="1"  onclick="
 													document.getElementById('bxFractionAffected').style.display='block';
 													document.getElementById('bxValuePieAffected').style.display='none';
-													
+													carregaValoresStepsScale();
 													" <?php if (!isset($_GET['ca_high']) || $type_score==1){ echo "checked";}else{echo "";} ?> > <?php echo $_SESSION[$_SESSION['lang']]['Steps scale, considering the heritage asset as a whole.']; ?>
 													
 													<br>
 											<input type="radio" name="type_score" id="type_score_2" value="2" onclick="
 													document.getElementById('bxFractionAffected').style.display='none';
 													document.getElementById('bxValuePieAffected').style.display='block';
-													
-													" <?php if ((isset($_GET['ca_high']) && !isset($_GET['id'])) || $type_score==2){ echo "checked";}else{echo "";} ?>> <?php echo $_SESSION[$_SESSION['lang']]['More precise data using the value pie']; ?><br>
+													select_risk_ia_zoom(document.getElementById('risk').value);
+													" <?php if ((isset($_GET['ca_high'])) || $type_score==2){ echo "checked";}else{echo "";} ?>> <?php echo $_SESSION[$_SESSION['lang']]['More precise data using the value pie']; ?><br>
 											
 											<input type="hidden" name="C_type_list" id="C_type_list" value='1'>
 											<br>
 											<br>
+											<script>
 											
+											function select_risk_ia_zoom(id) {		
+					
+					  	
+					 
+					  $.ajax({
+						type: "POST",
+						url: "ajax_process/select_risk.php",
+						data: {
+							id: id
+						},
+						dataType: 'json',
+						success: function(data) {
+							
+							
+							
+							//C
+							$("#ia_Inp_Min").val(data['ia_Inp_Min']);
+							$("#ia_Inp_Med").val(data['ia_Inp_Med']);
+							$("#ia_Inp_Max").val(data['ia_Inp_Max']);
+							$("#ia_Inp_Range").val(data['ia_Inp_Range']);
+							$("#explain_ia").val(data['explain_ia']);
+							
+							$("#ia_Div_Min").html(data['ia_Inp_Min']);
+							$("#ia_Div_Med").html(data['ia_Inp_Med']);
+							$("#ia_Div_Max").html(data['ia_Inp_Max']);
+							$("#ia_Div_Range").html(data['ia_Inp_Range']);
+							$("#ia_Div_Range").html(data['ia_Inp_Range']);
+							
+							
+							
+							if(data['leia'] == "0.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/30 000, ".$_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "1.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/10 000, ".$_SESSION[$_SESSION['lang']]['A trace of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "1.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/3 000, ".$_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "2.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/1000, ".$_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "2.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/300, ".$_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "3.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/100, ".$_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "3.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/30, ".$_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "4.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/10, ".$_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "4.5"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/3, ".$_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							if(data['leia'] == "5.0"){
+								document.getElementById('leia').options[0]=new Option(<?php echo "'~1/1, ".$_SESSION[$_SESSION['lang']]['All or most of the whole asset value']."'"; ?>, data['leia'], true, true);
+							}
+							
+							//plia
+							if(data['plia'] == "0.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/30 000, ".$_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "1.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/10 000, ".$_SESSION[$_SESSION['lang']]['A trace of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "1.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/3 000, ".$_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "2.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/1000, ".$_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "2.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/300, ".$_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "3.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/100, ".$_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "3.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/30, ".$_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "4.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/10, ".$_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "4.5"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/3, ".$_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							if(data['plia'] == "5.0"){
+								document.getElementById('plia').options[0]=new Option(<?php echo "'~1/1, ".$_SESSION[$_SESSION['lang']]['All or most of the whole asset value']."'"; ?>, data['plia'], true, true);
+							}
+							
+							//heia
+							if(data['heia'] == "0.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/30 000, ".$_SESSION[$_SESSION['lang']]['Less than a trace of the whole asset value but not zero']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "1.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/10 000, ".$_SESSION[$_SESSION['lang']]['A trace of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "1.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/3 000, ".$_SESSION[$_SESSION['lang']]['Between a tiny fraction and a trace of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "2.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/1000, ".$_SESSION[$_SESSION['lang']]['A tiny fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "2.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/300, ".$_SESSION[$_SESSION['lang']]['Between small and tiny fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "3.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/100, ".$_SESSION[$_SESSION['lang']]['A small fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "3.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/30, ".$_SESSION[$_SESSION['lang']]['Between large and small fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "4.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/10, ".$_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "4.5"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/3, ".$_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+							if(data['heia'] == "5.0"){
+								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/1, ".$_SESSION[$_SESSION['lang']]['All or most of the whole asset value']."'"; ?>, data['heia'], true, true);
+							}
+							
+						
+							
+							
+						}
+					  });
+					}
+											
+											
+											</script>
+					
 											<?php 											
-											if ($type_score == 1){ 
+											if ($type_score == 1 && !isset($_GET['ca_high'])){ 
 											?>
 											<div id="bxFractionAffected" style="display: block">
 											<?php
@@ -153,7 +316,7 @@ echo "</pre>"; */
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['High estimate'];  ?></label>
 														<select class="form-control" id="heia" name="heia"  onchange="range_I_A('Max',this.value)">
                            
-																<option value="0.0" ><?php echo $_SESSION[$_SESSION['lang']]['Select']; ?></option>
+																<option value="0.0" selected><?php echo $_SESSION[$_SESSION['lang']]['Select']; ?></option>
 																<option value="5.0" <?php if($heia == "5.0"){ echo "selected"; } ?> >~1/1, <?php echo $_SESSION[$_SESSION['lang']]['All or most of the whole asset value']; ?></option>
 																<option value="4.5" <?php if($heia == "4.5"){ echo "selected"; } ?>>~1/3   <?php echo $_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']; ?></option>
 																<option value="4.0" <?php if($heia == "4.0"){ echo "selected"; } ?>>~1/10  <?php echo $_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']; ?></option>
@@ -173,7 +336,7 @@ echo "</pre>"; */
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Probable loss to each item affected']; ?></label>
 														<select class="form-control" id="plia" name="plia" onchange="range_I_A('Med',this.value)">
 																
-																<option value="0.0" ><?php echo $_SESSION[$_SESSION['lang']]['Select']; ?></option>	
+																<option value="0.0" selected><?php echo $_SESSION[$_SESSION['lang']]['Select']; ?></option>	
 																<option value="5.0" <?php if($plia == "5.0"){ echo "selected"; } ?>>~1/1, <?php echo $_SESSION[$_SESSION['lang']]['All or most of the whole asset value']; ?></option>
 																<option value="4.5" <?php if($plia == "4.5"){ echo "selected"; } ?>>~1/3  <?php echo $_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']; ?>.</option>
 																<option value="4.0" <?php if($plia == "4.0"){ echo "selected"; } ?>>~1/10  <?php echo $_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']; ?>.</option>
@@ -192,7 +355,7 @@ echo "</pre>"; */
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate']; ?></label>
 														<select class="form-control" id="leia" name="leia" onchange="range_I_A('Min',this.value)">
 																
-																<option value="0.0" ><?php echo $_SESSION[$_SESSION['lang']]['Select']; ?></option>
+																<option value="0.0" selected><?php echo $_SESSION[$_SESSION['lang']]['Select']; ?></option>
 																<option value="5.0" <?php if($leia == "5.0"){ echo "selected"; } ?>>~1/1, <?php echo $_SESSION[$_SESSION['lang']]['All or most of the whole asset value']; ?></option>
 																<option value="4.5" <?php if($leia == "4.5"){ echo "selected"; } ?>>~1/3  <?php echo $_SESSION[$_SESSION['lang']]['Between most and a large fraction of the whole asset value']; ?>.</option>
 																<option value="4.0" <?php if($leia == "4.0"){ echo "selected"; } ?>>~1/10  <?php echo $_SESSION[$_SESSION['lang']]['A large fraction of the whole asset value']; ?>.</option>
@@ -211,7 +374,7 @@ echo "</pre>"; */
 											
 
 											<?php 											
-											if (( isset($_GET['ca_high']) && !isset($_GET['id']) ) || $type_score==2){ 
+											if (( isset($_GET['ca_high'])  ) || $type_score==2){ 
 											?>
 											<div id="bxValuePieAffected" style="display: block">
 											<?php
@@ -682,4 +845,28 @@ echo "</pre>"; */
 							
 						</script>	
 						
+						<script>
+					
+					function carregaValoresStepsScale(){
+						//alert(document.getElementById('plia').value);
 						
+						/* var leia = document.getElementById("leia");
+						alert(leia.options[leia.selectedIndex].value); */
+						
+						var plia = document.getElementById("plia");
+						//alert(plia.options[plia.selectedIndex].value);
+						
+						document.getElementById('ia_Inp_Min').value 		= document.getElementById('leia').value;
+						document.getElementById('ia_Div_Min').innerHTML 	= document.getElementById('leia').value;
+						
+						document.getElementById('ia_Inp_Med').value 		= document.getElementById('plia').value;
+						document.getElementById('ia_Div_Med').innerHTML 	= document.getElementById('plia').value;
+						
+						document.getElementById('ia_Inp_Max').value 		= document.getElementById('heia').value;
+						document.getElementById('ia_Div_Max').innerHTML 	= document.getElementById('heia').value;
+						
+						
+						
+					}
+					
+					</script>

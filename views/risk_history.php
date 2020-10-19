@@ -104,8 +104,8 @@ require_once("header.php");
 				<br>
 				
 				<div class="col-sm-4 col-md-4">
-				
-					
+				<strong>Risks</strong>
+					<hr>
 						<?php 
 				
 																				
