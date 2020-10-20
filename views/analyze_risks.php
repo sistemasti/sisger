@@ -1060,30 +1060,30 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										//Math.pow(base, expoente)
 										
 										//A
-										var a_h_p = Math.pow(10, ((document.getElementById('magnitude_FR_High').innerHTML)-5)*-1);
-										var a_p_p = Math.pow(10, ((document.getElementById('magnitude_FR_Probable').innerHTML)-5)*-1);
-										var a_l_p = Math.pow(10, ((document.getElementById('magnitude_FR_Low').innerHTML)-5)*-1);
+										var a_h_p = Math.pow(10, (document.getElementById('magnitude_FR_High').innerHTML)-5);
+										var a_p_p = Math.pow(10, (document.getElementById('magnitude_FR_Probable').innerHTML)-5);
+										var a_l_p = Math.pow(10, (document.getElementById('magnitude_FR_Low').innerHTML)-5);
 										
-										var total_a_p = 5-Math.log10((a_l_p + a_p_p + a_h_p)/3);
+										var total_a_p = 5-(Math.log10((a_l_p + a_p_p + a_h_p)/3)*-1);
 										document.getElementById('magnitude_FR_MEDIA').innerHTML = Math.round10(total_a_p,-1);
 										//alert(a_h_p);
 										
 										
 										//B
-										var b_h_p = Math.pow(10, ((document.getElementById('magnitude_LE_Max').innerHTML)-5)*-1);
-										var b_p_p = Math.pow(10, ((document.getElementById('magnitude_LE_Med').innerHTML)-5)*-1);
-										var b_l_p = Math.pow(10, ((document.getElementById('magnitude_LE_Min').innerHTML)-5)*-1);
+										var b_h_p = Math.pow(10, (document.getElementById('magnitude_LE_Max').innerHTML)-5);
+										var b_p_p = Math.pow(10, (document.getElementById('magnitude_LE_Med').innerHTML)-5);
+										var b_l_p = Math.pow(10, (document.getElementById('magnitude_LE_Min').innerHTML)-5);
 										
-										var total_b_p = 5-Math.log10((b_l_p + b_p_p + b_h_p)/3);
+										var total_b_p = 5-(Math.log10((b_l_p + b_p_p + b_h_p)/3)*-1);
 										document.getElementById('magnitude_LE_MEDIA').innerHTML = Math.round10(total_b_p,-1);
 										//alert(Math.round10(10.24, -1));
 										
 										//C
-										var c_h_p = Math.pow(10, ((document.getElementById('magnitude_IA_Max').innerHTML)-5)*-1);
-										var c_p_p = Math.pow(10, ((document.getElementById('magnitude_IA_Med').innerHTML)-5)*-1);
-									 	var c_l_p = Math.pow(10, ((document.getElementById('magnitude_IA_Min').innerHTML)-5)*-1);
+										var c_h_p = Math.pow(10, (document.getElementById('magnitude_IA_Max').innerHTML)-5);
+										var c_p_p = Math.pow(10, (document.getElementById('magnitude_IA_Med').innerHTML)-5);
+									 	var c_l_p = Math.pow(10, (document.getElementById('magnitude_IA_Min').innerHTML)-5);
 										
-										var total_c_p = 5-Math.log10((c_l_p + c_p_p + c_h_p)/3);
+										var total_c_p = 5-(Math.log10((c_l_p + c_p_p + c_h_p)/3)*-1);
 										document.getElementById('magnitude_IA_MEDIA').innerHTML = Math.round10(total_c_p,-1); 
 										
 										
