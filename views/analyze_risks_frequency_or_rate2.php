@@ -354,7 +354,7 @@
 											
 											//}
 											
-											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10" <?php if($type_risk == 3){ echo "readonly"; } ?>>
+											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10" <?php if($type_risk == 3){ echo "readonly"; } ?> disabled>
 										</div>	
 										</div>
 									<hr>
@@ -390,7 +390,7 @@
 												
 											}	
 											
-											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10">
+											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10" disabled>
 										</div>	
 										</div>
 									<hr>
@@ -412,7 +412,7 @@
 												
 											//}
 											
-											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10"  <?php if($type_risk == 3){ echo "readonly"; } ?>>
+											" onKeyUp="maskIt(this,event,'#########',true)" maxlength="10"  <?php if($type_risk == 3){ echo "readonly"; } ?> disabled>
 										</div>	
 									</div>	
 									

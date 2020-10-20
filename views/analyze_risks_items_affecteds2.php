@@ -139,7 +139,7 @@
 											<div id="bxFractionAffected" style="display: block">
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="heia" name="heia"  onchange="range_I_A('Max',this.value)">
+														<select class="form-control" id="heia" name="heia"  onchange="range_I_A('Max',this.value)" disabled>
                            
 																<option value="0.0" >Select</option>
 																<option value="5.0" <?php if($heia == "5.0"){ echo "selected"; } ?>>~1/1, total or almost total loss of value in each item affected</option>
@@ -159,7 +159,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="plia" name="plia" onchange="range_I_A('Med',this.value)">
+														<select class="form-control" id="plia" name="plia" onchange="range_I_A('Med',this.value)" disabled>
 																
 																<option value="0.0" >Select</option>	
 																<option value="5.0" <?php if($plia == "5.0"){ echo "selected"; } ?>>~1/1, total or almost total loss of value in each item affected</option>
@@ -178,7 +178,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="leia" name="leia" onchange="range_I_A('Min',this.value)">
+														<select class="form-control" id="leia" name="leia" onchange="range_I_A('Min',this.value)" disabled>
 																
 																<option value="0.0" >Select</option>
 																<option value="5.0" <?php if($leia == "5.0"){ echo "selected"; } ?>>~1/1, total or almost total loss of value in each item affected</option>

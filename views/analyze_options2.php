@@ -766,7 +766,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				function select_risk_option(id_option,id_risk) {			
 				 //var i = '#row'+id;
 				 
-				 document.getElementById('bxAll').style.display='block';
+				 if(document.getElementById('risk').value != "#" && document.getElementById('id_option').value != "#"){
+					  document.getElementById('bxAll').style.display='block';
+				 }else{
+					 document.getElementById('bxAll').style.display='none';
+				 } 
+				 
+				  /* alert(document.getElementById('risk').value);
+				  alert(document.getElementById('id_option').value); */
+				 
 				  $.ajax({
 					type: "POST",
 					url: "ajax_process/select_risk_option.php",
