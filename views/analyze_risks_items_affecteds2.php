@@ -120,7 +120,7 @@
 													document.getElementById('bxValuePieAffected_o').style.display='none';
 													
 													
-													" checked> Steps scale, considering the heritage asset as a whole.
+													" checked> Step scale, considering the heritage asset as a whole.
 													
 													<br>
 											<input type="radio" name="type_score" id="type_score_2" value="2" onclick="

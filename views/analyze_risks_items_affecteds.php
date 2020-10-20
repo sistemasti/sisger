@@ -124,7 +124,7 @@ echo "</pre>"; */
 													document.getElementById('bxFractionAffected').style.display='block';
 													document.getElementById('bxValuePieAffected').style.display='none';
 													carregaValoresStepsScale();
-													" <?php if (!isset($_GET['ca_high']) || $type_score==1){ echo "checked";}else{echo "";} ?> > <?php echo $_SESSION[$_SESSION['lang']]['Steps scale, considering the heritage asset as a whole.']; ?>
+													" <?php if (!isset($_GET['ca_high']) || $type_score==1){ echo "checked";}else{echo "";} ?> > <?php echo $_SESSION[$_SESSION['lang']]['Step scale, considering the heritage asset as a whole.']; ?>
 													
 													<br>
 											<input type="radio" name="type_score" id="type_score_2" value="2" onclick="

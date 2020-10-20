@@ -142,7 +142,7 @@
 	
 	$_SESSION['pt-br']['Select how this score will be entered:']						= "Selecione como essa pontuação será inserida:";
 	
-	$_SESSION['pt-br']['Steps scale, considering the heritage asset as a whole.']		= "Escala de etapas, considerando o patrimônio como um todo.";
+	$_SESSION['pt-br']['Step scale, considering the heritage asset as a whole.']		= "Escala de etapas, considerando o patrimônio como um todo.";
 	
 	$_SESSION['pt-br']['More precise data using the value pie']						= "Dados mais precisos usando a pizza de valor";
 	
@@ -400,7 +400,7 @@
 	
 	$_SESSION['eng']['Select how this score will be entered:']						= "Select how this score will be entered:";
 	
-	$_SESSION['eng']['Steps scale, considering the heritage asset as a whole.']		= "Steps scale, considering the heritage asset as a whole.";
+	$_SESSION['eng']['Step scale, considering the heritage asset as a whole.']		= "Step scale, considering the heritage asset as a whole.";
 	
 	$_SESSION['eng']['More precise data using the value pie']						= "More precise data using the value pie";
 	
