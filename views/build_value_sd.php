@@ -119,15 +119,57 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									<td >
 									<div class="form-group">
 											
-									<input type="text" class="form-control" id="group_name<?php echo $in['id']; ?>" name="group_name<?php echo $in['id']; ?>" value="<?php echo $in['name']; ?>" onkeyup="if(this.value != ''){
+									<input type="text" class="form-control" id="group_name<?php echo $in['id']; ?>" name="group_name<?php echo $in['id']; ?>" value="<?php echo $in['name']; ?>" onkeyup="
+									if(this.value != ''){
 										
 										group_edit(this.value,document.getElementById('value_ratio_<?php echo $in['id']; ?>').value,document.getElementById('method_for_quantifying_<?php echo $in['id']; ?>').value,<?php echo $in['id']; ?>);
+										this.style.backgroundColor='#f5f2c9';
+										$('#group_selected_for_all').val(<?php echo $in['id']; ?>); 
+										atualiza_value_pie_table();
+										$('#group_selected').val(<?php echo $in['id']; ?>); 
+										}
 										
-										}" onclick="view_subgroup(<?php echo $in['id']; ?>);$('#groupOption').show();$('#group_selected_for_all').val(<?php echo $in['id']; ?>); $('#group_selected').val(<?php echo $in['id']; ?>); this.style.backgroundColor='#f5f2c9';document.getElementById('scores_column').style.display='none';" onblur="this.style.backgroundColor='#fff';if(this.value==''){ alert('Fill in the name fiel'); }" style="width:86%;display:inline-block" required> 
+										
+										" 
+										onclick="
+										view_subgroup(<?php echo $in['id']; ?>);
+										$('#groupOption').show();
+										$('#group_selected_for_all').val(<?php echo $in['id']; ?>); 
+										$('#group_selected').val(<?php echo $in['id']; ?>); 
+										this.style.backgroundColor='#f5f2c9';document.getElementById('scores_column').style.display='none';
+										"
+										onblur="
+										this.style.backgroundColor='#fff';if(this.value==''){ alert('Fill in the name field'); 
+										}" 
+										
+										style="width:86%;display:inline-block" required> 
+										
 									 </div>
 									</td>
 									<td>							
-										<input type="text" class="form-control" name="value_ratio_<?php echo $in['id']; ?>" id="value_ratio_<?php echo $in['id']; ?>" value="<?php echo $in['value_ratio']; ?>" onkeyup="group_edit(document.getElementById('group_name<?php echo $in['id']; ?>').value,this.value,document.getElementById('method_for_quantifying_<?php echo $in['id']; ?>').value,<?php echo $in['id']; ?>);" onclick="view_subgroup(<?php echo $in['id']; ?>);$('#groupOption').show();$('#group_selected_for_all').val(<?php echo $in['id']; ?>); $('#group_selected').val(<?php echo $in['id']; ?>); this.style.backgroundColor='#f5f2c9';document.getElementById('scores_column').style.display='none';" >
+										<input type="text" class="form-control" name="value_ratio_<?php echo $in['id']; ?>" id="value_ratio_<?php echo $in['id']; ?>" 
+										
+										value="<?php echo $in['value_ratio']; ?>"
+										
+										onkeyup="
+										
+										group_edit(document.getElementById('group_name<?php echo $in['id']; ?>').value,this.value,document.getElementById('method_for_quantifying_<?php echo $in['id']; ?>').value,<?php echo $in['id']; ?>);" 
+										
+										onclick="
+										
+										view_subgroup(<?php echo $in['id']; ?>);	
+										
+										$('#groupOption').show();$('#group_selected_for_all').val(<?php echo $in['id']; ?>); 
+										
+										$('#group_selected').val(<?php echo $in['id']; ?>);
+										
+										this.style.backgroundColor='#f5f2c9';
+										
+										
+										
+										"
+
+										>
 									
 									</td>
 									<td>
@@ -171,6 +213,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								?>
 								</tbody>
 							</table>
+							
+							
+							
 							<script>
 
 								function group_delete(id) {			
@@ -184,6 +229,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									},
 									success: function(data) {
 									  //$(i).css({"display":"none"});
+									  atualiza_value_pie_table();
 									  location.reload();
 									}
 								  });
@@ -204,7 +250,27 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									processData: false,
 									contentType: false,
 									success: function(data) {
-										
+										atualiza_value_pie_table();
+										//location.reload();
+									}
+									});
+								}
+								
+								
+								function group_edit_name(name,id) {	
+									
+									//alert(name);	
+									$.ajax({
+									dataType: 'json',
+									type: "POST",
+									url: "ajax_process/group_edit_name.php?name="+name+"&id="+id,
+									data: {
+										name:name		
+									},
+									processData: false,
+									contentType: false,
+									success: function(data) {
+										atualiza_value_pie_table();
 										//location.reload();
 									}
 									});
@@ -224,7 +290,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									processData: false,
 									contentType: false,
 									success: function(data) {
-										
+										atualiza_value_pie_table();
 										//location.reload();
 									}
 									});
@@ -243,7 +309,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									processData: false,
 									contentType: false,
 									success: function(data) {
-										
+										atualiza_value_pie_table();
 										//location.reload();
 									}
 									});
@@ -262,8 +328,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									processData: false,
 									contentType: false,
 									success: function(data) {
-										
 										document.getElementById('totalNumberOfItens').innerHTML=data;
+										atualiza_value_pie_table();
 									}
 									});
 								}
@@ -337,6 +403,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										//html_points_subgroup
 										document.getElementById('html_points_subgroup').innerHTML=data['total'];
 										document.getElementById('html_points_subgroup_subgroup').innerHTML=data['total_group'];
+										atualiza_value_pie_table();
 									}
 									});
 
@@ -360,6 +427,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										view_subgroup(group_id);
 										window.scrollto(0,0);
+										atualiza_value_pie_table();
 									}
 									});
 								}
@@ -383,6 +451,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										view_scores(subgroup_id);
 										document.getElementById('html_points_subgroup_subgroup').innerHTML=data;
 										window.scrollto(0,0);
+										atualiza_value_pie_table();
 									}
 									});
 								}
@@ -424,8 +493,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									processData: false,
 									contentType: false,
 									success: function(data) {
-										//document.getElementById('pb_'+id).value; 
+										//document.getElementById('pb_'+id).value;
+										atualiza_value_pie_table();										
 										location.reload();
+										
 									}
 									});
 								}
@@ -433,10 +504,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<hr>
 							
-							<div id="groupOption" style="display:none">
+							
 								<button type="button" class="btn btn-block bg-gradient-warning btn-sm" data-toggle="modal" data-target="#modal-lg" onclick="loadZoom(document.getElementById('group_selected_for_all').value)">Zoom Description</button>
-								
-							</div>
+						
 <script>
 								function loadZoom(id) {	
 									
@@ -495,7 +565,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									},
 									success: function(data) {
 									  //$(i).css({"display":"none"});
-									  
+									  atualiza_value_pie_table();
 									  view_subgroup(group_id);
 									}
 								  });
@@ -513,19 +583,25 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									success: function(data) {
 									  //$(i).css({"display":"none"});
 									  view_subgroup(document.getElementById('group_selected_for_all').value);
+									  atualiza_value_pie_table();
 									  view_scores(subgroup);
 									}
 								  });
 								}
 								
 				</script>
-							<br>
-								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-graph">Value Pie for all the asset</button>
-								<div id="btnChart">
+							
+								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-graph" style="margin-top:4px;" onclick="$('#btnSBNTS').show();
+							$('#btnSBNTS2').hide();">Value Pie for all the asset</button>
+							<div id="groupOption" style="display:none;margin-top:4px;">
+								
+								<div id="btnChart" style="margin-top:4px;">
 								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm"  data-toggle="modal" data-target="#modal-graph2">Value Pie for the select group</button>
 								</div>
 								
-								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-table" onclick="view_value_type(document.getElementById('group_selected_for_all').value)">Value Pie as a table</button>
+							</div>
+								
+								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-table" onclick="view_value_type(document.getElementById('group_selected_for_all').value)" style="margin-top:4px;">Value Pie as a table</button>
 								
 								<script>
 								function view_value_type(id) {	
@@ -541,7 +617,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									processData: false,
 									contentType: false,
 									success: function(data) {
-										
+										atualiza_value_pie_table();
 										document.getElementById('valueTable').innerHTML=data;
 									}
 									});
@@ -614,7 +690,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								contentType: false,
 								success: function(data) {
 									
-									
+									atualiza_value_pie_table();
 									
 								},
 								error: function(){
@@ -643,6 +719,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								contentType: false,
 								success: function(data) {
 									
+									atualiza_value_pie_table();
 									
 								},
 								error: function(){
@@ -717,12 +794,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
   <!-- /.control-sidebar -->
   
   
+  <!-- TODO: transformar em include essas modais -->
+  
+   
   
   <div class="modal fade" id="modal-graph">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Value Pie as a Table</h4>
+							<h4 class="modal-title">Value Pie for all the asset</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
@@ -741,6 +821,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart2').hide();
 							$('#bxPieChart3').show();
 							$('#bxPieChart4').hide();
+							$('#btnSBNTS').hide();
+							$('#btnSBNTS2').show();
 							">sorted by size of the slice</button>
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
@@ -748,7 +830,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart2').hide();
 							$('#bxPieChart3').hide();
 							$('#bxPieChart4').hide();
-							">sorted by name of the subgroup</button>
+							"  id="btnSBNTS">sorted by name of the subgroup</button>
+							
+							
+							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
+							$('#bxPieChart1').hide();
+							$('#bxPieChart2').hide();
+							$('#bxPieChart3').show();
+							$('#bxPieChart4').hide();
+							" id="btnSBNTS2" style="display:none;">sorted by name of the subgroup </button>
 							
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
@@ -961,20 +1051,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								}
 									?>
 								
-				
-				
-				
-				
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+								
   
   
   <script>
@@ -1014,14 +1091,18 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 	  //var i = '#row'+id;
 	  $.ajax({
 		type: "POST",
-		url: "ajax_process/atualiza_value_pie_table.php",
+		dataType: 'json',
+		url: "ajax_process/atualiza_value_pie_table_sd.php",
 		data: {
 			
 		},
 		success: function(data) {
-		 /*  $(i).css({"display":"none"});
-		  alert('Record deleted successfully');
-		  location.reload(); */
+			//alert('1');
+		 
+		},
+		error: function(){
+			//alert('2');						
+									
 		}
 	  });
 	}
@@ -1035,8 +1116,6 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 require_once("footer.php");
 
 ?>
-
-
 <script>
  
 		
@@ -1051,14 +1130,16 @@ require_once("footer.php");
 				$in = Build_value_pie::select_ec_values_for_table_by_group();
 				foreach($in['dados'] as $in){
 						
-						$a = Build_value_pie::select_sum_points_group($in['group_id']);
-						$b = (float)$in['groupPoints'];
-						$c = (float)$in['subgroupPoints'];
+						$a = Build_value_pie::select_sum_soma_for_single_by_group($in['group_id']);
+						$b = (float)$in['groupRatio'];
+						$c = (float)$in['subgroupRatio'];
 						$d = (float)$in['numbers_of_items'];
 						
 						$bgColors 	.= random_color().",";
 						$name 		.= $in['group_name'].",";
-						$data 		.= ($b*100)/$a['a'].",";
+						$data 		.= ($b*100)/$a['total'].",";
+						
+						
 				}	
 		?>
 		var barChartData = {
@@ -1089,14 +1170,17 @@ require_once("footer.php");
 				$in2 = Build_value_pie::select_ec_values_for_table();
 				foreach($in2['dados'] as $in2){
 						
-						$a = Build_value_pie::select_sum_points_group($in2['group_id']);
-						$b = (float)$in2['groupPoints'];
-						$c = (float)$in2['subgroupPoints'];
+						$a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);
+						$b = (float)$in2['groupRatio'];
+						$c = (float)$in2['subgroupRatio'];
 						$d = (float)$in2['numbers_of_items'];
 						
 						$bgColors2 	.= "'".random_color()."',";
 						$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-						$data2 		.= round(($c*100)/$a['a'],2).",";
+						$data2 		.= round(($c*100)/$a['total'],2).",";
+						
+						
+						
 				}	
 		?>
 		var barChartData1b = {
@@ -1123,14 +1207,14 @@ require_once("footer.php");
 				$in2 = Build_value_pie::select_ec_values_for_table();
 				foreach($in2['dados'] as $in2){
 						
-						$a = Build_value_pie::select_sum_points_group($in2['group_id']);
-						$b = (float)$in2['groupPoints'];
-						$c = (float)$in2['subgroupPoints'];
+						$a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);
+						$b = (float)$in2['groupRatio'];
+						$c = (float)$in2['subgroupRatio'];
 						$d = (float)$in2['numbers_of_items'];
 						
 						$bgColors2 	.= "'".random_color()."',";
 						$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-						$data2 		.= round(($c*100)/$a['a'],2).",";
+						$data2 		.= round(($c*100)/$a['total'],2).",";
 				}	
 		?>
 		var barChartData1c = {
@@ -1156,14 +1240,18 @@ require_once("footer.php");
 				$in2 = Build_value_pie::select_ec_values_for_table();
 				foreach($in2['dados'] as $in2){
 						
-						$a = Build_value_pie::select_sum_points_group($in2['group_id']);
-						$b = (float)$in2['groupPoints'];
-						$c = (float)$in2['subgroupPoints'];
+						$a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);
+						$b = (float)$in2['groupRatio'];
+						$c = (float)$in2['subgroupRatio'];
 						$d = (float)$in2['numbers_of_items'];
 						
 						$bgColors2 	.= "'".random_color()."',";
 						$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-						$data2 		.= $in['numbers_of_items'].",";
+						if($in['numbers_of_items'] != ""){
+								$data2 		.= $in['numbers_of_items'].",";
+						}else{
+								$data2 		.= "0,";
+						}
 				}	
 		?>
 		/**/ 
@@ -1209,14 +1297,21 @@ require_once("footer.php");
 					$in2 = Build_value_pie::select_ec_values_for_table_by_group_in_id($in['id']);
 					foreach($in2['dados'] as $in2){
 							
-							$a = Build_value_pie::select_sum_points_group($in2['group_id']);
-							$b = (float)$in2['groupPoints'];
-							$c = (float)$in2['subgroupPoints'];
+							$a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);
+							$b = (float)$in2['groupRatio'];
+							$c = (float)$in2['subgroupRatio'];
 							$d = (float)$in2['numbers_of_items'];
 							
 							$bgColors2 	.= "'".random_color()."',";
 							$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-							$data2 		.= $in['numbers_of_items'].",";
+							
+							if($in['numbers_of_items'] != ""){
+								$data2 		.= $in['numbers_of_items'].",";
+							}else{
+								$data2 		.= "0,";
+							}
+							
+							//echo "ni: ".$data2 ."<br>";
 					}
 						
 					?>
@@ -1249,14 +1344,14 @@ require_once("footer.php");
 					$in2 = Build_value_pie::select_ec_values_for_table_by_group_id($in['id']);
 					foreach($in2['dados'] as $in2){
 							
-							$a = Build_value_pie::select_sum_points_group($in2['group_id']);
-							$b = (float)$in2['groupPoints'];
-							$c = (float)$in2['subgroupPoints'];
+							$a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);
+							$b = (float)$in2['groupRatio'];
+							$c = (float)$in2['subgroupRatio'];
 							$d = (float)$in2['numbers_of_items'];
 							
 							$bgColors2 	.= "'".random_color()."',";
 							$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-							$data2 		.= round(($c*100)/$a['a'],2).",";
+							$data2 		.= round(($c*100)/$a['total'],2).",";
 					}	
 						
 					?>
@@ -1459,5 +1554,5 @@ require_once("footer.php");
 			
 		};
 
-	
+		
 	</script>

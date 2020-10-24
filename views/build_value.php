@@ -109,9 +109,39 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								<tr>
 									
 									<td id="row_group<?php echo $in['id'];?>">
-									<input type="text" class="form-control" id="group_name<?php echo $in['id']; ?>" name="group_name<?php echo $in['id']; ?>" value="<?php echo $in['name']; ?>" onkeyup="if(this.value != ''){group_edit_name(this.value,<?php echo $in['id']; ?>)}" onclick="view_subgroup(<?php echo $in['id']; ?>);$('#groupOption').show();$('#group_selected_for_all').val(<?php echo $in['id']; ?>); $('#group_selected').val(<?php echo $in['id']; ?>); this.style.backgroundColor='#f5f2c9';document.getElementById('scores_column').style.display='none';atualiza_value_pie_table();" onblur="this.style.backgroundColor='#fff';if(this.value==''){ alert('Fill in the name fiel'); }" style="width:86%;display:inline-block" required> 
+									<input type="text" class="form-control" id="group_name<?php echo $in['id']; ?>" name="group_name<?php echo $in['id']; ?>" value="<?php echo $in['name']; ?>" onkeyup="
 									
-									<a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ group_delete(<?php echo $in['id'];?>)}">
+									if(this.value != ''){
+										
+										group_edit_name(this.value,<?php echo $in['id']; ?>)}" onclick="view_subgroup(<?php echo $in['id']; ?>);
+										
+										$('#groupOption').show();
+										
+										$('#group_selected_for_all').val(<?php echo $in['id']; ?>); 
+										
+										$('#group_selected').val(<?php echo $in['id']; ?>); 
+										
+										this.style.backgroundColor='#f5f2c9';
+										document.getElementById('scores_column').style.display='none';
+										
+										atualiza_value_pie_table();
+										
+										" 
+										
+										onblur="
+										this.style.backgroundColor='#fff';
+										
+										if(this.value==''){ alert('Fill in the name field'); }
+										
+										" style="width:86%;display:inline-block" required> 
+									
+									<a href="javascript:void(0)" onclick="
+									
+									if(confirm('Do you really want to delete?')){ 
+									
+									group_delete(<?php echo $in['id'];?>)
+									
+									}">
 									<button type="button" class="btn btn-danger btn-sm" style="float:right;">
 <i class="fas fa-trash-alt"></i></button></a>
 									</td>

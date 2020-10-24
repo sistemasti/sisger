@@ -81,6 +81,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               
               <!-- /.card-header -->
               <div class="card-body">
+			  
+			  
+			  
 			  <?php 
 						
 						
@@ -276,7 +279,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							//C	
 								$ia_Inp_Min 	= $ar['C_min_score']; 
 								$ia_Div_Min 	= ($ar['C_min_score'] != '')?$ar['C_min_score']:'0.0';
-								$ia_Inp_med 	= $ar['C_pro_score']; 
+								$ia_Inp_Med 	= $ar['C_pro_score']; 
 								$ia_Div_Med 	= ($ar['C_pro_score'] != '')?$ar['C_pro_score']:'0.0';
 								$ia_Inp_Max 	= $ar['C_max_score']; 
 								$ia_Div_Max 	= ($ar['C_max_score'] != '')?$ar['C_max_score']:'0.0';
@@ -287,7 +290,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$heia 			= $ar['C_field_value_1']; 
 								$plia 			= $ar['C_field_value_2']; 
 								$leia 			= $ar['C_field_value_3']; 
-								
+								//echo $ar['C_pro_score'];
 								$ia_zoom_explanation_fields 	= $explain_ia; 
 								$ia_zoom_notes_explanation 		= $ar['ia_zoom_notes_explanation']; 
 								$ia_zoom_document_name 			= $ar['ia_zoom_document_name']; 
@@ -573,7 +576,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$("#ia_Inp_Max").val(data['ia_Inp_Max']);
 							$("#ia_Inp_Range").val(data['ia_Inp_Range']);
 							$("#explain_ia").val(data['explain_ia']);
-							
+							//alert(data['explain_ia']);
 							$("#ia_Div_Min").html(data['ia_Inp_Min']);
 							$("#ia_Div_Med").html(data['ia_Inp_Med']);
 							$("#ia_Div_Max").html(data['ia_Inp_Max']);
@@ -587,16 +590,16 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								document.getElementById("type_score_1").checked = true;
 								document.getElementById("type_score_2").checked = false;
 								document.getElementById('bxFractionAffected').style.display='block';
-								document.getElementById('bxFractionAffected_o').style.display='block';
-								document.getElementById('bxValuePieAffected_o').style.display='none';
+								/* document.getElementById('bxFractionAffected_o').style.display='block';
+								document.getElementById('bxValuePieAffected_o').style.display='none'; */
 							}	
 							
 							if(data['type_score'] == 2){
 								document.getElementById("type_score_2").checked = true;
 								document.getElementById("type_score_1").checked = false;
 								document.getElementById('bxFractionAffected').style.display='none';
-								document.getElementById('bxFractionAffected_o').style.display='none';
-								document.getElementById('bxValuePieAffected_o').style.display='block';
+								/* document.getElementById('bxFractionAffected_o').style.display='none';
+								document.getElementById('bxValuePieAffected_o').style.display='block'; */
 								
 							}	
 							
@@ -1040,22 +1043,27 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$("#ia_Div_Range_o").html(data['ia_Inp_Range_o']);
 							
 							//$("#type_score_o").val(data['type_score_o']);
+							//alert(data['type_score_o']);
 							
-							if(data['type_score_o'] == 1){
+							if(data['C_type_list_o'] == 1){
 								
 								/* document.getElementById("type_score_1_o").checked = true;
 								document.getElementById("type_score_2_o").checked = false; */
-								/**/ 
+								/* */ 
 								document.getElementById('bxFractionAffected_o').style.display='block';
-								document.getElementById('bxValuePieAffected_o').style.display='none'; 
+								document.getElementById('bxValuePieAffected_o').style.display='none';
+								document.getElementById("type_score_2").checked = false;
+								document.getElementById("type_score_1").checked = true;
 							}	
 							
-							if(data['type_score_o'] == 2){
+							if(data['C_type_list_o'] == 2){
 								/* document.getElementById("type_score_2_o").checked = true;
 								document.getElementById("type_score_1_o").checked = false; */
-								/**/ 
+								/* */
 								document.getElementById('bxFractionAffected_o').style.display='none';
 								document.getElementById('bxValuePieAffected_o').style.display='block'; 
+								document.getElementById("type_score_2").checked = true;
+								document.getElementById("type_score_1").checked = false;
 							}	
 							
 							if(data['C_type_list'] == 1){
@@ -1382,6 +1390,34 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 			  <!--Select options that haven been identified in the Identify Option form-->
 					<div class="form-group" id="bxOptions">
 							
+							<?php if(isset($_GET['id_option'])){ ?>
+							
+							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Options']; ?></label>
+							<select class="form-control" id="id_option" name="id_option" onchange="select_option(this.value,document.getElementById('risk').value);select_risk_option(this.value,document.getElementById('risk').value)">
+							<option value="#" > <?php echo $_SESSION[$_SESSION['lang']]['select']; ?> </option>
+							   <?php 
+								$op = Analyze_options::select_options_by_risk($_REQUEST['id']);												
+								foreach($op['dados'] as $op){
+									
+									if($op['id_option'] == $_GET['id_option']){
+									
+							  ?>
+									<option value="<?php echo $op['id_option']; ?>" Selected><?php echo $op['option']; ?></option>
+							  <?php 
+							  
+									}else{
+												
+							  ?>
+									<option value="<?php echo $op['id_option']; ?>"><?php echo $op['option']; ?></option>
+							  <?php
+									}	
+								}
+							  ?>
+							  
+							 
+							</select>
+							<?php } ?>
+							
 							</div>
                 </div>
                 </div>
@@ -1399,8 +1435,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									processData: false,
 									contentType: false,
 									success: function(data) {
-										
-										document.getElementById('bxOptions').innerHTML=data;
+										if(data != 1){
+											document.getElementById('bxOptions').innerHTML=data;
+										}else{
+											document.getElementById('bxOptions').innerHTML='No options registered for this risk';
+											document.getElementById('bxAll').style.display='none';
+										}
+											
 									}
 									});
 								}
@@ -1704,34 +1745,47 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										document.getElementById('magnitude_SOMA_MEDIA').innerHTML=parseFloat(total.toFixed(1));
 										
+										
+										/////////// OPTIONS
+										document.getElementById('magnitude_FR_MEDIA_o').innerHTML=document.getElementById('magnitude_FR_Probable_o').innerHTML;
+										
+										document.getElementById('magnitude_LE_MEDIA_o').innerHTML=document.getElementById('magnitude_LE_Med_o').innerHTML;
+										
+										document.getElementById('magnitude_IA_MEDIA_o').innerHTML=document.getElementById('magnitude_IA_Med_o').innerHTML;
+										
+										var total = parseFloat((document.getElementById('magnitude_FR_MEDIA_o').innerHTML))+parseFloat((document.getElementById('magnitude_LE_MEDIA_o').innerHTML))+parseFloat((document.getElementById('magnitude_IA_MEDIA_o').innerHTML));
+										
+										document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML=parseFloat(total.toFixed(1));
+										
+										
 									}else if(t==2){
 										//Math.pow(base, expoente)
 										
 										//A
-										var a_h_p = Math.pow(10, ((document.getElementById('magnitude_FR_High').innerHTML)-5)*-1);
-										var a_p_p = Math.pow(10, ((document.getElementById('magnitude_FR_Probable').innerHTML)-5)*-1);
-										var a_l_p = Math.pow(10, ((document.getElementById('magnitude_FR_Low').innerHTML)-5)*-1);
+										var a_h_p = Math.pow(10, (document.getElementById('magnitude_FR_High').innerHTML)-5);
+										var a_p_p = Math.pow(10, (document.getElementById('magnitude_FR_Probable').innerHTML)-5);
+										var a_l_p = Math.pow(10, (document.getElementById('magnitude_FR_Low').innerHTML)-5);
 										
-										var total_a_p = 5-Math.log10((a_l_p + a_p_p + a_h_p)/3);
+										var total_a_p = 5-(Math.log10((a_l_p + a_p_p + a_h_p)/3)*-1);
 										document.getElementById('magnitude_FR_MEDIA').innerHTML = Math.round10(total_a_p,-1);
 										//alert(a_h_p);
 										
 										
 										//B
-										var b_h_p = Math.pow(10, ((document.getElementById('magnitude_LE_Max').innerHTML)-5)*-1);
-										var b_p_p = Math.pow(10, ((document.getElementById('magnitude_LE_Med').innerHTML)-5)*-1);
-										var b_l_p = Math.pow(10, ((document.getElementById('magnitude_LE_Min').innerHTML)-5)*-1);
+										var b_h_p = Math.pow(10, (document.getElementById('magnitude_LE_Max').innerHTML)-5);
+										var b_p_p = Math.pow(10, (document.getElementById('magnitude_LE_Med').innerHTML)-5);
+										var b_l_p = Math.pow(10, (document.getElementById('magnitude_LE_Min').innerHTML)-5);
 										
-										var total_b_p = 5-Math.log10((b_l_p + b_p_p + b_h_p)/3);
+										var total_b_p = 5-(Math.log10((b_l_p + b_p_p + b_h_p)/3)*-1);
 										document.getElementById('magnitude_LE_MEDIA').innerHTML = Math.round10(total_b_p,-1);
 										//alert(Math.round10(10.24, -1));
 										
 										//C
-										var c_h_p = Math.pow(10, ((document.getElementById('magnitude_IA_Max').innerHTML)-5)*-1);
-										var c_p_p = Math.pow(10, ((document.getElementById('magnitude_IA_Med').innerHTML)-5)*-1);
-									 	var c_l_p = Math.pow(10, ((document.getElementById('magnitude_IA_Min').innerHTML)-5)*-1);
+										var c_h_p = Math.pow(10, (document.getElementById('magnitude_IA_Max').innerHTML)-5);
+										var c_p_p = Math.pow(10, (document.getElementById('magnitude_IA_Med').innerHTML)-5);
+									 	var c_l_p = Math.pow(10, (document.getElementById('magnitude_IA_Min').innerHTML)-5);
 										
-										var total_c_p = 5-Math.log10((c_l_p + c_p_p + c_h_p)/3);
+										var total_c_p = 5-(Math.log10((c_l_p + c_p_p + c_h_p)/3)*-1);
 										document.getElementById('magnitude_IA_MEDIA').innerHTML = Math.round10(total_c_p,-1); 
 										
 										
@@ -1739,9 +1793,49 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										document.getElementById('magnitude_SOMA_MEDIA').innerHTML=parseFloat(total.toFixed(1)); 
 										
+										
+										/////////////////////////////////////////////// OPTIONS
+										//A
+										var a_h_p = Math.pow(10, (document.getElementById('magnitude_FR_High_o').innerHTML)-5);
+										var a_p_p = Math.pow(10, (document.getElementById('magnitude_FR_Probable_o').innerHTML)-5);
+										var a_l_p = Math.pow(10, (document.getElementById('magnitude_FR_Low_o').innerHTML)-5);
+										
+										var total_a_p = 5-(Math.log10((a_l_p + a_p_p + a_h_p)/3)*-1);
+										document.getElementById('magnitude_FR_MEDIA_o').innerHTML = Math.round10(total_a_p,-1);
+										//alert(a_h_p);
+										
+										
+										//B
+										var b_h_p = Math.pow(10, (document.getElementById('magnitude_LE_Max_o').innerHTML)-5);
+										var b_p_p = Math.pow(10, (document.getElementById('magnitude_LE_Med_o').innerHTML)-5);
+										var b_l_p = Math.pow(10, (document.getElementById('magnitude_LE_Min_o').innerHTML)-5);
+										
+										var total_b_p = 5-(Math.log10((b_l_p + b_p_p + b_h_p)/3)*-1);
+										document.getElementById('magnitude_LE_MEDIA_o').innerHTML = Math.round10(total_b_p,-1);
+										//alert(Math.round10(10.24, -1));
+										
+										//C
+										var c_h_p = Math.pow(10, (document.getElementById('magnitude_IA_Max_o').innerHTML)-5);
+										var c_p_p = Math.pow(10, (document.getElementById('magnitude_IA_Med_o').innerHTML)-5);
+									 	var c_l_p = Math.pow(10, (document.getElementById('magnitude_IA_Min_o').innerHTML)-5);
+										
+										var total_c_p = 5-(Math.log10((c_l_p + c_p_p + c_h_p)/3)*-1);
+										document.getElementById('magnitude_IA_MEDIA_o').innerHTML = Math.round10(total_c_p,-1); 
+										
+										
+										var total = parseFloat((document.getElementById('magnitude_FR_MEDIA_o').innerHTML))+parseFloat((document.getElementById('magnitude_LE_MEDIA_o').innerHTML))+parseFloat((document.getElementById('magnitude_IA_MEDIA_o').innerHTML));
+										
+										document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML=parseFloat(total.toFixed(1)); 
+										
+										
+										
+										
+										
 									}else{
 										
 										 select_risk(document.getElementById('risk').value);
+										  select_risk_option(document.getElementById('id_option').value,document.getElementById('risk').value);
+										 
 									} 		
 									
 									 
@@ -1930,16 +2024,25 @@ if(isset($_GET['id_option'])){
 	
 	<script>
 	
+	
+	<?PHP if(!isset($_GET['id_option'])){ ?>
+	
 	select_risk(<?php echo $_GET['id']; ?>);
 	select_risk_option(<?php echo $_GET['id_option']; ?>,<?php echo $_GET['id']; ?>);
-	refreshDataByZoom(<?php echo $_GET['ca_high']; ?>,<?php echo $_GET['ca_media']; ?>,<?php echo $_GET['ca_low']; ?>);
+	select_option(<?php echo $_GET['id_option']; ?>,<?php echo $_GET['id']; ?>);
+	items_affecteds_register_o(0);
+	
+	<?PHP } ?>
+	
+	
+	//refreshDataByZoom(<?php echo $_GET['ca_high']; ?>,<?php echo $_GET['ca_media']; ?>,<?php echo $_GET['ca_low']; ?>);
 	</script>
 	
 <?php
 }	
 ?>
 <SCRIPT>
-refreshDataByZoom(<?php echo $_GET['ca_high']; ?>,<?php echo $_GET['ca_media']; ?>,<?php echo $_GET['ca_low']; ?>);
+//refreshDataByZoom(<?php echo $_GET['ca_high']; ?>,<?php echo $_GET['ca_media']; ?>,<?php echo $_GET['ca_low']; ?>);
 
 
 document.getElementById('ia_Div_Max_o').innerHTML = <?php echo $_GET['ca_high']; ?>;

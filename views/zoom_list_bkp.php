@@ -960,24 +960,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
             <div class="card-body">
 			 <a href="zoom_list_register_o?risk_id=<?php echo $_GET['risk_id']; ?>&option_id=<?php echo $_GET['option_id']; ?>"><button type="button" class="btn btn-block btn-success btn-xs" style="width:15%;float:right;">Register a new item >></button></a>
 			<br>
-			<br>
-		<input type="hidden" id="id_option" name="id_option">	
-     <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              
-              <!-- /.card-header -->
-            <div class="card-body">
-			<?php 			
-			
-				$ia = Build_value_pie::select_ar_zoom_list_items_affected_o($_GET['risk_id'],$_GET['option_id']); 
-				$iac = Build_value_pie::select_ar_zoom_list_items_affected_checked_o($_GET['risk_id'],$_GET['option_id']); 
-			
-			?>
-			<br>
-											
+		<input type="hidden" id="id_option" name="id_option">									
 		<input type="radio" name="type_list_o" id="type_list_1_o" value="1"  onclick="
-				zoom_list_update_type_list_o(1,<?php echo $_GET['risk_id']; ?>);
 				document.getElementById('low_estimate_top_o').style.display='none';
 				document.getElementById('most_probable_top_o').style.display='none';
 				document.getElementById('high_estimate_top_o').style.display='none';				
@@ -999,11 +983,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=1;			
 				
 				
-				" <?php if($iac['type_list_o'] == 1 || $iac['type_list_o'] == 0 ){ echo "checked"; $displayTop="none"; } ?>> <?php//  echo $iac['type_list']; ?> Items listed are all affected 
+				" checked> Items listed are all affected
 				
 				<br>
 		<input type="radio" name="type_list_o" id="type_list_2_o" value="2" onclick="
-		zoom_list_update_type_list_o(2,<?php echo $_GET['risk_id']; ?>);
 				document.getElementById('low_estimate_top_o').style.display='block';
 				document.getElementById('most_probable_top_o').style.display='block';
 				document.getElementById('high_estimate_top_o').style.display='block';
@@ -1022,95 +1005,42 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('bx_AllAffected_Assuming_Most_o').style.display='none';			
 				document.getElementById('bx_AllAffected_Assuming_High_o').style.display='none';	
 				
-				document.getElementById('C_type_list').value=2;		
+				document.getElementById('C_type_list').value=2;	
 				
-				
-				" <?php if($iac['type_list_o'] == 2){ echo "checked"; $displayTop="block"; } ?>> Items listed are exposed, but only this many affected:
+				"> Items listed are exposed, but only this many affected:
 				
 													<br>
 													<br>
 			
-				<script>
-				
-				<?php if($iac['type_list_o'] == 1){ ?> 
-					
-					document.getElementById('low_estimate_top_o').style.display='none';
-					document.getElementById('most_probable_top_o').style.display='none';
-					document.getElementById('high_estimate_top_o').style.display='none';				
-					
-					document.getElementById('bx_Exposed_Assuming_High_o').style.display='none';			
-					document.getElementById('bx_Exposed_Assuming_Low_o').style.display='none';			
-					document.getElementById('bx_Exposed_Assuming_Most_o').style.display='none';			
-					document.getElementById('bxExposedUsingLow_o').style.display='none';			
-					document.getElementById('bxExposedUsingMost_o').style.display='none';			
-					document.getElementById('bxExposedUsingHigh_o').style.display='none';			
-					
-					document.getElementById('bxAllAffectedUsingLow_o').style.display='block';			
-					document.getElementById('bxAllAffectedUsingMost_o').style.display='block';			
-					document.getElementById('bxAllAffectedUsingHigh_o').style.display='block';			
-					document.getElementById('bx_AllAffected_Assuming_Low_o').style.display='block';			
-					document.getElementById('bx_AllAffected_Assuming_Most_o').style.display='block';			
-					document.getElementById('bx_AllAffected_Assuming_High_o').style.display='block';		
-					
-					document.getElementById('C_type_list').value=1;	
-					
-				<?php } ?>
-				
-				
-				<?php if($iac['type_list_o'] == 2){ ?> 
-						
-					document.getElementById('low_estimate_top_o').style.display='block';
-					document.getElementById('most_probable_top_o').style.display='block';
-					document.getElementById('high_estimate_top_o').style.display='block';
-					
-					document.getElementById('bx_Exposed_Assuming_High_o').style.display='block';			
-					document.getElementById('bx_Exposed_Assuming_Low_o').style.display='block';			
-					document.getElementById('bx_Exposed_Assuming_Most').style.display='block';			
-					document.getElementById('bxExposedUsingLow_o').style.display='block';			
-					document.getElementById('bxExposedUsingMost_o').style.display='block';			
-					document.getElementById('bxExposedUsingHigh_o').style.display='block';			
-					
-					document.getElementById('bxAllAffectedUsingLow_o').style.display='none';			
-					document.getElementById('bxAllAffectedUsingMost_o').style.display='none';			
-					document.getElementById('bxAllAffectedUsingHigh_o').style.display='none';			
-					document.getElementById('bx_AllAffected_Assuming_Low_o').style.display='none';			
-					document.getElementById('bx_AllAffected_Assuming_Most_o').style.display='none';			
-					document.getElementById('bx_AllAffected_Assuming_High_o').style.display='none';	
-					
-					document.getElementById('C_type_list').value=2;	
-						
-				<?php } ?>
-				
-				
-				</script>
+			
 			
               <table id="example1" class="table table-bordered table-striped">
               <?php  
 														$ia = Build_value_pie::select_ar_zoom_list_items_affected_o($_GET['risk_id'],$_GET['option_id']); 
 														//if($ia['num'] > 0){
 														if(isset($ia['dados'][0]['low_estimate_general'])){
-															$low_estimate_general=$ia['dados'][0]['low_estimate_general'];
+															$low_estimate_general_o=$ia['dados'][0]['low_estimate_general'];
 														}else{
-															$low_estimate_general='0.0';
+															$low_estimate_general_o='0.0';
 														}	
 														
 														if(isset($ia['dados'][0]['most_probable_general'])){
-															$most_probable_top=$ia['dados'][0]['most_probable_general'];
+															$most_probable_top_o=$ia['dados'][0]['most_probable_general'];
 														}else{
-															$most_probable_top='0.0';
+															$most_probable_top_o='0.0';
 														}	
 														
 														if(isset($ia['dados'][0]['high_estimate_general'])){
-															$high_estimate_top=$ia['dados'][0]['high_estimate_general'];
+															$high_estimate_top_o=$ia['dados'][0]['high_estimate_general'];
 														}else{
-															$high_estimate_top='0.0';
+															$high_estimate_top_o='0.0';
 														}	
 														
 														?>
 													 <table id="example1" class="table table-bordered table-striped">
 														<thead>	
 															<tr>
-															  <th style="width:40%"></th>
+															  <th style="width:40%"><?php//echo $ia['num']; ?></th>
 															  <th><small>Number of items in subgroup</small></th>
 															  <th><small>Low estimate</small> </th>                
 															  <th><small>Most Probable</small></th>                
@@ -1120,35 +1050,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															<tr>
 															  <th></th>
 															  <th></th>                
-															  <th>
-															  <input 
-															  type="text" 
-															  class="form-control" 
-															  id="low_estimate_top_o" 
-															  name="low_estimate_top_o" 
-															  value="<?php echo $low_estimate_general; ?>" 
-															  onkeyup="if(this.value != ''){ zoom_list_update_top() }"  
-															  required 
-															  style="display:<?php echo $displayTop; ?>"  
-															  onkeypress="return keypressed( this , event );">
+															  <th><input type="text" class="form-control" id="low_estimate_top_o" name="low_estimate_top_o" value="<?php echo $low_estimate_general_o; ?> " onkeyup="if(this.value != ''){ zoom_list_update_top_o() }" onkeypress="return keypressed( this , event );" required style="display:none" >
 															  
 															  </th>                
-															  <th>
-															  
-															  <input 
-															  type="text" 
-															  class="form-control" 
-															  id="most_probable_top_o" 
-															  name="most_probable_top_o" 
-															  value="<?php echo $most_probable_top; ?>" 
-															  onkeyup="if(this.value != '' && event.keyCode != 9){ zoom_list_update_top() }" 
-															 
-															  required 
-															  style="display:<?php echo $displayTop; ?>"  
-															  onkeypress="return keypressed( this , event );">
-															  
-															  </th>                
-															  <th><input type="text" class="form-control" id="high_estimate_top_o" name="high_estimate_top_o" onkeyup="if(this.value != ''){  zoom_list_update_top_o() }" value="<?php echo $high_estimate_top; ?>" required style="display:<?php echo $displayTop; ?>"  onkeypress="return keypressed( this , event );"></th>    
+															  <th><input type="text" class="form-control" id="most_probable_top_o" name="most_probable_top_o" value="<?php echo $most_probable_top_o; ?>" onkeyup=" if(this.value != ''){ zoom_list_update_top_o() }" onkeypress="return keypressed( this , event );" required style="display:none" ></th>                
+															  <th><input type="text" class="form-control" id="high_estimate_top_o" name="high_estimate_top_o" onkeyup="if(this.value != ''){ zoom_list_update_top_o() }" value="<?php echo $high_estimate_top_o; ?>" onkeypress="return keypressed( this , event );" required style="display:none" ></th>    
 															
 															</tr>
 														</thead>
@@ -1168,64 +1074,67 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	
 																$vp = Build_value_pie::select_ec_value_pie_table_id($ia['id_ec_value_pie_table']);	
 																
-																
-																$gr = Build_value_pie::select_ec_groups_value_id($vp['group_id']);
-																$sb = Build_value_pie::select_ec_subgroups_value_id($vp['subgroup_id']);
-																
-																
-																//if($vp['num'] > 0){
+																if($vp['num'] > 0){
 																
 																if($vp['items_value_as_percent_of_asset'] ==0 || $vp['items_value_as_percent_of_asset'] ==''){
-																	$items_value_as_percent_of_asset = 1;
+																	$items_value_as_percent_of_asset_o = 1;
 																}else{
-																	$items_value_as_percent_of_asset = $vp['items_value_as_percent_of_asset'];		
+																	$items_value_as_percent_of_asset_o = $vp['items_value_as_percent_of_asset'];		
 																}		
 																
-																$formulaE = $formulaE+((float)($ia['low_estimate'])*(float)($items_value_as_percent_of_asset));
+																$formulaE = $formulaE+((float)($ia['low_estimate'])*(float)($items_value_as_percent_of_asset_o));
 																
-																$formulaF = $formulaF+((float)($ia['most_probable'])*(float)($items_value_as_percent_of_asset));
+																$formulaF = $formulaF+((float)($ia['most_probable'])*(float)($items_value_as_percent_of_asset_o));
 																
-																$formulaG = $formulaG+((float)($ia['high_estimate'])*(float)($items_value_as_percent_of_asset));
+																$formulaG = $formulaG+((float)($ia['high_estimate'])*(float)($items_value_as_percent_of_asset_o));
 																
-																$items_in_asset = $vp['items_in_asset'];
-																$low_estimate_general = $ia['low_estimate_general'];
-																$most_probable_general = $ia['most_probable_general'];
-																$high_estimate_general = $ia['high_estimate_general'];
-															///echo "----->".$ia['id_ec_value_pie_table'];		
+																$items_in_asset_o = $vp['items_in_asset'];
+																$low_estimate_general_o = $ia['low_estimate_general'];
+																$most_probable_general_o = $ia['most_probable_general'];
+																$high_estimate_general_o = $ia['high_estimate_general'];
+																	
 														?>
 															<tr id="row_o_<?php  echo $ia['id']; ?>">
-															  <td> <?php echo $gr['name'].", ".$sb['name']; ?></td>
+															  <td><?php  echo $ia['identification']; ?></td>
 															  
-															  <td><?php  echo $sb['numbers_of_items']; ?></td>
+															  <td><?php  echo $ia['number_subgroups']; ?></td>
 															 
-					<td><input type="text" class="form-control" id="low_estimate_<?php  echo $ia['id']; ?>_o" name="low_estimate_<?php  echo $ia['id']; ?>_o" value="<?php  echo $ia['low_estimate']; ?>" 
-					 required onkeyup="
-					 
-					 if(this.value != ''){ 
-						
-						zoom_list_update_o(<?php  echo $ia['id']; ?>,this.value,document.getElementById('most_probable_<?php  echo $ia['id']; ?>_o').value,document.getElementById('high_estimate_<?php  echo $ia['id']; ?>_o').value) 
-						
-					}
+					<td>
+					<input 
+					type="text" 
+					class="form-control" 
+					id="low_estimate_<?php  echo $ia['id']; ?>_o" 
+					name="low_estimate_<?php  echo $ia['id']; ?>_o" 
 					
-					"  onkeypress="return keypressed( this , event );"></td>
+					value="<?php  echo $ia['low_estimate']; ?>" 
+					onkeyup=" 
+					if(this.value != ''){ 
+					
+						zoom_list_update_o(<?php  echo $ia['id']; ?>,
+						this.value,
+						document.getElementById('most_probable_<?php  echo $ia['id']; ?>_o').value,
+						document.getElementById('high_estimate_<?php  echo $ia['id']; ?>_o').value) 
+					
+					}" 
+					onkeypress="return keypressed( this , event );" 
+					required  ></td>
 											  
-					<td><input type="text" class="form-control" id="most_probable_<?php  echo $ia['id']; ?>_o" name="most_probable_<?php  echo $ia['id']; ?>_o" value="<?php  echo $ia['most_probable']; ?>" 
-					onkeyup="if(this.value != ''){ zoom_list_update_o(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>_o').value,this.value,document.getElementById('high_estimate_<?php  echo $ia['id']; ?>_o').value) }" required   onkeypress="return keypressed( this , event );"></td>
+					<td><input type="text" class="form-control" id="most_probable_<?php  echo $ia['id']; ?>_o" name="most_probable_<?php  echo $ia['id']; ?>_o" value="<?php  echo $ia['most_probable']; ?>" onkeyup=" if(this.value != ''){ zoom_list_update_o(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>_o').value,this.value,document.getElementById('high_estimate_<?php  echo $ia['id']; ?>_o').value) }" required onkeypress="return keypressed( this , event );"  ></td>
 															  
-															  <td><input type="text" class="form-control" id="high_estimate_<?php  echo $ia['id']; ?>_o" name="high_estimate_<?php  echo $ia['id']; ?>_o" value="<?php  echo $ia['high_estimate']; ?>" required onkeyup="if(this.value != ''){  zoom_list_update_o(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>_o').value,document.getElementById('most_probable_<?php  echo $ia['id']; ?>_o').value,this.value) } "  onkeypress="return keypressed( this , event );"></td>
+															  <td><input type="text" class="form-control" id="high_estimate_<?php  echo $ia['id']; ?>_o" name="high_estimate_<?php  echo $ia['id']; ?>_o" value="<?php  echo $ia['high_estimate']; ?>" required onkeyup=" if(this.value != ''){ zoom_list_update_o(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>_o').value,document.getElementById('most_probable_<?php  echo $ia['id']; ?>_o').value,this.value) }" onkeypress="return keypressed( this , event );" ></td>
 															  
 															  <td>
-															  <?php if(!isset($_GET['type'])){ ?>
+															 
 																<a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ zoom_list_delete_o(<?php echo $ia['id'];?>)}">
 																
 																<button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:2px;">
 <i class="fas fa-trash-alt"></i></button></a>
-															  <?php }?>
+															 
 																</td>
 															</tr>
 															
 															<?php 
-																//}
+																}
 																}
 																
 															?>
@@ -1237,8 +1146,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															</tr>
 															<tr id="row">
 															  <td colspan="2" style="text-align:right"><small>Using value pie:</small></td>
-															  
-															 <!-- LOW ESTIMATE -->
+															 
 															  <td>
 															  <!-- 
 															  ###########################################
@@ -1249,116 +1157,49 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																
 															   <div id="bxAllAffectedUsingLow">
 																  <center>
-																	  <span class="badge bg-info"><div id="uvp_le_percent_o"><?php 
-																	  
-																		if($formulaE != -INF && !is_nan($formulaE)) {
-																				
-																				echo $formulaE;
-																				
-																		}else{
-																			
-																			echo "C: 0.0";
-																			
-																		}
-																	  
-																	  
-																	  
-																	  
-																	  ?>%</div></span>
+																	  <span class="badge bg-info"><div id="modalZoomDados"><?php echo $formulaE; ?>%</div></span>
 																	  <br>
-																	  <div id="uvp_le_c_o"> <?php 
+																	  C: <?php 
 																	  
-																			$ca = 5 + log10($formulaE/100);
-																			
-																			if(round($ca,1) != -INF && !is_nan(round($ca,5)) ){
-																				
-																				echo "C: ". round($ca,1);
-																				
-																			}else{
-																				echo "C: 0.0";
-																			}
-																			
-																			$caForDB1 = round($ca,1);
+																			$ca = log10($formulaE/100);
+																			echo round($ca,1);
 																		?>
-																		</div>
 																  </center>
 																  <input type="hidden" id="ca_low_o" name="ca_low_o" value="<?php echo round($ca,1); ?>">
 																</div>  
 																
 																 <div id="bxExposedUsingLow_o" style="display:none">
 																  <center>
-																	  <span class="badge bg-info"><div id="ex_uvp_le_percent_o"><?php  
+																	  <span class="badge bg-info"><div id=""><?php  
 																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	
-																	 $a = ((float)$formulaE*(float)$low_estimate_general)/(float)$totalLow['total']; 
-																	 
-																	 if(round($a,5) != -INF && !is_nan(round($a,5))) {
-																				
-																				echo round($a,5);
-																				
-																		}else{
-																			
-																			echo "C: 0.0";
-																			
-																		}
+																	 $a = ((float)$formulaE*(float)$low_estimate_general_o)/(float)$totalLow['total']; 
 																	  echo round($a,5);
-																	  
-																	  
 																	  ?>%</div></span>
 																	  <br>
-																		<div id="ex_uvp_le_c_o">C: <?php 
+																	  C: <?php 
 																	  
-																			$ca = 5 + log10(round($a,5)/100);
-																			if(round($ca,1) != -INF && !is_nan(round($ca,5)) ){
-																				
-																				echo "". round($ca,1);
-																				
-																			}else{
-																				echo "0.0";
-																			}
-																			$caForDB2 = round($ca,1);
+																			$ca = log10(round($a,5)/100);
+																			echo round($ca,1);
 																		?>
-																		</div>
 																		<input type="hidden" id="ca_low_o" name="ca_low_o" value="<?php echo round($ca,1); ?>">
 																  </center>
 																</div>  
 																
 																
 															  </td>
-															  <!-- MOST PROBABLE -->
+															  
 															  <td> 
 															  
 															  <div id="bxAllAffectedUsingMost_o">
 																  <center>
-																		  <span class="badge bg-info"><div id="uvp_mp_percent_o"><?php 
-																		
-																				if($formulaF != -INF && !is_nan($formulaF)) {
-																				
-																					echo $formulaF;
-																				
-																				}else{
-																					
-																					echo "0.0";
-																					
-																				}
-																			
-																		  
-																		  ?>%</div></span>
+																		  <span class="badge bg-info"><div id="modalZoomDados"><?php echo $formulaF; ?>%</div></span>
 																		  <br>
-																		    <div id="uvp_mp_c_o">
-																				<?php 
-																			  
-																					$cb = 5 + log10($formulaF/100);
-																					if(round($cb,1) != -INF && !is_nan(round($cb,5)) ){
-																				
-																						echo round($cb,1);
-																						
-																					}else{
-																						echo "0.0";
-																					}
-																					$cbForDB1 = round($cb,1);
-																				?>
-																			</div>
+																		   <?php 
+																		  
+																				$cb = log10($formulaF/100);
+																				echo round($cb,1);
+																			?>
 																  </center>
 																  <input type="hidden" id="ca_media_o" name="ca_media_o" value="<?php echo round($cb,1); ?>">
 																</div>  
@@ -1366,140 +1207,56 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															  <div id="bxExposedUsingMost_o" style="display:none">
 																  <center>
 																		  <span class="badge bg-info">
-																		  <div id="ex_uvp_mp_percent_o"><?php 
+																		  <div id="modalZoomDados"><?php 
 																		  
 																			$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
 																	
-																			$b = ((float)$formulaF*(float)$most_probable_general)/(float)$totalMost['total']; 
-																			
-																			
-																			if(round($b,5) != -INF && !is_nan(round($b,5))) {
-																				
-																					echo round($b,5);
-																				
-																				}else{
-																					
-																					echo "0.0";
-																					
-																				}
-																			
-																			 // echo round($b,5);
+																			$b = ((float)$formulaF*(float)$most_probable_general_o)/(float)$totalMost['total']; 
+																			  echo round($b,5);
 
 																	  ?>%</div></span>
 																		  <br>
-																		   <div id="ex_uvp_mp_c_o">
 																		   <?php 
 																		  
-																				$cb = 5 + log10(round($b,5)/100);
-																				if(round($cb,1) != -INF && !is_nan(round($cb,5)) ){
-																				
-																						echo round($cb,1);
-																						
-																					}else{
-																						echo "0.0";
-																					}
-																				$cbForDB2 = round($cb,1);
+																				$cb = log10(round($b,5)/100);
+																				echo round($cb,1);
 																			?>
-																			</div>
 																			 <input type="hidden" id="ca_media_o" name="ca_media_o" value="<?php echo round($cb,1); ?>">
 																  </center>
 																</div>  
 																
 															 </td>
-															 
-															 
-															  <!-- HIGH ESTIMATE -->
+															  
 															  <td> 
 															  
 															  <div id="bxAllAffectedUsingHigh_o">
 																<center>
-																	  <span class="badge bg-info"><div id="uvp_he_percent_o"><?php  
-																	  
-																	  if( $formulaG != -INF && !is_nan($formulaG)) {
-																				
-																					echo  $formulaG;
-																				
-																				}else{
-																					
-																					echo "0.0";
-																					
-																				}
-																	  
-																	 // $formulaG;
-
-
-																	  ?>%</div></span>
+																	  <span class="badge bg-info"><div id="modalZoomDados"><?php echo $formulaG; ?>%</div></span>
 																	  <br>
-																		 <div id="uvp_he_c_o">
-																			<?php 
-																		  
-																				$cc =5 + log10($formulaG/100);
-																				if(round($cc,1) != -INF && !is_nan(round($cc,5)) ){
-																				
-																						echo round($cc,1);
-																						
-																					}else{
-																						echo "0.0";
-																					}
-																				$ccForDB1 = round($cc,1);
-																			?>
-																			
-																		</div>
+																	 <?php 
+																	  
+																			$cc =log10($formulaG/100);
+																			echo round($cc,1);
+																		?>
 																  </center>
 																   <input type="hidden" id="ca_high_o" name="ca_high_o" value="<?php echo round($cc,1); ?>">
 															  </div>
 															   <div id="bxExposedUsingHigh_o" style="display:none">
 																  <center>
-																		  <span class="badge bg-info"><div id="ex_uvp_he_percent_o"><?php  
+																		  <span class="badge bg-info"><div id="modalZoomDados"><?php  
 																			$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	
-																			$c = ((float)$formulaG*(float)$high_estimate_general)/(float)$totalHigh['total']; 
-																			
-																			
-																			 // echo round($c,5); 
-																			  
-																			  
-																			  if( round($c,5) != -INF && !is_nan(round($c,5))) {
-																				
-																					echo  round($c,5);
-																				
-																				}else{
-																					
-																					echo "0.0";
-																					
-																				}
-																			  
-																			  
-																			  ?>%</div></span>
+																			$c = ((float)$formulaG*(float)$high_estimate_general_o)/(float)$totalHigh['total']; 
+																			  echo round($c,5); ?>%</div></span>
 																		  <br>
-																		    <div id="ex_uvp_he_c_o"><?php 
+																		   <?php 
 																		  
-																				$cc = 5 + log10(round($c,5)/100);
-																				if(round($cc,1) != -INF && !is_nan(round($cc,5)) ){
-																				
-																						echo round($cc,1);
-																						
-																					}else{
-																						echo "0.0";
-																					}
-																				$ccForDB2 = round($cc,1);
+																				$cc = log10(round($c,5)/100);
+																				echo round($cc,1);
 																			?>
-																			</div>
 																			<input type="hidden" id="ca_high_o" name="ca_high_o" value="<?php echo round($cc,1); ?>">
 																  </center>
 																</div> 
-																
-																<?php 
-													/* echo $caForDB1."<br>";
-													echo $cbForDB1."<br>";
-													echo $ccForDB1."<br>"; */
-													$C_unc_range = $ccForDB1-$caForDB1;
-													//echo $C_unc_range;
-													
-													
-														//}
-													?>	
-																
 																</td>
 															</tr>
 															<tr >
@@ -1513,75 +1270,44 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															  
 															  <div id="bx_AllAffected_Assuming_Low_o">
 																  <center>
-																	  <span class="badge bg-info"><div id="aev_le_percent_o">
+																	  <span class="badge bg-info"><div id="modalZoomDados">
 																	  <?php 
 																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
 																	  
-																	  $l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
-																	  
-																	  if(round($l,5) != -INF && !is_nan(round($l,5)) ){
-																		echo round($l,5);
-																	  }else{ 
-																		echo "0.0";		
-																	  }	
+																	  $l = ((float)$totalLow['total']/(float)$items_in_asset_o)*100;
+																	  echo round($l,5);
 																	  ?>
 																	  %</div></span>
 																	  <br>
-																	    <div id="aev_le_c_o">C:  <?php 
+																	  C:  <?php 
 																	  
-																			$cd =5 + log10(round($l,5)/100);
-																			if(round($cd,1) != -INF && !is_nan(round($cd,5)) ){
-																				
-																						echo round($cd,1);
-																						
-																					}else{
-																						echo "0.0";
-																					}
+																			$cd =log10(round($l,5)/100);
+																			echo round($cd,1);
 																		?>
-																		</div>
 																		  <input type="hidden" id="cd_low_o" name="cd_low_o" value="<?php echo round($cd,1); ?>">
 																  </center>
 																</div> 
 																<div id="bx_Exposed_Assuming_Low_o" style="display:none">
 																  <center>
-																	  <span class="badge bg-info"><div id="ex_aev_le_percent_o">
+																	  <span class="badge bg-info"><div id="modalZoomDados">
 																	  <?php  
 																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
-																	  $l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
+																	  $l = ((float)$totalLow['total']/(float)$items_in_asset_o)*100;
 																	  $l = round($l,5);
 																	   
 																	   
 																	   
-																	 $d = ((float)$l*(float)$low_estimate_general)/(float)$totalLow['total']; 
-																	 // echo round($d,5);
-																	  
-																	  
-																	  if( round($d,5) != -INF && !is_nan(round($d,5))) {
-																				
-																					echo  round($d,5);
-																				
-																				}else{
-																					
-																					echo "0.0";
-																					
-																				}
-																	  
+																	 $d = ((float)$l*(float)$low_estimate_general_o)/(float)$totalLow['total']; 
+																	  echo round($d,5);
 																	  ?>
 																	  %</div></span>
 																	  <br>
-																		  <div id="ex_aev_le_c_o"> C:  <?php 
-																		  
-																				$cd =5 + log10(round($d,5)/100);
-																				if(round($cd,1) != -INF && !is_nan(round($cd,5)) ){
-																				
-																						echo round($cd,1);
-																						
-																					}else{
-																						echo "0.0";
-																					}
-																			?>
-																		</div>
-																		 <input type="hidden" id="cd_low_o" name="cd_low_o" value="<?php echo round($cd,1); ?>">
+																	  C:  <?php 
+																	  
+																			$cd =log10(round($d,5)/100);
+																			echo round($cd,1);
+																		?>
+																		 <input type="hidden" id="cd_low" name="cd_low" value="<?php echo round($cd,1); ?>">
 																  </center>
 																</div> 
 															
@@ -1591,41 +1317,19 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															  <td> 
 															  
 																<div id="bx_AllAffected_Assuming_Most_o">
-																	<center> 
-																		  <span class="badge bg-info"><div id="aev_mp_percent_o"><?php 
+																	<center>
+																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
 																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
 																		  
-																		  $m = ((float)$totalMost['total']/(float)$items_in_asset)*100;
-																		  															  
-																		 // echo round($m,5);
-																		  
-																		    if( round($m,5) != -INF && !is_nan(round($m,5))) {
-																				
-																					echo  round($m,5);
-																				
-																				}else{
-																					
-																					echo "0.0";
-																					
-																				}
-																		  
-																		  
+																		  $m = ((float)$totalMost['total']/(float)$items_in_asset_o)*100;
+																		  echo round($m,5);
 																		  ?>%</div></span>
 																		  <br>
-																		  <div id="aev_mp_c_o"> <?php 
+																		   <?php 
 																		  
-																				$ce =5 + log10(round($m,5)/100);
-																				if(round($ce,1) != -INF && !is_nan(round($ce,5)) ){
-																				
-																						echo round($ce,1);
-																						
-																				}else{
-																					
-																						echo "0.0";
-																						
-																				}
+																				$ce =log10(round($m,5)/100);
+																				echo round($ce,1);
 																			?>
-																			</div>
 																			<input type="hidden" id="ce_most_o" name="ce_most_o" value="<?php echo round($ce,1); ?>">
 																	</center>
 																</div>
@@ -1633,42 +1337,25 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	<center>
 																		  
 																		  
-																		  <span class="badge bg-info"><div id="ex_aev_mp_percent_o"><?php 
-																			$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
-																			$l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
-																			$l = round($l,5);
-																			$e = ((float)$l*(float)$most_probable_general)/(float)$totalMost['total']; 
-																			
-																		 // echo round($e,5);
-																		  
-																		    if( round($e,5) != -INF && !is_nan(round($e,5))) {
-																				
-																					echo  round($e,5);
-																				
-																				}else{
-																					
-																					echo "0.0";
-																					
-																				}
-																		  
+																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
+																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
+																		  $l = ((float)$totalMost['total']/(float)$items_in_asset_o)*100;
+																		  $l = round($l,5);
+																		   
+																		   
+																		   
+																		 $e = ((float)$l*(float)$most_probable_general_o)/(float)$totalMost['total']; 
+																		  echo round($e,5);
 																		  ?>%</div></span>
 																		 
 	
 																		 <br>
-																		  <div id="ex_aev_mp_c_o">  <?php 
+																		   <?php 
 																		  
-																				$ce =5 + log10(round($e,5)/100);
-																				if(round($ce,1) != -INF && !is_nan(round($ce,5)) ){
-																				
-																						echo round($ce,1);
-																						
-																				}else{
-																					
-																						echo "0.0";
-																						
-																				}
+																				$ce =log10(round($e,5)/100);
+																				echo round($ce,1);
 																			?>
-																			</div>
+																			
 																			<input type="hidden" id="ce_most_o" name="ce_most_o" value="<?php echo round($ce,1); ?>">
 																	</center>
 																</div>  
@@ -1679,77 +1366,39 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															  
 																<div id="bx_AllAffected_Assuming_High_o">
 																	<center>
-																		  <span class="badge bg-info"><div id="aev_he_percent_o"><?php 
+																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
 																		  $totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
 																		  
-																		  $h = ((float)$totalHigh['total']/(float)$items_in_asset)*100;
-																		  //echo round($h,5);
-																		  
-																		   if( round($h,5) != -INF && !is_nan(round($h,5))) {
-																				
-																					echo  round($h,5);
-																				
-																				}else{
-																					
-																					echo "0.0";
-																					
-																				}
-																		  
+																		  $h = ((float)$totalHigh['total']/(float)$items_in_asset_o)*100;
+																		  echo round($h,5);
 																		  ?>%</div></span>
 																		  <br>
-																		 <div id="aev_he_c_o"><?php 
+																		 <?php 
 																		  
-																				$cf =5 + log10(round($h,5)/100);
-																				if(round($cf,1) != -INF && !is_nan(round($cf,5)) ){
-																				
-																						echo round($cf,1);
-																						
-																				}else{
-																					
-																						echo "0.0";
-																						
-																				}
+																				$cf =log10(round($h,5)/100);
+																				echo round($cf,1);
 																			?>
-																			</div>
 																			<input type="hidden" id="cf_high_o" name="cf_high_o" value="<?php echo round($cf,1); ?>">
 																	</center>
 																</div>
 																<div id="bx_Exposed_Assuming_High_o" style="display:none">
 																	<center>
-																		  <span class="badge bg-info"><div id="ex_aev_he_percent_o"><?php 
-																		 
+																		  <span class="badge bg-info"><div id="modalZoomDados"><?php 
 																		  $totalMost = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
-																		  $l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
-																		  $l = round($l,5);$f = ((float)$l*(float)$high_estimate_general)/(float)$totalMost['total']; 
-																		 // echo round($f,5);
-																		  
-																		  
-																		   if( round($f,5) != -INF && !is_nan(round($f,5))) {
-																				
-																					echo  round($f,5);
-																				
-																				}else{
-																					
-																					echo "0.0";
-																					
-																				}
-																		  
+																		  $l = ((float)$totalMost['total']/(float)$items_in_asset_o)*100;
+																		  $l = round($l,5);
+																		   
+																		   
+																		   
+																		 $f = ((float)$l*(float)$high_estimate_general_o)/(float)$totalMost['total']; 
+																		  echo round($f,5);
 																		  ?>%</div></span>
 																		  <br>
-																		<div id="ex_aev_he_c_o"> <?php 
+																		 <?php 
 																		  
-																				$cf = 5 + log10(round($f,5)/100);
-																				if(round($cf,1) != -INF && !is_nan(round($cf,5)) ){
-																				
-																						echo round($cf,1);
-																						
-																				}else{
-																					
-																						echo "0.0";
-																						
-																				}
+																				$cf =log10(round($f,5)/100);
+																				echo round($cf,1);
 																			?>
-																		</div>
 																			<input type="hidden" id="cf_high_o" name="cf_high_o" value="<?php echo round($cf,1); ?>">
 																	</center>
 																</div>
@@ -1760,15 +1409,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															
 														</tbody>	
 													  </table>
+													<?php 
 													
-            </div>
-              <!-- ./card-body -->
-           
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
+													
+													
+														//}
+													?>	
             </div>
               <!-- ./card-body -->
            
@@ -1938,8 +1584,6 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					  });
 					}
   
-				
-  
   
 											
 					function keypressed( obj , e ) {
@@ -2002,7 +1646,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																
 																dataType: 'json',
 																success: function(data) {
-																	atualia_calculos_zoom_list_o(<?php echo $_GET['risk_id'] ?>);
+																	
 																	//alert('ok');																  
 																	
 																}
@@ -2087,7 +1731,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																dataType: 'json',
 																success: function(data) {
 																	
-																	atualia_calculos_zoom_list_o(<?php echo $_GET['risk_id'] ?>);
+																	//alert('ok');
 																  
 																	
 																}
@@ -2123,26 +1767,6 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				data: {
 					id: id,
 					type_list: type_list
-				},
-				dataType: 'json',
-				success: function(data) {
-					//atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
-					//alert('ok');																  
-					
-				}
-			  });
-		} 
-  
-	
-		function zoom_list_update_type_list_o(type_list,id) {			
-															 
-			  $.ajax({
-				type: "POST",
-				url: "ajax_process/zoom_list_update_type_list.php",
-				data: {
-					id: id,
-					type_list: type_list,
-							option_id: <?php echo $_GET['option_id']; ?>
 				},
 				dataType: 'json',
 				success: function(data) {
@@ -2213,149 +1837,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 			id: id
 		},
 		success: function(data) {
-			atualia_calculos_zoom_list_o(<?php echo $_GET['risk_id'] ?>);
 		  $(i).css({"display":"none"});
 		}
 	  });
 	}
-	
-	
-	
-	function atualia_calculos_zoom_list_o(risk_id) {			
-					/* alert(document.getElementById("type_list_1").checked);
-					alert(document.getElementById("type_list_2").checked); */
-					// alert('ok')
-					  $.ajax({
-						type: "POST",
-						url: "ajax_process/atualia_calculos_zoom_list_o.php?type_list_1="+document.getElementById("type_list_1_o").checked+"&type_list_2="+document.getElementById("type_list_2_o").checked,
-						data: {
-							risk_id: risk_id,
-							option_id: <?php echo $_GET['option_id']; ?>
-						},
-						dataType: 'json',
-						success: function(data) {
-							/* alert('asd');*/
-							//alert(document.getElementById("type_list_2").checked); 
-						if(document.getElementById("type_list_1_o").checked == true){
-							
-							//seta as divs
-							$("#uvp_le_percent_o").html(data['uvp_le_percent']);
-							$("#uvp_le_c_o").html(data['uvp_le_c']);								
-							$("#uvp_mp_percent_o").html(data['uvp_mp_percent']);
-							$("#uvp_mp_c_o").html(data['uvp_mp_c']);							//
-							$("#uvp_he_percent_o").html(data['uvp_he_percent']);
-							$("#uvp_he_c_o").html(data['uvp_he_c']);
-								
-							$("#aev_le_percent_o").html(data['aev_le_percent']);
-							$("#aev_le_c_o").html(data['aev_le_c']);
-							$("#aev_mp_percent_o").html(data['aev_mp_percent']);
-							$("#aev_mp_c_o").html(data['aev_mp_c']);
-							$("#aev_he_percent_o").html(data['aev_he_percent']);
-							$("#aev_he_c_o").html(data['aev_he_c']);
-							
-							//seta os campos
-							$("#ca_low_o").val(data['uvp_le_c']);
-							$("#ca_media_o").val(data['uvp_mp_c']);						
-							$("#ca_high_o").val(data['uvp_he_c']);	
-							
-							$("#cd_low_o").val(data['aev_le_c']);						
-							$("#ce_most_o").val(data['aev_mp_c']);						
-							$("#cf_high_o").val(data['aev_he_c']);	
-							
-						}
-						
-						if(document.getElementById("type_list_2_o").checked == true){								
-							
-							//seta as divs
-							$("#ex_uvp_le_percent_o").html(data['ex_uvp_le_percent']);
-							$("#ex_uvp_le_c_o").html(data['ex_uvp_le_c']);
-							$("#ex_aev_le_percent_o").html(data['ex_aev_le_percent']);
-							$("#ex_aev_le_c_o").html(data['ex_aev_le_c']);	
-							$("#ex_uvp_mp_percent_o").html(data['ex_uvp_mp_percent']);
-							$("#ex_uvp_mp_c_o").html(data['ex_uvp_mp_c']);							
-							$("#ex_aev_mp_percent_o").html(data['ex_aev_mp_percent']);
-							$("#ex_aev_mp_c_o").html(data['ex_aev_mp_c']);													
-							$("#ex_uvp_he_percent_o").html(data['ex_uvp_he_percent']);
-							$("#ex_uvp_he_c_o").html(Math.log10(data['ex_uvp_he_c']));
-							$("#ex_aev_he_percent_o").html(data['ex_aev_he_percent']);
-							$("#ex_aev_he_c_o").html(Math.log10(data['ex_aev_he_c']));	
-							
-							
-							//seta os campos
-							$("#ca_low_o").val(data['ex_uvp_le_c']);
-							$("#ca_media_o").val(data['ex_uvp_mp_c']);						
-							$("#ca_high_o").val(Math.log10(data['ex_uvp_he_c']));	
-							
-							$("#cd_low_o").val(data['ex_aev_le_c']);						
-							$("#ce_most_o").val(data['ex_aev_mp_c']);						
-							$("#cf_high_o").val(Math.log10(data['ex_aev_he_c']));	
-							
-							
-						}
-
-							
-						},
-						error: function(data) {
-							if(document.getElementById("type_list_1_o").checked == true){
-							
-							//seta as divs
-							$("#uvp_le_percent_o").html("0.0");
-							$("#uvp_le_c_o").html("0.0");								
-							$("#uvp_mp_percent_o").html("0.0");
-							$("#uvp_mp_c_o").html("0.0");							//
-							$("#uvp_he_percent_o").html("0.0");
-							$("#uvp_he_c_o").html("0.0");
-								
-							$("#aev_le_percent_o").html("0.0");
-							$("#aev_le_c_o").html("0.0");
-							$("#aev_mp_percent_o").html("0.0");
-							$("#aev_mp_c_o").html("0.0");
-							$("#aev_he_percent_o").html("0.0");
-							$("#aev_he_c_o").html("0.0");
-							
-							//seta os campos
-							$("#ca_low_o").val("0.0");
-							$("#ca_media_o").val("0.0");						
-							$("#ca_high_o").val("0.0");	
-							
-							$("#cd_low_o").val("0.0");						
-							$("#ce_most_o").val("0.0");						
-							$("#cf_high_o").val("0.0");	
-							
-						}
-						
-						if(document.getElementById("type_list_2_o").checked == true){								
-							
-							//seta as divs
-							$("#ex_uvp_le_percent_o").html("0.0");
-							$("#ex_uvp_le_c_o").html("0.0");
-							$("#ex_aev_le_percent_o").html("0.0");
-							$("#ex_aev_le_c_o").html("0.0");	
-							$("#ex_uvp_mp_percent_o").html("0.0");
-							$("#ex_uvp_mp_c_o").html("0.0");							
-							$("#ex_aev_mp_percent_o").html("0.0");
-							$("#ex_aev_mp_c_o").html("0.0");													
-							$("#ex_uvp_he_percent_o").html("0.0");
-							$("#ex_uvp_he_c_o").html("0.0");
-							$("#ex_aev_he_percent_o").html("0.0");
-							$("#ex_aev_he_c_o").html("0.0");	
-							
-							
-							//seta os campos
-							$("#ca_low_o").val("0.0");
-							$("#ca_media_o").val("0.0");						
-							$("#ca_high_o").val("0.0");	
-							
-							$("#cd_low_o").val("0.0");						
-							$("#ce_most_o").val("0.0");						
-							$("#cf_high_o").val("0.0");	
-							
-							
-						}
-						}
-					  });
-					}
-	
   </script>
 <?php
 

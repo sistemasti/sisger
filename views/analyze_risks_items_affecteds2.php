@@ -112,15 +112,16 @@
 											<br>
 											C.2 Select how this score will be entered:
 											<br>
-											
+											<?PHP $displayFra = "block"; ?>
 											<input type="radio" name="type_score" id="type_score_1" value="1"  onclick="
 													document.getElementById('type_score_selected').style.display='1';
 													document.getElementById('bxFractionAffected').style.display='block';
 													document.getElementById('bxFractionAffected_o').style.display='block';
 													document.getElementById('bxValuePieAffected_o').style.display='none';
 													
+													document.getElementById('C_type_list_o').value='1';
 													
-													" checked> Step scale, considering the heritage asset as a whole.
+													" > Step scale, considering the heritage asset as a whole.
 													
 													<br>
 											<input type="radio" name="type_score" id="type_score_2" value="2" onclick="
@@ -129,14 +130,16 @@
 													document.getElementById('bxFractionAffected').style.display='none';
 													document.getElementById('bxFractionAffected_o').style.display='none';
 													document.getElementById('bxValuePieAffected_o').style.display='block';
+													document.getElementById('C_type_list_o').value='2';
 													
 													
-													"> More precise data using the value pie<br>
+													
+													" <?PHP if(isset($_GET['id_option'])){ echo "checked"; $displayFra = "none"; } ?>> More precise data using the value pie<br>
 											
 											<input type="hidden" name="C_type_list" id="C_type_list" value='1'>
 											<br>
 											<br>
-											<div id="bxFractionAffected" style="display: block">
+											<div id="bxFractionAffected" style="display: <?PHP echo $displayFra; ?>">
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
 														<select class="form-control" id="heia" name="heia"  onchange="range_I_A('Max',this.value)" disabled>
@@ -266,26 +269,98 @@
 						  <div class="col-sm-4 col-md-6" style="padding:15px;background-color:#f9f2d2">
 							<form method="post" name="ar_ia_o" id="ar_ia_o">
 
+							<input type="hidden" name="C_type_list_o" id="C_type_list_o" value='1'>
 
-
-
+											  
+											  <!---  MIN -->
 											  <div style="float:right;"> 
- <input type="hidden" id="ia_Inp_Min_o"  name="ia_Inp_Min_o" value="<?php echo $ia_Inp_Min_o; ?>">
-											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="ia_Div_Min_o" ><?php echo $ia_Inp_Min_o; ?></div>
+												 <input type="hidden" id="ia_Inp_Min_o"  name="ia_Inp_Min_o" value="<?php 
+												 if(isset($_GET['ca_low'])){
+												 echo  (str_ireplace("C: ","",$_GET['ca_low']));
+												 }ELSE{
+												 echo $ia_Inp_Min_o; 	 
+												 }
+												 
+												 ?>">
+											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="ia_Div_Min_o" ><?php 
+												 if(isset($_GET['ca_low'])){
+												 echo (str_ireplace("C: ","",$_GET['ca_low']));
+												 }ELSE{
+												 echo $ia_Inp_Min_o; 	 
+												 }
+												 
+												 ?></div>
 											  
-											  <input type="hidden" id="ia_Inp_Med_o" name="ia_Inp_Med_o" value="<?php echo $ia_Inp_Med_o; ?>">	
-											  <div style="display:inline-block; padding:10px; margin:1px; background-color:#d8d7de;"  id="ia_Div_Med_o" ><?php echo $ia_Inp_Med_o; ?></div>
 											  
-											  <input type="hidden" id="ia_Inp_Max_o" name="ia_Inp_Max_o" value="<?php echo $ia_Inp_Max_o; ?>">	
-											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="ia_Div_Max_o"><?php echo $ia_Inp_Max_o; ?></div>
+											  
+											  <!---  MED -->
+											  <input type="hidden" id="ia_Inp_Med_o" name="ia_Inp_Med_o" value="<?php 
+											  							if(isset($_GET['ca_media'])){
+																		 echo $_GET['ca_media'];
+																		 }ELSE{
+																		 echo $ia_Inp_Med_o; 	 
+																		 }
+											  
+											  ?>">	
+											  <div style="display:inline-block; padding:10px; margin:1px; background-color:#d8d7de;"  id="ia_Div_Med_o" ><?php  
+												if(isset($_GET['ca_media'])){
+												 echo $_GET['ca_media'];
+												 }ELSE{
+												 echo $ia_Inp_Med_o; 	 
+												 }
+											  
+											 ?></div>
+											  
+											  
+											  
+											  
+											  <!---  MAX -->
+											  <input type="hidden" id="ia_Inp_Max_o" name="ia_Inp_Max_o" value="<?php 
+											  
+											   if(isset($_GET['ca_high'])){
+												 echo $_GET['ca_high'];
+												 }ELSE{
+												 echo $ia_Inp_Max_o; 	 
+												 }
+											  
+											  ?>">	
+											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="ia_Div_Max_o"><?php 
+											  
+											  if(isset($_GET['ca_high'])){
+												 echo $_GET['ca_high'];
+												 }ELSE{
+												 echo $ia_Inp_Max_o; 	 
+												 } ?></div>
+												 
+												 
+												 
+												 
 											  &nbsp;
 											  &nbsp;
 											  &nbsp;
 											  &nbsp;
 											  &nbsp;
-											  &nbsp; <span >Uncertainty range</span>
-											  <input type="hidden" id="ia_Inp_Range_o" name="ia_Inp_Range_o" value="">	
-											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="ia_Div_Range_o">0.0</div>
+											  &nbsp; 
+											  
+											  
+											  <!--- MED -->
+											  <span >Uncertainty range</span>
+											  
+											  <input type="hidden" id="ia_Inp_Range_o" name="ia_Inp_Range_o" value="<?php 
+											  
+											  if(isset($_GET['ca_high'])){
+												  echo ($_GET['ca_high'])-(str_ireplace("C: ","",$_GET['ca_low']));
+												 }ELSE{
+												 echo $ia_Inp_Range_o; 	 
+												 } ?>">	
+											  
+											  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="ia_Div_Range_o"><?php 
+											  
+											  if(isset($_GET['ca_high'])){
+												 echo ($_GET['ca_high'])-(str_ireplace("C: ","",$_GET['ca_low']));
+												 }ELSE{
+												 echo $ia_Inp_Range_o; 	 
+												 } ?></div>
 											  </div>
 											  
 									 
@@ -319,9 +394,23 @@
 											
 										
 											<br>											
-										
+											<?PHP 
 											
-											<div id="bxFractionAffected_o" style="display: none">
+											if(isset($_GET['id_option'])){
+												
+													$displayFA_o 	= "none";
+													$displayVPA_o 	= "block";
+													
+													
+											}else{
+													$displayFA_o 	= "block";
+													$displayVPA_o 	= "none";
+													
+												
+											}
+												?>
+											
+											<div id="bxFractionAffected_o" style="display: <?php echo $displayFA_o; ?>">
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
 														<select class="form-control" id="heia_o" name="heia_o"  onchange="range_I_A('Max',this.value)">
@@ -382,7 +471,7 @@
 													</div>
 													</div>	
 													
-											<div id="bxValuePieAffected_o" style="display: none"><br>
+											<div id="bxValuePieAffected_o" style="display: <?php echo $displayVPA_o; ?>"><br>
 											<br>
 											<center>
 											<a href="javascript:void(0)" onclick="if(document.getElementById('risk').value=='' || document.getElementById('risk').value=='#' ){alert('select a risk');}else{items_affecteds_register_o(1);location.href = 'zoom_list?type=op&option_id='+document.getElementById('id_option').value+'&risk_id='+document.getElementById('risk').value;}"><center><button type="button" class="btn btn-block bg-gradient-info btn-sm" style="padding:20px;width:60%" >Zoom list of items affected</button></center></a>
@@ -732,14 +821,13 @@
 									
 								}else{	
 								  var formulario = document.getElementById('ar_ia_o');
-								  var dados = new FormData(formulario);
-								  
+								  var dados = new FormData(formulario);								  
 								 
 								  
 								  $.ajax({
 									dataType: 'json',
 									type: "POST",
-									url: "ajax_process/ar_ia_register_o.php?id_risk="+document.getElementById('risk').value+"&id_option="+document.getElementById('id_option').value+"&type_score="+document.getElementById('type_score_selected').value+"&C_type_list="+document.getElementById('C_type_list').value,
+									url: "ajax_process/ar_ia_register_o.php?id_risk="+document.getElementById('risk').value+"&id_option="+document.getElementById('id_option').value+"&type_score="+document.getElementById('type_score_selected').value+"&C_type_list="+document.getElementById('C_type_list_o').value,
 									data: dados,
 									processData: false,
 									contentType: false,
@@ -756,6 +844,8 @@
 										alert('erro');
 									}
 								  });
+								  
+								  
 								}  
 								  
 							}
