@@ -5,6 +5,10 @@ include("../models/DB.class.php");
 include("../controllers/IR_Risks.class.php");
 include("../controllers/TR_Analyze_options.class.php");
 
+$op = Analyze_options::select_options_by_risk($_REQUEST['id']);
+
+if($op['num'] > 0){
+
 ?>
 <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Options']; ?></label>
 							<select class="form-control" id="id_option" name="id_option" onchange="select_option(this.value,document.getElementById('risk').value);select_risk_option(this.value,document.getElementById('risk').value)">
@@ -30,3 +34,10 @@ include("../controllers/TR_Analyze_options.class.php");
 							  
 							 
 							</select>
+							
+<?php }else{ 
+
+echo 1;
+
+?>
+<?php } ?>

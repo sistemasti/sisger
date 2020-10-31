@@ -171,7 +171,29 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 													<br>
 			
 				<script>
-				
+				function zoom_list_update_type_list(type_list,id) {			
+															 
+			  $.ajax({
+				type: "POST",
+				url: "ajax_process/zoom_list_update_type_list.php",
+				data: {
+					id: id,
+					type_list: type_list
+				},
+				dataType: 'json',
+				success: function(data) {
+					//atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
+					//alert('ok');																  
+					
+				},
+				error: function() {
+					
+					//alert('erro');																  
+					
+				}
+			  });
+		} 
+  
 				<?php if($iac['type_list'] == 1){ ?> 
 					
 					document.getElementById('low_estimate_top').style.display='none';
@@ -1802,7 +1824,20 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
   <!-- /.control-sidebar -->
   
   <script>
-  
+				function zoom_list_delete(id) {			
+	  var i = '#row'+id;
+	  $.ajax({
+		type: "POST",
+		url: "ajax_process/zoom_list_delete.php",
+		data: {
+			id: id
+		},
+		success: function(data) {
+			atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
+		  $(i).css({"display":"none"});
+		}
+	  });
+	}
   
 				function atualia_calculos_zoom_list(risk_id) {			
 					/* alert(document.getElementById("type_list_1").checked);
@@ -2115,43 +2150,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 	
 	*/
 	
-		function zoom_list_update_type_list(type_list,id) {			
-															 
-			  $.ajax({
-				type: "POST",
-				url: "ajax_process/zoom_list_update_type_list.php",
-				data: {
-					id: id,
-					type_list: type_list
-				},
-				dataType: 'json',
-				success: function(data) {
-					//atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
-					//alert('ok');																  
-					
-				}
-			  });
-		} 
-  
+		
 	
-		function zoom_list_update_type_list_o(type_list,id) {			
-															 
-			  $.ajax({
-				type: "POST",
-				url: "ajax_process/zoom_list_update_type_list.php",
-				data: {
-					id: id,
-					type_list: type_list,
-							option_id: <?php echo $_GET['option_id']; ?>
-				},
-				dataType: 'json',
-				success: function(data) {
-					//atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
-					//alert('ok');																  
-					
-				}
-			  });
-		} 
+	
   
   
 /*    function zoom_list_update_type_list(type_list,id) {			
@@ -2189,20 +2190,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 	}
 	
 
-	function zoom_list_delete(id) {			
-	  var i = '#row'+id;
-	  $.ajax({
-		type: "POST",
-		url: "ajax_process/zoom_list_delete.php",
-		data: {
-			id: id
-		},
-		success: function(data) {
-			atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
-		  $(i).css({"display":"none"});
-		}
-	  });
-	}
+	
 	
 	function zoom_list_delete_o(id) {			
 	  var i = '#row_o_'+id;
@@ -2355,6 +2343,25 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						}
 					  });
 					}
+					
+						function zoom_list_update_type_list_o(type_list,id) {			
+															 
+			  $.ajax({
+				type: "POST",
+				url: "ajax_process/zoom_list_update_type_list.php",
+				data: {
+					id: id,
+					type_list: type_list,
+							option_id: <?php echo $_GET['option_id']; ?>
+				},
+				dataType: 'json',
+				success: function(data) {
+					//atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
+					//alert('ok');																  
+					
+				}
+			  });
+		} 
 	
   </script>
 <?php

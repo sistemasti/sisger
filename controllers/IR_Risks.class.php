@@ -151,7 +151,9 @@
 													WHERE  `id` =? ');
 											
 					$n->execute(array($id));	
-		}
+		}	
+		
+		
 		
 		static function delete_risk_group_institutions_id($id){
 				$n = self::getConn()->prepare('
@@ -160,6 +162,48 @@
 											
 					$n->execute(array($id));	
 		}
+		
+		
+		static function delete_ar_analyze_risks($id){
+				$n = self::getConn()->prepare('
+													DELETE  FROM `ar_analyze_risks`
+													WHERE  `id_risk` =? ');
+											
+					$n->execute(array($id));	
+		}
+		
+		static function delete_ar_zoom_list_items_affected($id){
+				$n = self::getConn()->prepare('
+													DELETE  FROM `ar_zoom_list_items_affected`
+													WHERE  `risk_id` =? ');
+											
+					$n->execute(array($id));	
+		}
+		
+		static function delete_ar_zoom_list_items_affected_o($id){
+				$n = self::getConn()->prepare('
+													DELETE  FROM `ar_zoom_list_items_affected_o`
+													WHERE  `risk_id` =? ');
+											
+					$n->execute(array($id));	
+		}
+		
+		static function delete_tr_analyze_options($id){
+				$n = self::getConn()->prepare('
+													DELETE  FROM `tr_analyze_options`
+													WHERE  `id_risk` =? ');
+											
+					$n->execute(array($id));	
+		}
+		
+		static function delete_tr_identify_options($id){
+				$n = self::getConn()->prepare('
+													DELETE  FROM `tr_identify_options`
+													WHERE  `id_risk` =? ');
+											
+					$n->execute(array($id));	
+		}
+		
 		
 			
 		static function delete_risk_institutions_id($id){

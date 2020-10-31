@@ -57,6 +57,7 @@ update their_scores
 			return $d;
 			
 		}
+		
 		static function select_ar_zoom_list_items_affected_checked($risk_id){
 			
 			$n1 = self::getConn()->prepare('SELECT * FROM ar_zoom_list_items_affected WHERE project_id="'.$_SESSION['project_id'].'" AND risk_id=? ORDER BY id DESC');
@@ -73,6 +74,16 @@ update their_scores
 			$n1->execute(array($risk_id,$option_id)); 
 			$d['dados'] = $n1->fetchAll();	
 			$d['num'] = $n1->rowCount();
+			return $d;
+			
+		}
+			
+		static function select_ar_zoom_list_items_affected_checked_o($risk_id,$option_id){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM ar_zoom_list_items_affected_o WHERE project_id="'.$_SESSION['project_id'].'" AND risk_id=? AND option_id=? ORDER BY id DESC');
+			$n1->execute(array($risk_id,$option_id)); 
+			$d = $n1->fetch();	
+			$d['num'] = $n1->rowCount();				
 			return $d;
 			
 		}
@@ -397,6 +408,7 @@ update their_scores
 												s.name as subgroup_name, 
 												s.id as subgroup_id, 
 												g.points as groupPoints, 
+
 												g.value_ratio as groupRatio,
 												s.points as subgroupPoints, 
 												s.soma_for_single as subgroupRatio, 
@@ -449,6 +461,8 @@ update their_scores
 												s.id as subgroup_id, 
 												g.points as groupPoints, 
 												s.points as subgroupPoints, 
+												g.value_ratio as groupRatio,
+												s.soma_for_single as subgroupRatio, 
 												s.numbers_of_items as numbers_of_items 
 											FROM `ec_groups_value` as g 											
 											INNER JOIN ec_subgroups_value AS s ON 
@@ -471,6 +485,8 @@ update their_scores
 													s.id as subgroup_id, 
 													g.points as groupPoints, 
 													s.points as subgroupPoints, 
+													g.value_ratio as groupRatio,
+													s.soma_for_single as subgroupRatio, 
 													s.numbers_of_items as numbers_of_items 
 											FROM `ec_groups_value` as g 											
 											INNER JOIN ec_subgroups_value 
@@ -494,7 +510,9 @@ update their_scores
 													s.name as subgroup_name, 
 													s.id as subgroup_id, 
 													g.points as groupPoints, 
-													s.points as subgroupPoints, 
+													s.points as subgroupPoints,
+													g.value_ratio as groupRatio,
+													s.soma_for_single as subgroupRatio, 													
 													s.numbers_of_items as numbers_of_items 
 											FROM `ec_groups_value` as g 											
 											INNER JOIN ec_subgroups_value 
@@ -694,6 +712,31 @@ update their_scores
 		}
 		
 		
+		static function update_analyze_risk_by_zoom_ia_o($C_min_score,$C_pro_score,$C_max_score,$C_unc_range, $id_risk, $id_option){
+			
+					/* echo 'UPDATE `ar_analyze_risks` SET 
+														   `C_min_score` ="'.$C_min_score.'",
+														   `C_pro_score` ="'.$C_pro_score.'",
+														   `C_max_score` ="'.$C_max_score.'",
+														   `C_unc_range` ="'.$C_unc_range.'"
+													WHERE  `id_risk` ="'.$id_risk.'" '; */
+			
+					$n = self::getConn()->prepare('
+													UPDATE `tr_analyze_options` SET 
+														   `C_min_score` =?,
+														   `C_pro_score` =?,
+														   `C_max_score` =?,
+														   `C_unc_range` =?
+													WHERE  
+															`id_risk` =? AND
+															`id_option` =? 
+													
+													');
+											
+					$n->execute(array($C_min_score,$C_pro_score,$C_max_score,$C_unc_range, $id_risk, $id_option));
+		}
+		
+		
 		static function update_ar_zoom_list_items_affected_o($low_estimate, $most_probable, $high_estimate, $id){
 					$n = self::getConn()->prepare('
 													UPDATE `ar_zoom_list_items_affected_o` SET 														   
@@ -868,6 +911,15 @@ update their_scores
 													WHERE  `risk_id` =? ');
 											
 					$n->execute(array($type_list, $id));
+		}
+
+		static function update_zoom_list_type_list_o($type_list, $option_id, $id){
+					$n = self::getConn()->prepare('
+													UPDATE  `ar_zoom_list_items_affected` SET 
+												   `type_list` =?
+													WHERE  `risk_id` =? AND option_id=? ');
+											
+					$n->execute(array($type_list, $option_id, $id));
 		}
 
 		static function update_group($name,$definition,$notes,$id){
