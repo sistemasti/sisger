@@ -1044,7 +1044,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								 function changeTypeCalc(t){
 									
 									
-									if(t==3){
+									if(t==3){//Simple
 										
 										document.getElementById('magnitude_FR_MEDIA').innerHTML=document.getElementById('magnitude_FR_Probable').innerHTML;
 										
@@ -1056,7 +1056,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										document.getElementById('magnitude_SOMA_MEDIA').innerHTML=parseFloat(total.toFixed(1));
 										
-									}else if(t==2){
+									}else if(t==2){ //Linear
 										//Math.pow(base, expoente)
 										
 										//A
@@ -1091,7 +1091,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										document.getElementById('magnitude_SOMA_MEDIA').innerHTML=parseFloat(total.toFixed(1)); 
 										
-									}else{
+									}else{//Log
 										
 										 select_risk(document.getElementById('risk').value);
 									} 		
