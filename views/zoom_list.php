@@ -171,6 +171,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 													<br>
 			
 				<script>
+				
+				
+				
+				
 				function zoom_list_update_type_list(type_list,id) {			
 															 
 			  $.ajax({
@@ -194,54 +198,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 			  });
 		} 
   
-				<?php if($iac['type_list'] == 1){ ?> 
-					
-					document.getElementById('low_estimate_top').style.display='none';
-					document.getElementById('most_probable_top').style.display='none';
-					document.getElementById('high_estimate_top').style.display='none';				
-					
-					document.getElementById('bx_Exposed_Assuming_High').style.display='none';			
-					document.getElementById('bx_Exposed_Assuming_Low').style.display='none';			
-					document.getElementById('bx_Exposed_Assuming_Most').style.display='none';			
-					document.getElementById('bxExposedUsingLow').style.display='none';			
-					document.getElementById('bxExposedUsingMost').style.display='none';			
-					document.getElementById('bxExposedUsingHigh').style.display='none';			
-					
-					document.getElementById('bxAllAffectedUsingLow').style.display='block';			
-					document.getElementById('bxAllAffectedUsingMost').style.display='block';			
-					document.getElementById('bxAllAffectedUsingHigh').style.display='block';			
-					document.getElementById('bx_AllAffected_Assuming_Low').style.display='block';			
-					document.getElementById('bx_AllAffected_Assuming_Most').style.display='block';			
-					document.getElementById('bx_AllAffected_Assuming_High').style.display='block';		
-					
-					document.getElementById('C_type_list').value=1;	
-					
-				<?php } ?>
 				
-				
-				<?php if($iac['type_list'] == 2){ ?> 
-						
-					document.getElementById('low_estimate_top').style.display='block';
-					document.getElementById('most_probable_top').style.display='block';
-					document.getElementById('high_estimate_top').style.display='block';
-					
-					document.getElementById('bx_Exposed_Assuming_High').style.display='block';			
-					document.getElementById('bx_Exposed_Assuming_Low').style.display='block';			
-					document.getElementById('bx_Exposed_Assuming_Most').style.display='block';			
-					document.getElementById('bxExposedUsingLow').style.display='block';			
-					document.getElementById('bxExposedUsingMost').style.display='block';			
-					document.getElementById('bxExposedUsingHigh').style.display='block';			
-					
-					document.getElementById('bxAllAffectedUsingLow').style.display='none';			
-					document.getElementById('bxAllAffectedUsingMost').style.display='none';			
-					document.getElementById('bxAllAffectedUsingHigh').style.display='none';			
-					document.getElementById('bx_AllAffected_Assuming_Low').style.display='none';			
-					document.getElementById('bx_AllAffected_Assuming_Most').style.display='none';			
-					document.getElementById('bx_AllAffected_Assuming_High').style.display='none';	
-					
-					document.getElementById('C_type_list').value=2;	
-						
-				<?php } ?>
 				
 				
 				</script>
@@ -253,19 +210,19 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 														if(isset($ia['dados'][0]['low_estimate_general'])){
 															$low_estimate_general=$ia['dados'][0]['low_estimate_general'];
 														}else{
-															$low_estimate_general='0.0';
+															$low_estimate_general='';
 														}	
 														
 														if(isset($ia['dados'][0]['most_probable_general'])){
 															$most_probable_top=$ia['dados'][0]['most_probable_general'];
 														}else{
-															$most_probable_top='0.0';
+															$most_probable_top='';
 														}	
 														
 														if(isset($ia['dados'][0]['high_estimate_general'])){
 															$high_estimate_top=$ia['dados'][0]['high_estimate_general'];
 														}else{
-															$high_estimate_top='0.0';
+															$high_estimate_top='';
 														}	
 														
 														?>
@@ -1824,6 +1781,62 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
   <!-- /.control-sidebar -->
   
   <script>
+  
+  
+  <?php if($iac['type_list'] == 1){ ?> 
+					
+					document.getElementById('low_estimate_top').style.display='none';
+					document.getElementById('most_probable_top').style.display='none';
+					document.getElementById('high_estimate_top').style.display='none';				
+					
+					document.getElementById('bx_Exposed_Assuming_High').style.display='none';			
+					document.getElementById('bx_Exposed_Assuming_Low').style.display='none';			
+					document.getElementById('bx_Exposed_Assuming_Most').style.display='none';			
+					document.getElementById('bxExposedUsingLow').style.display='none';			
+					document.getElementById('bxExposedUsingMost').style.display='none';			
+					document.getElementById('bxExposedUsingHigh').style.display='none';			
+					
+					document.getElementById('bxAllAffectedUsingLow').style.display='block';			
+					document.getElementById('bxAllAffectedUsingMost').style.display='block';			
+					document.getElementById('bxAllAffectedUsingHigh').style.display='block';			
+					document.getElementById('bx_AllAffected_Assuming_Low').style.display='block';			
+					document.getElementById('bx_AllAffected_Assuming_Most').style.display='block';			
+					document.getElementById('bx_AllAffected_Assuming_High').style.display='block';		
+					
+					document.getElementById('C_type_list').value=1;	
+					
+				<?php } ?>
+				
+				
+				<?php if($iac['type_list'] == 2){ ?> 
+					
+					
+					
+					document.getElementById('low_estimate_top').style.display='block';
+					document.getElementById('most_probable_top').style.display='block';
+					document.getElementById('high_estimate_top').style.display='block'; 
+					alert('oi');
+					document.getElementById('bx_Exposed_Assuming_High').style.display='block';			
+					document.getElementById('bx_Exposed_Assuming_Low').style.display='block';			
+					document.getElementById('bx_Exposed_Assuming_Most').style.display='block';			
+					document.getElementById('bxExposedUsingLow').style.display='block';			
+					document.getElementById('bxExposedUsingMost').style.display='block';			
+					document.getElementById('bxExposedUsingHigh').style.display='block';			
+						
+					document.getElementById('bxAllAffectedUsingLow').style.display='none';			
+					document.getElementById('bxAllAffectedUsingMost').style.display='none';			
+					document.getElementById('bxAllAffectedUsingHigh').style.display='none';			
+					document.getElementById('bx_AllAffected_Assuming_Low').style.display='none';			
+					document.getElementById('bx_AllAffected_Assuming_Most').style.display='none';			
+					document.getElementById('bx_AllAffected_Assuming_High').style.display='none';	
+					
+					document.getElementById('C_type_list').value=2;	
+						
+				<?php } ?>
+  
+  
+  
+  
 				function zoom_list_delete(id) {			
 	  var i = '#row'+id;
 	  $.ajax({
@@ -1893,9 +1906,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$("#ex_aev_mp_percent").html(data['ex_aev_mp_percent']);
 							$("#ex_aev_mp_c").html(data['ex_aev_mp_c']);													
 							$("#ex_uvp_he_percent").html(data['ex_uvp_he_percent']);
-							$("#ex_uvp_he_c").html(Math.log10(data['ex_uvp_he_c']));
+							$("#ex_uvp_he_c").html(data['ex_uvp_he_c']);
 							$("#ex_aev_he_percent").html(data['ex_aev_he_percent']);
-							$("#ex_aev_he_c").html(Math.log10(data['ex_aev_he_c']));	
+							$("#ex_aev_he_c").html(data['ex_aev_he_c']);	
 							
 							
 							//seta os campos
@@ -2264,9 +2277,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$("#ex_aev_mp_percent_o").html(data['ex_aev_mp_percent']);
 							$("#ex_aev_mp_c_o").html(data['ex_aev_mp_c']);													
 							$("#ex_uvp_he_percent_o").html(data['ex_uvp_he_percent']);
-							$("#ex_uvp_he_c_o").html(Math.log10(data['ex_uvp_he_c']));
+							$("#ex_uvp_he_c_o").html(data['ex_uvp_he_c']);
 							$("#ex_aev_he_percent_o").html(data['ex_aev_he_percent']);
-							$("#ex_aev_he_c_o").html(Math.log10(data['ex_aev_he_c']));	
+							$("#ex_aev_he_c_o").html(data['ex_aev_he_c']);	
 							
 							
 							//seta os campos
