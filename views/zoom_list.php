@@ -89,7 +89,20 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 			
 				<a href="zoom_list_register?risk_id=<?php echo $_GET['risk_id']; ?>&option_id=<?php echo $_GET['option_id']; ?>"><button type="button" class="btn btn-block btn-success btn-xs">Register a new item >></button></a>
 				
-				<a href="javascript:void(0)" onclick="location.href = 'analyze_risks?id='+<?php echo $_GET['risk_id']; ?>+'&ca_high='+document.getElementById('ca_high').value+'&ca_media='+document.getElementById('ca_media').value+'&ca_low='+document.getElementById('ca_low').value+'&view=1';"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << Return</button></a>
+				<a href="javascript:void(0)" onclick="
+				
+				if(document.getElementById('type_list_1').checked == true){
+					location.href = 'analyze_risks?id='+<?php echo $_GET['risk_id']; ?>+'&ca_high='+document.getElementById('ca_high').value+'&ca_media='+document.getElementById('ca_media').value+'&ca_low='+document.getElementById('ca_low').value+'&view=1';
+				}
+				
+				
+				if(document.getElementById('type_list_2').checked == true){
+					location.href = 'analyze_risks?id='+<?php echo $_GET['risk_id']; ?>+'&ca_high='+document.getElementById('ca_high_e').value+'&ca_media='+document.getElementById('ca_media_e').value+'&ca_low='+document.getElementById('ca_low_e').value+'&view=1';
+				}
+				
+					
+				
+				"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << Return</button></a>
 				
 			<?php } 
 			
@@ -210,19 +223,19 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 														if(isset($ia['dados'][0]['low_estimate_general'])){
 															$low_estimate_general=$ia['dados'][0]['low_estimate_general'];
 														}else{
-															$low_estimate_general='';
+															$low_estimate_general='0.0';
 														}	
 														
 														if(isset($ia['dados'][0]['most_probable_general'])){
 															$most_probable_top=$ia['dados'][0]['most_probable_general'];
 														}else{
-															$most_probable_top='';
+															$most_probable_top='0.0';
 														}	
 														
 														if(isset($ia['dados'][0]['high_estimate_general'])){
 															$high_estimate_top=$ia['dados'][0]['high_estimate_general'];
 														}else{
-															$high_estimate_top='';
+															$high_estimate_top='0.0';
 														}	
 														
 														?>
@@ -420,7 +433,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			echo "C: 0.0";
 																			
 																		}
-																	  echo round($a,5);
+																	  //echo round($a,5);
 																	  
 																	  
 																	  ?>%</div></span>
@@ -439,6 +452,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		?>
 																		</div>
 																		<input type="hidden" id="ca_low" name="ca_low" value="<?php echo round($ca,1); ?>">
+																		<input type="hidden" id="ca_low_e" name="ca_low_e" value="<?php echo round($ca,1); ?>">
 																  </center>
 																</div>  
 																
@@ -521,6 +535,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			?>
 																			</div>
 																			 <input type="hidden" id="ca_media" name="ca_media" value="<?php echo round($cb,1); ?>">
+																			 <input type="hidden" id="ca_media_e" name="ca_media_e" value="<?php echo round($cb,1); ?>">
 																  </center>
 																</div>  
 																
@@ -566,6 +581,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		</div>
 																  </center>
 																   <input type="hidden" id="ca_high" name="ca_high" value="<?php echo round($cc,1); ?>">
+																   <input type="hidden" id="ca_high_a" name="ca_high_a" value="<?php echo round($cc,1); ?>">
 															  </div>
 															   <div id="bxExposedUsingHigh" style="display:none">
 																  <center>
@@ -605,6 +621,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			?>
 																			</div>
 																			<input type="hidden" id="ca_high" name="ca_high" value="<?php echo round($cc,1); ?>">
+																			<input type="hidden" id="ca_high_e" name="ca_high_e" value="<?php echo round($cc,1); ?>">
 																  </center>
 																</div> 
 																
@@ -1815,7 +1832,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					document.getElementById('low_estimate_top').style.display='block';
 					document.getElementById('most_probable_top').style.display='block';
 					document.getElementById('high_estimate_top').style.display='block'; 
-					alert('oi');
+					//alert('oi');
 					document.getElementById('bx_Exposed_Assuming_High').style.display='block';			
 					document.getElementById('bx_Exposed_Assuming_Low').style.display='block';			
 					document.getElementById('bx_Exposed_Assuming_Most').style.display='block';			
