@@ -1855,19 +1855,39 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
   
   
 				function zoom_list_delete(id) {			
-	  var i = '#row'+id;
-	  $.ajax({
-		type: "POST",
-		url: "ajax_process/zoom_list_delete.php",
-		data: {
-			id: id
-		},
-		success: function(data) {
-			atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
-		  $(i).css({"display":"none"});
-		}
-	  });
-	}
+				  var i = '#row'+id;
+				  $.ajax({
+					type: "POST",
+					url: "ajax_process/zoom_list_delete.php",
+					data: {
+						id: id
+					},
+					success: function(data) {
+						atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
+					  $(i).css({"display":"none"});
+					  
+					  
+					   if(document.getElementById('type_list_1').checked == true){
+						   
+						   document.getElementById('ca_high').value 	= '0.0';
+						   document.getElementById('ca_media').value 	= '0.0';
+						   document.getElementById('ca_low').value 		= '0.0';
+						   
+							
+						}
+						
+						
+						if(document.getElementById('type_list_2').checked == true){
+							
+								document.getElementById('ca_high_e').value 		= '0.0';
+								document.getElementById('ca_media_e').value 	= '0.0';
+								document.getElementById('ca_low_e').value 		= '0.0';
+						
+						}
+					  
+					}
+				  });
+				}
   
 				function atualia_calculos_zoom_list(risk_id) {			
 					/* alert(document.getElementById("type_list_1").checked);
@@ -1943,6 +1963,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 						},
 						error: function(data) {
+							//alert('erro');
 							if(document.getElementById("type_list_1").checked == true){
 							
 							//seta as divs
