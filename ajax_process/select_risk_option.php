@@ -151,9 +151,9 @@ if($ar['num'] > 0){
 	$dados['fdHigh_o'] 			= '0.0';
 	$dados['fdUncert_o'] 			= '0.0';
 	$dados['explain_o'] 			= '';
-	$dados['ley_o'] 				= '0.0';
-	$dados['abey_o'] 				= '0.0';
-	$dados['hey_o'] 				= '0.0';
+	$dados['ley_o'] 				= '';
+	$dados['abey_o'] 				= '';
+	$dados['hey_o'] 				= '';
 	$dados['B_fdLow_o'] 			= '0.0';
 	$dados['B_fdProbable_o'] 		= '0.0';
 	$dados['B_fdHigh_o'] 			= '0.0';

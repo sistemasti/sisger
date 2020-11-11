@@ -64,16 +64,16 @@
 	$_SESSION['pt-br']['Probable'] 								= "Provável";
 	$_SESSION['pt-br']['High'] 									= "Alta";
 	$_SESSION['pt-br']['Uncertainty range'] 					= "Faixa de incerteza";
-	$_SESSION['pt-br']['Expected Scores (average)'] 			= "Pontuações esperadas (média)";
+	$_SESSION['pt-br']['Expected Scores (average)'] 			= "Pontuações esperadas";
 	$_SESSION['pt-br']['Frequency or Rate'] 					= "Frequencia ou Taxa";
 	$_SESSION['pt-br']['Loss to each item affected'] 			= "Perda para cada item";
 	$_SESSION['pt-br']['Items affected'] 						= "Itens afetados";
 	
 #analyze_risks.php
-	$_SESSION['pt-br']['Analyze Risks'] 							= "Analise de riscos";
+	$_SESSION['pt-br']['Analyze Risks'] 						= "Analise de riscos";
 	$_SESSION['pt-br']['Name'] 									= "Nome";
-	$_SESSION['pt-br']['select'] 									= "selecione";
-	$_SESSION['pt-br']['Agent'] 									= "Agente";
+	$_SESSION['pt-br']['select'] 								= "selecione";
+	$_SESSION['pt-br']['Agent'] 								= "Agente";
 	$_SESSION['pt-br']['Description'] 							= "Descrição";	
 	$_SESSION['pt-br']['Log triangle distribution (default)'] 	= "Distribuição do triângulo de log (padrão)";
 	$_SESSION['pt-br']['Linear triangle distribution'] 			= "Distribuição linear do triângulo";
@@ -309,7 +309,7 @@
 	$_SESSION['eng']['Probable'] 								= "Probable";
 	$_SESSION['eng']['High'] 									= "High";
 	$_SESSION['eng']['Uncertainty range'] 						= "Uncertainty range";
-	$_SESSION['eng']['Expected Scores (average)'] 				= "Expected Scores (average)";
+	$_SESSION['eng']['Expected Scores (average)'] 				= "Expected Scores";
 	$_SESSION['eng']['Frequency or Rate'] 						= "Frequency or Rate";
 	$_SESSION['eng']['Loss to each item affected'] 				= "Loss to each item affected";
 	$_SESSION['eng']['Items affected'] 							= "Items affected";
@@ -329,7 +329,7 @@
 	$_SESSION['eng']['Probable'] 								= "Probable";
 	$_SESSION['eng']['High'] 									= "High";
 	$_SESSION['eng']['Uncertainty range'] 						= "Uncertainty range";
-	$_SESSION['eng']['Expected Scores (average)'] 				= "Expected Scores (average)";
+	$_SESSION['eng']['Expected Scores (average)'] 				= "Expected Scores";
 	$_SESSION['eng']['Frequency or Rate'] 						= "Frequency or Rate";
 	$_SESSION['eng']['Loss to each item affected'] 				= "Loss to each item affected";
 	$_SESSION['eng']['Items affected'] 							= "Items affected";

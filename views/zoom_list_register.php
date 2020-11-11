@@ -158,7 +158,7 @@ require_once("header.php");
 							<select class="form-control" id="value_table" name="value_table" onchange="select_dados_value_table_id(this.value)">
 							<option value="" >select</option>
 				<?php 
-				$in = Build_value_pie::select_ec_value_pie_table_all(1);
+				$in = Build_value_pie::select_ec_value_pie_table_all_zoom_list(1);
 				
 				foreach($in['dados'] as $in){
 					

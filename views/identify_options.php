@@ -87,7 +87,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 			
 				<div class="col-sm-4 col-md-4">
 				
-				<div class="card" style="background-color:#dee0e4">
+				<div class="card" style="background-color:#dee0e4;height:700px;overflow: auto;">
 					<div class="card-body">
 					
 					<h4>Identify Options</h4>

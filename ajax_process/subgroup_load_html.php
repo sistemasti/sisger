@@ -102,7 +102,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 			<br>
 			<br>
 			<br>
-			<strong> Numbers of items: </strong> <span class="btn btn-block btn-outline-success btn-xs" id="totalNumberOfItens">
+			<strong> Number of itemns: </strong> <span class="btn btn-block btn-outline-success btn-xs" id="totalNumberOfItens">
 			<?php
 				
 				$s = Build_value_pie::select_sum_itens_subgroup($_GET['group_id']);

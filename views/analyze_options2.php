@@ -437,9 +437,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						    $("#fr_zoom_comment").val(data['fr_zoom_comment']);						
 						    $("#fr_zoom_obs").val(data['fr_zoom_obs']);						
 						    $("#fr_zoom_link").val(data['fr_zoom_link']);						
-						    $("#fr_zoom_document_file").val(data['fr_zoom_document_file']);						
+						    //$("#fr_zoom_document_file").val(data['fr_zoom_document_file']);						
 						    //alert(data['fr_zoom_document_file']);				
-							$("#fr_zoom_document_file_bx").html("<a href='"+data['fr_zoom_document_file']+"' target='_blank'>"+data['fr_zoom_document_file']+"</a>");				   
+							//$("#fr_zoom_document_file_bx").html("<a href='"+data['fr_zoom_document_file']+"' target='_blank'>"+data['fr_zoom_document_file']+"</a>");				   
 							 				
 							$("#fr_zoom_link_bx").html("<a href='"+data['fr_zoom_link']+"' target='_blank'>"+data['fr_zoom_link']+"</a>");				   
 							
@@ -561,9 +561,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#le").val("");
 							}	
 							
-							$("#le_zoom_document_file_bx").html("<a href='"+data['le_zoom_document_file']+"' target='_blank'>"+data['le_zoom_document_file']+"</a>");
+						//	$("#le_zoom_document_file_bx").html("<a href='"+data['le_zoom_document_file']+"' target='_blank'>"+data['le_zoom_document_file']+"</a>");
 							
-							$("#le_zoom_document_file").val(data['le_zoom_document_file']);
+							//$("#le_zoom_document_file").val(data['le_zoom_document_file']);
 							
 							$("#le_zoom_link_bx").html("<a href='"+data['le_zoom_link']+"' target='_blank'>"+data['le_zoom_link']+"</a>");	
 							
@@ -750,10 +750,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						    $("#ia_zoom_comment").val(data['ia_zoom_comment']);			
 							$("#ia_zoom_obs").val(data['ia_zoom_obs']);						
 						    $("#ia_zoom_link").val(data['ia_zoom_link']);			
-						    $("#ia_zoom_document_file").val(data['ia_zoom_document_file']);			
+						   // $("#ia_zoom_document_file").val(data['ia_zoom_document_file']);			
 						    //$("#ia_zoom_document_file").val(data['ia_zoom_document_file']);
 							
-							$("#ia_zoom_document_file_bx").html("<a href='"+data['ia_zoom_document_file']+"' target='_blank'>"+data['ia_zoom_document_file']+"</a>");
+						//	$("#ia_zoom_document_file_bx").html("<a href='"+data['ia_zoom_document_file']+"' target='_blank'>"+data['ia_zoom_document_file']+"</a>");
 							
 							$("#ia_zoom_link_bx").html("<a href='"+data['ia_zoom_link']+"' target='_blank'>"+data['ia_zoom_link']+"</a>");	
 							
@@ -883,9 +883,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						    $("#fr_zoom_comment_o").val(data['fr_zoom_comment_o']);						
 						    $("#fr_zoom_obs_o").val(data['fr_zoom_obs_o']);						
 						    $("#fr_zoom_link_o").val(data['fr_zoom_link_o']);						
-						    $("#fr_zoom_document_file_o").val(data['fr_zoom_document_file_o']);						
+						   // $("#fr_zoom_document_file_o").val(data['fr_zoom_document_file_o']);						
 						    //alert(data['fr_zoom_document_file']);				
-							$("#fr_zoom_document_file_bx_o").html("<a href='"+data['fr_zoom_document_file_o']+"' target='_blank'>"+data['fr_zoom_document_file_o']+"</a>");				   
+							//$("#fr_zoom_document_file_bx_o").html("<a href='"+data['fr_zoom_document_file_o']+"' target='_blank'>"+data['fr_zoom_document_file_o']+"</a>");				   
 							 				
 							$("#fr_zoom_link_bx_o").html("<a href='"+data['fr_zoom_link_o']+"' target='_blank'>"+data['fr_zoom_link_o']+"</a>");				   
 							
@@ -1020,9 +1020,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#le_o").val("");
 							}	 */
 							
-							$("#le_zoom_document_file_bx_o").html("<a href='"+data['le_zoom_document_file_o']+"' target='_blank'>"+data['le_zoom_document_file_o']+"</a>");
+							//$("#le_zoom_document_file_bx_o").html("<a href='"+data['le_zoom_document_file_o']+"' target='_blank'>"+data['le_zoom_document_file_o']+"</a>");
 							
-							$("#le_zoom_document_file_o").val(data['le_zoom_document_file_o']);
+						//	$("#le_zoom_document_file_o").val(data['le_zoom_document_file_o']);
 							
 							$("#le_zoom_link_bx_o").html("<a href='"+data['le_zoom_link_o']+"' target='_blank'>"+data['le_zoom_link_o']+"</a>");	
 							
@@ -1212,10 +1212,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						    $("#ia_zoom_comment_o").val(data['ia_zoom_comment_o']);			
 							$("#ia_zoom_obs_o").val(data['ia_zoom_obs_o']);						
 						    $("#ia_zoom_link_o").val(data['ia_zoom_link_o']);			
-						    $("#ia_zoom_document_file_o").val(data['ia_zoom_document_file_o']);			
+						   // $("#ia_zoom_document_file_o").val(data['ia_zoom_document_file_o']);			
 						    //$("#ia_zoom_document_file").val(data['ia_zoom_document_file']);
 							
-							$("#ia_zoom_document_file_bx_o").html("<a href='"+data['ia_zoom_document_file_o']+"' target='_blank'>"+data['ia_zoom_document_file_o']+"</a>");
+							//$("#ia_zoom_document_file_bx_o").html("<a href='"+data['ia_zoom_document_file_o']+"' target='_blank'>"+data['ia_zoom_document_file_o']+"</a>");
 							
 							$("#ia_zoom_link_bx_o").html("<a href='"+data['ia_zoom_link_o']+"' target='_blank'>"+data['ia_zoom_link_o']+"</a>");	
 							
@@ -1564,11 +1564,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								</table>
 								<div class="row">	
 								<div class="col-sm-4 col-md-4">
-								<button type="button" class="btn btn-block  bg-gradient-info btn-xs" onclick="changeTypeCalc(2)">Linear triangle distribution </button>
+								<button type="button" class="btn btn-block  bg-gradient-info btn-xs" onclick="changeTypeCalc(2)">Linear triangle distribution (default) </button>
 									
 								</div>
 								<div class="col-sm-4 col-md-4">
-									<button type="button" class="btn btn-block bg-gradient-success btn-xs" onclick="changeTypeCalc(1)">Log triangle distribution  (default)</button>
+									<button type="button" class="btn btn-block bg-gradient-success btn-xs" onclick="changeTypeCalc(1)">Log triangle <br>distribution </button>
 								</div>
 								<div class="col-sm-4 col-md-4">
 									<button type="button" class="btn btn-block bg-gradient-warning btn-xs" onclick="changeTypeCalc(3)">Simple use of problable value</button>

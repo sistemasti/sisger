@@ -65,7 +65,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Zoom list</h1>
+            <h1>Zoom list<?php 
+			
+			
+			if(isset($_GET['type'])){ echo "(Analyze risks)"; } ?></h1>
 
           </div>
           <div class="col-sm-2">
@@ -77,15 +80,20 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 			
 			
 			<?php 
-			/* echo "<pre>";
-			print_r($_SESSION);
-			echo "</pre>"; */
 			
-			if(isset($_GET['type'])){ ?>
+			
+			if(isset($_GET['type'])){ 
+			
+			$disabled = "disabled";
+			
+			?>
 			
 				<a href="javascript:void(0)" onclick="location.href = 'analyze_options?id='+<?php echo $_GET['risk_id']; ?>+'&id_option='+<?php echo $_GET['option_id']; ?>+'&ca_high='+document.getElementById('ca_high_o').value+'&ca_media='+document.getElementById('ca_media_o').value+'&ca_low='+document.getElementById('ca_low_o').value+'&view=1';"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << Return</button></a>
 				
-			<?php }else{ ?>
+			<?php }else{ 
+			
+					$disabled = "";
+			?>
 			
 				<a href="zoom_list_register?risk_id=<?php echo $_GET['risk_id']; ?>&option_id=<?php echo $_GET['option_id']; ?>"><button type="button" class="btn btn-block btn-success btn-xs">Register a new item >></button></a>
 				
@@ -152,10 +160,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=1;			
 				
 				
-				" <?php if($iac['type_list'] == 1 || $iac['type_list'] == 0 ){ echo "checked"; $displayTop="none"; } ?>> <?php//  echo $iac['type_list']; ?> Items listed are all affected 
+				" <?php if($iac['type_list'] == 1 || $iac['type_list'] == 0 ){ echo "checked"; $displayTop="none"; } echo $disabled; ?>> Items listed are all affected 
 				
 				<br>
-		<input type="radio" name="type_list" id="type_list_2" value="2" onclick="
+		<input type="radio" name="type_list" id="type_list_2" value="2" <?php echo $disabled; ?> onclick="
 		zoom_list_update_type_list(2,<?php echo $_GET['risk_id']; ?>);
 				document.getElementById('low_estimate_top').style.display='block';
 				document.getElementById('most_probable_top').style.display='block';
@@ -178,7 +186,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=2;		
 				
 				
-				" <?php if($iac['type_list'] == 2){ echo "checked"; $displayTop="block"; } ?>> Items listed are exposed, but only this many affected:
+				" <?php if($iac['type_list'] == 2){ echo "checked"; $displayTop="block"; }  ?>  > Items listed are exposed, but only this many affected:
 				
 													<br>
 													<br>
@@ -223,19 +231,19 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 														if(isset($ia['dados'][0]['low_estimate_general'])){
 															$low_estimate_general=$ia['dados'][0]['low_estimate_general'];
 														}else{
-															$low_estimate_general='0.0';
+															$low_estimate_general='0';
 														}	
 														
 														if(isset($ia['dados'][0]['most_probable_general'])){
 															$most_probable_top=$ia['dados'][0]['most_probable_general'];
 														}else{
-															$most_probable_top='0.0';
+															$most_probable_top='0';
 														}	
 														
 														if(isset($ia['dados'][0]['high_estimate_general'])){
 															$high_estimate_top=$ia['dados'][0]['high_estimate_general'];
 														}else{
-															$high_estimate_top='0.0';
+															$high_estimate_top='0';
 														}	
 														
 														?>
@@ -1087,19 +1095,19 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 														if(isset($ia['dados'][0]['low_estimate_general'])){
 															$low_estimate_general=$ia['dados'][0]['low_estimate_general'];
 														}else{
-															$low_estimate_general='0.0';
+															$low_estimate_general='0';
 														}	
 														
 														if(isset($ia['dados'][0]['most_probable_general'])){
 															$most_probable_top=$ia['dados'][0]['most_probable_general'];
 														}else{
-															$most_probable_top='0.0';
+															$most_probable_top='0';
 														}	
 														
 														if(isset($ia['dados'][0]['high_estimate_general'])){
 															$high_estimate_top=$ia['dados'][0]['high_estimate_general'];
 														}else{
-															$high_estimate_top='0.0';
+															$high_estimate_top='0';
 														}	
 														
 														?>
@@ -1211,7 +1219,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															  <td><input type="text" class="form-control" id="high_estimate_<?php  echo $ia['id']; ?>_o" name="high_estimate_<?php  echo $ia['id']; ?>_o" value="<?php  echo $ia['high_estimate']; ?>" required onkeyup="if(this.value != ''){  zoom_list_update_o(<?php  echo $ia['id']; ?>,document.getElementById('low_estimate_<?php  echo $ia['id']; ?>_o').value,document.getElementById('most_probable_<?php  echo $ia['id']; ?>_o').value,this.value) } "  onkeypress="return keypressed( this , event );"></td>
 															  
 															  <td>
-															  <?php if(!isset($_GET['type'])){ ?>
+															  <?php if(isset($_GET['type'])){ ?>
 																<a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ zoom_list_delete_o(<?php echo $ia['id'];?>)}">
 																
 																<button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:2px;">
@@ -1243,7 +1251,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															  -->
 																
 																
-															   <div id="bxAllAffectedUsingLow">
+															   <div id="bxAllAffectedUsingLow_o">
 																  <center>
 																	  <span class="badge bg-info"><div id="uvp_le_percent_o"><?php 
 																	  
@@ -1756,6 +1764,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															
 														</tbody>	
 													  </table>
+													  <br>
+													  <br>
+													  <a id="anc"></a>
+													  <a href="zoom_list?type=<?php echo $_GET['type']; ?>&risk_id=<?php echo $_GET['risk_id']; ?>&option_id=<?php echo $_GET['option_id']; ?>"><button type="button" class="btn btn-block btn-info btn-xs" style="width:15%;float:right;">Refresh calculation</button></a>
 													
             </div>
               <!-- ./card-body -->

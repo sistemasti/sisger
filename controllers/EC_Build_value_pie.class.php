@@ -131,6 +131,29 @@ update their_scores
 			
 		}
 		
+
+		static function select_ec_value_pie_table_all_zoom_list(){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM ec_value_pie_table WHERE project_id="'.$_SESSION['project_id'].'" AND id NOT IN (SELECT id_ec_value_pie_table FROM ar_zoom_list_items_affected WHERE project_id = "'.$_SESSION['project_id'].'")');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+			
+		}
+		
+		static function select_ec_value_pie_table_all_zoom_list_o($o){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM ec_value_pie_table WHERE project_id="'.$_SESSION['project_id'].'" AND id NOT IN (SELECT id_ec_value_pie_table FROM ar_zoom_list_items_affected_o WHERE project_id = "'.$_SESSION['project_id'].'" AND option_id=?)');
+			$n1->execute(array($o)); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+			
+		}
+		
 		static function select_ar_zoom_list_items_affected_id($id){
 			
 			$n1 = self::getConn()->prepare('SELECT * FROM ar_zoom_list_items_affected WHERE id=?');
@@ -177,6 +200,15 @@ update their_scores
 		static function select_ec_value_pie_table_id($id){
 			
 			$n1 = self::getConn()->prepare('SELECT * FROM ec_value_pie_table WHERE id=?');
+			$n1->execute(array($id)); 
+			$d = $n1->fetch();	
+			$d['num'] = $n1->rowCount();				
+			return $d;
+		}
+
+		static function select_ar_zoom_list_items_affected_by_id_ec_value_pie_table($id){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM ar_zoom_list_items_affected WHERE id_ec_value_pie_table=?');
 			$n1->execute(array($id)); 
 			$d = $n1->fetch();	
 			$d['num'] = $n1->rowCount();				

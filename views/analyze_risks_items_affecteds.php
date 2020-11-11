@@ -515,21 +515,21 @@ echo "</pre>"; */
 									<h5><?php echo $_SESSION[$_SESSION['lang']]['Documents associated with this risk its options']; ?></h5>
 									<br>
 									<div class="row">
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document name']; ?></label>
 														<input type="text" class="form-control" id="ia_zoom_document_name"
 													name="ia_zoom_document_name" placeholder=""  required value="<?php echo $ia_zoom_document_name; ?>" >
 													</div>	
 												</div>	
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Comment']; ?></label>
 														<input type="text" class="form-control" id="ia_zoom_comment"
 													name="ia_zoom_comment" placeholder=""  required value="<?php echo $ia_zoom_comment; ?>" >
 													</div>	
 												</div>
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Link']; ?>..</label>
 														<input type="text" class="form-control" id="ia_zoom_link"
@@ -543,7 +543,7 @@ echo "</pre>"; */
 													</div>
 													</div>	
 												</div>														
-												<div class="col-sm-3 col-md-3">
+												<!--<div class="col-sm-3 col-md-3">
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document file']; ?></label>
 														
@@ -565,7 +565,7 @@ echo "</pre>"; */
 													</div>	
 												</div>	
 												
-									</div>
+									</div>-->
 								</div>
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>

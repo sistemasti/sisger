@@ -127,6 +127,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										}
 										$agent = ''; 		
 										$description = ''; 
+										$option = ''; 
 										unset($_POST);
 										
 									?>	

@@ -729,21 +729,21 @@
 									<h5><?php echo $_SESSION[$_SESSION['lang']]['Documents associated with this risk its options']; ?></h5>
 									<br>
 									<div class="row" >
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document name']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_document_name_o"
 													name="fr_zoom_document_name_o" placeholder=""  required value="<?php echo $fr_zoom_document_name_o; ?>" >
 													</div>	
 												</div>	
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Comment']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_comment_o"
 													name="fr_zoom_comment_o" placeholder=""  required value="<?php echo $fr_zoom_comment_o; ?>" >
 													</div>	
 												</div>
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['External Link']; ?>..</label>
 														<input type="text" class="form-control" id="fr_zoom_link_o"
@@ -757,7 +757,7 @@
 													</div>	
 													</div>	
 												</div>													
-												<div class="col-sm-3 col-md-3">
+												<!--<div class="col-sm-3 col-md-3">
 													<div class="form-group">
 														<label for="Sigla">..<?php echo $_SESSION[$_SESSION['lang']]['or Document link']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_document_file_o"
@@ -773,24 +773,11 @@
 													
 													
 													</div>	
-												<!--	
-													<div class="form-group">
-														<label for="Sigla">..or Document link</label>
-														
-<input type="text" class="form-control" id="fr_zoom_document_file" name="fr_zoom_document_file" value="<?php echo $fr_zoom_document_file; ?>" required>
-
-													<div id="fr_zoom_document_file_bx" style="background-color: #c5dcc6;padding:7px;">
-													<?php 
-													if($fr_zoom_document_file_o != "undefined"){
-													echo "<a href='".$fr_zoom_document_file_o."' target='_blank'>".$fr_zoom_document_file_o."</a>"; 
-													}
-													?>
-													</div>	
-												</div>	-->
 												
 												
 												
-									</div>
+												
+									</div>-->
 									
 								</div>
 								<div class="modal-footer justify-content-between">
@@ -849,21 +836,21 @@
 									<h5><?php echo $_SESSION[$_SESSION['lang']]['Documents associated with this risk its options']; ?></h5>
 									<br>
 									<div class="row" >
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document name']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_document_name"
 													name="fr_zoom_document_name" placeholder=""  required value="<?php echo $fr_zoom_document_name; ?>" disabled="disabled" disabled>
 													</div>	
 												</div>	
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Comment']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_comment"
 													name="fr_zoom_comment" placeholder=""  required value="<?php echo $fr_zoom_comment; ?>" disabled="disabled">
 													</div>	
 												</div>
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['External Link']; ?>..</label>
 														<input type="text" class="form-control" id="fr_zoom_link"
@@ -877,7 +864,7 @@
 													</div>	
 													</div>	
 												</div>													
-												<div class="col-sm-3 col-md-3">
+												<!--<div class="col-sm-3 col-md-3">
 													<div class="form-group">
 														<label for="Sigla">..<?php echo $_SESSION[$_SESSION['lang']]['or Document link']; ?></label>
 														<input type="text" class="form-control" id="fr_zoom_document_file"
@@ -893,24 +880,11 @@
 													
 													
 													</div>	
-												<!--	
-													<div class="form-group">
-														<label for="Sigla">..or Document link</label>
-														
-<input type="text" class="form-control" id="fr_zoom_document_file" name="fr_zoom_document_file" value="<?php echo $fr_zoom_document_file; ?>" required>
-
-													<div id="fr_zoom_document_file_bx" style="background-color: #c5dcc6;padding:7px;">
-													<?php 
-													if($fr_zoom_document_file != "undefined"){
-													echo "<a href='".$fr_zoom_document_file."' target='_blank'>".$fr_zoom_document_file."</a>"; 
-													}
-													?>
-													</div>	
-												</div>	-->
 												
 												
 												
-									</div>
+												
+									</div>-->
 									
 								</div>
 								<!--

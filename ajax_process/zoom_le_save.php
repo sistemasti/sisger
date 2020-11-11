@@ -7,7 +7,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 /* echo  "<pre>";
 print_r($_POST);
 echo  "</pre>";
-
+ar_zoom_list_items_affected_o
 echo  "<pre>";
 print_r($_GET);
 echo  "</pre>"; */

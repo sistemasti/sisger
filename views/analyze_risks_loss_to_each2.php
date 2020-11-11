@@ -1232,21 +1232,21 @@
 									<h5>Documents associated with this risk its options</h5>
 									<br>
 									<div class="row">
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla">Document name</label>
 														<input type="text" class="form-control" id="le_zoom_document_name"
 													name="le_zoom_document_name" placeholder=""  required value="<?php echo $le_zoom_document_name; ?>" disabled>
 													</div>	
 												</div>	
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla">Comment</label>
 														<input type="text" class="form-control" id="le_zoom_comment"
 													name="le_zoom_comment" placeholder=""  required value="<?php echo $le_zoom_comment; ?>" disabled>
 													</div>	
 												</div>	
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla">Link..</label>
 														<input type="text" class="form-control" id="le_zoom_link"
@@ -1260,11 +1260,10 @@
 													</div>
 													</div>	
 													</div>	
-												<div class="col-sm-3 col-md-3">
+												<!--<div class="col-sm-3 col-md-3">
 													<div class="form-group">
 														<label for="Sigla">Document file</label>
-														<!--<input type="file" class="form-control" id="le_zoom_document_file"
-													name="le_zoom_document_file" placeholder=""  required value="" >-->
+													
 													<input type="text" class="form-control" id="le_zoom_document_file"
 													name="le_zoom_document_file" placeholder=""  required value="<?php echo $le_zoom_document_file; ?>"  onkeyup="atualizaFileField ('le_zoom_document_file_bx',this.value)" disabled>
 													<div id="le_zoom_document_file_bx" style="background-color: #c5dcc6;padding:7px;">
@@ -1278,7 +1277,7 @@
 												
 												
 												
-									</div>
+									</div>-->
 								</div>
 							
 							  </div>
@@ -1340,21 +1339,21 @@
 									<h5>Documents associated with this risk its options</h5>
 									<br>
 									<div class="row">
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla">Document name</label>
 														<input type="text" class="form-control" id="le_zoom_document_name_o"
 													name="le_zoom_document_name_o" placeholder=""  required value="<?php echo $le_zoom_document_name_o; ?>" >
 													</div>	
 												</div>	
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla">Comment</label>
 														<input type="text" class="form-control" id="le_zoom_comment_o"
 													name="le_zoom_comment_o" placeholder=""  required value="<?php echo $le_zoom_comment_o; ?>" >
 													</div>	
 												</div>	
-												<div class="col-sm-3 col-md-3">
+												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
 														<label for="Sigla">Link..</label>
 														<input type="text" class="form-control" id="le_zoom_link_o"
@@ -1368,11 +1367,10 @@
 													</div>
 													</div>	
 													</div>	
-												<div class="col-sm-3 col-md-3">
+												<!--<div class="col-sm-3 col-md-3">
 													<div class="form-group">
 														<label for="Sigla">Document file</label>
-														<!--<input type="file" class="form-control" id="le_zoom_document_file"
-													name="le_zoom_document_file" placeholder=""  required value="" >-->
+														
 													<input type="text" class="form-control" id="le_zoom_document_file_o"
 													name="le_zoom_document_file_o" placeholder=""  required value="<?php echo $le_zoom_document_file_o; ?>"  onkeyup="atualizaFileField ('le_zoom_document_file_bx_o',this.value)">
 													<div id="le_zoom_document_file_bx_o" style="background-color: #c5dcc6;padding:7px;">
@@ -1386,7 +1384,7 @@
 												
 												
 												
-									</div>
+									</div>-->
 								</div>
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
