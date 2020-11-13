@@ -207,7 +207,7 @@
 						<br>
 						  <?php 
 									//echo "----> ".$type_risk;
-									if($type_risk == 6){ ?>
+									if($type_risk == 6 || $type_risk == '' ){ ?>
 									<div id="bxFrm1" style="display:none">		
 									<?php }else{ ?>
 									<div id="bxFrm1">		

@@ -390,7 +390,7 @@
 													document.getElementById('bxAnyDecimals_o').style.display='none';
 													document.getElementById('stepSelected').value='1';
 													
-													" <?php if($steps == "1"){ echo "checked"; } ?>> Steps in words<br>
+													" <?php if($steps == "1"){ echo "checked"; } ?> disabled> Steps in words<br>
 													
 													
 													<input type="radio" name="steps" id="steps2" value="2" onclick="
@@ -408,7 +408,7 @@
 													document.getElementById('bxAnyDecimals_o').style.display='none';
 													document.getElementById('stepSelected').value='2';
 													
-													" <?php if($steps == "2"){ echo "checked"; } ?>> Steps in fraction<br>
+													" <?php if($steps == "2"){ echo "checked"; } ?> disabled> Steps in fraction<br>
 													<input type="radio" name="steps" id="steps3" value="3" onclick="
 													
 													document.getElementById('bxWords').style.display='none';
@@ -425,7 +425,7 @@
 													
 													document.getElementById('stepSelected').value='3';
 													
-													" <?php if($steps == "3"){ echo "checked"; } ?>> Steps in percentage<br>
+													" <?php if($steps == "3"){ echo "checked"; } ?> disabled> Steps in percentage<br>
 													
 													<input type="radio" name="steps" id="steps4" value="4" onclick="
 													
@@ -443,7 +443,7 @@
 													
 													document.getElementById('stepSelected').value='4';
 													
-													" <?php if($steps == "4"){ echo "checked"; } ?> >  Steps in decimals<br>
+													" <?php if($steps == "4"){ echo "checked"; } ?>  disabled>  Steps in decimals<br>
 													
 													
 													<input type="radio" name="steps" value="5"  id="steps5" onclick="
@@ -461,7 +461,7 @@
 													
 													document.getElementById('stepSelected').value='5';
 													
-													" <?php if($steps == "5"){ echo "checked"; } ?> > Any decimal<br>
+													" <?php if($steps == "5"){ echo "checked"; } ?>  disabled> Any decimal<br>
 												</div>	
 												<div class="col-sm-4 col-md-8">
 												
@@ -485,7 +485,7 @@
 																<option value="2.0"  <?php if($he == "2.0"){ echo "selected"; } ?>>TINY loss of value in each item affected.</option>
 																<option value="1.5"  <?php if($he == "1.5"){ echo "selected"; } ?>>----------- (between tiny and trace on the word scale).</option>
 																<option value="1.0"  <?php if($he == "1.0"){ echo "selected"; } ?>>TRACE loss of value in each item affected.</option>
-																<option value="0.5"  <?php if($he == "0.5"){ echo "selected"; } ?>>----------- (between trace and none on the word scale!)</option>
+																<option value="0.5"  <?php if($he == "0.5"){ echo "selected"; } ?> disabled>----------- (between trace and none on the word scale!)</option>
 																
 														 
 														</select>

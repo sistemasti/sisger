@@ -301,7 +301,7 @@ echo "</pre>"; */
 											</script>
 					
 											<?php 											
-											if ($type_score == 1 && !isset($_GET['ca_high'])){ 
+											if (($type_score == 1 || $type_score == "") && !isset($_GET['ca_high'])){ 
 											?>
 											<div id="bxFractionAffected" style="display: block">
 											<?php

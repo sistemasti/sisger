@@ -121,7 +121,7 @@
 													
 													document.getElementById('C_type_list_o').value='1';
 													
-													" > Step scale, considering the heritage asset as a whole.
+													" disabled> Step scale, considering the heritage asset as a whole
 													
 													<br>
 											<input type="radio" name="type_score" id="type_score_2" value="2" onclick="
@@ -134,7 +134,7 @@
 													
 													
 													
-													" <?PHP if(isset($_GET['id_option'])){ echo "checked"; $displayFra = "none"; } ?>> More precise data using the value pie<br>
+													" <?PHP if(isset($_GET['id_option'])){ echo "checked"; $displayFra = "none"; } ?> disabled> More precise data using the value pie<br>
 											
 											<input type="hidden" name="C_type_list" id="C_type_list" value='1'>
 											<br>

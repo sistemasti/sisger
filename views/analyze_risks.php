@@ -371,9 +371,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					
 					function select_risk(id) {		
 						document.getElementById('bxAll').style.display='block';
-					  if($("#risk").val() == "" || $("#risk").val() == null){	document.getElementById('bxAll').style.display='none';							
+					  if($("#risk").val() == "" || $("#risk").val() == null){	
+					  
+						document.getElementById('bxAll').style.display='none';							
 						document.getElementById('bxFrm1').style.display = 'none';
 						document.getElementById('type_risk').value = 6;	
+						
 					  }
 					  	
 					  var i = '#row'+id;
@@ -422,11 +425,16 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 						    $("#type_risk").val(data['type_risk']);	
 							//ley
+							
+							
+							
 							if(data['type_risk'] == 3){
 								
 								document.getElementById("ley").readOnly = true;
 								document.getElementById("hey").readOnly = true;
-							}
+							}	
+							
+							
 							
 							if(data['type_risk'] == 4){
 								
@@ -444,7 +452,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								document.getElementById('bxFrm1').style.display = 'block';
 								
 							}	
+							
+							if(data['type_risk'] == ''){
 								
+								document.getElementById('bxFrm1').style.display = 'none';
+							}	
 							
 						    $("#fdLow").val(data['fdLow']);
 						    $("#bxLow").html(data['fdLow']);

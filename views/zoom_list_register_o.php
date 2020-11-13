@@ -292,14 +292,6 @@ require_once("header.php");
 							   
 							   ){
 								   alert('Low estimate, Most probable and High estimate fields are required');
-							   }else if( 
-							   
-							   document.getElementById('low_estimate').value > document.getElementById('most_probable').value || 							   
-							   document.getElementById('most_probable').value > document.getElementById('high_estimate').value ||
-							   document.getElementById('high_estimate').value <  document.getElementById('low_estimate').value
-							   
-							   ){
-								   alert('Invalid values, check the scale of values');
 							   }else{   
 							   
 							   

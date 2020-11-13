@@ -584,22 +584,23 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$("#ia_Div_Range").html(data['ia_Inp_Range']);
 							
 							$("#type_score").val(data['type_score']);
-							
+							//alert(data['type_score']);
 							if(data['type_score'] == 1){
 								
 								document.getElementById("type_score_1").checked = true;
 								document.getElementById("type_score_2").checked = false;
-								document.getElementById('bxFractionAffected').style.display='block';
-								/* document.getElementById('bxFractionAffected_o').style.display='block';
-								document.getElementById('bxValuePieAffected_o').style.display='none'; */
+								document.getElementById('bxFractionAffected').style.display='none';
+								/* */document.getElementById('bxFractionAffected_o').style.display='block';
+								document.getElementById('bxValuePieAffected_o').style.display='none'; 
 							}	
 							
 							if(data['type_score'] == 2){
 								document.getElementById("type_score_2").checked = true;
 								document.getElementById("type_score_1").checked = false;
 								document.getElementById('bxFractionAffected').style.display='none';
-								/* document.getElementById('bxFractionAffected_o').style.display='none';
-								document.getElementById('bxValuePieAffected_o').style.display='block'; */
+								/* */
+								document.getElementById('bxFractionAffected_o').style.display='none';
+								document.getElementById('bxValuePieAffected_o').style.display='block'; 
 								
 							}	
 							
@@ -1045,11 +1046,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							//$("#type_score_o").val(data['type_score_o']);
 							//alert(data['type_score_o']);
 							
-							if(data['C_type_list_o'] == 1){
+							/* if(data['C_type_list_o'] == 1){
 								
-								/* document.getElementById("type_score_1_o").checked = true;
-								document.getElementById("type_score_2_o").checked = false; */
-								/* */ 
+								
 								document.getElementById('bxFractionAffected_o').style.display='block';
 								document.getElementById('bxValuePieAffected_o').style.display='none';
 								document.getElementById("type_score_2").checked = false;
@@ -1057,14 +1056,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							}	
 							
 							if(data['C_type_list_o'] == 2){
-								/* document.getElementById("type_score_2_o").checked = true;
-								document.getElementById("type_score_1_o").checked = false; */
-								/* */
+							
 								document.getElementById('bxFractionAffected_o').style.display='none';
 								document.getElementById('bxValuePieAffected_o').style.display='block'; 
 								document.getElementById("type_score_2").checked = true;
 								document.getElementById("type_score_1").checked = false;
-							}	
+							}	 */
 							
 							if(data['C_type_list'] == 1){
 							//	document.getElementById("type_list_1").checked = true;
