@@ -102,7 +102,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 			<br>
 			<br>
 			<br>
-			<strong> Number of itemns: </strong> <span class="btn btn-block btn-outline-success btn-xs" id="totalNumberOfItens">
+			<strong> Number of items: </strong> <span class="btn btn-block btn-outline-success btn-xs" id="totalNumberOfItens">
 			<?php
 				
 				$s = Build_value_pie::select_sum_itens_subgroup($_GET['group_id']);
@@ -151,7 +151,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 			name="subgroup_itens" 
 			value="" 
 			required 
-			placeholder="Number of itemns" 
+			placeholder="Number of items" 
 			onKeyDown="Mascara(this,Integer);" 
 			onKeyPress="Mascara(this,Integer);" 
 			onKeyUp="Mascara(this,Integer);">
@@ -162,7 +162,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 					alert('fill in the name field')
 					
 				}else if(document.getElementById('subgroup_itens').value=='' || document.getElementById('subgroup_itens').value==0 ){
-					alert('Invalid number of itemns')
+					alert('Invalid number of items')
 				}else{
 					subgroup_register(document.getElementById('subgroup_name').value,document.getElementById('subgroup_itens').value,<?php echo $_GET['group_id']; ?>)
 				}
