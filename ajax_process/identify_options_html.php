@@ -1,3 +1,5 @@
+<!-- PG: identify_options_html -->
+
 <?php
 session_start();
 include("../functions.php");
@@ -13,7 +15,7 @@ include("../controllers/TR_Analyze_options.class.php");
 							$in = Risks::select_risk_id($_GET['id']);
 							echo $in['name'];
 					?></h4>
-					<strong>Reduction risk option for he selected risk</strong>
+					<strong>Reduction risk option for the selected risk</strong>
 						<div>
 						<br>
 							
