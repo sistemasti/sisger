@@ -96,7 +96,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				  <hr>
 				 
 				 
-				  <a href="pdf" target="_blank"><button type="button" class="btn btn-block bg-gradient-success btn-sm"  data-toggle="modal" data-target="#modal-graph-rg"><i class="fas fa-search"></i> Risk analysis</button></a> 
+				  <a href="pdf" target="_blank"><button type="button" class="btn btn-block bg-gradient-success btn-sm"  ><i class="fas fa-search"></i> Risk analysis</button></a> 
 				</div>
               <!-- ./card-body -->
            

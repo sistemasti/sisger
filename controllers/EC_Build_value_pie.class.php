@@ -945,9 +945,9 @@ update their_scores
 					$n->execute(array($type_list, $id));
 		}
 
-		static function update_zoom_list_type_list_o($type_list, $option_id, $id){
+		static function update_zoom_list_type_list_o($type_list, $id, $option_id){
 					$n = self::getConn()->prepare('
-													UPDATE  `ar_zoom_list_items_affected` SET 
+													UPDATE  `ar_zoom_list_items_affected_o` SET 
 												   `type_list` =?
 													WHERE  `risk_id` =? AND option_id=? ');
 											

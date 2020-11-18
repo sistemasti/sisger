@@ -91,7 +91,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
                   <th>Risk</th>
                    <th>MR Original</th>                
                    <th>MR Remaining</th>                
-                   <th>Option Sumary</th>                
+                   <th>Option</th>                
                    <th>Initial cost</th>                
                    <th>Annual cost</th>                
                    <th>Annual cost total</th>                
@@ -109,20 +109,22 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							$ar = AR_Analyse_risks::select_analyse_risk_id_risk($in['id_risk']);
 							
-							$op = Analyze_options::select_tr_identify_options_id_by_option($in['id_option']);
+							$op = Analyze_options::select_tr_options_id_by_option($in['id_option']);
+							
+							$io = Analyze_options::select_tr_identify_options_id_by_option($in['id_risk'],$in['id_option']);
 								
 					?>
 					
 							  
 					<tr id="row1">
-					  <td><?php echo $ri['name']; ?>(<?php echo $in['id']; ?>)</td>
+					  <td><?php echo $ri['name']; ?></td>
 					  <td><?php echo $ar['magnitude_of_risk']; ?></td>
 					  <td><?php echo $in['magnitude_of_risk']; ?></td>
-					  <td><?php echo $op['summary']; ?></td>
-					  <td><?php echo $op['one_time_cost']; ?></td>
-					  <td><?php echo $op['annual_cost']; ?></td>
-					  <td><?php echo number_format(round(($op['annual_cost']/12),2)+$op['annual_cost'], 2, ',', '.'); ?></td>
-					  <td><?php echo number_format((round(($op['annual_cost']/12),2)), 2, ',', '.'); ?></td>
+					  <td><?php echo $op['option']; ?></td>
+					  <td><?php echo $io['one_time_cost']; ?></td>
+					  <td><?php echo $io['annual_cost']; ?></td>
+					  <td><?php echo number_format(round(($io['annual_cost']/12),2)+$io['annual_cost'], 2, ',', '.'); ?></td>
+					  <td><?php echo number_format((round(($io['annual_cost']/12),2)), 2, ',', '.'); ?></td>
 					</tr>
 					
 					<?php 

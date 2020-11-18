@@ -1003,7 +1003,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=1;			
 				
 				
-				" <?php if($iac['type_list_o'] == 1 || $iac['type_list_o'] == 0 ){ echo "checked"; $displayTop="none"; } ?>> <?php//  echo $iac['type_list']; ?> Items listed are all affected 
+				" <?php if($iac['type_list'] == 1 || $iac['type_list'] == 0 ){ echo "checked"; $displayTop="none"; } ?>> Items listed are all affected 
 				
 				<br>
 		<input type="radio" name="type_list_o" id="type_list_2_o" value="2" onclick="
@@ -1029,14 +1029,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=2;		
 				
 				
-				" <?php if($iac['type_list_o'] == 2){ echo "checked"; $displayTop="block"; } ?>> Items listed are exposed, but only this many affected:
+				" <?php if($iac['type_list'] == 2){ echo "checked"; $displayTop="block"; } ?>> Items listed are exposed, but only this many affected:
 				
 													<br>
 													<br>
 			
 				<script>
 				
-				<?php if($iac['type_list_o'] == 1){ ?> 
+				<?php if($iac['type_list'] == 1){ ?> 
 					
 					document.getElementById('low_estimate_top_o').style.display='none';
 					document.getElementById('most_probable_top_o').style.display='none';
@@ -1061,7 +1061,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				<?php } ?>
 				
 				
-				<?php if($iac['type_list_o'] == 2){ ?> 
+				<?php if($iac['type_list'] == 2){ ?> 
 						
 					document.getElementById('low_estimate_top_o').style.display='block';
 					document.getElementById('most_probable_top_o').style.display='block';
@@ -1131,7 +1131,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															  id="low_estimate_top_o" 
 															  name="low_estimate_top_o" 
 															  value="<?php echo $low_estimate_general; ?>" 
-															  onkeyup="if(this.value != ''){ zoom_list_update_top() }"  
+															  onkeyup="if(this.value != ''){ zoom_list_update_top_o() }"  
 															  required 
 															  style="display:<?php echo $displayTop; ?>"  
 															  onkeypress="return keypressed( this , event );">
@@ -1145,7 +1145,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															  id="most_probable_top_o" 
 															  name="most_probable_top_o" 
 															  value="<?php echo $most_probable_top; ?>" 
-															  onkeyup="if(this.value != '' && event.keyCode != 9){ zoom_list_update_top() }" 
+															  onkeyup="if(this.value != '' && event.keyCode != 9){ zoom_list_update_top_o() }" 
 															 
 															  required 
 															  style="display:<?php echo $displayTop; ?>"  
@@ -2407,15 +2407,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					  });
 					}
 					
-						function zoom_list_update_type_list_o(type_list,id) {			
+		function zoom_list_update_type_list_o(type_list,id) {			
 															 
 			  $.ajax({
 				type: "POST",
-				url: "ajax_process/zoom_list_update_type_list.php",
+				url: "ajax_process/zoom_list_update_type_list_o.php",
 				data: {
 					id: id,
 					type_list: type_list,
-							option_id: <?php echo $_GET['option_id']; ?>
+					option_id: <?php echo $_GET['option_id']; ?>
 				},
 				dataType: 'json',
 				success: function(data) {

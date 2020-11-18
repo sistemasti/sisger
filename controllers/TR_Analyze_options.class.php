@@ -68,6 +68,16 @@
 			
 		}
 	
+		static function select_risk_option_by_name($option){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM tr_options WHERE option=? AND project_id="'.$_SESSION['project_id'].'"');
+			$n1->execute(array($option));
+			$d = $n1->fetch();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+	
 		static function select_options_by_id_risk($id_risk){
 			//session_start();
 			$p = $_SESSION['project_id'];
@@ -115,10 +125,21 @@
 	
 		
 		
-		static function select_tr_identify_options_id_by_option($id){
+		static function select_tr_options_id_by_option($id){
 			
-			$n1 = self::getConn()->prepare('SELECT * FROM tr_identify_options WHERE id_option=?');
+			$n1 = self::getConn()->prepare('SELECT * FROM tr_options WHERE id=?');
 			$n1->execute(array($id)); 
+			$d = $n1->fetch();	
+			$d['num'] = $n1->rowCount();				
+			return $d;
+			
+		}
+	
+		
+		static function select_tr_identify_options_id_by_option($id_risk,$id_option){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM tr_identify_options WHERE id_risk=? AND id_option=?');
+			$n1->execute(array($id_risk,$id_option)); 
 			$d = $n1->fetch();	
 			$d['num'] = $n1->rowCount();				
 			return $d;

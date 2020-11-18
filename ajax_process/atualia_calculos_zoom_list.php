@@ -7,7 +7,20 @@ include("../models/DB.class.php");
 include("../controllers/EC_Build_value_pie.class.php");
 
 
+/* echo "<pre>";
+print_r($_POST);
+echo "</pre>";
 
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>"; 
+
+ [risk_id] => 34
+ [project_id] => 19
+  
+
+
+*/
 
 	
 				$ia = Build_value_pie::select_ar_zoom_list_items_affected($_POST['risk_id']); 

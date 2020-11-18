@@ -111,8 +111,17 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										$txterr .= "Option field cannot be empty<br>";
 										
 									}	
-								
+									
+									if(trim($_POST['option']) != $i['option']){
 										
+										$o = Analyze_options::select_risk_option_by_name($_POST['option']);
+
+										if($o['num'] > 0){
+											$txterr .= "This option already exists in this project<br>";
+										}	
+									}
+
+									
 									if ( $txterr == "" ){
 																				
 										//Documents::insert_document($name,$summary,$risk_group,$_SESSION['institutions_id'],$_SESSION['project_id'],$ir_agents_id);

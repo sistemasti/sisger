@@ -142,7 +142,7 @@ if($ar['num'] > 0){
 		$dados['magnitude_LE_MEDIA_o'] 		= ($ar['Expected_Scores_LE'] != '')?$ar['Expected_Scores_LE']:'0.0';
 		$dados['magnitude_IA_MEDIA_o'] 		= ($ar['Expected_Scores_IA'] != '')?$ar['Expected_Scores_IA']:'0.0';
 		$dados['magnitude_SOMA_MEDIA_o'] 		= ($ar['magnitude_of_risk'] != '')?$ar['magnitude_of_risk']:'0.0';
-		
+		$dados['type_calc'] 				= $ar['type_calc'];
 		
 }else{
 	$dados['type_risk_o']			= '';

@@ -375,7 +375,25 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						    $("#zoomRisk_le").html("<strong>"+data['risk']+"</strong>");						
 						    $("#zoomRisk_ia").html("<strong>"+data['risk']+"</strong>");	
 							
-												
+						 	if(data['type_calc'] == 3){
+								var x = document.querySelectorAll("#bdgTOTAL");
+								x[0].style.setProperty("background-color", "#ffc107", "important");
+							}
+							
+							if(data['type_calc'] == 2){
+								var x = document.querySelectorAll("#bdgTOTAL");
+								x[0].style.setProperty("background-color", "#17a2b8", "important");
+							}
+							
+							if(data['type_calc'] == 1){
+								var x = document.querySelectorAll("#bdgTOTAL");
+								x[0].style.setProperty("background-color", "#48b461", "important");
+							}
+							
+							if(data['type_calc'] == ''){
+								var x = document.querySelectorAll("#bdgTOTAL");
+								x[0].style.setProperty("background-color", "#ccc", "important");
+							}		 			
 							
 							//A
 							//document.getElementById('leia').options[0]=new Option("Selected by zoom", ca_low, true, true);
@@ -584,12 +602,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$("#ia_Div_Range").html(data['ia_Inp_Range']);
 							
 							$("#type_score").val(data['type_score']);
-							//alert(data['type_score']);
+							
 							if(data['type_score'] == 1){
 								
 								document.getElementById("type_score_1").checked = true;
 								document.getElementById("type_score_2").checked = false;
-								document.getElementById('bxFractionAffected').style.display='none';
+								document.getElementById('bxFractionAffected').style.display='block';
 								/* */document.getElementById('bxFractionAffected_o').style.display='block';
 								document.getElementById('bxValuePieAffected_o').style.display='none'; 
 							}	
@@ -822,6 +840,30 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						    $("#zoomRisk_le_o").html("<strong>"+data['risk']+"</strong>");						
 						    $("#zoomRisk_ia_o").html("<strong>"+data['risk']+"</strong>");						
 							//alert('2');
+							
+							//alert(data['type_calc']);
+							if(data['type_calc'] == 3){
+								var x = document.querySelectorAll("#bdgTOTAL_o");
+								x[0].style.setProperty("background-color", "#ffc107", "important");
+							}
+							
+							if(data['type_calc'] == 2){
+								var x = document.querySelectorAll("#bdgTOTAL_o");
+								x[0].style.setProperty("background-color", "#17a2b8", "important");
+							}
+							
+							if(data['type_calc'] == 1){
+								var x = document.querySelectorAll("#bdgTOTAL_o");
+								x[0].style.setProperty("background-color", "#48b461", "important");
+							}
+							
+							if(data['type_calc'] == ''){
+								var x = document.querySelectorAll("#bdgTOTAL_o");
+								x[0].style.setProperty("background-color", "#ccc", "important");
+							}
+							
+							
+							
 							//A
 							//document.getElementById('leia').options[0]=new Option("Selected by zoom", ca_low, true, true);
 							
@@ -1531,7 +1573,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									  <td><div id="magnitude_FR_Probable"><?php echo $magnitude_FR_Probable; ?></div></td>
 									  <td><div id="magnitude_FR_Low"><?php echo $magnitude_FR_Low; ?></div></td>
 									  <!--<td></td>-->
-									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_FR_MEDIA"><?php echo $magnitude_FR_MEDIA; ?></div></span></td>
+									  <td style="text-align:center;"><span class="badge bg-secondary"><div id="magnitude_FR_MEDIA"><?php echo $magnitude_FR_MEDIA; ?></div></span></td>
 									</tr>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Loss to each item affected']; ?></td>
@@ -1539,7 +1581,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									  <td><div id="magnitude_LE_Med"><?php echo $magnitude_LE_Med; ?></div></td>
 									  <td><div id="magnitude_LE_Max"><?php echo $magnitude_LE_Max; ?></div></td>
 									 <!-- <td></td>-->
-									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_LE_MEDIA"><?php echo $magnitude_LE_MEDIA; ?></div></span></td>
+									  <td style="text-align:center;"><span class="badge bg-secondary"><div id="magnitude_LE_MEDIA"><?php echo $magnitude_LE_MEDIA; ?></div></span></td>
 									</tr>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Items affected']; ?></td>
@@ -1547,7 +1589,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									  <td><div id="magnitude_IA_Med"><?php echo $magnitude_IA_Med; ?></div></td>
 									  <td><div id="magnitude_IA_Max"><?php echo $magnitude_IA_Max; ?></div></td>
 									  <!--<td></td>-->
-									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_IA_MEDIA"><?php echo $magnitude_IA_MEDIA; ?></a></span></td>
+									  <td style="text-align:center;"><span class="badge bg-secondary"><div id="magnitude_IA_MEDIA"><?php echo $magnitude_IA_MEDIA; ?></a></span></td>
 									</tr>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of risk']; ?></td>
@@ -1555,17 +1597,17 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									  <td><div id="magnitude_SOMA_P"><?php echo $magnitude_SOMA_P; ?></div></td>
 									  <td><div id="magnitude_SOMA_H"><?php echo $magnitude_SOMA_H; ?></div></td>
 									  <!--<td><div id="magnitude_SOMA_RANGE"><?php echo $magnitude_SOMA_RANGE; ?></div><br></td>-->
-									  <td style="text-align:center;"><span class="badge bg-success" style="font-size:20px;"><div id="magnitude_SOMA_MEDIA"><?php echo $magnitude_SOMA_MEDIA; ?></div></span></td>
+									  <td style="text-align:center;"><span class="badge bg-success" style="font-size:20px;" id="bdgTOTAL"><div id="magnitude_SOMA_MEDIA"><?php echo $magnitude_SOMA_MEDIA; ?></div></span></td>
 									</tr>
 								  </tbody>
 								</table>
 								<div class="row">	
 								<div class="col-sm-4 col-md-4">
-								<button type="button" class="btn btn-block  bg-gradient-info btn-xs" onclick="changeTypeCalc(2)">Linear triangle distribution (default) </button>
+								<button type="button" class="btn btn-block  bg-gradient-info btn-xs" onclick="changeTypeCalc(1)">Linear triangle distribution (default) </button>
 									
 								</div>
 								<div class="col-sm-4 col-md-4">
-									<button type="button" class="btn btn-block bg-gradient-success btn-xs" onclick="changeTypeCalc(1)">Log triangle <br>distribution </button>
+									<button type="button" class="btn btn-block bg-gradient-success btn-xs" onclick="changeTypeCalc(2)">Log triangle <br>distribution </button>
 								</div>
 								<div class="col-sm-4 col-md-4">
 									<button type="button" class="btn btn-block bg-gradient-warning btn-xs" onclick="changeTypeCalc(3)">Simple use of problable value</button>
@@ -1598,7 +1640,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									  <td><div id="magnitude_FR_Probable_o"><?php echo $magnitude_FR_Probable_o; ?></div></td>
 									  <td><div id="magnitude_FR_Low_o"><?php echo $magnitude_FR_Low_o; ?></div></td>
 									  <!--<td></td>-->
-									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_FR_MEDIA_o"><?php echo $magnitude_FR_MEDIA_o; ?></div></span></td>
+									  <td style="text-align:center;"><span class="badge bg-secondary"><div id="magnitude_FR_MEDIA_o"><?php echo $magnitude_FR_MEDIA_o; ?></div></span></td>
 									</tr>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Loss to each item affected']; ?></td>
@@ -1606,7 +1648,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									  <td><div id="magnitude_LE_Med_o"><?php echo $magnitude_LE_Med_o; ?></div></td>
 									  <td><div id="magnitude_LE_Max_o"><?php echo $magnitude_LE_Max_o; ?></div></td>
 									 <!-- <td></td>-->
-									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_LE_MEDIA_o"><?php echo $magnitude_LE_MEDIA_o; ?></div></span></td>
+									  <td style="text-align:center;"><span class="badge bg-secondary"><div id="magnitude_LE_MEDIA_o"><?php echo $magnitude_LE_MEDIA_o; ?></div></span></td>
 									</tr>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Items affected']; ?></td>
@@ -1614,7 +1656,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									  <td><div id="magnitude_IA_Med_o"><?php echo $magnitude_IA_Med_o; ?></div></td>
 									  <td><div id="magnitude_IA_Max_o"><?php echo $magnitude_IA_Max_o; ?></div></td>
 									  <!--<td></td>-->
-									  <td style="text-align:center;"><span class="badge bg-info"><div id="magnitude_IA_MEDIA_o"><?php echo $magnitude_IA_MEDIA_o; ?></a></span></td>
+									  <td style="text-align:center;"><span class="badge bg-secondary"><div id="magnitude_IA_MEDIA_o"><?php echo $magnitude_IA_MEDIA_o; ?></a></span></td>
 									</tr>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of risk']; ?></td>
@@ -1622,7 +1664,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									  <td><div id="magnitude_SOMA_P_o"><?php echo $magnitude_SOMA_P_o; ?></div></td>
 									  <td><div id="magnitude_SOMA_H_o"><?php echo $magnitude_SOMA_H_o; ?></div></td>
 									  <!--<td><div id="magnitude_SOMA_RANGE"><?php echo $magnitude_SOMA_RANGE_o; ?></div><br></td>-->
-									  <td style="text-align:center;"><span class="badge bg-success" style="font-size:20px;"><div id="magnitude_SOMA_MEDIA_o"><?php echo $magnitude_SOMA_MEDIA_o; ?></div></span></td>
+									  <td style="text-align:center;"><span class="badge bg-success" style="font-size:20px;" id="bdgTOTAL_o"><div id="magnitude_SOMA_MEDIA_o"><?php echo $magnitude_SOMA_MEDIA_o; ?></div></span></td>
 									</tr>
 								  </tbody>
 								</table>
@@ -1732,7 +1774,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									
 									if(t==3){
 										
-										document.getElementById('magnitude_FR_MEDIA').innerHTML=document.getElementById('magnitude_FR_Probable').innerHTML;
+										/* document.getElementById('magnitude_FR_MEDIA').innerHTML=document.getElementById('magnitude_FR_Probable').innerHTML;
 										
 										document.getElementById('magnitude_LE_MEDIA').innerHTML=document.getElementById('magnitude_LE_Med').innerHTML;
 										
@@ -1740,7 +1782,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										var total = parseFloat((document.getElementById('magnitude_FR_MEDIA').innerHTML))+parseFloat((document.getElementById('magnitude_LE_MEDIA').innerHTML))+parseFloat((document.getElementById('magnitude_IA_MEDIA').innerHTML));
 										
-										document.getElementById('magnitude_SOMA_MEDIA').innerHTML=parseFloat(total.toFixed(1));
+										document.getElementById('magnitude_SOMA_MEDIA').innerHTML=parseFloat(total.toFixed(1)); */
 										
 										
 										/////////// OPTIONS
@@ -1754,12 +1796,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML=parseFloat(total.toFixed(1));
 										
+										var x = document.querySelectorAll("#bdgTOTAL_o");
+										x[0].style.setProperty("background-color", "#ffc107", "important");
+										
 										
 									}else if(t==2){
 										//Math.pow(base, expoente)
 										
 										//A
-										var a_h_p = Math.pow(10, (document.getElementById('magnitude_FR_High').innerHTML)-5);
+										/* var a_h_p = Math.pow(10, (document.getElementById('magnitude_FR_High').innerHTML)-5);
 										var a_p_p = Math.pow(10, (document.getElementById('magnitude_FR_Probable').innerHTML)-5);
 										var a_l_p = Math.pow(10, (document.getElementById('magnitude_FR_Low').innerHTML)-5);
 										
@@ -1788,7 +1833,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										var total = parseFloat((document.getElementById('magnitude_FR_MEDIA').innerHTML))+parseFloat((document.getElementById('magnitude_LE_MEDIA').innerHTML))+parseFloat((document.getElementById('magnitude_IA_MEDIA').innerHTML));
 										
-										document.getElementById('magnitude_SOMA_MEDIA').innerHTML=parseFloat(total.toFixed(1)); 
+										document.getElementById('magnitude_SOMA_MEDIA').innerHTML=parseFloat(total.toFixed(1));  */
 										
 										
 										/////////////////////////////////////////////// OPTIONS
@@ -1824,16 +1869,65 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML=parseFloat(total.toFixed(1)); 
 										
-										
+										var x = document.querySelectorAll("#bdgTOTAL_o");
+										x[0].style.setProperty("background-color", "#17a2b8", "important");
 										
 										
 										
 									}else{
 										
-										 select_risk(document.getElementById('risk').value);
-										  select_risk_option(document.getElementById('id_option').value,document.getElementById('risk').value);
+										 var medFR = ( 
+														parseFloat(document.getElementById('magnitude_FR_High_o').innerHTML) + 
+														parseFloat(document.getElementById('magnitude_FR_Probable_o').innerHTML)+
+														parseFloat(document.getElementById('magnitude_FR_Low_o').innerHTML)
+														
+														)/3; 
+														
+										 var medLE = ( 
+														parseFloat(document.getElementById('magnitude_LE_Max_o').innerHTML) +
+														parseFloat(document.getElementById('magnitude_LE_Med_o').innerHTML) +
+														parseFloat(document.getElementById('magnitude_LE_Min_o').innerHTML)
+														
+														)/3;
 										 
+										 var medIA = ( 
+														parseFloat(document.getElementById('magnitude_IA_Max_o').innerHTML) +
+														parseFloat(document.getElementById('magnitude_IA_Med_o').innerHTML) +
+														parseFloat(document.getElementById('magnitude_IA_Min_o').innerHTML)
+														
+														)/3;
+														
+										document.getElementById('magnitude_FR_MEDIA_o').innerHTML = Math.round10(medFR,-1);
+										document.getElementById('magnitude_LE_MEDIA_o').innerHTML = Math.round10(medLE,-1);
+										document.getElementById('magnitude_IA_MEDIA_o').innerHTML = Math.round10(medIA,-1);
+										
+										var total = parseFloat((document.getElementById('magnitude_FR_MEDIA_o').innerHTML))+parseFloat((document.getElementById('magnitude_LE_MEDIA_o').innerHTML))+parseFloat((document.getElementById('magnitude_IA_MEDIA_o').innerHTML));
+										
+										document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML=parseFloat(total.toFixed(1)); 
+										
+										
+										var x = document.querySelectorAll("#bdgTOTAL_o");
+										x[0].style.setProperty("background-color", "#48b461", "important");
+									
 									} 		
+									
+									$.ajax({
+										type: "POST",
+										url: "ajax_process/update_expected_scores_o.php",
+										data: {
+											id_risk: document.getElementById('risk').value,
+											id_option: document.getElementById('id_option').value,
+											type_calc: t,
+											Expected_Scores_FR: document.getElementById('magnitude_FR_MEDIA_o').innerHTML,
+											Expected_Scores_LE: document.getElementById('magnitude_LE_MEDIA_o').innerHTML,
+											Expected_Scores_IA: document.getElementById('magnitude_IA_MEDIA_o').innerHTML,
+											magnitude_of_risk: document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML
+										},
+										success: function(data) {
+										  //$(i).css({"display":"none"});
+										  //location.reload();
+										}
+									  });
 									
 									 
 								 }	 

@@ -282,6 +282,40 @@
 				$n->execute(array($MR_low,$MR_Probable,$MR_High,$MR_U_Range,$Expected_Scores_FR,$Expected_Scores_LE,$Expected_Scores_IA,$magnitude_of_risk,$id_risk));
 			
 		}
+		
+		static function update_expected_scores($Expected_Scores_FR,$Expected_Scores_LE,$Expected_Scores_IA,$magnitude_of_risk,$type_calc,$id_risk){
+			
+				$n = self::getConn()->prepare('
+													UPDATE  `ar_analyze_risks` SET 
+													   `Expected_Scores_FR` =?,
+													   `Expected_Scores_LE` =?,
+													   `Expected_Scores_IA` =?,
+													   `magnitude_of_risk` =?,
+													   `type_calc` =?
+													WHERE  `id_risk` =? ');
+											
+				$n->execute(array($Expected_Scores_FR,$Expected_Scores_LE,$Expected_Scores_IA,$magnitude_of_risk,$type_calc,$id_risk));
+			
+		}
+	
+		static function update_expected_scores_o($Expected_Scores_FR,$Expected_Scores_LE,$Expected_Scores_IA,$magnitude_of_risk,$type_calc,$id_risk,$id_option){
+			
+				$n = self::getConn()->prepare('
+													UPDATE  `tr_analyze_options` SET 
+													   `Expected_Scores_FR` =?,
+													   `Expected_Scores_LE` =?,
+													   `Expected_Scores_IA` =?,
+													   `magnitude_of_risk` =?,
+													   `type_calc` =?
+													WHERE  
+													`id_risk` =? 
+													AND`id_option` =? 
+													
+													');
+											
+				$n->execute(array($Expected_Scores_FR,$Expected_Scores_LE,$Expected_Scores_IA,$magnitude_of_risk,$type_calc,$id_risk,$id_option));
+			
+		}
 	
 		static function update_ar_magnitudes_risk($uncertainty_range,$expected_scores,$id){
 			
