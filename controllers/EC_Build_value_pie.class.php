@@ -60,7 +60,7 @@ update their_scores
 		
 		static function select_ar_zoom_list_items_affected_checked($risk_id){
 			
-			$n1 = self::getConn()->prepare('SELECT * FROM ar_zoom_list_items_affected WHERE project_id="'.$_SESSION['project_id'].'" AND risk_id=? ORDER BY id DESC');
+			$n1 = self::getConn()->prepare('SELECT * FROM ir_risks WHERE  id=? ');
 			$n1->execute(array($risk_id)); 
 			$d = $n1->fetch();	
 			$d['num'] = $n1->rowCount();				
@@ -627,6 +627,11 @@ update their_scores
 		
 		static function insert_ar_zoom_list_items_affected($risk_id,$id_ec_value_pie_table,$identification,$number_subgroups,$low_estimate,$most_probable,$high_estimate){
 			
+			
+			$n1 = self::getConn()->prepare( 'SELECT * FROM ar_zoom_list_items_affected WHERE risk_id = "'.$risk_id.'"' );
+			$n1->execute();
+			$d = $n1->fetch();	
+			
 			$n = self::getConn()->prepare('INSERT INTO `ar_zoom_list_items_affected` SET 
 											risk_id=?,
 											id_ec_value_pie_table=?,
@@ -635,6 +640,9 @@ update their_scores
 											low_estimate=?,
 											most_probable=?,
 											high_estimate=?,
+											low_estimate_general="'.$d['low_estimate_general'].'",
+											most_probable_general="'.$d['most_probable_general'].'",
+											high_estimate_general="'.$d['high_estimate_general'].'",
 											project_id="'.$_SESSION['project_id'].'"	
 										  ');											
 			$n->execute(array($risk_id,$id_ec_value_pie_table,$identification,$number_subgroups,$low_estimate,$most_probable,$high_estimate));
@@ -648,6 +656,10 @@ update their_scores
 		
 		static function insert_ar_zoom_list_items_affected_o($risk_id,$option_id,$id_ec_value_pie_table,$identification,$number_subgroups,$low_estimate,$most_probable,$high_estimate){
 			
+			$n1 = self::getConn()->prepare( 'SELECT * FROM ar_zoom_list_items_affected_o WHERE risk_id = "'.$risk_id.'"' );
+			$n1->execute();
+			$d = $n1->fetch();	
+			
 			$n = self::getConn()->prepare('INSERT INTO `ar_zoom_list_items_affected_o` SET 
 											risk_id=?,
 											option_id=?,
@@ -657,6 +669,9 @@ update their_scores
 											low_estimate=?,
 											most_probable=?,
 											high_estimate=?,
+											low_estimate_general="'.$d['low_estimate_general'].'",
+											most_probable_general="'.$d['most_probable_general'].'",
+											high_estimate_general="'.$d['high_estimate_general'].'",
 											project_id="'.$_SESSION['project_id'].'"	
 										  ');											
 			$n->execute(array($risk_id,$option_id,$id_ec_value_pie_table,$identification,$number_subgroups,$low_estimate,$most_probable,$high_estimate));
@@ -780,26 +795,26 @@ update their_scores
 					$n->execute(array($low_estimate, $most_probable, $high_estimate, $id));
 		}
 		
-		static function update_ar_zoom_list_items_affected_top($low_estimate_general, $most_probable_general, $high_estimate_general){
+		static function update_ar_zoom_list_items_affected_top($low_estimate_general, $most_probable_general, $high_estimate_general, $risk_id){
 					$n = self::getConn()->prepare('
 													UPDATE `ar_zoom_list_items_affected` SET 														   
 														   `low_estimate_general` =?,
 														   `most_probable_general` =?,
 														   `high_estimate_general` =?
-													WHERE  project_id="'.$_SESSION['project_id'].'" ');
+													WHERE  risk_id=? AND project_id="'.$_SESSION['project_id'].'" ');
 											
-					$n->execute(array($low_estimate_general, $most_probable_general, $high_estimate_general));
+					$n->execute(array($low_estimate_general, $most_probable_general, $high_estimate_general, $risk_id));
 		}
 			
-		static function update_ar_zoom_list_items_affected_top_o($low_estimate_general, $most_probable_general, $high_estimate_general){
+		static function update_ar_zoom_list_items_affected_top_o($low_estimate_general, $most_probable_general, $high_estimate_general, $risk_id){
 					$n = self::getConn()->prepare('
 													UPDATE `ar_zoom_list_items_affected_o` SET 														   
 														   `low_estimate_general` =?,
 														   `most_probable_general` =?,
 														   `high_estimate_general` =?
-													WHERE  project_id="'.$_SESSION['project_id'].'" ');
+													WHERE   risk_id=? AND project_id="'.$_SESSION['project_id'].'" ');
 											
-					$n->execute(array($low_estimate_general, $most_probable_general, $high_estimate_general));
+					$n->execute(array($low_estimate_general, $most_probable_general, $high_estimate_general, $risk_id));
 		}
 			
 		static function update_zoom_fr_save($fr_zoom_link,$fr_zoom_obs,$fr_zoom_explanation_fields, $fr_zoom_notes_explanation, $fr_zoom_document_name, $fr_zoom_comment, $fr_zoom_document_file, $id){
@@ -938,9 +953,9 @@ update their_scores
 
 		static function update_zoom_list_type_list($type_list, $id){
 					$n = self::getConn()->prepare('
-													UPDATE  `ar_zoom_list_items_affected` SET 
-												   `type_list` =?
-													WHERE  `risk_id` =? ');
+													UPDATE  `ir_risks` SET 
+												   `type_list_zoom` =?
+													WHERE  `id` =? ');
 											
 					$n->execute(array($type_list, $id));
 		}

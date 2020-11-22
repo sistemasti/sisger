@@ -341,11 +341,10 @@
 	
 /*=================================================delete======================================================*/		
 		
-		static function delete_type_risk($id){
-				
+		static function delete_ar_zoom_list_items_affected_by_risk($id){
+				$n1 = self::getConn()->prepare('DELETE FROM `ar_zoom_list_items_affected` WHERE risk_id=?');		
+				$n1->execute(array($id));	
 		}
-		
-		
 		
 }
 

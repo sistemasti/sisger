@@ -56,14 +56,20 @@ if($i['num'] > 0){
 					
 			*/
 			AR_Analyse_risks::insert_analyse_risk_items_affected($_SESSION['project_id'],$_REQUEST['id_risk'],$_POST['ia_Inp_Min'],$_POST['ia_Inp_Med'],$_POST['ia_Inp_Max'],$_POST['ia_Inp_Range'],$_POST['explain_ia'],'',$_POST['heia'],$_POST['plia'],$_POST['leia'],$_POST['type_score'],$_POST['C_type_list']);
+			
+			
+			
 }
 
 /* 	 */
 
- 
+ if($_POST['type_score']==1){
+				
+				AR_Analyse_risks::delete_ar_zoom_list_items_affected_by_risk($_REQUEST['id_risk']);
+			}
 /* echo "<pre>"; 
 	print_r($_POST);
-echo "</pre>";  */
+echo "</pre>"; */ 
  
 echo 1;
 

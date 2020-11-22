@@ -160,7 +160,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=1;			
 				
 				
-				" <?php if($iac['type_list'] == 1 || $iac['type_list'] == 0 ){ echo "checked"; $displayTop="none"; } echo $disabled; ?>> Items listed are all affected 
+				" <?php if($iac['type_list_zoom'] == 1 || $iac['type_list_zoom'] == 0 ){ echo "checked"; $displayTop="none"; } echo $disabled; ?>> Items listed are all affected  
 				
 				<br>
 		<input type="radio" name="type_list" id="type_list_2" value="2" <?php echo $disabled; ?> onclick="
@@ -186,7 +186,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=2;		
 				
 				
-				" <?php if($iac['type_list'] == 2){ echo "checked"; $displayTop="block"; }  ?>  > Items listed are exposed, but only this many affected:
+				" <?php if($iac['type_list_zoom'] == 2){ echo "checked"; $displayTop="block"; }  ?>  > Items listed are exposed, but only this many affected:
 				
 													<br>
 													<br>
@@ -197,7 +197,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				
 				
 				function zoom_list_update_type_list(type_list,id) {			
-															 
+																
+														
+																
+																
 			  $.ajax({
 				type: "POST",
 				url: "ajax_process/zoom_list_update_type_list.php",
@@ -207,9 +210,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				},
 				dataType: 'json',
 				success: function(data) {
-					//atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
-					//alert('ok');																  
-					
+					/* alert(data);																  
+					alert(type_list);																  
+					 */
 				},
 				error: function() {
 					
@@ -975,7 +978,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 			<?php 			
 			
 				$ia = Build_value_pie::select_ar_zoom_list_items_affected_o($_GET['risk_id'],$_GET['option_id']); 
-				$iac = Build_value_pie::select_ar_zoom_list_items_affected_checked_o($_GET['risk_id'],$_GET['option_id']); 
+				$iac_o = Build_value_pie::select_ar_zoom_list_items_affected_checked_o($_GET['risk_id'],$_GET['option_id']); 
 			
 			?>
 			<br>
@@ -1003,11 +1006,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=1;			
 				
 				
-				" <?php if($iac['type_list'] == 1 || $iac['type_list'] == 0 ){ echo "checked"; $displayTop="none"; } ?>> Items listed are all affected 
+				" <?php if($iac_o['type_list'] == 1 || $iac_o['type_list'] == 0 ){ echo "checked"; $displayTop="none"; } ?>> Items listed are all affected 
 				
 				<br>
 		<input type="radio" name="type_list_o" id="type_list_2_o" value="2" onclick="
-		zoom_list_update_type_list_o(2,<?php echo $_GET['risk_id']; ?>);
+				
+				zoom_list_update_type_list_o(2,<?php echo $_GET['risk_id']; ?>);
 				document.getElementById('low_estimate_top_o').style.display='block';
 				document.getElementById('most_probable_top_o').style.display='block';
 				document.getElementById('high_estimate_top_o').style.display='block';
@@ -1029,14 +1033,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=2;		
 				
 				
-				" <?php if($iac['type_list'] == 2){ echo "checked"; $displayTop="block"; } ?>> Items listed are exposed, but only this many affected:
+				" <?php if($iac_o['type_list'] == 2){ echo "checked"; $displayTop="block"; } ?>> Items listed are exposed, but only this many affected: 
 				
 													<br>
 													<br>
 			
 				<script>
 				
-				<?php if($iac['type_list'] == 1){ ?> 
+				<?php if($iac_o['type_list'] == 1){ ?> 
 					
 					document.getElementById('low_estimate_top_o').style.display='none';
 					document.getElementById('most_probable_top_o').style.display='none';
@@ -1056,20 +1060,20 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					document.getElementById('bx_AllAffected_Assuming_Most_o').style.display='block';			
 					document.getElementById('bx_AllAffected_Assuming_High_o').style.display='block';		
 					
-					document.getElementById('C_type_list').value=1;	
+					document.getElementById('C_type_list').value=1;	 
 					
 				<?php } ?>
 				
 				
-				<?php if($iac['type_list'] == 2){ ?> 
-						
+				<?php if($iac_o['type_list'] == 2){ ?> 
+						//alert('ok');
 					document.getElementById('low_estimate_top_o').style.display='block';
 					document.getElementById('most_probable_top_o').style.display='block';
 					document.getElementById('high_estimate_top_o').style.display='block';
 					
 					document.getElementById('bx_Exposed_Assuming_High_o').style.display='block';			
 					document.getElementById('bx_Exposed_Assuming_Low_o').style.display='block';			
-					document.getElementById('bx_Exposed_Assuming_Most').style.display='block';			
+					document.getElementById('bx_Exposed_Assuming_Most_o').style.display='block';			
 					document.getElementById('bxExposedUsingLow_o').style.display='block';			
 					document.getElementById('bxExposedUsingMost_o').style.display='block';			
 					document.getElementById('bxExposedUsingHigh_o').style.display='block';			
@@ -1081,7 +1085,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					document.getElementById('bx_AllAffected_Assuming_Most_o').style.display='none';			
 					document.getElementById('bx_AllAffected_Assuming_High_o').style.display='none';	
 					
-					document.getElementById('C_type_list').value=2;	
+					document.getElementById('C_type_list').value=2;	 
 						
 				<?php } ?>
 				
@@ -1787,6 +1791,68 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
         </div>
         <!-- /.row -->
 
+
+		<script>
+				
+				<?php if($iac_o['type_list'] == 1){ ?> 
+					
+					document.getElementById('low_estimate_top_o').style.display='none';
+					document.getElementById('most_probable_top_o').style.display='none';
+					document.getElementById('high_estimate_top_o').style.display='none';				
+					
+					document.getElementById('bx_Exposed_Assuming_High_o').style.display='none';			
+					document.getElementById('bx_Exposed_Assuming_Low_o').style.display='none';			
+					document.getElementById('bx_Exposed_Assuming_Most_o').style.display='none';			
+					document.getElementById('bxExposedUsingLow_o').style.display='none';			
+					document.getElementById('bxExposedUsingMost_o').style.display='none';			
+					document.getElementById('bxExposedUsingHigh_o').style.display='none';			
+					
+					document.getElementById('bxAllAffectedUsingLow_o').style.display='block';			
+					document.getElementById('bxAllAffectedUsingMost_o').style.display='block';			
+					document.getElementById('bxAllAffectedUsingHigh_o').style.display='block';			
+					document.getElementById('bx_AllAffected_Assuming_Low_o').style.display='block';			
+					document.getElementById('bx_AllAffected_Assuming_Most_o').style.display='block';			
+					document.getElementById('bx_AllAffected_Assuming_High_o').style.display='block';		
+					
+					document.getElementById('C_type_list').value=1;	 
+					
+				<?php } ?>
+				
+				
+				<?php if($iac_o['type_list'] == 2){ ?> 
+						//alert('ok');
+					document.getElementById('low_estimate_top_o').style.display='block';
+					document.getElementById('most_probable_top_o').style.display='block';
+					document.getElementById('high_estimate_top_o').style.display='block';
+					
+					document.getElementById('bx_Exposed_Assuming_High_o').style.display='block';			
+					document.getElementById('bx_Exposed_Assuming_Low_o').style.display='block';			
+					document.getElementById('bx_Exposed_Assuming_Most_o').style.display='block';			
+					document.getElementById('bxExposedUsingLow_o').style.display='block';			
+					document.getElementById('bxExposedUsingMost_o').style.display='block';			
+					document.getElementById('bxExposedUsingHigh_o').style.display='block';			
+					
+					document.getElementById('bxAllAffectedUsingLow_o').style.display='none';			
+					document.getElementById('bxAllAffectedUsingMost_o').style.display='none';			
+					document.getElementById('bxAllAffectedUsingHigh_o').style.display='none';			
+					document.getElementById('bx_AllAffected_Assuming_Low_o').style.display='none';			
+					document.getElementById('bx_AllAffected_Assuming_Most_o').style.display='none';			
+					document.getElementById('bx_AllAffected_Assuming_High_o').style.display='none';	
+					
+					document.getElementById('C_type_list').value=2;	 
+						
+				<?php } ?>
+				
+				
+				</script>
+
+
+
+
+
+
+
+
        <?php } ?>
 	   
 	   
@@ -1812,9 +1878,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
   <script>
   
   
-  <?php if($iac['type_list'] == 1){ ?> 
-					
-					document.getElementById('low_estimate_top').style.display='none';
+				<?php if($iac['type_list_zoom'] == 1){ ?> 
+					//echo "entrou 3";
+					 document.getElementById('low_estimate_top').style.display='none';
 					document.getElementById('most_probable_top').style.display='none';
 					document.getElementById('high_estimate_top').style.display='none';				
 					
@@ -1832,19 +1898,19 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					document.getElementById('bx_AllAffected_Assuming_Most').style.display='block';			
 					document.getElementById('bx_AllAffected_Assuming_High').style.display='block';		
 					
-					document.getElementById('C_type_list').value=1;	
+					//document.getElementById('C_type_list').value=1;	 /**/
 					
-				<?php } ?>
+				<?php }	 ?>
 				
 				
-				<?php if($iac['type_list'] == 2){ ?> 
+				<?php if($iac['type_list_zoom'] == 2){ ?> 
 					
-					
+					//echo "entrou 2";
 					
 					document.getElementById('low_estimate_top').style.display='block';
 					document.getElementById('most_probable_top').style.display='block';
 					document.getElementById('high_estimate_top').style.display='block'; 
-					//alert('oi');
+					
 					document.getElementById('bx_Exposed_Assuming_High').style.display='block';			
 					document.getElementById('bx_Exposed_Assuming_Low').style.display='block';			
 					document.getElementById('bx_Exposed_Assuming_Most').style.display='block';			
@@ -1858,9 +1924,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					document.getElementById('bx_AllAffected_Assuming_Low').style.display='none';			
 					document.getElementById('bx_AllAffected_Assuming_Most').style.display='none';			
 					document.getElementById('bx_AllAffected_Assuming_High').style.display='none';	
-					
+					/* 
 					document.getElementById('C_type_list').value=2;	
-						
+						 */
 				<?php } ?>
   
   
@@ -2075,7 +2141,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															 
 															  $.ajax({
 																type: "POST",
-																url: "ajax_process/zoom_list_update_top.php?low_estimate_top="+document.getElementById('low_estimate_top').value+"&most_probable_top="+document.getElementById('most_probable_top').value+"&high_estimate_top="+document.getElementById('high_estimate_top').value,
+																url: "ajax_process/zoom_list_update_top.php?low_estimate_top="+document.getElementById('low_estimate_top').value+"&most_probable_top="+document.getElementById('most_probable_top').value+"&high_estimate_top="+document.getElementById('high_estimate_top').value+"&risk_id="+<?php echo $_GET['risk_id'] ?>,
 																
 																dataType: 'json',
 																success: function(data) {
@@ -2096,7 +2162,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															 
 															  $.ajax({
 																type: "POST",
-																url: "ajax_process/zoom_list_update_top_o.php?low_estimate_top_o="+document.getElementById('low_estimate_top_o').value+"&most_probable_top_o="+document.getElementById('most_probable_top_o').value+"&high_estimate_top_o="+document.getElementById('high_estimate_top_o').value,
+																url: "ajax_process/zoom_list_update_top_o.php?low_estimate_top_o="+document.getElementById('low_estimate_top_o').value+"&most_probable_top_o="+document.getElementById('most_probable_top_o').value+"&high_estimate_top_o="+document.getElementById('high_estimate_top_o').value+"&risk_id="+<?php echo $_GET['risk_id'] ?>,
 																
 																dataType: 'json',
 																success: function(data) {

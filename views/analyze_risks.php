@@ -853,9 +853,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								document.getElementById('magnitude_IA_Max').innerHTML = ca_high;document.getElementById('magnitude_IA_Med').innerHTML = ca_media;
 								document.getElementById('magnitude_IA_Min').innerHTML = ca_low;
 								
-								document.getElementById('leia').options[0]=new Option("Selected by zoom", ca_low, true, true);
+								/* document.getElementById('leia').options[0]=new Option("Selected by zoom", ca_low, true, true);
 								document.getElementById('plia').options[0] = new Option("Selected by zoom", ca_media, true, true);
-								document.getElementById('heia').options[0] = new Option("Selected by zoom", ca_high, true, true);							
+								document.getElementById('heia').options[0] = new Option("Selected by zoom", ca_high, true, true);	 */						
 								
 								
 								var base = parseFloat(ca_high) + parseFloat(ca_media) + parseFloat(ca_low);
@@ -1267,11 +1267,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								 </script>	
 							<div class="row">	
 								<div class="col-sm-4 col-md-4">
-								<button type="button" class="btn btn-block  bg-gradient-info btn-sm" onclick="changeTypeCalc(1)" >Linear triangle distribution (default) </button>
+								<button type="button" class="btn btn-block  bg-gradient-info btn-sm" onclick="changeTypeCalc(2)" >Linear triangle distribution (default) </button>
 									
 								</div>
 								<div class="col-sm-4 col-md-4">
-									<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="changeTypeCalc(2)">Log triangle distribution </button>
+									<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="changeTypeCalc(1)">Log triangle distribution </button>
 								</div>
 								<div class="col-sm-4 col-md-4">
 									<button type="button" class="btn btn-block bg-gradient-warning btn-sm" onclick="changeTypeCalc(3)">Simple use of problable value</button>

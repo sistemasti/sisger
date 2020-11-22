@@ -1603,11 +1603,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								</table>
 								<div class="row">	
 								<div class="col-sm-4 col-md-4">
-								<button type="button" class="btn btn-block  bg-gradient-info btn-xs" onclick="changeTypeCalc(1)">Linear triangle distribution (default) </button>
+								<button type="button" class="btn btn-block  bg-gradient-info btn-xs" onclick="changeTypeCalc(2)">Linear triangle distribution (default) </button>
 									
 								</div>
 								<div class="col-sm-4 col-md-4">
-									<button type="button" class="btn btn-block bg-gradient-success btn-xs" onclick="changeTypeCalc(2)">Log triangle <br>distribution </button>
+									<button type="button" class="btn btn-block bg-gradient-success btn-xs" onclick="changeTypeCalc(1)">Log triangle <br>distribution </button>
 								</div>
 								<div class="col-sm-4 col-md-4">
 									<button type="button" class="btn btn-block bg-gradient-warning btn-xs" onclick="changeTypeCalc(3)">Simple use of problable value</button>
@@ -2116,11 +2116,14 @@ if(isset($_GET['id_option'])){
 	<script>
 	
 	
-	<?PHP if(!isset($_GET['id_option'])){ ?>
-	
+	<?PHP if(isset($_GET['id_option'])){ ?>
+	//alert(1);
 	select_risk(<?php echo $_GET['id']; ?>);
+	//alert(2);
 	select_risk_option(<?php echo $_GET['id_option']; ?>,<?php echo $_GET['id']; ?>);
+	//alert(3);
 	select_option(<?php echo $_GET['id_option']; ?>,<?php echo $_GET['id']; ?>);
+	//alert(4);
 	items_affecteds_register_o(0);
 	
 	<?PHP } ?>
