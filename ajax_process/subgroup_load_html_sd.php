@@ -24,7 +24,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 				<tr>
 					<td style="width: 10px"></td>
 					<td>Subgroup</td>
-					<td><small>Number of itemns in this subgroup</small></td>
+					<td><small>Number of items in this subgroup</small></td>
 					<td>
 					
 					<?php if($g['method_for_quantifying'] == "1"){ ?>
@@ -123,7 +123,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 			<br>
 			<br>
 			<br>
-			<strong> Numbers of items: </strong> <span class="btn btn-block btn-outline-success btn-xs" id="totalNumberOfItens">
+			<strong> Number of items: </strong> <span class="btn btn-block btn-outline-success btn-xs" id="totalNumberOfItens">
 			<?php
 				
 				$s = Build_value_pie::select_sum_itens_subgroup($_GET['group_id']);
@@ -163,7 +163,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 			<div id="totalValueUnites" style="display:none">
 			<?php }?>
 			
-				<strong> Total value unites: </strong> <span class="btn btn-block btn-outline-info btn-xs">
+				<strong> Total value units: </strong> <span class="btn btn-block btn-outline-info btn-xs">
 				<?php
 					
 					echo $totalvalueunites;

@@ -281,13 +281,13 @@ $('#downloadPdf').click(function(event) {
 				]
 			}, {
 				label: 'Loss to object',
-				backgroundColor: window.chartColors.blue,
+				backgroundColor: window.chartColors.yellow,
 				data: [
 					<?php echo substr($le,0,-1); ?>
 				]
 			}, {
 				label: 'Collection affected',
-				backgroundColor: window.chartColors.green,
+				backgroundColor: window.chartColors.blue,
 				data: [
 					<?php echo substr($ia,0,-1); ?>
 				]
