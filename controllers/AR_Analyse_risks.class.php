@@ -43,6 +43,16 @@
 			
 		}
 		
+		static function select_ar_analyze_risks_by_id_risk($id_risk){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM ar_analyze_risks WHERE id_risk=?');
+			$n1->execute(array($id_risk));
+			$d = $n1->fetch();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+		
 		static function select_analyse_risk_by_project(){
 			
 			$n1 = self::getConn()->prepare('SELECT * FROM ar_analyze_risks ar, ir_risks ir WHERE ar.id_risk = ir.id and ir.deleted = 0 and ar.id_project="'.$_SESSION['project_id'].'" GROUP BY ar.id_risk');
@@ -56,6 +66,15 @@
 		static function select_analyse_risk_by_project_by_magnitude(){
 			
 			$n1 = self::getConn()->prepare('SELECT * FROM ar_analyze_risks ar, ir_risks ir WHERE ar.id_risk = ir.id and ir.deleted = 0 and ar.id_project="'.$_SESSION['project_id'].'" ORDER BY  ar.magnitude_of_risk*1 DESC');
+			$n1->execute(array());			 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();
+			return $d;			
+			
+		}	
+		static function select_analyse_risk_by_group_by_magnitude(){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM ar_analyze_risks ar, ir_risks ir WHERE ar.id_risk = ir.id and ir.deleted = 0 and ar.id_project="'.$_SESSION['project_id'].'" GROUP BY ir.ec_groups_id ORDER BY  ar.magnitude_of_risk*1 DESC');
 			$n1->execute(array());			 
 			$d['dados'] = $n1->fetchAll();	
 			$d['num'] = $n1->rowCount();

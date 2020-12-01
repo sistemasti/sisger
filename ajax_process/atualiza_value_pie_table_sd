@@ -39,9 +39,9 @@ include("../controllers/EC_Build_value_pie.class.php");
 											$g 	= (float)$in['numbers_of_items'];
 											$h 	= $b['b']*$b2['total'];
 											
-											
+										//	echo "--->".$c;
 											if($go['method_for_quantifying'] == 1){
-												$subgroup_as_percent_of_group = $c/100;
+											//	$subgroup_as_percent_of_group = $c/100;
 											}	
 											
 											if($go['method_for_quantifying'] == 2){

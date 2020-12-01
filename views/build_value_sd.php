@@ -110,6 +110,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								
 								$in = Build_value_pie::select_ec_groups_value();
 								
+								$x=0;
 								if($in['num'] > 0){												
 								foreach($in['dados'] as $in){
 											
@@ -123,7 +124,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									if(this.value != ''){
 										
 										group_edit(this.value,document.getElementById('value_ratio_<?php echo $in['id']; ?>').value,document.getElementById('method_for_quantifying_<?php echo $in['id']; ?>').value,<?php echo $in['id']; ?>);
-										this.style.backgroundColor='#f5f2c9';
+										
 										$('#group_selected_for_all').val(<?php echo $in['id']; ?>); 
 										atualiza_value_pie_table();
 										$('#group_selected').val(<?php echo $in['id']; ?>); 
@@ -136,7 +137,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										$('#groupOption').show();
 										$('#group_selected_for_all').val(<?php echo $in['id']; ?>); 
 										$('#group_selected').val(<?php echo $in['id']; ?>); 
-										this.style.backgroundColor='#f5f2c9';document.getElementById('scores_column').style.display='none';
+										document.getElementById('scores_column').style.display='none';
 										"
 										onblur="
 										this.style.backgroundColor='#fff';if(this.value==''){ alert('Fill in the name field'); 
@@ -196,6 +197,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									
 								</tr>
 								<?php 
+								
+								$x++;
 										}
 								}else{
 									?>
@@ -457,6 +460,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								}
 							</script>
 							
+							<small><em>Numbers of Groups: <strong><?php echo $x; ?></em></strong></small>
 							
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="

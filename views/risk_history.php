@@ -121,12 +121,111 @@ require_once("header.php");
 							 
 							 </a>
 							<?php } 
-										
-							?>
+							?>	
+							
+							
 				
 					
+					
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg" style="margin-top:2px" onclick="return false">
+                  Datasheet by year
+                </button>
+					
+					
+					
+					
+						<div class="modal fade" id="modal-lg">
+					<form id="frmZoomFR" method="post" enctype="multipart/form-data">
+							<div class="modal-dialog modal-lg">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <h4 class="modal-title">Datasheet by year</h4>
+								 
+								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								  </button>
+								   <br>
+								  
+								</div>
+								<div class="modal-body">
+								
+										<?php 
+							$ad = Analyze_options::select_datas_tr_identify_options();
+							?>
+							<br>
+							<table class="table table-bordered table-striped">
+								<thead>          
+								<tr>
+								<th>
+								</th>
+								<th>
+								</th>
+									<?php 
+										foreach($ad['dados'] as $ad){
+											$ano[$ad['ano']] = $ad['id_risk'];
+											echo "<th>".$ad['ano']."</th>";
+										}
+									
+									?>
+								</tr>
+								</thead>
+								<tbody>
+								<?php 
+								
+								$irn = Analyze_options::select_tr_analyze_options_by_project();
+								foreach($irn['dados'] as $irn){
+									$r = Risks::select_risk_id($irn['id_risk']);
+									$o = Analyze_options::select_tr_options_id_by_option($irn['id_option']);
+								?>
+									<tr>
+									<td> <?php echo $r['name']; ?></td>
+									<td> <?php echo $o['option']; ?></td>
+									<?php 
+									$ad2 = Analyze_options::select_datas_tr_identify_options();
+									
+										foreach($ad2['dados'] as $ad2){
+											
+											
+											$ma = Analyze_options::select_analyse_risk_id_risk_id_option_year($ad2['ano'],$irn['id_option'],$irn['id_risk']);
+											if($ma['num'] > 0){
+												echo "<td>".$ma['magnitude_of_risk']."</td>";
+											}else{
+												echo "<td>-</td>";
+											}
+										}
+									
+									?>
+									</tr>
+								
+								<?php 
+								
+								}
+									
+								?>	
+									
+								</tbody>
+							</table>
+								
+								
+								</div>
+								<div class="modal-footer justify-content-between">
+								  <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>
+								 
+								</div>
+							  </div>
+							  <!-- /.modal-content -->
+							</div>
+					<!-- /.modal-dialog -->
+					</form>
+				  </div>	
+					
 				</div>
+				
+				
 				<div class="col-sm-4 col-md-8">
+				<?php if($_GET['show'] == 'r'){ ?> 
+				Values in %
+				<?php } ?> 
 					<canvas id="canvas"></canvas>
 					<!--<canvas id="chart-area"></canvas>
 					<br>
@@ -147,10 +246,36 @@ require_once("header.php");
 					
 					
 					
+					<?php if(isset($_GET['id_risk'])){ 
+					
+					
+					if($_GET['show'] != "r"){
+					?>
+					
+					<small>Total of all original risks: <strong><?php
+
+						$trs = Analyze_options::select_total_original_risk();
+						echo $trs['magnitude_of_risk'];
+						
+					?></strong></small>
+					
+					<br><br>
+					<?php } ?>
+					<a href="risk_history?id_risk=<?php echo $_GET['id_risk']; ?>">
+					<button type="button" class="btn btn-default" style="margin-top:2px" >
+						Show MR graph
+					</button>
+					</a>
+					<a href="risk_history?show=r&id_risk=<?php echo $_GET['id_risk']; ?>">
+					<button type="button" class="btn btn-default" style="margin-top:2px" >
+						Show R graph
+					</button>
+					</a>
+					<?php }  ?>
+					
 				</div>
 				
 					
-				
 				</div>
               </div>
               <!-- /.card-body -->
@@ -235,17 +360,28 @@ require_once("footer.php");
 			$ap = Analyze_options::select_tr_analyze_options_by_risk($_GET['id_risk']);
 			
 
-			$dados['data'][0] 			= substr(databr($ir['data_analyzed']),6,10);
-			$dados['magnitude'][0]	 	= $ar['magnitude_of_risk'];
+			/* $dados['data'][0] 			= substr(databr($ir['data_analyzed']),6,10);
+			$dados['magnitude'][0]	 	= $ar['magnitude_of_risk']; */
 	
 			$x=1;
 			if($ap['num'] > 0){
 				
 				foreach($ap['dados'] as $ap){
-					$op = Analyze_options::select_tr_identify_options_id_by_option($ap['id_option']);
 					
-					$dados['data'][$x] 		= substr(databr($op['data']),6,10);
-					$dados['magnitude'][$x] 	= $ap['magnitude_of_risk'];
+					$op = Analyze_options::select_tr_identify_options_id_by_option($_GET['id_risk'],$ap['id_option']);
+					$ar = AR_Analyse_risks::select_ar_analyze_risks_by_id_risk($_GET['id_risk']);
+					
+					$dados['data'][$x] 			= substr(databr($op['data']),6,10);
+					
+					
+					//$dados['magnitude'][$x] 	= $ap['magnitude_of_risk'];
+					if($_GET['show'] == 'r'){
+						$dados['magnitude'][$x] 	= (($ap['magnitude_of_risk'] / $ar['magnitude_of_risk']) * 100);
+						$color="orange";
+					}else{
+						$dados['magnitude'][$x] 	= $ap['magnitude_of_risk'];
+						$color="green";
+					}
 					$x++;
 				}
 				
@@ -273,7 +409,7 @@ require_once("footer.php");
 			labels: [<?php echo substr($data_p,0,-1); ?>],
 			datasets: [{
 				label: <?php echo "'".$ir['name']."'"; ?>,
-				backgroundColor: window.chartColors.green,
+				backgroundColor: window.chartColors.<?php echo $color; ?>,
 				data: [
 					<?php echo substr($magnitude_p,0,-1); ?>
 				]

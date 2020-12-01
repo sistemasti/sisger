@@ -68,6 +68,16 @@
 			
 		}
 	
+		static function select_analyse_risk_id_risk_id_option_year($ano,$id_option,$id_risk){
+			
+			$n1 = self::getConn()->prepare('SELECT ao.magnitude_of_risk as magnitude_of_risk FROM tr_analyze_options ao INNER JOIN tr_identify_options io WHERE io.id_option=ao.id_option AND YEAR(io.data)=? AND io.id_option=? AND io.id_risk=?');
+			$n1->execute(array($ano,$id_option,$id_risk));
+			$d = $n1->fetch();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+	
 		static function select_risk_option_by_name($option){
 			
 			$n1 = self::getConn()->prepare('SELECT * FROM tr_options WHERE option=? AND project_id="'.$_SESSION['project_id'].'"');
@@ -112,6 +122,38 @@
 			
 		}
 	
+		static function select_datas_tr_identify_options(){
+			
+			
+			$n1 = self::getConn()->prepare('SELECT id_risk,YEAR(data)as ano FROM `tr_identify_options` WHERE id_risk in (select id FROM ir_risks where project_id="'.$_SESSION['project_id'].'") GROUP BY data ORDER BY data');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+		
+		static function select_tr_identify_options_id_by_option($id_risk,$id_option){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM tr_identify_options WHERE id_risk=? AND id_option=?');
+			$n1->execute(array($id_risk,$id_option)); 
+			$d = $n1->fetch();	
+			$d['num'] = $n1->rowCount();				
+			return $d;
+			
+		}
+	
+		static function select_datas_tr_identify_options_by_id($id_risk,$ano){
+			
+			
+			$n1 = self::getConn()->prepare('SELECT YEAR(data)as ano FROM `tr_identify_options` WHERE id_risk in (select id FROM ir_risks where project_id="'.$_SESSION['project_id'].'") AND id_risk=? AND ano=? GROUP BY data ORDER BY data');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll($id_risk,$ano);	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+	
 		
 		static function select_options_id($id){
 			
@@ -123,6 +165,15 @@
 			
 		}
 	
+		static function select_total_original_risk(){
+			
+			$n1 = self::getConn()->prepare('SELECT magnitude_of_risk FROM `tr_analyze_options` WHERE magnitude_of_risk <> "NaN" AND `id_project` ="'.$_SESSION['project_id'].'" ORDER BY magnitude_of_risk desc LIMIT 0,1');
+			$n1->execute(array());
+			$d = $n1->fetch();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
 		
 		
 		static function select_tr_options_id_by_option($id){
@@ -136,15 +187,7 @@
 		}
 	
 		
-		static function select_tr_identify_options_id_by_option($id_risk,$id_option){
-			
-			$n1 = self::getConn()->prepare('SELECT * FROM tr_identify_options WHERE id_risk=? AND id_option=?');
-			$n1->execute(array($id_risk,$id_option)); 
-			$d = $n1->fetch();	
-			$d['num'] = $n1->rowCount();				
-			return $d;
-			
-		}
+
 	
 		
 		

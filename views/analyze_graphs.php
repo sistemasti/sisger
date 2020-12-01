@@ -273,9 +273,13 @@ session_start();
 		
 		
 		<?php 
-								if($_GET['order'] == "m" || $_GET['order'] == "gm" ){
+								if($_GET['order'] == "m" ){
 									
 									$in = AR_Analyse_risks::select_analyse_risk_by_project_by_magnitude();
+									
+								}else if($_GET['order'] == "gm" ){
+									
+									$in = AR_Analyse_risks::select_analyse_risk_by_group_by_magnitude();
 									
 								}else if($_GET['order'] == "f"){
 								
@@ -301,7 +305,13 @@ session_start();
 									foreach($in['dados'] as $in){
 																		
 											$r = AR_Analyse_risks::select_risk_by_id($in['id_risk']);
-											$labels .= "'".$r['name']."',";
+											
+											if($_GET['order'] == "gm" ){
+												$nn = Risks::select_risk_group_id($r['ec_groups_id']);
+												$labels .= "'".$nn['risk_group']."',";
+											}else{
+												$labels .= "'".$r['name']."',";	
+											}	
 											$fr .= "'".$in['Expected_Scores_FR']."',";
 											$le .= "'".$in['Expected_Scores_LE']."',";
 											$ia .= "'".$in['Expected_Scores_IA']."',";

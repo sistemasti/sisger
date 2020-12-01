@@ -41,7 +41,11 @@ echo json_encode('1');
 											}	
 											
 											if($go['method_for_quantifying'] == 2){
-												$subgroup_as_percent_of_group = ($d/$e)*100;
+												
+												/* echo "<br>oi".$d;
+												echo "<br>oi".$e; */
+												
+												$subgroup_as_percent_of_group = ($d/$e['total'])*100;
 											}	
 											
 											if($go['method_for_quantifying'] == 3){
