@@ -429,7 +429,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									success: function(data) {
 										
 										view_subgroup(group_id);
-										window.scrollto(0,0);
+										window.scrollTo(0,0);
 										atualiza_value_pie_table();
 									}
 									});
@@ -453,7 +453,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										view_subgroup(document.getElementById('group_selected_for_all').value);
 										view_scores(subgroup_id);
 										document.getElementById('html_points_subgroup_subgroup').innerHTML=data;
-										window.scrollto(0,0);
+										window.scrollTo(0,0);
 										atualiza_value_pie_table();
 									}
 									});
@@ -1139,8 +1139,8 @@ require_once("footer.php");
 						$c = (float)$in['subgroupRatio'];
 						$d = (float)$in['numbers_of_items'];
 						
-						$bgColors 	.= random_color().",";
-						$name 		.= $in['group_name'].",";
+						$bgColors 	.= "'".random_color()."',";
+						$name 		.= "'".$in['group_name']."',";
 						$data 		.= ($b*100)/$a['total'].",";
 						
 						
@@ -1149,7 +1149,7 @@ require_once("footer.php");
 		var barChartData = {
 			datasets: [{
 				backgroundColor: [
-				<?php echo "'".substr($bgColors,0,-1)."'"; ?>			
+				<?php echo substr($bgColors,0,-1); ?>			
 				
 				],
 				data: [<?php echo substr($data,0,-1); ?>]
@@ -1159,7 +1159,7 @@ require_once("footer.php");
 
 			// These labels appear in the legend and in the tooltips when hovering different arcs
 			labels: [
-				<?php echo "'".substr($name,0,-1)."'"; ?>
+				<?php echo substr($name,0,-1); ?>
 			]
 
 		};

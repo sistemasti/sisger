@@ -137,7 +137,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 			?>
 			<br>
 											
-		<input type="radio" name="type_list" id="type_list_1" value="1"  onclick="
+		<input type="radio" name="type_list" id="type_list_1" <?php echo $disabled; ?>  value="1"  onclick="
 				zoom_list_update_type_list(1,<?php echo $_GET['risk_id']; ?>);
 				document.getElementById('low_estimate_top').style.display='none';
 				document.getElementById('most_probable_top').style.display='none';
@@ -160,7 +160,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=1;			
 				
 				
-				" <?php if($iac['type_list_zoom'] == 1 || $iac['type_list_zoom'] == 0 ){ echo "checked"; $displayTop="none"; } echo $disabled; ?>> Items listed are all affected  
+				" <?php if($iac['type_list_zoom'] == 1 || $iac['type_list_zoom'] == 0 ){ echo "checked"; $displayTop="none"; }  ?>> Items listed are all affected  
 				
 				<br>
 		<input type="radio" name="type_list" id="type_list_2" value="2" <?php echo $disabled; ?> onclick="

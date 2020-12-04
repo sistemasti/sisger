@@ -1,6 +1,4 @@
-<?php
-
-require_once("header.php");
+<?php require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
 	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
@@ -345,7 +343,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										view_subgroup(group_id);
 										atualiza_value_pie_table();
-										window.scrollto(0,0);
+										window.scrollTo(0,0);
 									}
 									});
 								}
@@ -369,7 +367,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										view_scores(subgroup_id);
 										document.getElementById('html_points_subgroup_subgroup').innerHTML=data;
 										
-										window.scrollto(0,0);
+										window.scrollTo(0,0);
 									}
 									});
 								}

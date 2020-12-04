@@ -308,7 +308,7 @@ require_once("header.php");
 											success: function(data) {
 												if(data==1){
 													
-														alert('Register save successfull');
+														
 														
 														if(r == 1){
 															location.reload();
@@ -326,6 +326,8 @@ require_once("header.php");
 												window.scrollTo(0, 0);
 											}
 										  });
+										  
+										  alert('Register save successfull');
 							  
 							   }
 							}

@@ -267,6 +267,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										</div>
 									</div>
         <!-- /.row -->			</form>
+		<br>
+		<br>
+		
 <script>
 
 
