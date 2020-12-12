@@ -46,9 +46,9 @@
 	$_SESSION['pt-br']['Consider all items equal, then sort by']	= "Considerando todos os itens iguais";	
 	$_SESSION['pt-br']['Time horizon'] 								= "Horizonte de tempo";
 	$_SESSION['pt-br']['Risk Totals For Agents'] 					= "Total de riscos por agentes";
-	$_SESSION['pt-br']['Frequency / Rate'] 							= "Frenquencia / Taxa";
-	$_SESSION['pt-br']['Loss to object'] 							= "Perda para objetos";
-	$_SESSION['pt-br']['Collection affected'] 						= "Coleção afetada";
+	$_SESSION['pt-br']['Frequency / Rate'] 							= "Frenquencia / Taxa (A)";
+	$_SESSION['pt-br']['Loss to object'] 							= "Perda para objetos (B)";
+	$_SESSION['pt-br']['Collection affected'] 						= "Coleção afetada (C)";
 	
 
 #analyze_options.php
@@ -292,9 +292,9 @@
 	$_SESSION['eng']['Time horizon'] 							= "Time horizon";
 	$_SESSION['eng']['Risk Totals For Agents'] 					= "Risk Totals For Agentss";
 	$_SESSION['eng']['By Magnitude of Risk'] 					= "By Magnitude of Risk";
-	$_SESSION['eng']['Frequency / Rate'] 						= "Frequency / Rate";
-	$_SESSION['eng']['Loss to object'] 							= "Loss to object";
-	$_SESSION['eng']['Collection affected'] 					= "Collection affected";
+	$_SESSION['eng']['Frequency / Rate'] 						= "Frequency / Rate (A)";
+	$_SESSION['eng']['Loss to object'] 							= "Loss to object (B)";
+	$_SESSION['eng']['Collection affected'] 					= "Collection affected  (C)";
 
 #analyze_options.php
 	$_SESSION['eng']['Analyze Options'] 						= "Analyze Options";

@@ -3,7 +3,7 @@
 								function range_I_A(field,value){
 									var f=0;
 
-									if(field == "Max"){
+									/* if(field == "Max"){
 										
 										if(value < document.getElementById('plia_o').value){
 												f=1; 	
@@ -29,7 +29,7 @@
 										}
 
 									}
-									
+									 */
 										
 									
 									if(f==0){

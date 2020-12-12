@@ -4,7 +4,7 @@
 								function range_I_A(field,value){
 									var f=0;
 
-									if(field == "Max"){
+									/* if(field == "Max"){
 										
 										if(value < document.getElementById('plia').value){
 												f=1; 	
@@ -30,7 +30,7 @@
 										}
 
 									}
-									
+									 */
 										
 									
 									if(f==0){
@@ -131,6 +131,7 @@ echo "</pre>"; */
 													document.getElementById('bxFractionAffected').style.display='none';
 													document.getElementById('bxValuePieAffected').style.display='block';
 													select_risk_ia_zoom(document.getElementById('risk').value);
+													
 													" <?php if ((isset($_GET['ca_high'])) || $type_score==2){ echo "checked";}else{echo "";} ?>> <?php echo $_SESSION[$_SESSION['lang']]['More precise data using the value pie']; ?><br>
 											
 											<input type="hidden" name="C_type_list" id="C_type_list" value='1'>
@@ -150,8 +151,13 @@ echo "</pre>"; */
 						},
 						dataType: 'json',
 						success: function(data) {
+							<?php if(isset($_GET['ca_high'])){ ?>
+								var zoomGet = 1;
+							<?php }else{ ?>
+								var zoomGet = 0;
+							<?php } ?>
 							
-							
+							if( (data['type_score'] == 1 && zoomGet == 1) || data['type_score'] == 2){
 							
 							//C
 							$("#ia_Inp_Min").val(data['ia_Inp_Min']);
@@ -290,7 +296,17 @@ echo "</pre>"; */
 								document.getElementById('heia').options[0]=new Option(<?php echo "'~1/1, ".$_SESSION[$_SESSION['lang']]['All or most of the whole asset value']."'"; ?>, data['heia'], true, true);
 							}
 							
-						
+							}else{
+								
+													document.getElementById('ia_Inp_Min').value 		= 0.0;
+													document.getElementById('ia_Div_Min').innerHTML 	= '0.0';
+													
+													document.getElementById('ia_Inp_Med').value 		= 0.0;
+													document.getElementById('ia_Div_Med').innerHTML 	= '0.0';
+													
+													document.getElementById('ia_Inp_Max').value 		= 0.0;
+													document.getElementById('ia_Div_Max').innerHTML 	= '0.0';
+							}
 							
 							
 						}

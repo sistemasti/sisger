@@ -307,14 +307,7 @@ require_once("header.php");
 											contentType: false,
 											success: function(data) {
 												if(data==1){
-													
 														
-														
-														if(r == 1){
-															location.reload();
-														}else{
-															location.href = "zoom_list?risk_id="+<?php echo $_GET['risk_id']; ?>;
-														}		
 														
 														
 												}else{ 
@@ -328,6 +321,14 @@ require_once("header.php");
 										  });
 										  
 										  alert('Register save successfull');
+										  
+														
+														
+														if(r == 1){
+															location.reload();
+														}else{
+															location.href = "zoom_list?risk_id="+<?php echo $_GET['risk_id']; ?>;
+														}	
 							  
 							   }
 							}

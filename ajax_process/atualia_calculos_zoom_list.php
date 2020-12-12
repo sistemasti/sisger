@@ -77,14 +77,14 @@ echo "</pre>";
 				
 				
 					/* -- dados low estimate*/
-					$dados['uvp_le_percent'] 	= $formulaE."%";
+					$dados['uvp_le_percent'] 	= round($formulaE)."%";
 					
 					$ca = 5 + log10($formulaE/100);
 					$dados['uvp_le_c'] 			= "C: ".round($ca,1); 
 					
 					$totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_POST['risk_id']);
 					$a = ((float)$formulaE*(float)$low_estimate_general)/(float)$totalLow['total']; 
-					$dados['ex_uvp_le_percent'] 		= round($a,5)."%";
+					$dados['ex_uvp_le_percent'] 		= round($a)."%";
 					
 					$ca = 5 + log10(round($a,5)/100);
 					$dados['ex_uvp_le_c'] 			= "C: ".round($ca,1);
@@ -92,14 +92,14 @@ echo "</pre>";
 					
 					
 					/* -- dados most probable*/
-					$dados['uvp_mp_percent'] 	= $formulaF."%";
+					$dados['uvp_mp_percent'] 	= round($formulaF)."%";
 					
 					$cb = 5 + log10($formulaF/100);
 					$dados['uvp_mp_c'] 			= round($cb,1); 
 					
 					$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_POST['risk_id']);
 					$b = ((float)$formulaF*(float)$most_probable_general)/(float)$totalMost['total']; 
-					$dados['ex_uvp_mp_percent'] 		= round($b,5)."%";
+					$dados['ex_uvp_mp_percent'] 		= round($b)."%";
 					
 					$cb = 5 + log10(round($b,5)/100);
 					
@@ -122,7 +122,7 @@ echo "</pre>";
 					
 					$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_POST['risk_id']); 
 					$c = ((float)$formulaG*(float)$high_estimate_general)/(float)$totalHigh['total']; 
-					$dados['ex_uvp_he_percent'] 		= round($c,5)."%";
+					$dados['ex_uvp_he_percent'] 		= round($c)."%";
 					
 					//$cb 							= 5 + log10(round($b,5)/100);
 					$cc 							= 5 + log10(round($c,5)/100);
@@ -156,7 +156,7 @@ echo "</pre>";
 					/* -- dados low estimate*/
 					$totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_POST['risk_id']); 
 					$l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
-					$dados['aev_le_percent'] 	= round($l,5)."%";
+					$dados['aev_le_percent'] 	= round($l)."%";
 					
 					$cd =5 + log10(round($l,5)/100);
 					$dados['aev_le_c'] 			= "C: ".round($cd,1); 
@@ -165,7 +165,7 @@ echo "</pre>";
 					$l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
 					$l = round($l,5);
 					$d = ((float)$l*(float)$low_estimate_general)/(float)$totalLow['total']; 
-					$dados['ex_aev_le_percent'] 		= round($d,5)."%";
+					$dados['ex_aev_le_percent'] 		= round($d)."%";
 					
 					$cd =5 + log10(round($d,5)/100);
 					
@@ -182,7 +182,7 @@ echo "</pre>";
 					/* -- dados most probable */
 					$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_POST['risk_id']); 
 					$m = ((float)$totalMost['total']/(float)$items_in_asset)*100;
-					$dados['aev_mp_percent'] 	= $m."%";
+					$dados['aev_mp_percent'] 	= round($m)."%";
 					
 					$ce =5 + log10(round($m,5)/100);
 					$dados['aev_mp_c'] 			= round($ce,1); 
@@ -191,7 +191,7 @@ echo "</pre>";
 					$l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
 					$l = round($l,5);
 					$e = ((float)$l*(float)$most_probable_general)/(float)$totalMost['total']; 
-					$dados['ex_aev_mp_percent'] 		= round($e,5)."%";
+					$dados['ex_aev_mp_percent'] 		= round($e)."%";
 					
 					$ce =5 + log10(round($e,5)/100);
 					$dados['ex_aev_mp_c'] 			= "C: ".round($ce,1);
@@ -207,7 +207,7 @@ echo "</pre>";
 					/* -- dados high estimate */
 					$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_POST['risk_id']); 
 					$h = ((float)$totalHigh['total']/(float)$items_in_asset)*100;
-					$dados['aev_he_percent'] 	= $h."%";
+					$dados['aev_he_percent'] 	= round($h)."%";
 					
 					$cf =5 + log10(round($h,5)/100);
 					$dados['aev_he_c'] 			= round($cf,1); 
@@ -216,7 +216,7 @@ echo "</pre>";
 					$l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
 					$l = round($l,5);
 					$f = ((float)$l*(float)$high_estimate_general)/(float)$totalMost['total']; 
-					$dados['ex_aev_he_percent'] 		= round($f,5)."%";
+					$dados['ex_aev_he_percent'] 		= round($f)."%";
 					
 					$cf = 5 + log10(round($f,5)/100);
 					$dados['ex_aev_he_c'] 			= round($cf,1);

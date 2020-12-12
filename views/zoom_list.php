@@ -396,7 +396,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  
 																		if($formulaE != -INF && !is_nan($formulaE)) {
 																				
-																				echo $formulaE;
+																				echo round($formulaE);
 																				
 																		}else{
 																			
@@ -437,7 +437,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	 
 																	 if(round($a,5) != -INF && !is_nan(round($a,5))) {
 																				
-																				echo round($a,5);
+																				echo round($a);
 																				
 																		}else{
 																			
@@ -478,7 +478,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		
 																				if($formulaF != -INF && !is_nan($formulaF)) {
 																				
-																					echo $formulaF;
+																					round($formulaF);
 																				
 																				}else{
 																					
@@ -519,7 +519,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			
 																			if(round($b,5) != -INF && !is_nan(round($b,5))) {
 																				
-																					echo round($b,5);
+																					echo round($b);
 																				
 																				}else{
 																					
@@ -562,7 +562,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  
 																	  if( $formulaG != -INF && !is_nan($formulaG)) {
 																				
-																					echo  $formulaG;
+																					round($formulaG);
 																				
 																				}else{
 																					
@@ -607,7 +607,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			  
 																			  if( round($c,5) != -INF && !is_nan(round($c,5))) {
 																				
-																					echo  round($c,5);
+																					echo  round($c);
 																				
 																				}else{
 																					
@@ -667,7 +667,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  $l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
 																	  
 																	  if(round($l,5) != -INF && !is_nan(round($l,5)) ){
-																		echo round($l,5);
+																		echo round($l);
 																	  }else{ 
 																		echo "0.0";		
 																	  }	
@@ -721,7 +721,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																				$cd =5 + log10(round($d,5)/100);
 																				if(round($cd,1) != -INF && !is_nan(round($cd,5)) ){
 																				
-																						echo round($cd,1);
+																						echo round($cd);
 																						
 																					}else{
 																						echo "0.0";
@@ -764,7 +764,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																				$ce =5 + log10(round($m,5)/100);
 																				if(round($ce,1) != -INF && !is_nan(round($ce,5)) ){
 																				
-																						echo round($ce,1);
+																						echo round($ce);
 																						
 																				}else{
 																					
@@ -834,7 +834,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		   if( round($h,5) != -INF && !is_nan(round($h,5))) {
 																				
-																					echo  round($h,5);
+																					echo  round($h);
 																				
 																				}else{
 																					
@@ -873,7 +873,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		   if( round($f,5) != -INF && !is_nan(round($f,5))) {
 																				
-																					echo  round($f,5);
+																					echo  round($f);
 																				
 																				}else{
 																					
@@ -1261,7 +1261,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  
 																		if($formulaE != -INF && !is_nan($formulaE)) {
 																				
-																				echo $formulaE;
+																				echo round($formulaE);
 																				
 																		}else{
 																			
@@ -1302,14 +1302,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	 
 																	 if(round($a,5) != -INF && !is_nan(round($a,5))) {
 																				
-																				echo round($a,5);
+																				echo round($a);
 																				
 																		}else{
 																			
 																			echo "C: 0.0";
 																			
 																		}
-																	  echo round($a,5);
+																	 // echo round($a,5);
 																	  
 																	  
 																	  ?>%</div></span>
@@ -1319,7 +1319,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			$ca = 5 + log10(round($a,5)/100);
 																			if(round($ca,1) != -INF && !is_nan(round($ca,5)) ){
 																				
-																				echo "". round($ca,1);
+																				echo "". round($ca);
 																				
 																			}else{
 																				echo "0.0";
@@ -1342,7 +1342,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		
 																				if($formulaF != -INF && !is_nan($formulaF)) {
 																				
-																					echo $formulaF;
+																					echo round($formulaF);
 																				
 																				}else{
 																					
@@ -1383,7 +1383,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			
 																			if(round($b,5) != -INF && !is_nan(round($b,5))) {
 																				
-																					echo round($b,5);
+																					echo round($b);
 																				
 																				}else{
 																					
@@ -1425,7 +1425,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  
 																	  if( $formulaG != -INF && !is_nan($formulaG)) {
 																				
-																					echo  $formulaG;
+																					echo round($formulaG);
 																				
 																				}else{
 																					
@@ -1469,7 +1469,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			  
 																			  if( round($c,5) != -INF && !is_nan(round($c,5))) {
 																				
-																					echo  round($c,5);
+																					echo  round($c);
 																				
 																				}else{
 																					
@@ -1528,7 +1528,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  $l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
 																	  
 																	  if(round($l,5) != -INF && !is_nan(round($l,5)) ){
-																		echo round($l,5);
+																		echo round($l);
 																	  }else{ 
 																		echo "0.0";		
 																	  }	
@@ -1566,7 +1566,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  
 																	  if( round($d,5) != -INF && !is_nan(round($d,5))) {
 																				
-																					echo  round($d,5);
+																					echo  round($d);
 																				
 																				}else{
 																					
@@ -1609,7 +1609,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		    if( round($m,5) != -INF && !is_nan(round($m,5))) {
 																				
-																					echo  round($m,5);
+																					echo  round($m);
 																				
 																				}else{
 																					
@@ -1651,7 +1651,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		    if( round($e,5) != -INF && !is_nan(round($e,5))) {
 																				
-																					echo  round($e,5);
+																					echo  round($e);
 																				
 																				}else{
 																					
@@ -1695,7 +1695,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		   if( round($h,5) != -INF && !is_nan(round($h,5))) {
 																				
-																					echo  round($h,5);
+																					echo  round($h);
 																				
 																				}else{
 																					
@@ -1734,7 +1734,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		   if( round($f,5) != -INF && !is_nan(round($f,5))) {
 																				
-																					echo  round($f,5);
+																					echo  round($f);
 																				
 																				}else{
 																					

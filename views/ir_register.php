@@ -221,6 +221,7 @@ require_once("header.php");
 						
                         <select class="form-control" id="ec_groups_id"
 					name="ec_groups_id">
+					<option value="" ></option>
                            <?php 
 							$in = Risks::select_risk_group();												
 							foreach($in['dados'] as $in){

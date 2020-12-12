@@ -599,7 +599,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$("#ia_Div_Med").html(data['ia_Inp_Med']);
 							$("#ia_Div_Max").html(data['ia_Inp_Max']);
 							$("#ia_Div_Range").html(data['ia_Inp_Range']);
-							$("#ia_Div_Range").html(data['ia_Inp_Range']);
+						
 							
 							$("#type_score").val(data['type_score']);
 							
@@ -818,9 +818,26 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$("#magnitude_LE_Med_o").html(data['B_fdProbable_o']);
 							$("#magnitude_LE_Max_o").html(data['B_fdHigh_o']);
 							
-							$("#magnitude_IA_Min_o").html(data['ia_Inp_Min_o']);
-							$("#magnitude_IA_Med_o").html(data['ia_Inp_Med_o']);
-							$("#magnitude_IA_Max_o").html(data['ia_Inp_Max_o']);
+							if(data['ia_Inp_Min_o'] == undefined){
+								$("#magnitude_IA_Min_o").html('0.0');	
+							}else{
+								$("#magnitude_IA_Min_o").html(data['ia_Inp_Min_o']);	
+							}
+							
+							if(data['ia_Inp_Med_o'] == undefined){
+								$("#magnitude_IA_Med_o").html('0.0');	
+							}else{
+								$("#magnitude_IA_Med_o").html(data['ia_Inp_Med_o']);	
+							}
+							
+							if(data['ia_Inp_Max_o'] == undefined){
+								$("#magnitude_IA_Max_o").html('0.0');	
+							}else{
+								$("#magnitude_IA_Max_o").html(data['ia_Inp_Max_o']);	
+							}
+							
+							//$("#magnitude_IA_Med_o").html(data['ia_Inp_Med_o']);
+							//$("#magnitude_IA_Max_o").html(data['ia_Inp_Max_o']);
 							
 							$("#magnitude_SOMA_L_o").html(data['magnitude_SOMA_L_o']);
 							$("#magnitude_SOMA_P_o").html(data['magnitude_SOMA_P_o']);
@@ -1081,10 +1098,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							$("#ia_Div_Min_o").html(data['ia_Inp_Min_o']);
 							$("#ia_Div_Med_o").html(data['ia_Inp_Med_o']);
-							$("#ia_Div_Max_o").html(data['ia_Inp_Max_o']);
-							$("#ia_Div_Range_o").html(data['ia_Inp_Range_o']);
-							$("#ia_Div_Range_o").html(data['ia_Inp_Range_o']);
+							$("#ia_Div_Max_o").html(data['ia_Inp_Max_o']);							
+							var range = (data['ia_Inp_Max_o'])-(data['ia_Inp_Min_o']);	
+							$("#ia_Div_Range_o").html(range.toFixed(1));
+							//alert(data['ia_Inp_Range_o']);
 							
+							//alert(range.toFixed(data['ia_Inp_Range_o']));
 							//$("#type_score_o").val(data['type_score_o']);
 							//alert(data['type_score_o']);
 							
@@ -1398,7 +1417,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 			  <!--Select options that haven been identified in the Identify Option form-->
 					<div class="form-group">
 							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Risk']; ?></label>
-							<select class="form-control" id="risk" name="risk" onchange="list_options_html(this.value);select_risk(this.value);select_option(document.getElementById('id_option').value,this.value);select_risk_option(document.getElementById('id_option').value,this.value);">
+							<select class="form-control" id="risk" name="risk" onchange="list_options_html(this.value);select_risk(this.value);select_option(document.getElementById('id_option').value,this.value);select_risk_option(document.getElementById('id_option').value,this.value);document.getElementById('bxAll').style.display='none';">
 							<option value="#" > <?php echo $_SESSION[$_SESSION['lang']]['select']; ?> </option>
 							   <?php 
 								$in = Risks::select_risks();												
@@ -1601,20 +1620,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									</tr>
 								  </tbody>
 								</table>
-								<div class="row">	
-								<div class="col-sm-4 col-md-4">
-								<button type="button" class="btn btn-block  bg-gradient-info btn-xs" onclick="changeTypeCalc(2)">Linear triangle distribution (default) </button>
-									
-								</div>
-								<div class="col-sm-4 col-md-4">
-									<button type="button" class="btn btn-block bg-gradient-success btn-xs" onclick="changeTypeCalc(1)">Log triangle <br>distribution </button>
-								</div>
-								<div class="col-sm-4 col-md-4">
-									<button type="button" class="btn btn-block bg-gradient-warning btn-xs" onclick="changeTypeCalc(3)">Simple use of problable value</button>
-								</div>
 								
-							</div>	
-											&nbsp; <small><?php echo $_SESSION[$_SESSION['lang']]['Type of calculation used for expected values (used for the risk and any associated options)']; ?></small>
 								</div>
 								
 								<!---- ##################################### --->
@@ -1668,7 +1674,20 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									</tr>
 								  </tbody>
 								</table>
-							
+							<div class="row" style="padding:7px;">	
+								<div class="col-sm-4 col-md-4">
+								<button type="button" class="btn btn-block  bg-gradient-info btn-xs" onclick="changeTypeCalc(2)">Linear triangle distribution <br>(default) </button>
+									
+								</div>
+								<div class="col-sm-4 col-md-4">
+									<button type="button" class="btn btn-block bg-gradient-success btn-xs" onclick="changeTypeCalc(1)">Log triangle <br>distribution </button>
+								</div>
+								<div class="col-sm-4 col-md-4">
+									<button type="button" class="btn btn-block bg-gradient-warning btn-xs" onclick="changeTypeCalc(3)">Simple use of <br>problable value</button>
+								</div>
+								
+							</div>	
+											&nbsp; <small><?php echo $_SESSION[$_SESSION['lang']]['Type of calculation used for expected values (used for the risk and any associated options)']; ?></small>
 								</div>
 								</div>
 								</div>
