@@ -825,8 +825,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart2').hide();
 							$('#bxPieChart3').show();
 							$('#bxPieChart4').hide();
-							$('#btnSBNTS').hide();
-							$('#btnSBNTS2').show();
+							/* $('#btnSBNTS').hide();
+							$('#btnSBNTS2').show(); */
 							">sorted by size of the slice</button>
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
@@ -1171,7 +1171,7 @@ require_once("footer.php");
 				$bgColors2 = "";
 				$name2 = "";
 				$data2 = "";
-				$in2 = Build_value_pie::select_ec_values_for_table();
+				$in2 = Build_value_pie::select_ec_values_for_table_sd();
 				foreach($in2['dados'] as $in2){
 						
 						$a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);
@@ -1208,7 +1208,7 @@ require_once("footer.php");
 				$bgColors2 = "";
 				$name2 = "";
 				$data2 = "";
-				$in2 = Build_value_pie::select_ec_values_for_table();
+				$in2 = Build_value_pie::select_ec_values_for_table_sd();
 				foreach($in2['dados'] as $in2){
 						
 						$a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);
@@ -1241,7 +1241,7 @@ require_once("footer.php");
 				$bgColors2 = "";
 				$name2 = "";
 				$data2 = "";
-				$in2 = Build_value_pie::select_ec_values_for_table();
+				$in2 = Build_value_pie::select_ec_values_for_table_sd();
 				foreach($in2['dados'] as $in2){
 						
 						$a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);

@@ -440,7 +440,6 @@ update their_scores
 												s.name as subgroup_name, 
 												s.id as subgroup_id, 
 												g.points as groupPoints, 
-
 												g.value_ratio as groupRatio,
 												s.points as subgroupPoints, 
 												s.soma_for_single as subgroupRatio, 

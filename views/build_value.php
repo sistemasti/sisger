@@ -737,8 +737,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart2').hide();
 							$('#bxPieChart3').show();
 							$('#bxPieChart4').hide();
-							$('#btnSBNTS').hide();
-							$('#btnSBNTS2').show();
+							/* $('#btnSBNTS').hide();
+							$('#btnSBNTS2').show(); */
 							">sorted by size of the slice</button>
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="

@@ -125,7 +125,7 @@
 		static function select_datas_tr_identify_options(){
 			
 			
-			$n1 = self::getConn()->prepare('SELECT id_risk,YEAR(data)as ano FROM `tr_identify_options` WHERE id_risk in (select id FROM ir_risks where project_id="'.$_SESSION['project_id'].'") GROUP BY data ORDER BY data');
+			$n1 = self::getConn()->prepare('SELECT id_risk,YEAR(data)as ano,id_option FROM `tr_identify_options` WHERE id_risk in (select id FROM ir_risks where project_id="'.$_SESSION['project_id'].'") GROUP BY data ORDER BY data');
 			$n1->execute(array()); 
 			$d['dados'] = $n1->fetchAll();	
 			$d['num'] = $n1->rowCount();	

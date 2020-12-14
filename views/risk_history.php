@@ -131,6 +131,10 @@ require_once("header.php");
                   Datasheet by year
                 </button>
 					
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg-2" style="margin-top:2px" onclick="return false">
+                  Datasheet by risk
+                </button>
+					
 					
 					
 					
@@ -206,6 +210,95 @@ require_once("header.php");
 								</tbody>
 							</table>
 								
+										
+								
+								</div>
+								<div class="modal-footer justify-content-between">
+								  <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>
+								 
+								</div>
+							  </div>
+							  <!-- /.modal-content -->
+							</div>
+					<!-- /.modal-dialog -->
+					</form>
+				  </div>	
+					
+					
+						<div class="modal fade" id="modal-lg-2">
+					<form id="frmZoomFR" method="post" enctype="multipart/form-data">
+							<div class="modal-dialog modal-lg">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <h4 class="modal-title">Datasheet by risk</h4>
+								 
+								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								  </button>
+								   <br>
+								  
+								</div>
+								<div class="modal-body">
+								
+
+
+<?php 
+							$ad = Analyze_options::select_datas_tr_identify_options();
+							?>
+							<br>
+							<table class="table table-bordered table-striped">
+								<thead>          
+								<tr>
+								<th>
+								</th>
+								<th>
+								</th>
+									<?php 
+										foreach($ad['dados'] as $ad){
+											$r = Risks::select_risk_id($irn['id_risk']);
+											$ano[$ad['id_risk']] = $ad['ano'];
+											echo "<th>".$r['name']."</th>";
+										}
+									
+									?>
+								</tr>
+								</thead>
+								<tbody>
+								<?php 
+								 
+								$irn = Analyze_options::select_datas_tr_identify_options();
+								foreach($irn['dados'] as $irn){
+									$r = Risks::select_risk_id($irn['id_risk']);
+									$o = Analyze_options::select_tr_options_id_by_option($irn['id_option']);
+								?>
+									<tr>
+									<td> <?php echo $irn['ano']; ?></td>
+									<td> <?php echo $o['option']; ?></td>
+									<?php 
+									$ad2 = Analyze_options::select_datas_tr_identify_options();
+									
+										foreach($ad2['dados'] as $ad2){
+											
+											
+											$ma = Analyze_options::select_analyse_risk_id_risk_id_option_year($ad2['ano'],$irn['id_option'],$irn['id_risk']);
+											if($ma['num'] > 0){
+												echo "<td>".$ma['magnitude_of_risk']."</td>";
+											}else{
+												echo "<td>-</td>";
+											}
+										}
+									
+									?>
+									</tr>
+								
+								<?php 
+								
+								}
+									 
+								?>	
+									
+								</tbody>
+							</table>
 								
 								</div>
 								<div class="modal-footer justify-content-between">
@@ -227,23 +320,6 @@ require_once("header.php");
 				Values in %
 				<?php } ?> 
 					<canvas id="canvas"></canvas>
-					<!--<canvas id="chart-area"></canvas>
-					<br>
-					<br>
-					<canvas id="chart-area2"></canvas>
-					<br>
-					<br>
-					<canvas id="chart-area3"></canvas>
-					<br>
-					<br>
-					<canvas id="chart-area4"></canvas>
-					<br>
-					<br>
-					<canvas id="chart-area5"></canvas>
-					<br>
-					<br>
-					<canvas id="chart-area6"></canvas>-->
-					
 					
 					
 					<?php if(isset($_GET['id_risk'])){ 
