@@ -132,9 +132,9 @@ update their_scores
 		}
 		
 
-		static function select_ec_value_pie_table_all_zoom_list(){
+		static function select_ec_value_pie_table_all_zoom_list($risk_id){
 			
-			$n1 = self::getConn()->prepare('SELECT * FROM ec_value_pie_table WHERE project_id="'.$_SESSION['project_id'].'" AND id NOT IN (SELECT id_ec_value_pie_table FROM ar_zoom_list_items_affected WHERE project_id = "'.$_SESSION['project_id'].'")');
+			$n1 = self::getConn()->prepare('SELECT * FROM ec_value_pie_table WHERE project_id="'.$_SESSION['project_id'].'" AND id NOT IN (SELECT id_ec_value_pie_table FROM ar_zoom_list_items_affected WHERE risk_id = "'.$risk_id.'" and project_id = "'.$_SESSION['project_id'].'")');
 			$n1->execute(array()); 
 			$d['dados'] = $n1->fetchAll();	
 			$d['num'] = $n1->rowCount();	
@@ -143,9 +143,9 @@ update their_scores
 			
 		}
 		
-		static function select_ec_value_pie_table_all_zoom_list_o($o){
+		static function select_ec_value_pie_table_all_zoom_list_o($o, $risk_id){
 			
-			$n1 = self::getConn()->prepare('SELECT * FROM ec_value_pie_table WHERE project_id="'.$_SESSION['project_id'].'" AND id NOT IN (SELECT id_ec_value_pie_table FROM ar_zoom_list_items_affected_o WHERE project_id = "'.$_SESSION['project_id'].'" AND option_id=?)');
+			$n1 = self::getConn()->prepare('SELECT * FROM ec_value_pie_table WHERE project_id="'.$_SESSION['project_id'].'" AND id NOT IN (SELECT id_ec_value_pie_table FROM ar_zoom_list_items_affected_o WHERE risk_id = "'.$risk_id.'" and project_id = "'.$_SESSION['project_id'].'" AND option_id=?)');
 			$n1->execute(array($o)); 
 			$d['dados'] = $n1->fetchAll();	
 			$d['num'] = $n1->rowCount();	

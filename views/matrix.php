@@ -112,8 +112,8 @@ require_once("header.php");
 						$expected_scores 	= $i['expected_scores'];
 						$uncertainty_range 	= $i['uncertainty_range'];
 					}else{
-						$expected_scores 	= 7.0;
-						$uncertainty_range 	= 3.0;
+						$expected_scores 	= 8.0;
+						$uncertainty_range 	= 1.0;
 					}		
 				?>
 				<div class="row">
