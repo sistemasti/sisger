@@ -785,7 +785,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					
 					
 					
-				function select_risk_option(id_option,id_risk) {			
+				function select_risk_option(id_option,id_risk,v=0) {			
 				 //var i = '#row'+id;
 				 
 				 if(document.getElementById('risk').value != "#" && document.getElementById('id_option').value != "#"){
@@ -818,19 +818,19 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$("#magnitude_LE_Med_o").html(data['B_fdProbable_o']);
 							$("#magnitude_LE_Max_o").html(data['B_fdHigh_o']);
 							
-							if(data['ia_Inp_Min_o'] == undefined){
+							if(data['ia_Inp_Min_o'] == undefined || data['ia_Inp_Min_o'] == 'INF'  || data['ia_Inp_Min_o'] == '-INF'  ){
 								$("#magnitude_IA_Min_o").html('0.0');	
 							}else{
 								$("#magnitude_IA_Min_o").html(data['ia_Inp_Min_o']);	
 							}
 							
-							if(data['ia_Inp_Med_o'] == undefined){
+							if(data['ia_Inp_Med_o'] == undefined || data['ia_Inp_Med_o'] == 'INF'  || data['ia_Inp_Med_o'] == '-INF' ){
 								$("#magnitude_IA_Med_o").html('0.0');	
 							}else{
 								$("#magnitude_IA_Med_o").html(data['ia_Inp_Med_o']);	
 							}
 							
-							if(data['ia_Inp_Max_o'] == undefined){
+							if(data['ia_Inp_Max_o'] == undefined || data['ia_Inp_Max_o'] == 'INF'  || data['ia_Inp_Max_o'] == '-INF' ){
 								$("#magnitude_IA_Max_o").html('0.0');	
 							}else{
 								$("#magnitude_IA_Max_o").html(data['ia_Inp_Max_o']);	
@@ -1090,19 +1090,50 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							
 							//C
-							$("#ia_Inp_Min_o").val(data['ia_Inp_Min_o']);
-							$("#ia_Inp_Med_o").val(data['ia_Inp_Med_o']);
-							$("#ia_Inp_Max_o").val(data['ia_Inp_Max_o']);
-							$("#ia_Inp_Range_o").val(data['ia_Inp_Range_o']);
-							$("#explain_ia_o").val(data['explain_ia_o']);
 							
-							$("#ia_Div_Min_o").html(data['ia_Inp_Min_o']);
-							$("#ia_Div_Med_o").html(data['ia_Inp_Med_o']);
-							$("#ia_Div_Max_o").html(data['ia_Inp_Max_o']);							
-							var range = (data['ia_Inp_Max_o'])-(data['ia_Inp_Min_o']);	
-							$("#ia_Div_Range_o").html(range.toFixed(1));
+							if(v==0){
+								
+								if(data['ia_Inp_Min_o'] == 'INF' || data['ia_Inp_Min_o'] == '-INF' ){
+									$("#ia_Inp_Min_o").val('0');
+									$("#ia_Div_Min_o").html('0');
+								}else{
+									$("#ia_Inp_Min_o").val(data['ia_Inp_Min_o']);
+									$("#ia_Div_Min_o").html(data['ia_Inp_Min_o']);
+								}
+								
+								if(data['ia_Inp_Med_o'] == 'INF' || data['ia_Inp_Med_o'] == '-INF'){
+									$("#ia_Inp_Med_o").val('0');
+									$("#ia_Div_Med_o").html('0');
+								}else{
+									$("#ia_Inp_Med_o").val(data['ia_Inp_Med_o']);
+									$("#ia_Div_Med_o").html(data['ia_Inp_Med_o']);
+								}
+								//alert($("#ia_Div_Med_o").html());
+								
+								if(data['ia_Inp_Max_o'] == 'INF' || data['ia_Inp_Max_o'] == '-INF' ){
+									$("#ia_Inp_Max_o").val('0');
+									$("#ia_Div_Max_o").html('0');
+								}else{
+									$("#ia_Inp_Max_o").val(data['ia_Inp_Max_o']);
+									$("#ia_Div_Max_o").html(data['ia_Inp_Max_o']);
+								}
+								
+							
+								
+								
+								if(data['ia_Inp_Range_o'] == 0){
+									$("#ia_Inp_Range_o").val(0);									
+									$("#ia_Div_Range_o").html(0);
+								}else{
+									$("#ia_Inp_Range_o").val(data['ia_Inp_Range_o']);
+									var range = (data['ia_Inp_Max_o'])-(data['ia_Inp_Min_o']);	
+									$("#ia_Div_Range_o").html(range.toFixed(1));
+
+								}
+								$("#explain_ia_o").val(data['explain_ia_o']);
+							}
 							//alert(data['ia_Inp_Range_o']);
-							
+
 							//alert(range.toFixed(data['ia_Inp_Range_o']));
 							//$("#type_score_o").val(data['type_score_o']);
 							//alert(data['type_score_o']);
@@ -1417,7 +1448,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 			  <!--Select options that haven been identified in the Identify Option form-->
 					<div class="form-group">
 							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Risk']; ?></label>
-							<select class="form-control" id="risk" name="risk" onchange="list_options_html(this.value);select_risk(this.value);select_option(document.getElementById('id_option').value,this.value);select_risk_option(document.getElementById('id_option').value,this.value);document.getElementById('bxAll').style.display='none';">
+							<select class="form-control" id="risk" name="risk" onchange="list_options_html(this.value);select_risk(this.value);select_option(document.getElementById('id_option').value,this.value);select_risk_option(document.getElementById('id_option').value,this.value,0);document.getElementById('bxAll').style.display='none';">
 							<option value="#" > <?php echo $_SESSION[$_SESSION['lang']]['select']; ?> </option>
 							   <?php 
 								$in = Risks::select_risks();												
@@ -1451,7 +1482,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							<?php if(isset($_GET['id_option'])){ ?>
 							
 							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Options']; ?></label>
-							<select class="form-control" id="id_option" name="id_option" onchange="select_option(this.value,document.getElementById('risk').value);select_risk_option(this.value,document.getElementById('risk').value)">
+							<select class="form-control" id="id_option" name="id_option" onchange="select_option(this.value,document.getElementById('risk').value);select_risk_option(this.value,document.getElementById('risk').value,0)">
 							<option value="#" > <?php echo $_SESSION[$_SESSION['lang']]['select']; ?> </option>
 							   <?php 
 								$op = Analyze_options::select_options_by_risk($_REQUEST['id']);												
@@ -1750,7 +1781,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								 
 								 
 							function refreshDataByZoom(ca_high,ca_media,ca_low){
-								
+								//alert('debug');
 								document.getElementById('magnitude_IA_Max_o').innerHTML = ca_high;document.getElementById('magnitude_IA_Med_o').innerHTML = ca_media;
 								document.getElementById('magnitude_IA_Min_o').innerHTML = ca_low;
 								
@@ -1781,7 +1812,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						
 							
 							magnitudeRisk_o();
-//							alert(document.getElementById('ia_Inp_Med_o').value);
+							//alert(document.getElementById('ia_Inp_Med_o').value);
 
 						}
 						
@@ -2116,6 +2147,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
   String.prototype.reverse = function(){
  return this.split('').reverse().join(''); };
  
+ 
 							
 </script>
 <?php
@@ -2135,20 +2167,25 @@ if(isset($_GET['id_option'])){
 	<script>
 	
 	
-	<?PHP if(isset($_GET['id_option'])){ ?>
+	
 	//alert(1);
 	select_risk(<?php echo $_GET['id']; ?>);
 	//alert(2);
-	select_risk_option(<?php echo $_GET['id_option']; ?>,<?php echo $_GET['id']; ?>);
+	
+
+	select_risk_option(<?php echo $_GET['id_option']; ?>,<?php echo $_GET['id']; ?>,1);
 	//alert(3);
+
 	select_option(<?php echo $_GET['id_option']; ?>,<?php echo $_GET['id']; ?>);
 	//alert(4);
+
 	items_affecteds_register_o(0);
+			
 	
-	<?PHP } ?>
 	
 	
-	//refreshDataByZoom(<?php echo $_GET['ca_high']; ?>,<?php echo $_GET['ca_media']; ?>,<?php echo $_GET['ca_low']; ?>);
+	refreshDataByZoom(<?php echo $_GET['ca_high']; ?>,<?php echo $_GET['ca_media']; ?>,<?php echo $_GET['ca_low']; ?>);
+
 	</script>
 	
 <?php

@@ -322,6 +322,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									$bdgTotal = "background-color: #17a2b8 !important";
 								}
 								
+								if($ar['type_calc'] == 0){
+									$bdgTotal = "background-color: #17a2b8 !important";
+								}
+								
 								if($ar['type_calc'] == ''){
 									$bdgTotal = "background-color: #ccc !important";
 								}
@@ -436,13 +440,19 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						    $("#zoomRisk_le").html("<strong>"+data['risk']+"</strong>");						
 						    $("#zoomRisk_ia").html("<strong>"+data['risk']+"</strong>");						
 							
-							
+							//alert(data['type_calc']);
 							if(data['type_calc'] == 3){
 								var x = document.querySelectorAll("#bdgTOTAL");
 								x[0].style.setProperty("background-color", "#ffc107", "important");
 							}
 							
 							if(data['type_calc'] == 2){
+								var x = document.querySelectorAll("#bdgTOTAL");
+								x[0].style.setProperty("background-color", "#17a2b8", "important");
+							}
+							
+							if(data['type_calc'] == 0){
+								changeTypeCalc(2);
 								var x = document.querySelectorAll("#bdgTOTAL");
 								x[0].style.setProperty("background-color", "#17a2b8", "important");
 							}

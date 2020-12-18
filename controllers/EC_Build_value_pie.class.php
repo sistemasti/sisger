@@ -69,7 +69,7 @@ update their_scores
 		}
 
 		static function select_ar_zoom_list_items_affected_o($risk_id,$option_id){
-			
+			//echo 'SELECT * FROM ar_zoom_list_items_affected_o WHERE project_id="'.$_SESSION['project_id'].'" AND risk_id="'.$risk_id.'" AND option_id="'.$option_id.'"  ORDER BY id DESC';
 			$n1 = self::getConn()->prepare('SELECT * FROM ar_zoom_list_items_affected_o WHERE project_id="'.$_SESSION['project_id'].'" AND risk_id=? AND option_id=? ORDER BY id DESC');
 			$n1->execute(array($risk_id,$option_id)); 
 			$d['dados'] = $n1->fetchAll();	
@@ -224,10 +224,10 @@ update their_scores
 			return $d;
 		}
 
-		static function select_sum_low_estimate_ec_value_pie_table_o(){
-			
-			$n1 = self::getConn()->prepare('SELECT sum(low_estimate) as total FROM `ar_zoom_list_items_affected_o` WHERE project_id="'.$_SESSION['project_id'].'"');
-			$n1->execute(array()); 
+		static function select_sum_low_estimate_ec_value_pie_table_o($risk_id,$option_id){
+			//$_GET['risk_id'],
+			$n1 = self::getConn()->prepare('SELECT sum(low_estimate) as total FROM `ar_zoom_list_items_affected_o` WHERE risk_id=? AND option_id=? ');
+			$n1->execute(array($risk_id,$option_id)); 
 			$d = $n1->fetch();	
 			$d['num'] = $n1->rowCount();				
 			return $d;
@@ -243,10 +243,10 @@ update their_scores
 			return $d;
 		}
 
-		static function select_sum_most_probable_ec_value_pie_table_o(){
+		static function select_sum_most_probable_ec_value_pie_table_o($risk_id,$option_id){
 			
-			$n1 = self::getConn()->prepare('SELECT sum(most_probable) as total FROM `ar_zoom_list_items_affected_o` WHERE project_id="'.$_SESSION['project_id'].'"');
-			$n1->execute(array()); 
+			$n1 = self::getConn()->prepare('SELECT sum(most_probable) as total FROM `ar_zoom_list_items_affected_o` WHERE risk_id=? and option_id=?');
+			$n1->execute(array($risk_id,$option_id)); 
 			$d = $n1->fetch();	
 			$d['num'] = $n1->rowCount();				
 			return $d;
@@ -261,10 +261,10 @@ update their_scores
 			return $d;
 		}
 
-		static function select_sum_high_estimate_ec_value_pie_table_o(){
+		static function select_sum_high_estimate_ec_value_pie_table_o($risk_id,$option_id){
 			
-			$n1 = self::getConn()->prepare('SELECT sum(high_estimate) as total FROM `ar_zoom_list_items_affected_o` WHERE project_id="'.$_SESSION['project_id'].'"');
-			$n1->execute(array()); 
+			$n1 = self::getConn()->prepare('SELECT sum(high_estimate) as total FROM `ar_zoom_list_items_affected_o` WHERE  risk_id=? and option_id=?');
+			$n1->execute(array($risk_id,$option_id)); 
 			$d = $n1->fetch();	
 			$d['num'] = $n1->rowCount();				
 			return $d;
@@ -655,7 +655,7 @@ update their_scores
 		
 		static function insert_ar_zoom_list_items_affected_o($risk_id,$option_id,$id_ec_value_pie_table,$identification,$number_subgroups,$low_estimate,$most_probable,$high_estimate){
 			
-			$n1 = self::getConn()->prepare( 'SELECT * FROM ar_zoom_list_items_affected_o WHERE risk_id = "'.$risk_id.'"' );
+			$n1 = self::getConn()->prepare( 'SELECT * FROM ar_zoom_list_items_affected_o WHERE risk_id = "'.$risk_id.'" AND  option_id="'.$option_id.'"' );
 			$n1->execute();
 			$d = $n1->fetch();	
 			
@@ -805,15 +805,15 @@ update their_scores
 					$n->execute(array($low_estimate_general, $most_probable_general, $high_estimate_general, $risk_id));
 		}
 			
-		static function update_ar_zoom_list_items_affected_top_o($low_estimate_general, $most_probable_general, $high_estimate_general, $risk_id){
+		static function update_ar_zoom_list_items_affected_top_o($low_estimate_general, $most_probable_general, $high_estimate_general, $risk_id, $option_id){
 					$n = self::getConn()->prepare('
 													UPDATE `ar_zoom_list_items_affected_o` SET 														   
 														   `low_estimate_general` =?,
 														   `most_probable_general` =?,
 														   `high_estimate_general` =?
-													WHERE   risk_id=? AND project_id="'.$_SESSION['project_id'].'" ');
+													WHERE   risk_id=? AND option_id=? AND project_id="'.$_SESSION['project_id'].'" ');
 											
-					$n->execute(array($low_estimate_general, $most_probable_general, $high_estimate_general, $risk_id));
+					$n->execute(array($low_estimate_general, $most_probable_general, $high_estimate_general, $risk_id, $option_id));
 		}
 			
 		static function update_zoom_fr_save($fr_zoom_link,$fr_zoom_obs,$fr_zoom_explanation_fields, $fr_zoom_notes_explanation, $fr_zoom_document_name, $fr_zoom_comment, $fr_zoom_document_file, $id){

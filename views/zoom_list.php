@@ -76,7 +76,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
-			<br>-->
+			<br>
+			
+			-->
 			
 			
 			<?php 
@@ -88,7 +90,28 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 			
 			?>
 			
-				<a href="javascript:void(0)" onclick="location.href = 'analyze_options?id='+<?php echo $_GET['risk_id']; ?>+'&id_option='+<?php echo $_GET['option_id']; ?>+'&ca_high='+document.getElementById('ca_high_o').value+'&ca_media='+document.getElementById('ca_media_o').value+'&ca_low='+document.getElementById('ca_low_o').value+'&view=1';"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << Return</button></a>
+				<a href="javascript:void(0)" onclick=" 
+				
+				
+				
+				if(document.getElementById('type_list_1_o').checked == true){
+					
+					location.href = 'analyze_options?id='+<?php echo $_GET['risk_id']; ?>+'&id_option='+<?php echo $_GET['option_id']; ?>+'&ca_high='+document.getElementById('ca_high_o').value+'&ca_media='+document.getElementById('ca_media_o').value+'&ca_low='+document.getElementById('ca_low_o').value+'&view=1';
+					
+				}
+				
+				
+				if(document.getElementById('type_list_2_o').checked == true){
+					
+					location.href = 'analyze_options?id='+<?php echo $_GET['risk_id']; ?>+'&id_option='+<?php echo $_GET['option_id']; ?>+'&ca_high='+document.getElementById('ca_high_e_o').value+'&ca_media='+document.getElementById('ca_media_e_o').value+'&ca_low='+document.getElementById('ca_low_e_o').value+'&view=1';
+				}
+				
+				
+				
+				
+				
+				
+				"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << Return</button></a>
 				
 			<?php }else{ 
 			
@@ -98,6 +121,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				<a href="zoom_list_register?risk_id=<?php echo $_GET['risk_id']; ?>&option_id=<?php echo $_GET['option_id']; ?>"><button type="button" class="btn btn-block btn-success btn-xs">Register a new item >></button></a>
 				
 				<a href="javascript:void(0)" onclick="
+				
 				
 				if(document.getElementById('type_list_1').checked == true){
 					location.href = 'analyze_risks?id='+<?php echo $_GET['risk_id']; ?>+'&ca_high='+document.getElementById('ca_high').value+'&ca_media='+document.getElementById('ca_media').value+'&ca_low='+document.getElementById('ca_low').value+'&view=1';
@@ -478,7 +502,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		
 																				if($formulaF != -INF && !is_nan($formulaF)) {
 																				
-																					round($formulaF);
+																					echo round($formulaF);
 																				
 																				}else{
 																					
@@ -562,7 +586,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  
 																	  if( $formulaG != -INF && !is_nan($formulaG)) {
 																				
-																					round($formulaG);
+																					echo round($formulaG);
 																				
 																				}else{
 																					
@@ -907,6 +931,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															
 														</tbody>	
 													  </table>
+													   <?php if(!isset($_GET['type'])){ ?>
+													  <br>
+													  <br>
+													  <a id="anc"></a>
+													  <a href="zoom_list?type=<?php echo $_GET['type']; ?>&risk_id=<?php echo $_GET['risk_id']; ?>&option_id=<?php echo $_GET['option_id']; ?>"><button type="button" class="btn btn-block btn-info btn-xs" style="width:15%;float:right;">Refresh calculation</button></a>
+													   <?php } ?>
 													
             </div>
               <!-- ./card-body -->
@@ -1324,10 +1354,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			}else{
 																				echo "0.0";
 																			}
-																			$caForDB2 = round($ca,1);
+																			$caForDB2 = round($ca);
 																		?>
 																		</div>
-																		<input type="hidden" id="ca_low_o" name="ca_low_o" value="<?php echo round($ca,1); ?>">
+																		<input type="hidden" id="ca_low_o" name="ca_low_o" value="<?php echo round($ca); ?>">
+																		<input type="hidden" id="ca_low_e_o" name="ca_low_e_o" value="<?php echo round($ca); ?>">
 																  </center>
 																</div>  
 																
@@ -1410,6 +1441,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			?>
 																			</div>
 																			 <input type="hidden" id="ca_media_o" name="ca_media_o" value="<?php echo round($cb,1); ?>">
+																			 <input type="hidden" id="ca_media_e_o" name="ca_media_e_o" value="<?php echo round($cb,1); ?>">
 																  </center>
 																</div>  
 																
@@ -1494,6 +1526,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			?>
 																			</div>
 																			<input type="hidden" id="ca_high_o" name="ca_high_o" value="<?php echo round($cc,1); ?>">
+																			<input type="hidden" id="ca_high_e_o" name="ca_high_e_o" value="<?php echo round($cc,1); ?>">
 																  </center>
 																</div> 
 																
@@ -1523,7 +1556,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																  <center>
 																	  <span class="badge bg-info"><div id="aev_le_percent_o">
 																	  <?php 
-																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
+																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table_o($_GET['risk_id'],$_GET['option_id']); 
 																	  
 																	  $l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
 																	  
@@ -1554,7 +1587,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																  <center>
 																	  <span class="badge bg-info"><div id="ex_aev_le_percent_o">
 																	  <?php  
-																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_GET['risk_id']); 
+																	  $totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table_o($_GET['risk_id'],$_GET['option_id']); 
 																	  $l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
 																	  $l = round($l,5);
 																	   
@@ -1601,7 +1634,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																<div id="bx_AllAffected_Assuming_Most_o">
 																	<center> 
 																		  <span class="badge bg-info"><div id="aev_mp_percent_o"><?php 
-																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
+																		  $totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table_o($_GET['risk_id'],$_GET['option_id']); 
 																		  
 																		  $m = ((float)$totalMost['total']/(float)$items_in_asset)*100;
 																		  															  
@@ -1642,7 +1675,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		  
 																		  <span class="badge bg-info"><div id="ex_aev_mp_percent_o"><?php 
-																			$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_GET['risk_id']); 
+																			$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table_o($_GET['risk_id'],$_GET['option_id']); 
 																			$l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
 																			$l = round($l,5);
 																			$e = ((float)$l*(float)$most_probable_general)/(float)$totalMost['total']; 
@@ -1688,7 +1721,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																<div id="bx_AllAffected_Assuming_High_o">
 																	<center>
 																		  <span class="badge bg-info"><div id="aev_he_percent_o"><?php 
-																		  $totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
+																		  $totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table_o($_GET['risk_id'],$_GET['option_id']); 
 																		  
 																		  $h = ((float)$totalHigh['total']/(float)$items_in_asset)*100;
 																		  //echo round($h,5);
@@ -1726,7 +1759,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	<center>
 																		  <span class="badge bg-info"><div id="ex_aev_he_percent_o"><?php 
 																		 
-																		  $totalMost = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_GET['risk_id']); 
+																		  $totalMost = Build_value_pie::select_sum_high_estimate_ec_value_pie_table_o($_GET['risk_id'],$_GET['option_id']); 
 																		  $l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
 																		  $l = round($l,5);$f = ((float)$l*(float)$high_estimate_general)/(float)$totalMost['total']; 
 																		 // echo round($f,5);
@@ -2162,7 +2195,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															 
 															  $.ajax({
 																type: "POST",
-																url: "ajax_process/zoom_list_update_top_o.php?low_estimate_top_o="+document.getElementById('low_estimate_top_o').value+"&most_probable_top_o="+document.getElementById('most_probable_top_o').value+"&high_estimate_top_o="+document.getElementById('high_estimate_top_o').value+"&risk_id="+<?php echo $_GET['risk_id'] ?>,
+																url: "ajax_process/zoom_list_update_top_o.php?low_estimate_top_o="+document.getElementById('low_estimate_top_o').value+"&most_probable_top_o="+document.getElementById('most_probable_top_o').value+"&high_estimate_top_o="+document.getElementById('high_estimate_top_o').value+"&risk_id="+<?php echo $_GET['risk_id'] ?>+"&option_id="+<?php echo $_GET['option_id'] ?>,
 																
 																dataType: 'json',
 																success: function(data) {

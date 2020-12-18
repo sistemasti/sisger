@@ -883,6 +883,11 @@ echo "</pre>"; */
 						document.getElementById('ia_Inp_Max').value 		= document.getElementById('heia').value;
 						document.getElementById('ia_Div_Max').innerHTML 	= document.getElementById('heia').value;
 						
+						var range = (document.getElementById('heia').value)-(document.getElementById('leia').value);
+						
+						document.getElementById('ia_Inp_Range').value 		= range.toFixed(1);
+						document.getElementById('ia_Div_Range').innerHTML 	= range.toFixed(1);
+						
 						
 						
 					}
