@@ -111,7 +111,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				
 				
 				
-				"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << Return</button></a>
+				"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << Save & return</button></a>
 				
 			<?php }else{ 
 			
@@ -134,7 +134,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				
 					
 				
-				"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << Return</button></a>
+				"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << Save & return</button></a>
 				
 			<?php } 
 			
@@ -935,7 +935,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 													  <br>
 													  <br>
 													  <a id="anc"></a>
-													  <a href="zoom_list?type=<?php echo $_GET['type']; ?>&risk_id=<?php echo $_GET['risk_id']; ?>&option_id=<?php echo $_GET['option_id']; ?>"><button type="button" class="btn btn-block btn-info btn-xs" style="width:15%;float:right;">Refresh calculation</button></a>
+													  <a href="zoom_list?risk_id=<?php echo $_GET['risk_id']; ?>"><button type="button" class="btn btn-block btn-info btn-xs" style="width:15%;float:right;">Refresh calculation</button></a>
 													   <?php } ?>
 													
             </div>
@@ -1909,7 +1909,28 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
   <!-- /.control-sidebar -->
   
   <script>
-  
+  function zoom_list_update_top() {			
+															 
+															 
+															 if(document.getElementById('low_estimate_top').value != "" && document.getElementById('most_probable_top').value && document.getElementById('high_estimate_top').value){
+															 
+															  $.ajax({
+																type: "POST",
+																url: "ajax_process/zoom_list_update_top.php?low_estimate_top="+document.getElementById('low_estimate_top').value+"&most_probable_top="+document.getElementById('most_probable_top').value+"&high_estimate_top="+document.getElementById('high_estimate_top').value+"&risk_id="+<?php echo $_GET['risk_id'] ?>,
+																
+																dataType: 'json',
+																success: function(data) {
+																	//alert('oi');
+																	atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
+																	//alert('ok');																  
+																	
+																}
+															  });
+															  
+															 }
+															  
+															}
+														
   
 				<?php if($iac['type_list_zoom'] == 1){ ?> 
 					//echo "entrou 3";
@@ -1963,7 +1984,28 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				<?php } ?>
   
   
-  
+				function zoom_list_update(id,low_estimate,most_probable,high_estimate) {			
+															 
+				 if(low_estimate != "" && most_probable != "" && high_estimate != ""){
+				 
+				  $.ajax({
+					type: "POST",
+					url: "ajax_process/zoom_list_update.php",
+					data: {
+						id: id,
+						low_estimate: low_estimate,
+						most_probable: most_probable,
+						high_estimate: high_estimate																},
+					dataType: 'json',
+					success: function(data) {
+						atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
+						//alert('ok');
+					  
+						
+					}
+				  });
+				 }
+				}
   
 				function zoom_list_delete(id) {			
 				  var i = '#row'+id;
@@ -2012,7 +2054,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						},
 						dataType: 'json',
 						success: function(data) {
-							/* alert('asd');*/
+							//alert('asd');
 							//alert(document.getElementById("type_list_2").checked); 
 						if(document.getElementById("type_list_1").checked == true){
 							
@@ -2058,7 +2100,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$("#ex_aev_he_percent").html(data['ex_aev_he_percent']);
 							$("#ex_aev_he_c").html(data['ex_aev_he_c']);	
 							
-							
+							//alert(data['ex_uvp_he_c']);
 							//seta os campos
 							$("#ca_low").val(data['ex_uvp_le_c']);
 							$("#ca_media").val(data['ex_uvp_mp_c']);						
@@ -2165,30 +2207,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 											
 											</script>
   <script>
-
-
-															function zoom_list_update_top() {			
-															 
-															 
-															 if(document.getElementById('low_estimate_top').value != "" && document.getElementById('most_probable_top').value && document.getElementById('high_estimate_top').value){
-															 
-															  $.ajax({
-																type: "POST",
-																url: "ajax_process/zoom_list_update_top.php?low_estimate_top="+document.getElementById('low_estimate_top').value+"&most_probable_top="+document.getElementById('most_probable_top').value+"&high_estimate_top="+document.getElementById('high_estimate_top').value+"&risk_id="+<?php echo $_GET['risk_id'] ?>,
-																
-																dataType: 'json',
-																success: function(data) {
-																	//alert('oi');
-																	atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
-																	//alert('ok');																  
-																	
-																}
-															  });
-															  
-															 }
-															  
-															}
+											
 														
+
+															
 														
 														
 															function zoom_list_update_top_o() {			
@@ -2206,71 +2228,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															  });
 															}
 														
-														
-														
-																											  
-/* function refreshDataByZoom(){
-
-
-		document.getElementById('magnitude_IA_Max').innerHTML = document.getElementById("ca_high").value;
-		document.getElementById('magnitude_IA_Med').innerHTML = document.getElementById("ca_media").value;
-		document.getElementById('magnitude_IA_Min').innerHTML = document.getElementById("ca_low").value;
-		
-		
-		
-		document.getElementById('leia').options[0]=new Option("Selected by zoom", document.getElementById("ca_low").value, true, true);
-		document.getElementById('plia').options[0] = new Option("Selected by zoom", document.getElementById("ca_media").value, true, true);
-		document.getElementById('heia').options[0] = new Option("Selected by zoom", document.getElementById("ca_high").value, true, true);
-		
-		
-		
-		var base = parseFloat(document.getElementById('ca_high').value) + parseFloat(document.getElementById('ca_media').value) + parseFloat(document.getElementById('ca_low').value);
-		var media = base / 3;		
-							
-		document.getElementById('magnitude_IA_MEDIA').innerHTML = media.toFixed(1);
-		
-		
-		document.getElementById('ia_Div_Max').innerHTML = document.getElementById("ca_high").value;
-		document.getElementById('ia_Inp_Max').value = document.getElementById("ca_high").value;
-		
-		document.getElementById('ia_Div_Med').innerHTML = document.getElementById("ca_media").value;
-		document.getElementById('ia_Inp_Med').value = document.getElementById("ca_media").value;
-		
-		document.getElementById('ia_Div_Min').innerHTML = document.getElementById("ca_low").value;
-		document.getElementById('ia_Inp_Min').value = document.getElementById("ca_low").value;
-		
-		var range = (document.getElementById('ca_high').value)-(document.getElementById('ca_low').value);		
-		document.getElementById('ia_Div_Range').innerHTML = range.toFixed(1);
-		document.getElementById('ia_Inp_Range').value = range.toFixed(1);
 	
-
-	
-	magnitudeRisk();
-
-} */
-															function zoom_list_update(id,low_estimate,most_probable,high_estimate) {			
-															 
-															 if(low_estimate != "" && most_probable != "" && high_estimate != ""){
-															 
-															  $.ajax({
-																type: "POST",
-																url: "ajax_process/zoom_list_update.php",
-																data: {
-																	id: id,
-																	low_estimate: low_estimate,
-																	most_probable: most_probable,
-																	high_estimate: high_estimate																},
-																dataType: 'json',
-																success: function(data) {
-																	atualia_calculos_zoom_list(<?php echo $_GET['risk_id'] ?>)
-																	//alert('ok');
-																  
-																	
-																}
-															  });
-															 }
-															}
-														
+															
 															function zoom_list_update_o(id,low_estimate,most_probable,high_estimate) {			
 															 
 															  $.ajax({
@@ -2335,23 +2294,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 	}
 	 */
   
-  function institution_active(id,status) {			
-	  var i = '#row'+id;
-	  $.ajax({
-		type: "POST",
-		url: "ajax_process/institutuion_active.php",
-		data: {
-			id: id,
-			status: status
-		},
-		success: function(data) {
-		  //$(i).css({"display":"none"});
-		  location.reload();
-		}
-	  });
-	}
-	
-
+ 
 	
 	
 	function zoom_list_delete_o(id) {			

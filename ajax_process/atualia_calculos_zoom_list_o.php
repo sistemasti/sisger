@@ -69,7 +69,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 					$ca = 5 + log10($formulaE/100);
 					$dados['uvp_le_c'] 			= "C: ".round($ca,1); 
 					
-					$totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_POST['risk_id']);
+					$totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table_o($_POST['risk_id'],$_POST['option_id']);
 					
 					if((float)$totalLow['total'] > 0){
 					
@@ -95,7 +95,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 					$cb = 5 + log10($formulaF/100);
 					$dados['uvp_mp_c'] 			= round($cb,1); 
 					
-					$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_POST['risk_id']);
+					$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table_o($_POST['risk_id'],$_POST['option_id']);
 					
 					if((float)$totalMost['total'] > 0){
 						$b = ((float)$formulaF*(float)$most_probable_general)/(float)$totalMost['total']; 
@@ -120,14 +120,17 @@ include("../controllers/EC_Build_value_pie.class.php");
 					$cc =5 + log10($formulaG/100);
 					$dados['uvp_he_c'] 			= round($cc,1); 
 					
-					$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_POST['risk_id']); 
+					$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table_o($_POST['risk_id'],$_POST['option_id']); 
 					
 					if((float)$totalHigh['total'] > 0){
+						
 						$c = ((float)$formulaG*(float)$high_estimate_general)/(float)$totalHigh['total']; 
 						$dados['ex_uvp_he_percent'] 		= round($c)."%";
 						
-						$cc 							= 5 + round($c,5)/100;
-						//$dados['ex_uvp_he_c'] 			= round($cc,1);
+						$cc 							= round($c,5)/100;
+						//$cc 							= 5 + round($c,5)/100;
+						//$dados['ex_uvp_he_c'] 		= round($cc,1);
+						
 					}else{
 						$cc 							= 0.0;
 					}
@@ -161,14 +164,14 @@ include("../controllers/EC_Build_value_pie.class.php");
 				
 				
 					/* -- dados low estimate*/
-					$totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_POST['risk_id']); 
+					$totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table_o($_POST['risk_id'],$_POST['option_id']); 
 					$l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
 					$dados['aev_le_percent'] 	= round($l)."%";
 					
 					$cd =5 + log10(round($l,5)/100);
 					$dados['aev_le_c'] 			= "C: ".round($cd,1); 
 					
-					$totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table($_POST['risk_id']); 
+					$totalLow = Build_value_pie::select_sum_low_estimate_ec_value_pie_table_o($_POST['risk_id'],$_POST['option_id']); 
 					$l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
 					$l = round($l,5);
 					
@@ -192,14 +195,14 @@ include("../controllers/EC_Build_value_pie.class.php");
 					
 						
 					/* -- dados most probable */
-					$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_POST['risk_id']); 
+					$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table_o($_POST['risk_id'],$_POST['option_id']); 
 					$m = ((float)$totalMost['total']/(float)$items_in_asset)*100;
 					$dados['aev_mp_percent'] 	= round($m)."%";
 					
 					$ce =5 + log10(round($m,5)/100);
 					$dados['aev_mp_c'] 			= round($ce,1); 
 					
-					$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table($_POST['risk_id']); 
+					$totalMost = Build_value_pie::select_sum_most_probable_ec_value_pie_table_o($_POST['risk_id'],$_POST['option_id']); 
 					$l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
 					$l = round($l,5);
 					
@@ -221,14 +224,14 @@ include("../controllers/EC_Build_value_pie.class.php");
 					
 					
 					/* -- dados high estimate */
-					$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_POST['risk_id']); 
+					$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table_o($_POST['risk_id'],$_POST['option_id']); 
 					$h = ((float)$totalHigh['total']/(float)$items_in_asset)*100;
 					$dados['aev_he_percent'] 	= round($h)."%";
 					
 					$cf =5 + log10(round($h,5)/100);
 					$dados['aev_he_c'] 			= round($cf,1); 
 					
-					$totalMost = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_POST['risk_id']); 
+					$totalMost = Build_value_pie::select_sum_high_estimate_ec_value_pie_table_o($_POST['risk_id'],$_POST['option_id']); 
 					$l = ((float)$totalMost['total']/(float)$items_in_asset)*100;
 					$l = round($l,5);
 					

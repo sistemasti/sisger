@@ -120,9 +120,17 @@ echo "</pre>";
 					$cc =5 + log10($formulaG/100);
 					$dados['uvp_he_c'] 			= round($cc,1); 
 					
+					//$high_estimate_general = 2.1;
+					
 					$totalHigh = Build_value_pie::select_sum_high_estimate_ec_value_pie_table($_POST['risk_id']); 
 					$c = ((float)$formulaG*(float)$high_estimate_general)/(float)$totalHigh['total']; 
 					$dados['ex_uvp_he_percent'] 		= round($c)."%";
+					
+					/* echo "<br>-----------------";
+						echo "Formula G: ".$formulaG."<br>";
+						echo "high_estimate_general: ".$high_estimate_general."<br>";
+						echo "total: ".$totalHigh['total']."<br>";
+					echo "<br>-----------------"; */
 					
 					//$cb 							= 5 + log10(round($b,5)/100);
 					$cc 							= 5 + log10(round($c,5)/100);
