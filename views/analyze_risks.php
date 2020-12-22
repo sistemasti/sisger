@@ -82,6 +82,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
             <div class="card">
               <?php 
 						$displayBXALL = "none";	
+						$type_calc = "";
 						echo $arquivo=""; 
 						echo $agent=""; 
 						echo $description=""; 
@@ -330,7 +331,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									$bdgTotal = "background-color: #17a2b8 !important";
 								}
 								
-								
+								$type_calc = $ar['type_calc'];
 							
 						}	
 						
@@ -386,8 +387,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						
 					</div>
 				</div>
+				<input type="hidden" id="type_calc_all" name="type_calc_all" value="<?php echo $type_calc; ?>">
 				<script>
-				
+					
+					
 					
 					function select_risk(id) {		
 						document.getElementById('bxAll').style.display='block';
@@ -439,7 +442,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						    $("#zoomRisk").html("<strong>"+data['risk']+"</strong>");						
 						    $("#zoomRisk_le").html("<strong>"+data['risk']+"</strong>");						
 						    $("#zoomRisk_ia").html("<strong>"+data['risk']+"</strong>");						
-							
+							 $("#type_calc_all").val(data['type_calc']);
 							//alert(data['type_calc']);
 							if(data['type_calc'] == 3){
 								var x = document.querySelectorAll("#bdgTOTAL");
@@ -469,6 +472,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								changeTypeCalc(2);
 								var x = document.querySelectorAll("#bdgTOTAL");
 								x[0].style.setProperty("background-color", "#17a2b8", "important");
+							}
+							
+							if (typeof data['type_calc'] === 'undefined') {
+											changeTypeCalc(2);
+											var x = document.querySelectorAll("#bdgTOTAL");
+											x[0].style.setProperty("background-color", "#17a2b8", "important");
 							}
 							//alert(data['type_calc']);
 							//A
@@ -714,6 +723,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								
 							}	
 							
+							
+							
 							/* $("#heia").val(data['heia']);
 							$("#plia").val(data['plia']);
 							$("#leia").val(data['leia']); */
@@ -859,6 +870,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 						}
 					  });
+					  
+					  
 					}
 				
 				
@@ -900,6 +913,39 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				</script>
 			  <script>
 							function magnitudeRisk(){
+								//alert(document.getElementById('type_calc_all').value);
+								if(document.getElementById('type_calc_all').value == 1){
+									changeTypeCalc(1);
+									var x = document.querySelectorAll("#bdgTOTAL");
+									x[0].style.setProperty("background-color", "#48b461", "important");
+								}
+								
+								if(document.getElementById('type_calc_all').value == 2){
+									changeTypeCalc(2);
+									var x = document.querySelectorAll("#bdgTOTAL");
+									x[0].style.setProperty("background-color", "#17a2b8", "important");
+								}
+								
+								if(document.getElementById('type_calc_all').value == 0){
+									changeTypeCalc(2);
+									var x = document.querySelectorAll("#bdgTOTAL");
+									x[0].style.setProperty("background-color", "#17a2b8", "important");
+								}
+								
+								if(document.getElementById('type_calc_all').value == ''){
+									changeTypeCalc(2);
+									var x = document.querySelectorAll("#bdgTOTAL");
+									x[0].style.setProperty("background-color", "#17a2b8", "important");
+								}
+								
+								if(document.getElementById('type_calc_all').value == 3){
+									changeTypeCalc(3);
+									var x = document.querySelectorAll("#bdgTOTAL");
+									x[0].style.setProperty("background-color", "#ffc107", "important");
+								}
+								
+								
+								
 								
 								//alert(document.getElementById('magnitude_FR_Low').innerHTML);
 								var magnitude_FR_Low = document.getElementById('magnitude_FR_Low').innerHTML=='' ? 0.0 : document.getElementById('magnitude_FR_Low').innerHTML; 
@@ -1105,7 +1151,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								magnitude_FR_MEDIA */
 								 
 								 function changeTypeCalc(t){
-									
+									//alert();
 									
 									if(t==3){//Simple
 										
@@ -1124,7 +1170,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 									}else if(t==2){ //Linear
 										//Math.pow(base, expoente)
-										
+										//alert('teste');
 										//A
 										var a_h_p = Math.pow(10, (document.getElementById('magnitude_FR_High').innerHTML)-5);
 										var a_p_p = Math.pow(10, (document.getElementById('magnitude_FR_Probable').innerHTML)-5);
@@ -1397,7 +1443,7 @@ function atualizaFileField (id,value) {
   String.prototype.reverse = function(){
  return this.split('').reverse().join(''); };
  
-							
+						
 </script>		
 <?php
 
