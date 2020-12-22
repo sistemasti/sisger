@@ -127,7 +127,8 @@ include("../controllers/EC_Build_value_pie.class.php");
 						$c = ((float)$formulaG*(float)$high_estimate_general)/(float)$totalHigh['total']; 
 						$dados['ex_uvp_he_percent'] 		= round($c)."%";
 						
-						$cc 							= round($c,5)/100;
+						//$cc 							= round($c,5)/100;
+						$cc 							= 5 + log10(round($c,5)/100);
 						//$cc 							= 5 + round($c,5)/100;
 						//$dados['ex_uvp_he_c'] 		= round($cc,1);
 						

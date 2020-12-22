@@ -327,7 +327,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								}
 								
 								if($ar['type_calc'] == ''){
-									$bdgTotal = "background-color: #ccc !important";
+									$bdgTotal = "background-color: #17a2b8 !important";
 								}
 								
 								
@@ -447,6 +447,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							}
 							
 							if(data['type_calc'] == 2){
+								//alert("1");
+								changeTypeCalc(2);
+								//alert("3");
 								var x = document.querySelectorAll("#bdgTOTAL");
 								x[0].style.setProperty("background-color", "#17a2b8", "important");
 							}
@@ -463,10 +466,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							}
 							
 							if(data['type_calc'] == ''){
+								changeTypeCalc(2);
 								var x = document.querySelectorAll("#bdgTOTAL");
-								x[0].style.setProperty("background-color", "#ccc", "important");
+								x[0].style.setProperty("background-color", "#17a2b8", "important");
 							}
-							
+							//alert(data['type_calc']);
 							//A
 							//document.getElementById('leia').options[0]=new Option("Selected by zoom", ca_low, true, true);
 							
