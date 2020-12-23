@@ -105,7 +105,8 @@ require_once("header.php");
 							  
 					<tr id="row<?php echo $in['id'];?>">
 					  <td><?php echo $in['id']; ?></td>
-					  <td><a href="analyze_risks?view=1&id=<?php echo $in['id']; ?>"> <?php echo $in['name']; ?></a></td>
+					  <!-- td><a href="analyze_risks?view=1&id=<?php echo $in['id']; ?>"> <?php echo $in['name']; ?></a></td -->
+            <td><?php echo $in['name']; ?></td>
 					  <td><?php echo $in['summary']; ?></td>
 					  
 					   <td><?php 
