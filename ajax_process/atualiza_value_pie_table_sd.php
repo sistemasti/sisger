@@ -35,11 +35,12 @@ echo json_encode('1');
 											$g 	= (float)$in['numbers_of_items'];
 											$h 	= $b['b']*$b2['total'];
 											
-											
+											// Percent of the group
 											if($go['method_for_quantifying'] == 1){
 												$subgroup_as_percent_of_group = $c/100;
 											}	
 											
+											// Ratio between subgroups
 											if($go['method_for_quantifying'] == 2){
 												
 												/* echo "<br>oi".$d;
@@ -48,9 +49,12 @@ echo json_encode('1');
 												$subgroup_as_percent_of_group = ($d/$e['total'])*100;
 											}	
 											
+											//Ratio between items
 											if($go['method_for_quantifying'] == 3){
 												$subgroup_as_percent_of_group = (($f*$g)/$h)*100;
 											}	
+											
+											
 											
 											$group_as_percent_of_asset = ($a/$b['b'])*100;
 											
