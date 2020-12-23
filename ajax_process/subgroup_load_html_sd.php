@@ -56,7 +56,12 @@ include("../controllers/EC_Build_value_pie.class.php");
 				<tr>
 					<td style="width: 10px"></td>
 					
-					<td><input type="text" class="form-control" id="group_name<?php echo $in['id']; ?>" name="group_name<?php echo $in['id']; ?>" value="<?php echo $in['name']; ?>" onkeyup="if(this.value!=''){subgroup_edit_name(this.value,<?php echo $in['id']; ?>)}" required onclick="('#zoomSubgroup').show();" onblur="this.style.backgroundColor='#fff';loadZoomSubgroup(<?php echo $in['id']; ?>);document.getElementById('subgroup_selected').value=<?php echo $in['id']; ?>;if(this.value==''){ alert('Fill in the name fiel'); }"></td>
+					<td><input type="text" class="form-control" id="group_name<?php echo $in['id']; ?>" 
+					name="group_name<?php echo $in['id']; ?>" 
+					value="<?php echo $in['name']; ?>" 
+					onkeyup="if(this.value!=''){subgroup_edit_name(this.value,<?php echo $in['id']; ?>)}" required 
+					onclick="view_scores(<?php echo $in['id']; ?>,<?php echo $_GET['group_id']; ?>);$('#zoomSubgroup').show();" 
+					onblur="this.style.backgroundColor='#fff';loadZoomSubgroup(<?php echo $in['id']; ?>);document.getElementById('subgroup_selected').value=<?php echo $in['id']; ?>;if(this.value==''){ alert('Fill in the name fiel'); }"></td>
 					
 					<td><input 
 						type="text" 
@@ -64,17 +69,25 @@ include("../controllers/EC_Build_value_pie.class.php");
 						id="numbers_of_items<?php echo $in['id']; ?>" 
 						name="numbers_of_items<?php echo $in['id']; ?>" 
 						value="<?php echo $in['numbers_of_items']; ?>" 
-						onkeyup="Mascara(this,Integer);"  
+						onkeyup="
+						Mascara(this,Integer);
+						
+						"  
 						required 
-						onclick="view_scores(<?php echo $in['id']; ?>,<?php echo $_GET['group_id']; ?>);document.getElementById('group_name<?php echo $in['id']; ?>').style.backgroundColor='#f5f2c9';$('#zoomSubgroup').show();loadZoomSubgroup(<?php echo $in['id']; ?>);;document.getElementById('subgroup_selected').value=<?php echo $in['id']; ?>;" 
+						onclick="
+						view_scores(<?php echo $in['id']; ?>,<?php echo $_GET['group_id']; ?>);
+						
+						$('#zoomSubgroup').show();
+						loadZoomSubgroup(<?php echo $in['id']; ?>);
+						document.getElementById('subgroup_selected').value=<?php echo $in['id']; ?>;" 
 						onblur="if(this.value==0 || this.value ==  ''){ alert('Invalid value'); }else{ subgroup_edit_item(this.value,<?php echo $in['id']; ?>); }document.getElementById('group_name<?php echo $in['id']; ?>').style.backgroundColor='#fff'" 
 						style="display:inline-block;width:70%" 
-						onKeyDown="Mascara(this,Integer);" 
+						onKeyDown="Mascara(this,Integer);subgroup_edit_item(this.value,<?php echo $in['id']; ?>);" 
 						onKeyPress="Mascara(this,Integer);" >
 					</td>
 					
 					<td>
-					<input type="text" class="form-control" name="soma_for_single<?php echo $in['id']; ?>" id="soma_for_single<?php echo $in['id']; ?>" value="<?php echo $in['soma_for_single']; ?>"  onkeyup="if(this.value!=''){subgroup_edit_soma_for_single(this.value,<?php echo $in['id']; ?>)}">
+					<input type="text" class="form-control" name="soma_for_single<?php echo $in['id']; ?>" id="soma_for_single<?php echo $in['id']; ?>" value="<?php echo $in['soma_for_single']; ?>"  onkeyup="if(this.value!=''){subgroup_edit_soma_for_single(this.value,<?php echo $in['id']; ?>)}" onclick="view_scores(<?php echo $in['id']; ?>,<?php echo $_GET['group_id']; ?>);$('#zoomSubgroup').show();">
 					</td>
 					
 					<td>
@@ -191,17 +204,17 @@ include("../controllers/EC_Build_value_pie.class.php");
 			
 			
 			<?php if($g['method_for_quantifying'] == "1"){ ?>
-			<input type="text" class="form-control" name="soma_for_single" id="soma_for_single" value="" placeholder="Percent of the group" >
+			<input type="text" class="form-control" name="soma_for_single" id="soma_for_single" value="" placeholder="Percent of the group" onKeyDown="Mascara(this,Integer);" onKeyPress="Mascara(this,Integer);" onKeyUp="Mascara(this,Integer);">
 			<?php }?>
 			
 			
 			<?php if($g['method_for_quantifying'] == "2"){ ?>
-			<input type="text" class="form-control" name="soma_for_single" id="soma_for_single" value="" placeholder="Ratio between subgroups" >
+			<input type="text" class="form-control" name="soma_for_single" id="soma_for_single" value="" placeholder="Ratio between value categories" onKeyDown="Mascara(this,Integer);" onKeyPress="Mascara(this,Integer);" onKeyUp="Mascara(this,Integer);">
 			<?php }?>
 			
 			
 			<?php if($g['method_for_quantifying'] == "3"){ ?>
-			<input type="text" class="form-control" name="soma_for_single" id="soma_for_single" value="" placeholder="Ratio between items" >
+			<input type="text" class="form-control" name="soma_for_single" id="soma_for_single" value="" placeholder="Ratio between items" onKeyDown="Mascara(this,Integer);" onKeyPress="Mascara(this,Integer);" onKeyUp="Mascara(this,Integer);">
 			<?php }?>
 			
 			<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="if(document.getElementById('subgroup_name').value==''){alert('fill in the name field')}else{subgroup_register(document.getElementById('subgroup_name').value,document.getElementById('subgroup_itens').value,document.getElementById('soma_for_single').value,<?php echo $_GET['group_id']; ?>)}">save</button>

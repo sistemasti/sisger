@@ -140,7 +140,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										document.getElementById('scores_column').style.display='none';
 										"
 										onblur="
-										this.style.backgroundColor='#fff';if(this.value==''){ alert('Fill in the name field'); 
+										if(this.value==''){ alert('Fill in the name field'); 
 										}" 
 										
 										style="width:86%;display:inline-block" required> 
@@ -164,7 +164,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										$('#group_selected').val(<?php echo $in['id']; ?>);
 										
-										this.style.backgroundColor='#f5f2c9';
+										
 										
 										
 										
@@ -178,7 +178,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										<div class="form-group">
 											
 											 <select class="form-control" id="method_for_quantifying_<?php echo $in['id']; ?>"
-											name="method_for_quantifying_<?php echo $in['id']; ?>" onchange="group_edit(document.getElementById('group_name<?php echo $in['id']; ?>').value,document.getElementById('value_ratio_<?php echo $in['id']; ?>').value,this.value,<?php echo $in['id']; ?>);" onclick="view_subgroup(<?php echo $in['id']; ?>);$('#groupOption').show();$('#group_selected_for_all').val(<?php echo $in['id']; ?>); $('#group_selected').val(<?php echo $in['id']; ?>); this.style.backgroundColor='#f5f2c9';document.getElementById('scores_column').style.display='none';" >
+											name="method_for_quantifying_<?php echo $in['id']; ?>" onchange="group_edit(document.getElementById('group_name<?php echo $in['id']; ?>').value,document.getElementById('value_ratio_<?php echo $in['id']; ?>').value,this.value,<?php echo $in['id']; ?>);" onclick="view_subgroup(<?php echo $in['id']; ?>);$('#groupOption').show();$('#group_selected_for_all').val(<?php echo $in['id']; ?>); $('#group_selected').val(<?php echo $in['id']; ?>); document.getElementById('scores_column').style.display='none';" >
 												<option value="1" <?php if($in['method_for_quantifying'] == "1"){ echo "selected"; } ?>>Percent of the group</option>
 												<option value="2" <?php if($in['method_for_quantifying'] == "2"){ echo "selected"; } ?>>Ratio between subgroups</option>
 												<option value="3" <?php if($in['method_for_quantifying'] == "3"){ echo "selected"; } ?>>Ratio between items</option>
@@ -596,11 +596,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				</script>
 							
 								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-graph" style="margin-top:4px;" onclick="$('#btnSBNTS').show();
-							$('#btnSBNTS2').hide();">Value Pie for all the asset</button>
+							$('#btnSBNTS2').hide();">Value Pie for all the groups</button>
 							<div id="groupOption" style="display:none;margin-top:4px;">
 								
 								<div id="btnChart" style="margin-top:4px;">
-								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm"  data-toggle="modal" data-target="#modal-graph2">Value Pie for the select group</button>
+								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm"  data-toggle="modal" data-target="#modal-graph2">Value Pie for the Group selected above</button>
 								</div>
 								
 							</div>
