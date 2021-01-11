@@ -274,19 +274,19 @@ $('#downloadPdf').click(function(event) {
 		var barChartData = {
 			labels: [<?php echo substr($labels,0,-1); ?>],
 			datasets: [{
-				label: 'Frequency / Rate',
+				label: 'Frequency / Rate (a)',
 				backgroundColor: window.chartColors.red,
 				data: [
 					<?php echo substr($fr,0,-1); ?>
 				]
 			}, {
-				label: 'Loss to object',
+				label: 'Loss to object (b)',
 				backgroundColor: window.chartColors.yellow,
 				data: [
 					<?php echo substr($le,0,-1); ?>
 				]
 			}, {
-				label: 'Collection affected',
+				label: 'Collection affected (c)',
 				backgroundColor: window.chartColors.blue,
 				data: [
 					<?php echo substr($ia,0,-1); ?>

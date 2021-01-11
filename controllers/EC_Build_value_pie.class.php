@@ -392,6 +392,15 @@ update their_scores
 			
 		}
 
+		static function select_sum_ec_subgroups_items_by_project_by_group ($group){
+			
+			$n1 = self::getConn()->prepare('SELECT sum(numbers_of_items * soma_for_single) as total FROM `ec_subgroups_value` WHERE project_id="'.$_SESSION['project_id'].'" AND group_id=?');
+			$n1->execute(array($group)); 
+			$d = $n1->fetch();							
+			return $d;
+			
+		}
+
 		static function select_ec_values_and_their_scores_by_id ($id){
 			
 			$n1 = self::getConn()->prepare('SELECT * FROM `ec_values_and_their_scores` WHERE id=?');
@@ -456,6 +465,105 @@ update their_scores
 			
 		}
 		
+		static function select_ec_values_for_table_order_by_size_of_the_slice(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*, 
+												(
+													(s.points*100) / 
+													(
+														SELECT SUM(points) as a FROM ec_subgroups_value WHERE project_id="'.$_SESSION['project_id'].'"
+													)
+												) as data2,
+												g.id as group_id,
+												g.name as group_name, 
+												s.name as subgroup_name, 
+												s.id as subgroup_id, 
+												g.points as groupPoints, 
+												g.value_ratio as groupRatio,
+												s.points as subgroupPoints, 
+												s.soma_for_single as subgroupRatio, 
+												s.numbers_of_items as numbers_of_items 
+											FROM `ec_groups_value` as g 											
+											INNER JOIN ec_subgroups_value AS s ON 
+											(g.id=s.group_id)
+											WHERE g.project_id="'.$_SESSION['project_id'].'" AND g.points != ""
+											ORDER BY data2 DESC
+											
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}	
+		
+		static function select_ec_values_for_table_order_by_item_value(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*, 
+												(
+													(s.points*100) / 
+													(
+														SELECT SUM(points) as a FROM ec_subgroups_value WHERE project_id="'.$_SESSION['project_id'].'"
+													)
+												) as data2,
+												g.id as group_id,
+												g.name as group_name, 
+												s.name as subgroup_name, 
+												s.id as subgroup_id, 
+												g.points as groupPoints, 
+												g.value_ratio as groupRatio,
+												s.points as subgroupPoints, 
+												s.soma_for_single as subgroupRatio, 
+												s.numbers_of_items as numbers_of_items 
+											FROM `ec_groups_value` as g 											
+											INNER JOIN ec_subgroups_value AS s ON 
+											(g.id=s.group_id)
+											WHERE g.project_id="'.$_SESSION['project_id'].'" AND g.points != ""
+											ORDER BY numbers_of_items DESC
+											
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+		
+		static function select_ec_values_for_table_order_by_name_subgroup(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*, 
+												(
+													(s.points*100) / 
+													(
+														SELECT SUM(points) as a FROM ec_subgroups_value WHERE project_id="'.$_SESSION['project_id'].'"
+													)
+												) as data2,
+												g.id as group_id,
+												g.name as group_name, 
+												s.name as subgroup_name, 
+												s.id as subgroup_id, 
+												g.points as groupPoints, 
+												g.value_ratio as groupRatio,
+												s.points as subgroupPoints, 
+												s.soma_for_single as subgroupRatio, 
+												s.numbers_of_items as numbers_of_items 
+											FROM `ec_groups_value` as g 											
+											INNER JOIN ec_subgroups_value AS s ON 
+											(g.id=s.group_id)
+											WHERE g.project_id="'.$_SESSION['project_id'].'" AND g.points != ""
+											ORDER BY subgroup_name 
+											
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+		
 		static function select_ec_values_for_table_sd(){
 			
 			$n1 = self::getConn()->prepare('SELECT 
@@ -473,6 +581,242 @@ update their_scores
 											INNER JOIN ec_subgroups_value AS s ON 
 											(g.id=s.group_id)
 											WHERE g.project_id="'.$_SESSION['project_id'].'"
+											
+											
+											
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}	
+		
+		static function select_ec_values_for_table_size_of_the_sliece_sd(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*, 
+												g.id as group_id,
+												g.name as group_name, 
+												s.name as subgroup_name, 
+												s.id as subgroup_id, 
+												g.value_ratio as groupRatio,
+												g.points as groupPoints, 
+												s.points as subgroupPoints, 
+												s.soma_for_single as subgroupRatio, 
+												s.numbers_of_items as numbers_of_items 
+											FROM `ec_groups_value` as g 											
+											INNER JOIN ec_subgroups_value AS s ON 
+											(g.id=s.group_id)
+											WHERE g.project_id="'.$_SESSION['project_id'].'"
+											
+											
+											
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}	
+		
+		static function select_ec_values_for_table_size_of_the_sliece_sd_TABLE(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											
+											ORDER BY subgroup_as_percent_of_asset ASC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}	
+		
+		static function select_ec_values_for_table_by_name_of_the_subgroup_sd(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											
+											ORDER BY subgroup_value ASC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}	
+		
+		
+		static function select_ec_values_for_table_by_size_of_the_slize_group_sd(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*, 
+												g.id as group_id,
+												g.name as group_name, 
+												s.name as subgroup_name, 
+												s.id as subgroup_id, 
+												g.value_ratio as groupRatio,
+												g.points as groupPoints, 
+												s.points as subgroupPoints, 
+												s.soma_for_single as subgroupRatio, 
+												s.numbers_of_items as numbers_of_items 
+											FROM `ec_groups_value` as g 											
+											INNER JOIN ec_subgroups_value AS s ON 
+											(g.id=s.group_id)
+											WHERE g.project_id="'.$_SESSION['project_id'].'"
+											
+											
+											
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}	
+		
+		static function select_ec_values_for_table_by_size_of_the_slize_group_sd_TABLE(){
+			
+				
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											GROUP BY group_value
+											ORDER BY group_as_percent_of_asset DESC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+			
+		}	
+		
+		static function select_ec_values_for_table_by_group_name_item_value_sd(){
+			
+				
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											
+											ORDER BY group_value ASC, items_value_as_percent_of_asset DESC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}	
+		
+		static function select_ec_values_for_table_by_group_name_sd(){
+			
+				
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											GROUP BY group_value
+											ORDER BY group_value ASC, items_value_as_percent_of_asset DESC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+			
+		}	
+		
+		
+		static function select_ec_values_for_table_by_assuming_all_sd(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*, 
+												g.id as group_id,
+												g.name as group_name, 
+												s.name as subgroup_name, 
+												s.id as subgroup_id, 
+												g.value_ratio as groupRatio,
+												g.points as groupPoints, 
+												s.points as subgroupPoints, 
+												s.soma_for_single as subgroupRatio, 
+												s.numbers_of_items as numbers_of_items 
+											FROM `ec_groups_value` as g 											
+											INNER JOIN ec_subgroups_value AS s ON 
+											(g.id=s.group_id)
+											WHERE g.project_id="'.$_SESSION['project_id'].'"
+											
+											
+											
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}	
+		
+		static function select_ec_values_for_table_by_assuming_all_sd_TABLE(){
+				
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											
+											ORDER BY items_ind_subgroup DESC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+			
+		}	
+		
+		
+		static function select_ec_values_for_table_order_by_item_values_sd(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*, 
+												g.id as group_id,
+												g.name as group_name, 
+												s.name as subgroup_name, 
+												s.id as subgroup_id, 
+												g.value_ratio as groupRatio,
+												g.points as groupPoints, 
+												s.points as subgroupPoints, 
+												s.soma_for_single as subgroupRatio, 
+												s.numbers_of_items as numbers_of_items 
+											FROM `c_value_pie_table` as g 											
+											INNER JOIN ec_subgroups_value AS s ON 
+											(g.id=s.group_id)
+											WHERE g.project_id="'.$_SESSION['project_id'].'"
+											
+											ORDER BY numbers_of_items ASC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+		
+		
+		static function select_ec_values_for_table_order_by_item_values_sd_TABLE(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											
+											ORDER BY items_value_as_percent_of_asset DESC
 											');
 			$n1->execute(array()); 
 			$d['dados'] = $n1->fetchAll();	
@@ -499,6 +843,38 @@ update their_scores
 											INNER JOIN ec_subgroups_value AS s ON 
 											(g.id=s.group_id)
 											WHERE g.id=?
+											');
+			$n1->execute(array($group_id)); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+
+		static function select_ec_values_for_table_by_group_id_TABLE($group_id){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											AND group_id=?
+											ORDER BY subgroup_value ASC
+											');
+			$n1->execute(array($group_id)); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+
+		static function select_ec_values_for_table_by_item_value_TABLE($group_id){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											AND group_id=?
+											ORDER BY items_value_as_percent_of_asset DESC
 											');
 			$n1->execute(array($group_id)); 
 			$d['dados'] = $n1->fetchAll();	
@@ -553,6 +929,110 @@ update their_scores
 											ORDER BY g.id DESC
 											');
 			$n1->execute(array($group_id)); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+		
+		
+		static function select_ec_values_for_table_by_group_in_id_TABLE($group_id){
+			
+				
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											AND group_id=?
+											ORDER BY subgroup_as_percent_of_asset DESC
+											');
+			$n1->execute(array($group_id)); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+
+		
+		static function select_ec_values_for_table_by_group_in_id_order_by_name($group_id){
+			
+			$n1 = self::getConn()->prepare('
+											SELECT *, 
+													g.name as group_name, 
+													s.name as subgroup_name, 
+													s.id as subgroup_id, 
+													g.points as groupPoints, 
+													s.points as subgroupPoints,
+													g.value_ratio as groupRatio,
+													s.soma_for_single as subgroupRatio,
+													s.numbers_of_items as numbers_of_items 
+											FROM `ec_groups_value` as g 											
+											INNER JOIN ec_subgroups_value 
+												AS s ON (g.id=s.group_id) 
+											WHERE g.id=?	
+											
+											ORDER BY subgroup_name
+											');
+			$n1->execute(array($group_id)); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+
+		static function select_ec_values_for_table_by_group_in_id_order_by_item_value($group_id){
+			
+			$n1 = self::getConn()->prepare('
+											SELECT *, 
+													g.name as group_name, 
+													s.name as subgroup_name, 
+													s.id as subgroup_id, 
+													g.points as groupPoints, 
+													s.points as subgroupPoints,
+													g.value_ratio as groupRatio,
+													s.soma_for_single as subgroupRatio,
+													s.numbers_of_items as numbers_of_items 
+											FROM `ec_groups_value` as g 											
+											INNER JOIN ec_subgroups_value 
+												AS s ON (g.id=s.group_id) 
+											WHERE g.id=?	
+											
+											ORDER BY numbers_of_items ASC
+											');
+			$n1->execute(array($group_id)); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+
+		
+		static function select_ec_values_for_table_by_group_in_id_order_by_size_of_the_slice($group_id,$group_id2){
+			
+			$n1 = self::getConn()->prepare('
+											SELECT *, 
+												(
+													(s.points*100) / 
+													(
+														SELECT SUM(points) as a FROM ec_subgroups_value WHERE group_id=?
+													)
+												) as data2, 
+													g.name as group_name, 
+													s.name as subgroup_name, 
+													s.id as subgroup_id, 
+													g.points as groupPoints, 
+													s.points as subgroupPoints,
+													g.value_ratio as groupRatio,
+													s.soma_for_single as subgroupRatio,
+													s.numbers_of_items as numbers_of_items 
+											FROM `ec_groups_value` as g 											
+											INNER JOIN ec_subgroups_value 
+												AS s ON (g.id=s.group_id) 
+											WHERE g.id=?	
+											
+											ORDER BY data2 DESC
+											');
+			$n1->execute(array($group_id,$group_id2)); 
 			$d['dados'] = $n1->fetchAll();	
 			$d['num'] = $n1->rowCount();	
 			return $d;

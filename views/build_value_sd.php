@@ -806,51 +806,96 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Value Pie for all the asset</h4>
+							<h4 class="modal-title">Value Pie for all the Groups</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
 						<div class="modal-body">
-							
-							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
-							$('#bxPieChart1').hide();
-							$('#bxPieChart2').show();
-							$('#bxPieChart3').hide();
-							$('#bxPieChart4').hide();
-							">sorted by item value</button>
-							
-							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
-							$('#bxPieChart1').hide();
-							$('#bxPieChart2').hide();
-							$('#bxPieChart3').show();
-							$('#bxPieChart4').hide();
-							/* $('#btnSBNTS').hide();
-							$('#btnSBNTS2').show(); */
-							">sorted by size of the slice</button>
-							
-							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
-							$('#bxPieChart1').show();
-							$('#bxPieChart2').hide();
-							$('#bxPieChart3').hide();
-							$('#bxPieChart4').hide();
-							"  id="btnSBNTS">sorted by name of the subgroup</button>
-							
-							
-							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
-							$('#bxPieChart1').hide();
-							$('#bxPieChart2').hide();
-							$('#bxPieChart3').show();
-							$('#bxPieChart4').hide();
-							" id="btnSBNTS2" style="display:none;">sorted by name of the subgroup </button>
-							
-							
-							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
-							$('#bxPieChart1').hide();
-							$('#bxPieChart2').hide();
-							$('#bxPieChart3').hide();
-							$('#bxPieChart4').show();">sorted by size of the slice, ASSUMING ALL ITEMS EQUAL</button>
-							
+							<div class="row">
+									<div class="col-sm-6 col-md-6">
+											<button type="button" class="btn btn-block bg-gradient-info btn-sm" onclick="
+											$('#bxPieChart1').hide();
+											$('#bxPieChart2').hide();
+											$('#bxPieChart3').hide();
+											$('#bxPieChart4').hide();
+											$('#bxPieChart5').show();
+											$('#bxPieChart6').hide();
+											$('#bxPieChart7').hide();
+											" >sorted by group name</button>
+											
+											<button type="button" class="btn btn-block bg-gradient-info btn-sm" onclick="
+											$('#bxPieChart1').hide();
+											$('#bxPieChart2').hide();
+											$('#bxPieChart3').hide();
+											$('#bxPieChart4').hide();
+											$('#bxPieChart5').hide();
+											$('#bxPieChart6').show();
+											$('#bxPieChart7').hide();
+											" >By size of the group slice</button>
+											
+											<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
+											$('#bxPieChart1').hide();
+											$('#bxPieChart2').show();
+											$('#bxPieChart3').hide();
+											$('#bxPieChart4').hide();
+											$('#bxPieChart5').hide();
+											$('#bxPieChart6').hide();
+											$('#bxPieChart7').hide();
+											" >sorted by item value</button>
+											
+											<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
+											$('#bxPieChart1').hide();
+											$('#bxPieChart2').hide();
+											$('#bxPieChart3').show();
+											$('#bxPieChart4').hide();
+											$('#bxPieChart5').hide();
+											$('#bxPieChart6').hide();
+											$('#bxPieChart7').hide();
+											/* $('#btnSBNTS').hide();
+											$('#btnSBNTS2').show(); */
+											">sorted by size of the slice</button>
+											
+											
+										
+									</div>
+									<div class="col-sm-6 col-md-6"  >	
+											
+											<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
+											$('#bxPieChart1').hide();
+											$('#bxPieChart2').hide();
+											$('#bxPieChart3').hide();
+											$('#bxPieChart4').show();
+											$('#bxPieChart5').hide();
+											$('#bxPieChart6').hide();
+											$('#bxPieChart7').hide();
+											"  id="btnSBNTS" style="margin-top:0px !important;">sorted by name of the subgroup</button>
+											
+										
+											<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
+											$('#bxPieChart1').show();
+											$('#bxPieChart2').hide();
+											$('#bxPieChart3').hide();
+											$('#bxPieChart4').hide();
+											$('#bxPieChart5').hide();
+											$('#bxPieChart6').hide();
+											$('#bxPieChart7').hide();
+											"  id="btnSBNTS" >Sorted by group name, then by item value</button>
+											
+									
+											
+											
+											<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" onclick="
+											$('#bxPieChart1').hide();
+											$('#bxPieChart2').hide();
+											$('#bxPieChart3').hide();
+											$('#bxPieChart4').hide();
+											$('#bxPieChart5').hide();
+											$('#bxPieChart6').hide();
+											$('#bxPieChart7').show();
+											" >sorted by size of the slice, ASSUMING ALL ITEMS EQUAL</button>			
+									</div>		
+							</div>		
 							<br>
 							
 							<hr>
@@ -859,7 +904,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChart1">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by Subgroup Name</h3>
+								<h3 class="card-title">Pie Chart by group name, then by item value</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -906,7 +951,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							</div>
 							<div class="card card-danger" id="bxPieChart4" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by size of the slice, ASSUMING ALL ITEMS EQUAL</h3>
+								<h3 class="card-title">Pie Chart by name of the subgroup</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -921,11 +966,62 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								<!-- /.card-body -->
 								
 							</div>
+							<div class="card card-danger" id="bxPieChart5" style="display:none">
+								<div class="card-header">
+								<h3 class="card-title">Pie Chart by sorted by <strong>group</strong> name</h3>
+
+								<div class="card-tools">
+									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+								</div>
+								</div>
+								<div class="card-body">
+								<canvas id="pieChart5b" ></canvas>
+								
+								</div>
+								<!-- /.card-body -->
+								
+							</div>
+							<div class="card card-danger" id="bxPieChart6" style="display:none">
+								<div class="card-header">
+								<h3 class="card-title">Pie size of the <strong>group</strong> slice</h3>
+
+								<div class="card-tools">
+									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+								</div>
+								</div>
+								<div class="card-body">
+								<canvas id="pieChart6b" ></canvas>
+								
+								</div>
+								<!-- /.card-body -->
+								
+							</div>
+							<div class="card card-danger" id="bxPieChart7" style="display:none">
+								<div class="card-header">
+								<h3 class="card-title">Pie chart by size of the slice, ASSUMING ALL ITEMS EQUAL</h3>
+
+								<div class="card-tools">
+									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+								</div>
+								</div>
+								<div class="card-body">
+								<canvas id="pieChart7b" ></canvas>
+								
+								</div>
+								<!-- /.card-body -->
+								
+							</div>
 							<!-- /.card -->
-						</div>
+						</div><!--
 						<div class="modal-footer justify-content-between">
 							<a href="javascript:void(0)" onclick="document.location.reload(true);"><center><button type="button" class="btn btn-success">close & refresh calculations</button></center></a>
-						</div>
+						</div>-->
 						</div>
 						<!-- /.modal-content -->
 					</div>
@@ -989,7 +1085,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChartGroup1_<?PHP echo $in['id'] ?>">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by item value</h3>
+								<h3 class="card-title">Pie Chart by name of the subgroup</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -1005,7 +1101,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChartGroup2_<?PHP echo $in['id'] ?>" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by size of the slice</h3>
+								<h3 class="card-title">Pie Chart by item value</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -1021,7 +1117,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChartGroup3_<?PHP echo $in['id'] ?>"  style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by name of the subgroup</h3>
+								<h3 class="card-title">Pie Chart by size of the slice</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -1157,7 +1253,7 @@ require_once("footer.php");
 			
 			
 
-			// These labels appear in the legend and in the tooltips when hovering different arcs
+			
 			labels: [
 				<?php echo substr($name,0,-1); ?>
 			]
@@ -1166,22 +1262,22 @@ require_once("footer.php");
 		
 		
 		
-		
+		///VALUE PIE FOR ALL THE GROUPS: PIE BY ITEM VALUE
 		<?php 
 				$bgColors2 = "";
 				$name2 = "";
 				$data2 = "";
-				$in2 = Build_value_pie::select_ec_values_for_table_sd();
+				$in2 = Build_value_pie::select_ec_values_for_table_order_by_item_values_sd_TABLE();
 				foreach($in2['dados'] as $in2){
 						
-						$a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);
+						/* $a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);
 						$b = (float)$in2['groupRatio'];
 						$c = (float)$in2['subgroupRatio'];
-						$d = (float)$in2['numbers_of_items'];
+						$d = (float)$in2['numbers_of_items']; */
 						
 						$bgColors2 	.= "'".random_color()."',";
-						$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-						$data2 		.= round(($c*100)/$a['total'],2).",";
+						$name2 		.= "'".$in2['group_value'].";".$in2['subgroup_value']."',";
+						$data2 		.= $in2['subgroup_as_percent_of_asset'].",";
 						
 						
 						
@@ -1197,28 +1293,27 @@ require_once("footer.php");
 			
 			
 
-			// These labels appear in the legend and in the tooltips when hovering different arcs
+			
 			labels: [
 				<?php echo substr($name2,0,-1); ?>
 			]
 
 		};
 		
+		
+		
+		
+		///VALUE PIE FOR ALL THE GROUPS: Pie chart by size of the slice
 		<?php 
 				$bgColors2 = "";
 				$name2 = "";
 				$data2 = "";
-				$in2 = Build_value_pie::select_ec_values_for_table_sd();
+				$in2 = Build_value_pie::select_ec_values_for_table_size_of_the_sliece_sd_TABLE();
 				foreach($in2['dados'] as $in2){
 						
-						$a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);
-						$b = (float)$in2['groupRatio'];
-						$c = (float)$in2['subgroupRatio'];
-						$d = (float)$in2['numbers_of_items'];
-						
 						$bgColors2 	.= "'".random_color()."',";
-						$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-						$data2 		.= round(($c*100)/$a['total'],2).",";
+						$name2 		.= "'".$in2['group_value'].";".$in2['subgroup_value']."',";
+						$data2 		.= $in2['subgroup_as_percent_of_asset'].",";
 				}	
 		?>
 		var barChartData1c = {
@@ -1231,31 +1326,28 @@ require_once("footer.php");
 			
 			
 
-			// These labels appear in the legend and in the tooltips when hovering different arcs
+			
 			labels: [
 				<?php echo substr($name2,0,-1); ?>
 			]
 
 		};
+		
+		
+		
+		///VALUE PIE FOR ALL THE GROUPS: Pie Chart by name of the subgroup
 		<?php 
 				$bgColors2 = "";
 				$name2 = "";
 				$data2 = "";
-				$in2 = Build_value_pie::select_ec_values_for_table_sd();
+				$in2 = Build_value_pie::select_ec_values_for_table_by_name_of_the_subgroup_sd();
 				foreach($in2['dados'] as $in2){
 						
-						$a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);
-						$b = (float)$in2['groupRatio'];
-						$c = (float)$in2['subgroupRatio'];
-						$d = (float)$in2['numbers_of_items'];
+						
 						
 						$bgColors2 	.= "'".random_color()."',";
-						$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-						if($in['numbers_of_items'] != ""){
-								$data2 		.= $in['numbers_of_items'].",";
-						}else{
-								$data2 		.= "0,";
-						}
+						$name2 		.= "'".$in2['group_value'].";".$in2['subgroup_value']."',";
+						$data2 		.= $in2['subgroup_as_percent_of_asset'].",";
 				}	
 		?>
 		/**/ 
@@ -1269,7 +1361,148 @@ require_once("footer.php");
 			
 			
 
-			// These labels appear in the legend and in the tooltips when hovering different arcs
+			
+			labels: [
+				<?php echo substr($name2,0,-1); ?>
+			]
+
+		}; 
+		
+		
+		
+		///VALUE PIE FOR ALL THE GROUPS: Pie Chart by group name, then by item value
+		<?php 
+				$bgColors2 = "";
+				$name2 = "";
+				$data2 = "";
+				$in2 = Build_value_pie::select_ec_values_for_table_by_group_name_item_value_sd();
+				foreach($in2['dados'] as $in2){
+						
+						$bgColors2 	.= "'".random_color()."',";
+						$name2 		.= "'".$in2['group_value'].";".$in2['subgroup_value']."',";
+						$data2 		.= $in2['subgroup_as_percent_of_asset'].",";
+				}	
+		?>
+		/**/ 
+		var barChartData1e = {
+			datasets: [{
+				backgroundColor: [
+				<?php echo substr($bgColors2,0,-1); ?>
+				],
+				data: [<?php echo substr($data2,0,-1); ?>]
+			}],
+			
+			
+
+			
+			labels: [
+				<?php echo substr($name2,0,-1); ?>
+			]
+
+		}; 
+		
+		
+		
+		///VALUE PIE FOR ALL THE GROUPS: Pie chart by size of the slice, ASSUMING ALL ITEMS EQUAL
+		<?php 
+				$bgColors2 = "";
+				$name2 = "";
+				$data2 = "";
+				$in2 = Build_value_pie::select_ec_values_for_table_by_assuming_all_sd_TABLE();
+				foreach($in2['dados'] as $in2){
+						
+						$bgColors2 	.= "'".random_color()."',";
+						$name2 		.= "'".$in2['group_value'].";".$in2['subgroup_value']."',";
+						$data2 		.= $in2['items_ind_subgroup'].",";
+						
+						/* if($in['numbers_of_items'] != ""){
+								$data2 		.= $in['numbers_of_items'].",";
+						}else{
+								$data2 		.= "0,";
+						} */
+				}	
+		?>
+		/**/ 
+		var barChartData1f = {
+			datasets: [{
+				backgroundColor: [
+				<?php echo substr($bgColors2,0,-1); ?>
+				],
+				data: [<?php echo substr($data2,0,-1); ?>]
+			}],
+			
+			
+
+			
+			labels: [
+				<?php echo substr($name2,0,-1); ?>
+			]
+
+		}; 
+		
+		
+		///VALUE PIE FOR ALL THE GROUPS: Pie Chart by sorted by group name 
+		<?php 
+				$bgColors2 = "";
+				$name2 = "";
+				$data2 = "";
+				$in2 = Build_value_pie::select_ec_values_for_table_by_group_name_sd();
+				foreach($in2['dados'] as $in2){
+					
+						
+						$bgColors2 	.= "'".random_color()."',";
+						$name2 		.= "'".$in2['group_value']."',";
+						$data2 		.= $in2['group_as_percent_of_asset'].",";
+						
+				}	
+		?>
+		/**/ 
+		var barChartData1g = {
+			datasets: [{
+				backgroundColor: [
+				<?php echo substr($bgColors2,0,-1); ?>
+				],
+				data: [<?php echo substr($data2,0,-1); ?>]
+			}],
+			
+			
+
+			
+			labels: [
+				<?php echo substr($name2,0,-1); ?>
+			]
+
+		}; 
+		
+		
+		///VALUE PIE FOR ALL THE GROUPS: Pie size of the group slice 
+		<?php 
+				$bgColors2 = "";
+				$name2 = "";
+				$data2 = "";
+				$in2 = Build_value_pie::select_ec_values_for_table_by_size_of_the_slize_group_sd_TABLE();
+				foreach($in2['dados'] as $in2){
+						
+						
+						
+						$bgColors2 	.= "'".random_color()."',";
+						$name2 		.= "'".$in2['group_value'].";".$in2['subgroup_value']."',";
+						$data2 		.= $in2['group_as_percent_of_asset'].",";
+						
+				}	
+		?>
+		/**/ 
+		var barChartData1h = {
+			datasets: [{
+				backgroundColor: [
+				<?php echo substr($bgColors2,0,-1); ?>
+				],
+				data: [<?php echo substr($data2,0,-1); ?>]
+			}],
+			
+			
+
+			
 			labels: [
 				<?php echo substr($name2,0,-1); ?>
 			]
@@ -1295,27 +1528,21 @@ require_once("footer.php");
 					
 					
 					
-					///PEGA DADOS POR GRUPO	(BY NAME)
+					// VALUE PIE FOR THE SELECTED GROUP:  Pie Chart by size of the slice 
 					<?php	
-					
-					$in2 = Build_value_pie::select_ec_values_for_table_by_group_in_id($in['id']);
+					$bgColors2 = "";
+					$name2 = "";
+					$data2 = "";
+					$in2 = Build_value_pie::select_ec_values_for_table_by_group_in_id_TABLE($in['id']);
 					foreach($in2['dados'] as $in2){
 							
-							$a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);
-							$b = (float)$in2['groupRatio'];
-							$c = (float)$in2['subgroupRatio'];
-							$d = (float)$in2['numbers_of_items'];
+							
 							
 							$bgColors2 	.= "'".random_color()."',";
-							$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
+							$name2 		.= "'".$in2['group_value'].";".$in2['subgroup_value']."',";
+							$data2 		.= $in2['subgroup_as_percent_of_asset'].",";
 							
-							if($in['numbers_of_items'] != ""){
-								$data2 		.= $in['numbers_of_items'].",";
-							}else{
-								$data2 		.= "0,";
-							}
 							
-							//echo "ni: ".$data2 ."<br>";
 					}
 						
 					?>
@@ -1330,7 +1557,7 @@ require_once("footer.php");
 							
 							
 
-							// These labels appear in the legend and in the tooltips when hovering different arcs
+							
 							labels: [
 								<?php echo substr($name2,0,-1); ?>
 							]
@@ -1340,27 +1567,21 @@ require_once("footer.php");
 					
 					
 					
-					// BY ITEM VALUE
-					<?php	
-					$bgColors2 = "";
-				$name2 = "";
-				$data2 = "";
-					$in2 = Build_value_pie::select_ec_values_for_table_by_group_id($in['id']);
-					foreach($in2['dados'] as $in2){
-							
-							$a = Build_value_pie::select_sum_soma_for_single_by_group($in2['group_id']);
-							$b = (float)$in2['groupRatio'];
-							$c = (float)$in2['subgroupRatio'];
-							$d = (float)$in2['numbers_of_items'];
-							
+						// VALUE PIE FOR THE SELECTED GROUP: Pie Chart by name of the subgroup 
+						<?php	
+						$bgColors2 = "";
+						$name2 = "";
+						$data2 = "";
+						$in2 = Build_value_pie::select_ec_values_for_table_by_group_id_TABLE($in['id']);
+						foreach($in2['dados'] as $in2){
+								
 							$bgColors2 	.= "'".random_color()."',";
-							$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-							$data2 		.= round(($c*100)/$a['total'],2).",";
-					}	
-						
-					?>
-						
-						//by item value
+							$name2 		.= "'".$in2['group_value'].";".$in2['subgroup_value']."',";
+							$data2 		.= $in2['subgroup_as_percent_of_asset'].",";
+						}	
+							
+						?>
+												
 						var barChartData3_<?php echo $in['id']; ?> = {
 							datasets: [{
 								backgroundColor: [
@@ -1372,30 +1593,45 @@ require_once("footer.php");
 							
 							
 
-							// These labels appear in the legend and in the tooltips when hovering different arcs
+							
 							labels: [
 								<?php echo substr($name2,0,-1); ?>
 							]
 
 						};
 					
-					
-					// by sice of slice
-					var barChartData4_<?php echo $in['id']; ?> = {
-							datasets: [{
-								backgroundColor: [
-								<?php echo substr($bgColors2,0,-1); ?>			
+						
+						
+						// VALUE PIE FOR THE SELECTED GROUP:  Pie Chart by item value 
+						<?php	
+						$bgColors2 = "";
+						$name2 = "";
+						$data2 = "";
+						$in2 = Build_value_pie::select_ec_values_for_table_by_item_value_TABLE($in['id']);
+						foreach($in2['dados'] as $in2){
+																
+								$bgColors2 	.= "'".random_color()."',";
+								$name2 		.= "'".$in2['group_value'].";".$in2['subgroup_value']."',";
+								$data2 		.= $in2['subgroup_as_percent_of_asset'].",";
+						}	
+							
+						?>
+						
+						var barChartData4_<?php echo $in['id']; ?> = {
+								datasets: [{
+									backgroundColor: [
+									<?php echo substr($bgColors2,0,-1); ?>			
+									
+									],
+									data: [<?php echo substr($data2,0,-1); ?>]
+								}],
 								
-								],
-								data: [<?php echo substr($data2,0,-1); ?>]
-							}],
-							
-							
+								
 
-							// These labels appear in the legend and in the tooltips when hovering different arcs
-							labels: [
-								<?php echo substr($name2,0,-1); ?>
-							]
+								
+								labels: [
+									<?php echo substr($name2,0,-1); ?>
+								]
 
 						};
 					
@@ -1417,7 +1653,7 @@ require_once("footer.php");
 			
 			
 			////
-			var ctx2 = document.getElementById('pieChart1').getContext('2d');
+			/* var ctx2 = document.getElementById('pieChart1').getContext('2d');
 			
 			var options = {
 				cutoutPercentage: 50
@@ -1427,7 +1663,7 @@ require_once("footer.php");
 				type: 'pie',
 				data: barChartData,
 				options: options
-			});
+			}); */
 			
 			/////
 			var ctx3 = document.getElementById('pieChart2b').getContext('2d');
@@ -1471,7 +1707,49 @@ require_once("footer.php");
 			});
 			
 			///////
-			var ctx = document.getElementById('pieChart1').getContext('2d');
+		
+			/////
+			var ctx7 = document.getElementById('pieChart5b').getContext('2d');
+			
+			var options = {
+				cutoutPercentage: 50
+			};
+			
+			window.myBar = new Chart(ctx7, {
+				type: 'pie',
+				data: barChartData1g,
+				options: options
+			});
+			
+			///////	/////
+			var ctx8 = document.getElementById('pieChart6b').getContext('2d');
+			
+			var options = {
+				cutoutPercentage: 50
+			};
+			
+			window.myBar = new Chart(ctx8, {
+				type: 'pie',
+				data: barChartData1h,
+				options: options
+			});
+			
+			///////
+			///////	/////
+			var ctx9 = document.getElementById('pieChart7b').getContext('2d');
+			
+			var options = {
+				cutoutPercentage: 50
+			};
+			
+			window.myBar = new Chart(ctx9, {
+				type: 'pie',
+				data: barChartData1f,
+				options: options
+			});
+			
+			///////
+			/* var ctx = document.getElementById('pieChart1').getContext('2d');
 			
 			var options = {
 				cutoutPercentage: 50
@@ -1480,6 +1758,21 @@ require_once("footer.php");
 			window.myBar = new Chart(ctx, {
 				type: 'pie',
 				data: barChartData,
+				options: options
+			}); */
+			/////
+			
+			
+			///////
+			var ctx = document.getElementById('pieChart1').getContext('2d');
+			
+			var options = {
+				cutoutPercentage: 50
+			};
+			
+			window.myBar = new Chart(ctx, {
+				type: 'pie',
+				data: barChartData1e,
 				options: options
 			});
 			/////

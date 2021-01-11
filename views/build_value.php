@@ -730,6 +730,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart2').show();
 							$('#bxPieChart3').hide();
 							$('#bxPieChart4').hide();
+							$('#bxPieChart4c').hide();
 							">sorted by item value</button>
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
@@ -737,15 +738,17 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart2').hide();
 							$('#bxPieChart3').show();
 							$('#bxPieChart4').hide();
+							$('#bxPieChart4c').hide();
 							/* $('#btnSBNTS').hide();
 							$('#btnSBNTS2').show(); */
 							">sorted by size of the slice</button>
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
-							$('#bxPieChart1').show();
+							$('#bxPieChart1').hide();
 							$('#bxPieChart2').hide();
 							$('#bxPieChart3').hide();
-							$('#bxPieChart4').hide();
+							$('#bxPieChart4').show();
+							$('#bxPieChart4c').hide();
 							"  id="btnSBNTS">sorted by name of the subgroup</button>
 							
 							
@@ -761,7 +764,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart1').hide();
 							$('#bxPieChart2').hide();
 							$('#bxPieChart3').hide();
-							$('#bxPieChart4').show();">sorted by size of the slice, ASSUMING ALL ITEMS EQUAL</button>
+							$('#bxPieChart4').hide();
+							$('#bxPieChart4c').show();
+							">sorted by size of the slice, ASSUMING ALL ITEMS EQUAL</button>
 							
 							<br>
 							
@@ -771,7 +776,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChart1">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by Subgroup Name</h3>
+								<h3 class="card-title"></h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -818,7 +823,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							</div>
 							<div class="card card-danger" id="bxPieChart4" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by size of the slice, ASSUMING ALL ITEMS EQUAL</h3>
+								<h3 class="card-title">Pie Chart by name of the subgroup</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -833,10 +838,28 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								<!-- /.card-body -->
 								
 							</div>
+							<div class="card card-danger" id="bxPieChart4c" style="display:none">
+								<div class="card-header">
+								<h3 class="card-title">Pie Chart by size of the slice, ASSUMING ALL ITEMS EQUAL</h3>
+
+								<div class="card-tools">
+									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
+								</div>
+								</div>
+								<div class="card-body">
+								<canvas id="pieChart4c" ></canvas>
+								
+								</div>
+								<!-- /.card-body -->
+								
+							</div>
 							<!-- /.card -->
 						</div>
 						<div class="modal-footer justify-content-between">
-							<a href="javascript:void(0)" onclick="document.location.reload(true);"><center><button type="button" class="btn btn-success">close & refresh calculations</button></center></a>
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							
 						</div>
 						</div>
 						<!-- /.modal-content -->
@@ -878,16 +901,16 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							">sorted by item value</button>
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
-							$('#bxPieChartGroup1_<?PHP echo $in['id'] ?>').hide();
+							$('#bxPieChartGroup1_<?PHP echo $in['id'] ?>').show();
 							$('#bxPieChartGroup2_<?PHP echo $in['id'] ?>').hide();
-							$('#bxPieChartGroup3_<?PHP echo $in['id'] ?>').show();
+							$('#bxPieChartGroup3_<?PHP echo $in['id'] ?>').hide();
 							
 							">sorted by size of the slice</button>
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
-							$('#bxPieChartGroup1_<?PHP echo $in['id'] ?>').show();
+							$('#bxPieChartGroup1_<?PHP echo $in['id'] ?>').hide();
 							$('#bxPieChartGroup2_<?PHP echo $in['id'] ?>').hide();
-							$('#bxPieChartGroup3_<?PHP echo $in['id'] ?>').hide();
+							$('#bxPieChartGroup3_<?PHP echo $in['id'] ?>').show();
 							
 							">sorted by name of the subgroup</button>
 							
@@ -901,7 +924,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChartGroup1_<?PHP echo $in['id'] ?>">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by item value</h3>
+								<h3 class="card-title">Pie Chart by size of the slice</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -917,7 +940,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChartGroup2_<?PHP echo $in['id'] ?>" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by size of the slice</h3>
+								<h3 class="card-title">Pie Chart by by item value</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -948,13 +971,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							</div>
 							
 							
-							
-							<a href="javascript:void(0)" onclick="document.location.reload(true);"><center><button type="button" class="btn btn-success">close & refresh calculations</button></center></a>
+						
 							<!-- /.card -->
 						</div>
 						<div class="modal-footer justify-content-between">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save changes</button>
+							
 						</div>
 						</div>
 						<!-- /.modal-content -->
@@ -1056,7 +1078,12 @@ require_once("footer.php");
 						
 						$bgColors 	.= random_color().",";
 						$name 		.= $in['group_name'].",";
-						$data 		.= ($b*100)/$a['a'].",";
+						
+						if($a['a'] == 0 || $a['a'] == '' ){
+							$data 		.= ($b*100).",";
+						}else{
+							$data 		.= ($b*100)/$a['a'].",";
+						}
 				}	
 		?>
 		var barChartData = {
@@ -1070,7 +1097,7 @@ require_once("footer.php");
 			
 			
 
-			// These labels appear in the legend and in the tooltips when hovering different arcs
+			
 			labels: [
 				<?php echo "'".substr($name,0,-1)."'"; ?>
 			]
@@ -1079,12 +1106,12 @@ require_once("footer.php");
 		
 		
 		
-		
+		/* VALUE PIE FOR ALL THE ASSET | Sorted by item value */
 		<?php 
 				$bgColors2 = "";
 				$name2 = "";
 				$data2 = "";
-				$in2 = Build_value_pie::select_ec_values_for_table();
+				$in2 = Build_value_pie::select_ec_values_for_table_order_by_item_value();
 				foreach($in2['dados'] as $in2){
 						
 						$a = Build_value_pie::select_sum_points_group($in2['group_id']);
@@ -1094,7 +1121,13 @@ require_once("footer.php");
 						
 						$bgColors2 	.= "'".random_color()."',";
 						$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-						$data2 		.= round(($c*100)/$a['a'],2).",";
+						
+						if($a['a'] == 0 || $a['a'] == '' ){
+							$data2 		.= ($c*100).",";
+						}else{
+							$data2 		.= round(($c*100)/$a['a'],2).",";
+						}
+						
 				}	
 		?>
 		var barChartData1b = {
@@ -1103,22 +1136,21 @@ require_once("footer.php");
 				<?php echo substr($bgColors2,0,-1); ?>
 				],
 				data: [<?php echo substr($data2,0,-1); ?>]
-			}],
-			
-			
-
-			// These labels appear in the legend and in the tooltips when hovering different arcs
+			}],			
+						
 			labels: [
 				<?php echo substr($name2,0,-1); ?>
 			]
 
 		};
 		
+		
+		/* VALUE PIE FOR ALL THE ASSET | Sorted by size of the slice */
 		<?php 
 				$bgColors2 = "";
 				$name2 = "";
 				$data2 = "";
-				$in2 = Build_value_pie::select_ec_values_for_table();
+				$in2 = Build_value_pie::select_ec_values_for_table_order_by_size_of_the_slice();
 				foreach($in2['dados'] as $in2){
 						
 						$a = Build_value_pie::select_sum_points_group($in2['group_id']);
@@ -1128,7 +1160,13 @@ require_once("footer.php");
 						
 						$bgColors2 	.= "'".random_color()."',";
 						$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-						$data2 		.= round(($c*100)/$a['a'],2).",";
+						
+						if($a['a'] == 0 || $a['a'] == '' ){
+							$data2 		.= ($c*100).",";
+						}else{
+							$data2 		.= round(($c*100)/$a['a'],2).",";
+						}
+						
 				}	
 		?>
 		var barChartData1c = {
@@ -1141,17 +1179,21 @@ require_once("footer.php");
 			
 			
 
-			// These labels appear in the legend and in the tooltips when hovering different arcs
+			
 			labels: [
 				<?php echo substr($name2,0,-1); ?>
 			]
 
 		};
+		
+		
+		
+		/* VALUE PIE FOR ALL THE ASSET | Sorted by name of the subgroup */
 		<?php 
 				$bgColors2 = "";
 				$name2 = "";
 				$data2 = "";
-				$in2 = Build_value_pie::select_ec_values_for_table();
+				$in2 = Build_value_pie::select_ec_values_for_table_order_by_name_subgroup();
 				foreach($in2['dados'] as $in2){
 						
 						$a = Build_value_pie::select_sum_points_group($in2['group_id']);
@@ -1161,11 +1203,13 @@ require_once("footer.php");
 						
 						$bgColors2 	.= "'".random_color()."',";
 						$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-						if($in['numbers_of_items'] != ""){
-								$data2 		.= $in['numbers_of_items'].",";
+						
+						if($a['a'] == 0 || $a['a'] == '' ){
+							$data2 		.= ($c*100).",";
 						}else{
-								$data2 		.= "0,";
+							$data2 		.= round(($c*100)/$a['a'],2).",";
 						}
+						
 				}	
 		?>
 		/**/ 
@@ -1179,7 +1223,49 @@ require_once("footer.php");
 			
 			
 
-			// These labels appear in the legend and in the tooltips when hovering different arcs
+			
+			labels: [
+				<?php echo substr($name2,0,-1); ?>
+			]
+
+		}; 
+		
+		
+		/* VALUE PIE FOR ALL THE ASSET | Sorted by size of the slice, ASSUMING ALL ITEMS EQUAL */
+		<?php 
+				$bgColors2 = "";
+				$name2 = "";
+				$data2 = "";
+				$in2 = Build_value_pie::select_ec_values_for_table_order_by_item_value();
+				foreach($in2['dados'] as $in2){
+						
+						$a = Build_value_pie::select_sum_points_group($in2['group_id']);
+						$b = (float)$in2['groupPoints'];
+						$c = (float)$in2['subgroupPoints'];
+						$d = (float)$in2['numbers_of_items'];
+						
+						$bgColors2 	.= "'".random_color()."',";
+						$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
+						
+						if($d == ''){
+							$data2 		.= "0,";
+						}else{
+							$data2 		.= $d.",";
+						}
+				}	
+		?>
+		
+		var barChartData1e = {
+			datasets: [{
+				backgroundColor: [
+				<?php echo substr($bgColors2,0,-1); ?>
+				],
+				data: [<?php echo substr($data2,0,-1); ?>]
+			}],
+			
+			
+
+			
 			labels: [
 				<?php echo substr($name2,0,-1); ?>
 			]
@@ -1201,6 +1287,9 @@ require_once("footer.php");
 					
 					if($in['num'] > 0){												
 					foreach($in['dados'] as $in){
+						$bgColors2="";
+						$name2="";
+						$data2="";
 					?>
 					
 					
@@ -1208,7 +1297,7 @@ require_once("footer.php");
 					///PEGA DADOS POR GRUPO	(BY NAME)
 					<?php	
 					
-					$in2 = Build_value_pie::select_ec_values_for_table_by_group_in_id($in['id']);
+					$in2 = Build_value_pie::select_ec_values_for_table_by_group_in_id_order_by_name($in['id']);
 					foreach($in2['dados'] as $in2){
 							
 							$a = Build_value_pie::select_sum_points_group($in2['group_id']);
@@ -1217,15 +1306,17 @@ require_once("footer.php");
 							$d = (float)$in2['numbers_of_items'];
 							
 							$bgColors2 	.= "'".random_color()."',";
-							$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
+							$name2 		.= "'".$in2['subgroup_name']."',";
 							
-							if($in['numbers_of_items'] != ""){
-								$data2 		.= $in['numbers_of_items'].",";
+							
+							if($a['a'] == 0 || $a['a'] == '' ){
+								$data2 		.= ($c*100).",";
 							}else{
-								$data2 		.= "0,";
+								$data2 		.= round(($c*100)/$a['a'],2).",";
 							}
 							
-							//echo "ni: ".$data2 ."<br>";
+							
+							
 					}
 						
 					?>
@@ -1240,7 +1331,7 @@ require_once("footer.php");
 							
 							
 
-							// These labels appear in the legend and in the tooltips when hovering different arcs
+							
 							labels: [
 								<?php echo substr($name2,0,-1); ?>
 							]
@@ -1255,7 +1346,7 @@ require_once("footer.php");
 					$bgColors2 = "";
 				$name2 = "";
 				$data2 = "";
-					$in2 = Build_value_pie::select_ec_values_for_table_by_group_id($in['id']);
+					$in2 = Build_value_pie::select_ec_values_for_table_by_group_in_id_order_by_item_value($in['id']);
 					foreach($in2['dados'] as $in2){
 							
 							$a = Build_value_pie::select_sum_points_group($in2['group_id']);
@@ -1264,8 +1355,15 @@ require_once("footer.php");
 							$d = (float)$in2['numbers_of_items'];
 							
 							$bgColors2 	.= "'".random_color()."',";
-							$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
-							$data2 		.= round(($c*100)/$a['a'],2).",";
+							$name2 		.= "'".$in2['subgroup_name']."',";
+							
+							if($a['a'] == 0 || $a['a'] == '' ){
+								$data2 		.= ($c*100).",";
+							}else{
+								$data2 		.= round(($c*100)/$a['a'],2).",";
+							}
+							
+								
 					}	
 						
 					?>
@@ -1282,15 +1380,42 @@ require_once("footer.php");
 							
 							
 
-							// These labels appear in the legend and in the tooltips when hovering different arcs
+							
 							labels: [
 								<?php echo substr($name2,0,-1); ?>
 							]
 
 						};
+						
+						
 					
+					// BY SICE OF SLICE
+					<?php	
+					$bgColors2 = "";
+					$name2 = "";
+					$data2 = "";
+					$in2 = Build_value_pie::select_ec_values_for_table_by_group_in_id_order_by_size_of_the_slice($in['id'],$in['id']);
+					foreach($in2['dados'] as $in2){
+							
+							$a = Build_value_pie::select_sum_points_group($in2['group_id']);
+							$b = (float)$in2['groupPoints'];
+							$c = (float)$in2['subgroupPoints'];
+							$d = (float)$in2['numbers_of_items'];
+							
+							$bgColors2 	.= "'".random_color()."',";
+							$name2 		.= "'".$in2['subgroup_name']."',";
+							
+							if($a['a'] == 0 || $a['a'] == '' ){
+								$data2 		.= ($c*100).",";
+							}else{
+								$data2 		.= round(($c*100)/$a['a'],2).",";
+							}
+							
+								
+					}	
+						
+					?>
 					
-					// by sice of slice
 					var barChartData4_<?php echo $in['id']; ?> = {
 							datasets: [{
 								backgroundColor: [
@@ -1302,7 +1427,7 @@ require_once("footer.php");
 							
 							
 
-							// These labels appear in the legend and in the tooltips when hovering different arcs
+							
 							labels: [
 								<?php echo substr($name2,0,-1); ?>
 							]
@@ -1367,7 +1492,7 @@ require_once("footer.php");
 			});
 			
 			///////
-			/////
+			///// 
 			var ctx5 = document.getElementById('pieChart4b').getContext('2d');
 			
 			var options = {
@@ -1377,6 +1502,20 @@ require_once("footer.php");
 			window.myBar = new Chart(ctx5, {
 				type: 'pie',
 				data: barChartData1d,
+				options: options
+			});
+			
+			///////
+			///// 
+			var ctx6 = document.getElementById('pieChart4c').getContext('2d');
+			
+			var options = {
+				cutoutPercentage: 50
+			};
+			
+			window.myBar = new Chart(ctx6, {
+				type: 'pie',
+				data: barChartData1e,
 				options: options
 			});
 			

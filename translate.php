@@ -280,7 +280,7 @@
 	
 #analyze_graphs.php
 	$_SESSION['eng']['Risk Graphs'] 							= "Risk Graphs";
-	$_SESSION['eng']['Use the Value Pie, then sort by'] 		= "Use the Value Pie, then sort by";
+	$_SESSION['eng']['Use the Value Pie, then sort by'] 		= "Use the Collection Value Pie";
 	$_SESSION['eng']['By Agent, Type'] 							= "By Agent, Type";
 	$_SESSION['eng']['By Magnitude of Risk'] 					= "By Magnitude of Risk";
 	$_SESSION['eng']['By Frequency or Rate'] 					= "By Frequency or Rate";
@@ -290,7 +290,7 @@
 	$_SESSION['eng']['By Agent, Type'] 							= "By Agent, Type";
 	$_SESSION['eng']['By Magnitude of Risk'] 					= "By Magnitude of Risk";
 	$_SESSION['eng']['Time horizon'] 							= "Time horizon";
-	$_SESSION['eng']['Risk Totals For Agents'] 					= "Risk Totals For Agentss";
+	$_SESSION['eng']['Risk Totals For Agents'] 					= "Risk Totals For Agents";
 	$_SESSION['eng']['By Magnitude of Risk'] 					= "By Magnitude of Risk";
 	$_SESSION['eng']['Frequency / Rate'] 						= "Frequency / Rate (A)";
 	$_SESSION['eng']['Loss to object'] 							= "Loss to object (B)";

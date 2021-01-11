@@ -6,6 +6,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
 
 } 
+
+
+/* echo "<pre>";
+	print_r($_SESSION);
+echo "</pre>"; */
+
 ?>
   <!-- DataTables -->
  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
@@ -91,7 +97,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
                   <th>Risk</th>
                    <th>MR Original</th>                
                    <th>MR Remaining</th>                
-                   <th>Option</th>                
+                   <th>Option name</th>                
                    <th>Initial cost</th>                
                    <th>Annual cost</th>                
                    <th>Annual cost total</th>                
@@ -112,7 +118,21 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$op = Analyze_options::select_tr_options_id_by_option($in['id_option']);
 							
 							$io = Analyze_options::select_tr_identify_options_id_by_option($in['id_risk'],$in['id_option']);
-								
+							
+							///ANUAL COST TOTAL
+							$annual_cost = str_ireplace(".","",$io['annual_cost']);
+							$annual_cost = str_ireplace(",",".",$annual_cost);
+							
+							$one_time_cost = str_ireplace(".","",$io['one_time_cost']);
+							$one_time_cost = str_ireplace(",",".",$one_time_cost);
+							
+							$a = ( $annual_cost * $_SESSION['time_horizon']);
+							$annual_cost_total = ( (int)$one_time_cost + (int)$a ) / $_SESSION['time_horizon'];
+							
+							//MAGNITUDE OF COST-EFFECTNESS
+							$b 			= ($ar['magnitude_of_risk'] - $in['magnitude_of_risk'])/$annual_cost;
+							$magnitude_of_cost_effectness = 15+ (log($b)/log(10));
+							
 					?>
 					
 							  
@@ -123,8 +143,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					  <td><?php echo $op['option']; ?></td>
 					  <td><?php echo $io['one_time_cost']; ?></td>
 					  <td><?php echo $io['annual_cost']; ?></td>
-					  <td><?php echo number_format(round(($io['annual_cost']/12),2)+$io['annual_cost'], 2, ',', '.'); ?></td>
-					  <td><?php echo number_format((round(($io['annual_cost']/12),2)), 2, ',', '.'); ?></td>
+					  <td><?php 
+								
+								echo number_format((round(($annual_cost_total),2)), 2, ',', '.');
+								?></td>
+					  <td><?php 
+					  echo number_format((round(($magnitude_of_cost_effectness),2)), 2, ',', '.');
+					 // echo $magnitude_of_cost_effectness; 
+					  ?></td>
 					</tr>
 					
 					<?php 

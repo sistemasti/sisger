@@ -28,16 +28,19 @@ echo json_encode('1');
 											$a 	= (float)$in['groupRatio'];
 											$b 	= Build_value_pie::select_sum_value_ratio_value_group();
 											$b2 = Build_value_pie::select_sum_ec_subgroups_items_by_project();
+											$h 	= Build_value_pie::select_sum_ec_subgroups_items_by_project_by_group($in['group_id']);
+											
 											$c 	= (float)$in['subgroupRatio'];
 											$d 	= (float)$in['subgroupRatio'];
 											$e 	= Build_value_pie::select_sum_soma_for_single_by_group($in['group_id']);
 											$f 	= (float)$in['subgroupRatio'];
 											$g 	= (float)$in['numbers_of_items'];
-											$h 	= $b['b']*$b2['total'];
+											//$h 	= $b['b']*$b2['total'];
 											
 											// Percent of the group
 											if($go['method_for_quantifying'] == 1){
-												$subgroup_as_percent_of_group = $c/100;
+												//$subgroup_as_percent_of_group = $c/100;
+												$subgroup_as_percent_of_group = $c;
 											}	
 											
 											// Ratio between subgroups
@@ -51,10 +54,15 @@ echo json_encode('1');
 											
 											//Ratio between items
 											if($go['method_for_quantifying'] == 3){
-												$subgroup_as_percent_of_group = (($f*$g)/$h)*100;
+												$subgroup_as_percent_of_group = (($f*$g)/(int)$h['total'])*100;
 											}	
 											
-											
+											/* echo "<hr>";
+											echo "<br>f: ".$f;
+											echo "<br>g: ".$g;
+											echo "<br>h: ".(int)$h['total'];
+											echo "<hr>";
+											 */
 											
 											$group_as_percent_of_asset = ($a/$b['b'])*100;
 											
@@ -81,7 +89,9 @@ echo json_encode('1');
 													$group_as_percent_of_asset, 
 													$subgroup_value, 
 													$items_ind_subgroup, 
-													$subgroup_as_percent_of_asset, $subgroup_as_percent_of_group, $items_value_as_percent_of_asset, 
+													$subgroup_as_percent_of_asset, 
+													$subgroup_as_percent_of_group, 
+													$items_value_as_percent_of_asset, 
 													$group_id, 
 													$subgroup_id
 													
@@ -100,7 +110,7 @@ echo json_encode('1');
 												$in['numbers_of_items'], 
 												round($subgroup_as_percent_of_asset,2), 
 												round($subgroup_as_percent_of_group,2), 
-												round(($subgroup_as_percent_of_asset/$g),2), 
+												sprintf( '%f', (float)round(($subgroup_as_percent_of_asset/$g),6) ), 
 												$in['group_id'], 
 												$in['subgroup_id']
 												);

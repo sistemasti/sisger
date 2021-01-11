@@ -103,7 +103,8 @@ require_once("header.php");
 				<div class="row">
              
 				<div class="col-sm-4 col-md-8">
-					<canvas id="canvas"></canvas>
+					<canvas id="canvas" style="position:absolute"></canvas>
+					<canvas id="canvas2" style="position:absolute"></canvas>
 					<!--<canvas id="chart-area"></canvas>
 					<br>
 					<br>
@@ -134,44 +135,52 @@ require_once("header.php");
 									<center><strong><?php echo $_SESSION[$_SESSION['lang']]['Use the Value Pie, then sort by']; ?></strong></center>
 									<br>
 									
-									<a href="analyze_graphs" style="text-decoration:none;"><button type="button" class="btn btn-block btn-primary btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['By Agent, Type']; ?></button></a>
 									<a href="analyze_graphs?order=m" style="text-decoration:none;"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Magnitude of Risk']; ?></button></a>
-									<!--<button type="button" class="btn btn-block btn-primary btn-sm">Include bars for all items equal</button>
-									<button type="button" class="btn btn-block btn-primary btn-sm">Rare events in top group</button>-->
+									
+									<a href="analyze_graphs" style="text-decoration:none;"><button type="button" class="btn btn-block btn-primary btn-sm" style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Agent, Type']; ?></button></a>
+									
+									<!--
+									<a href="analyze_graphs?order=cf" style="text-decoration:none;"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;">Show C for all objects equal</button></a>-->
+									
+									<a href="analyze_graphs?order=r" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;">Rare event on top</button></a>
+									
 									<a href="analyze_graphs?order=f" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Frequency or Rate']; ?></button></a>
+									
 									<a href="analyze_graphs?order=l" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Loss to Each Item Affected']; ?></button></a>
+									
 									<a href="analyze_graphs?order=i" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;">By collection affected</button></a>
+									
+									<a href="analyze_graphs?order=rlr" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;">Linear, relative to largest risk</button></a>
+									
 									<!--<button type="button" class="btn btn-block btn-primary btn-sm">Franction on Risk (linear)</button>-->
 								</div>	
 							</div>
 							<div class="col-sm-4 col-md-6">
-								<div style="background-color:#ecedf1;padding:10px;">
+								<div style="background-color:#ecedf1;padding:13px;">
 									<center><strong>Use all
 objects equal</strong></center>
-									<br>
+									
+									
+									<a href="analyze_graphs?order=m" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Magnitude of Risk']; ?></button></a>
 									
 									<a href="analyze_graphs" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Agent, Type']; ?></button></a>
-									<a href="analyze_graphs?order=m" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Magnitude of Risk']; ?></button></a>
+									
 									
 								</div>	
 								<!--<br>
 								<button type="button" class="btn btn-block btn-primary btn-sm">Uncertainty bars on/off</button>	-->
-								<br>
-								<?php echo $_SESSION[$_SESSION['lang']]['Time horizon']; ?>
-								<input type="text" disabled="disabled" value="<?php echo $_SESSION['time_horizon']; ?>" style="width:100% !important">
-								<br>
-								<br>
-								<div style="background-color:#ecedf1;padding:10px;">
+								
+								
+								<div style="background-color:#ecedf1;padding:10px;margin-top:12px;">
 									<center><strong><?php echo $_SESSION[$_SESSION['lang']]['Risk Totals For Agents']; ?></strong></center>
-									<br>
+									
 									
 									<a href="analyze_graphs?order=m" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Magnitude of Risk']; ?></button></a>
 									
-								</div>	<br>
-								<br>
-								<div style="background-color:#ecedf1;padding:10px;">
+								</div>	
+								<div style="background-color:#ecedf1;padding:10px;margin-top:12px;">
 									<center><strong>Risk Totals For Groups</strong></center>
-									<br>
+									
 									
 									<a href="analyze_graphs?order=gm" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Magnitude of Risk']; ?></button></a>
 									
@@ -183,6 +192,12 @@ objects equal</strong></center>
 									<button type="button" class="btn btn-block btn-primary btn-sm">By Magnitude of Risk</button>
 									
 								</div>	-->
+								
+								<br>
+								<br>
+								<?php echo $_SESSION[$_SESSION['lang']]['Time horizon']; ?>
+								<input type="text" disabled="disabled" value="<?php echo $_SESSION['time_horizon']; ?>" style="width:100% !important">
+								<br>
 							</div>
 						</div>					
 					
@@ -263,6 +278,11 @@ objects equal</strong></center>
 
 require_once("footer.php");
 session_start();
+
+
+function porcentagem_nx ( $parcial, $total ) {
+    return ( $parcial * 100 ) / $total;
+}
 ?>
 
 <script>
@@ -293,6 +313,10 @@ session_start();
 								
 									$in = AR_Analyse_risks::select_analyse_risk_by_project_by_ia();
 								
+								}else if($_GET['order'] == "r"){
+								
+									$in = AR_Analyse_risks::select_analyse_risk_by_project_by_rare();
+								
 								}else{
 								
 									$in = AR_Analyse_risks::select_analyse_risk_by_project();
@@ -315,6 +339,8 @@ session_start();
 											$fr .= "'".$in['Expected_Scores_FR']."',";
 											$le .= "'".$in['Expected_Scores_LE']."',";
 											$ia .= "'".$in['Expected_Scores_IA']."',";
+											$iac .= "'".$in['C_unc_range']."',";
+											
 										
 									}
 								}
@@ -323,124 +349,206 @@ session_start();
 								
 		<?php if($_GET['order'] == "l"){ ?>
 		
-		
-		var barChartData = {
-			labels: [<?php echo substr($labels,0,-1); ?>],
-			datasets: [{
-				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
-				backgroundColor: window.chartColors.yellow,
-				data: [
-					<?php echo substr($le,0,-1); ?>
-				]
-			}, {
-				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Frequency / Rate']."'"; ?>,
-				backgroundColor: window.chartColors.red,
-				data: [
-					<?php echo substr($fr,0,-1); ?>
-				]
-			}, {
-				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Collection affected']."'"; ?>,
-				backgroundColor: window.chartColors.blue,
-				data: [
-					<?php echo substr($ia,0,-1); ?>
-				]
-			}]
+			
+			var barChartData = {
+				labels: [<?php echo substr($labels,0,-1); ?>],
+				datasets: [{
+					label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
+					backgroundColor: window.chartColors.yellow,
+					data: [
+						<?php echo substr($le,0,-1); ?>
+					]
+				}, {
+					label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Frequency / Rate']."'"; ?>,
+					backgroundColor: window.chartColors.red,
+					data: [
+						<?php echo substr($fr,0,-1); ?>
+					]
+				}, {
+					label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Collection affected']."'"; ?>,
+					backgroundColor: window.chartColors.blue,
+					data: [
+						<?php echo substr($ia,0,-1); ?>
+					]
+				}]
 
-		};
+			};
 		
 		<?php }else if($_GET['order'] == "i"){ ?>
 		
-		var barChartData = {
-			labels: [<?php echo substr($labels,0,-1); ?>],
-			datasets: [
-			
-			 {
-				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Collection affected']."'"; ?>,
-				backgroundColor: window.chartColors.blue,
-				data: [
-					<?php echo substr($ia,0,-1); ?>
-				]
-			},
-			{
-				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Frequency / Rate']."'"; ?>,
-				backgroundColor: window.chartColors.red,
-				data: [
-					<?php echo substr($fr,0,-1); ?>
-				]
-			}, {
-				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
-				backgroundColor: window.chartColors.yellow,
-				data: [
-					<?php echo substr($le,0,-1); ?>
-				]
-			}]
+			var barChartData = {
+				labels: [<?php echo substr($labels,0,-1); ?>],
+				datasets: [
+				
+				 {
+					label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Collection affected']."'"; ?>,
+					backgroundColor: window.chartColors.blue,
+					data: [
+						<?php echo substr($ia,0,-1); ?>
+					]
+				},
+				{
+					label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Frequency / Rate']."'"; ?>,
+					backgroundColor: window.chartColors.red,
+					data: [
+						<?php echo substr($fr,0,-1); ?>
+					]
+				}, {
+					label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
+					backgroundColor: window.chartColors.yellow,
+					data: [
+						<?php echo substr($le,0,-1); ?>
+					]
+				}]
 
-		};
+			};
 		
 		
 		<?php }else if($_GET['order'] == "gm"){ ?>
 		
-		 var barChartData = {
-			labels: [<?php echo substr($labels,0,-1); ?>],
-			datasets: [{
-				label: [<?php echo substr($labels,0,-1); ?>],
-				backgroundColor: window.chartColors.red,
-				data: [
-					<?php echo substr($ia,0,-1); ?>,
-					<?php echo substr($fr,0,-1); ?>,
-					<?php echo substr($le,0,-1); ?>
-				]
-			}]
+			 var barChartData = {
+				labels: [<?php echo substr($labels,0,-1); ?>],
+				datasets: [{
+					label: [<?php echo substr($labels,0,-1); ?>],
+					backgroundColor: window.chartColors.red,
+					data: [
+						<?php echo substr($ia,0,-1); ?>,
+						<?php echo substr($fr,0,-1); ?>,
+						<?php echo substr($le,0,-1); ?>
+					]
+				}]
 
-		};
+			};
 		
+		
+		<?php 
+			}else if($_GET['order'] == "rlr"){ 
+			
+				$labels ="";
+				$datas = "1,";	
+				
+				$inL = AR_Analyse_risks::select_analyse_risk_by_project_by_linear_MAX();			
+				$labels = "'".$inL['risk']." (MR: ".$inL['mrMAX'].")',";			
+				$magnitudMAX = $inL['mrMAX'];
+				
+				$inO = AR_Analyse_risks::select_analyse_risk_by_project_by_linear_OTHER($inL['id_risk']);	
+
+				if($inO['num'] > 0){		 										
+								foreach($inO['dados'] as $inO){
+									$labels .= "'".$inO['risk']."  (MR: ".$inO['magnitude_of_risk'].")',";	
+									//$perc = porcentagem_nx($inO['magnitude_of_risk'], $magnitudMAX);
+									$perc = (($inO['magnitude_of_risk'] / $magnitudMAX) * 100) ;
+									$datas .= round(($perc/100),2).",";	
+								}
+				}
+				
+				
+			
+			?>
+			
+			
+			
+			 var barChartData = {
+				labels: [<?php echo substr($labels,0,-1); ?>],
+				datasets: [{
+					label: [<?php echo substr($labels,0,-1); ?>],
+					backgroundColor: window.chartColors.red,
+					data: [
+						<?php echo substr($datas,0,-1); ?>
+					]
+				}]
+
+			};
+		
+		
+		<?php }else if($_GET['order'] == "cf"){ ?>
+		
+			var barChartData = {
+				labels: [<?php echo substr($labels,0,-1); ?>],
+				datasets: [{
+					label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Frequency / Rate']."'"; ?>,
+					backgroundColor: window.chartColors.red,
+					data: [
+						<?php echo substr($fr,0,-1); ?>
+					]
+				}, {
+					label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
+					backgroundColor: window.chartColors.yellow,
+					data: [
+						<?php echo substr($le,0,-1); ?>
+					]
+				}, {
+					label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Collection affected']."'"; ?>,
+					backgroundColor: window.chartColors.blue,
+					data: [
+						<?php echo substr($ia,0,-1); ?>
+					]
+				}]
+
+			};
+			
+			var barChartData2 = {
+					labels: [<?php echo substr($labels,0,-1); ?>],
+					datasets: [{
+						label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Frequency / Rate']."'"; ?>,
+						backgroundColor: 'rgba(54, 162, 235, 0)',
+						data: [
+							<?php echo substr($fr,0,-1); ?>
+						]
+					}, {
+						label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
+						backgroundColor: 'rgba(255, 205, 86, 0.1)',
+						data: [
+							<?php echo substr($le,0,-1); ?>
+						]
+					}, {
+						label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Collection affected']."'"; ?>,
+						backgroundColor: 'rgba(54, 162, 235, 1)',
+						borderWidth: 1,
+						borderColor: 'rgba(54, 162, 235, 0)',
+						borderAlign: "inner",
+						data: [
+							<?php echo substr($iac,0,-1); ?>
+						]
+					}]
+
+				};
+				
 		
 		<?php }else{ ?>
 		
-	var barChartData = {
-			labels: [<?php echo substr($labels,0,-1); ?>],
-			datasets: [{
-				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Frequency / Rate']."'"; ?>,
-				backgroundColor: window.chartColors.red,
-				data: [
-					<?php echo substr($fr,0,-1); ?>
-				]
-			}, {
-				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
-				backgroundColor: window.chartColors.yellow,
-				data: [
-					<?php echo substr($le,0,-1); ?>
-				]
-			}, {
-				label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Collection affected']."'"; ?>,
-				backgroundColor: window.chartColors.blue,
-				data: [
-					<?php echo substr($ia,0,-1); ?>
-				]
-			}]
+				var barChartData = {
+						labels: [<?php echo substr($labels,0,-1); ?>],
+						datasets: [{
+							label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Frequency / Rate']."'"; ?>,
+							backgroundColor: window.chartColors.red,
+							data: [
+								<?php echo substr($fr,0,-1); ?>
+							]
+						}, {
+							label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
+							backgroundColor: window.chartColors.yellow,
+							data: [
+								<?php echo substr($le,0,-1); ?>
+							]
+						}, {
+							label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Collection affected']."'"; ?>,
+							backgroundColor: window.chartColors.blue,
+							data: [
+								<?php echo substr($ia,0,-1); ?>
+							]
+						}]
 
-		};
+					};
 		
-		 	
-	/* 	 var barChartData = {
-			labels: [<?php echo substr($labels,0,-1); ?>],
-			datasets: [{
-				label: [<?php echo substr($labels,0,-1); ?>],
-				backgroundColor: window.chartColors.red,
-				data: [
-					<?php echo substr($ia,0,-1); ?>,
-					<?php echo substr($fr,0,-1); ?>,
-					<?php echo substr($le,0,-1); ?>
-				]
-			}]
-
-		};
-		 */
+	
 		
 		<?php } ?>
 		
 		window.onload = function() {
 			var ctx = document.getElementById('canvas').getContext('2d');
+			var ctx2 = document.getElementById('canvas2').getContext('2d');
+			
 			window.myBar = new Chart(ctx, {
 				type: 'horizontalBar',
 				data: barChartData,
@@ -464,6 +572,39 @@ session_start();
 					}
 				}
 			});
+			
+			window.myBar2 = new Chart(ctx2, {
+				type: 'horizontalBar',
+				data: barChartData2,
+				options: {
+					title: {
+						display: true,
+						text: ''
+					},
+					tooltips: {
+						mode: 'index',
+						intersect: false
+					},
+					responsive: true,
+					scales: {
+						xAxes: [{
+							stacked: true,
+							gridLines: {
+								color: "rgba(0, 0, 0, 0)",
+							}
+						}],
+						yAxes: [{
+							stacked: true,
+							gridLines: {
+								color: "rgba(0, 0, 0, 0)",
+							}
+						}]
+					}
+				}
+			});
+			
+			
+			
 		};
 
 		document.getElementById('randomizeData').addEventListener('click', function() {
@@ -473,5 +614,6 @@ session_start();
 				});
 			});
 			window.myBar.update();
+			window.myBar2.update();
 		});
 	</script>

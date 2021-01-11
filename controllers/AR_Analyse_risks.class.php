@@ -72,6 +72,60 @@
 			return $d;			
 			
 		}	
+		
+		static function select_analyse_risk_by_project_by_linear_MAX(){
+			
+			$n1 = self::getConn()->prepare('
+											SELECT 
+													ir.name as risk, 
+													ar.id_risk as id_risk, 
+													ar.magnitude_of_risk  AS mrMAX
+
+											FROM 	ar_analyze_risks ar, 
+													ir_risks ir 
+
+											WHERE 
+													ar.id_risk = ir.id 
+													and ir.deleted = 0 
+													and ar.id_project="'.$_SESSION['project_id'].'"
+													
+											ORDER BY ar.magnitude_of_risk*1 
+											DESC LIMIT 1
+											');
+			$n1->execute(array());			 
+			$d = $n1->fetch();	
+			$d['num'] = $n1->rowCount();	
+			return $d;		
+			
+		}	
+		
+		static function select_analyse_risk_by_project_by_linear_OTHER($id_risk){
+			
+			$n1 = self::getConn()->prepare('
+											SELECT 
+													ir.name as risk, 
+													ar.id_risk as id_risk, 
+													ar.magnitude_of_risk  AS magnitude_of_risk
+
+											FROM 	ar_analyze_risks ar, 
+													ir_risks ir 
+
+											WHERE 
+													ar.id_risk = ir.id 
+													and ir.deleted = 0 
+													and ar.id_risk <> ? 
+													and ar.id_project="'.$_SESSION['project_id'].'"
+													
+											ORDER BY ar.magnitude_of_risk*1 
+											DESC 
+											');
+			$n1->execute(array($id_risk));			 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();
+			return $d;			
+			
+		}	
+		
 		static function select_analyse_risk_by_group_by_magnitude(){
 			
 			$n1 = self::getConn()->prepare('SELECT * FROM ar_analyze_risks ar, ir_risks ir WHERE ar.id_risk = ir.id and ir.deleted = 0 and ar.id_project="'.$_SESSION['project_id'].'" GROUP BY ir.ec_groups_id ORDER BY  ar.magnitude_of_risk*1 DESC');
@@ -107,6 +161,17 @@
 		static function select_analyse_risk_by_project_by_ia(){
 			
 			$n1 = self::getConn()->prepare('SELECT * FROM ar_analyze_risks ar, ir_risks ir WHERE ar.id_risk = ir.id and ir.deleted = 0 and ar.id_project="'.$_SESSION['project_id'].'" ORDER BY ar.Expected_Scores_IA*1 DESC');
+			$n1->execute(array());			 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();
+			return $d;			
+			
+		}
+		
+		
+		static function select_analyse_risk_by_project_by_rare(){
+			
+			$n1 = self::getConn()->prepare('SELECT * FROM ar_analyze_risks ar, ir_risks ir WHERE ar.id_risk = ir.id and ir.deleted = 0 and ar.id_project="'.$_SESSION['project_id'].'" ORDER BY ar.MR_low*1 DESC');
 			$n1->execute(array());			 
 			$d['dados'] = $n1->fetchAll();	
 			$d['num'] = $n1->rowCount();
