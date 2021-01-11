@@ -420,7 +420,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  
 																		if($formulaE != -INF && !is_nan($formulaE)) {
 																				
-																				echo round($formulaE,1);
+																				echo round($formulaE,4);
 																				
 																		}else{
 																			
@@ -461,7 +461,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	 
 																	 if(round($a,5) != -INF && !is_nan(round($a,5))) {
 																				
-																				echo round($a,1);
+																				echo round($a,4);
 																				
 																		}else{
 																			
@@ -502,7 +502,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		
 																				if($formulaF != -INF && !is_nan($formulaF)) {
 																				
-																					echo round($formulaF,1);
+																					echo round($formulaF,4);
 																				
 																				}else{
 																					
@@ -543,7 +543,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			
 																			if(round($b,5) != -INF && !is_nan(round($b,5))) {
 																				
-																					echo round($b,1);
+																					echo round($b,4);
 																				
 																				}else{
 																					
@@ -586,7 +586,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  
 																	  if( $formulaG != -INF && !is_nan($formulaG)) {
 																				
-																					echo round($formulaG,1);
+																					echo round($formulaG,4);
 																				
 																				}else{
 																					
@@ -631,7 +631,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			  
 																			  if( round($c,5) != -INF && !is_nan(round($c,5))) {
 																				
-																					echo  round($c,1);
+																					echo  round($c,4);
 																				
 																				}else{
 																					
@@ -691,7 +691,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  $l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
 																	  
 																	  if(round($l,5) != -INF && !is_nan(round($l,5)) ){
-																		echo round($l);
+																		echo round($l,4);
 																	  }else{ 
 																		echo "0.0";		
 																	  }	
@@ -729,7 +729,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  
 																	  if( round($d,5) != -INF && !is_nan(round($d,5))) {
 																				
-																					echo  round($d,5);
+																					echo  round($d,4);
 																				
 																				}else{
 																					
@@ -772,7 +772,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		    if( round($m,5) != -INF && !is_nan(round($m,5))) {
 																				
-																					echo  round($m,1);
+																					echo  round($m,4);
 																				
 																				}else{
 																					
@@ -814,7 +814,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		    if( round($e,5) != -INF && !is_nan(round($e,5))) {
 																				
-																					echo  round($e,1);
+																					echo  round($e,4);
 																				
 																				}else{
 																					
@@ -858,7 +858,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		   if( round($h,5) != -INF && !is_nan(round($h,5))) {
 																				
-																					echo  round($h,1);
+																					echo  round($h,4);
 																				
 																				}else{
 																					
@@ -897,7 +897,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		   if( round($f,5) != -INF && !is_nan(round($f,5))) {
 																				
-																					echo  round($f,1);
+																					echo  round($f,4);
 																				
 																				}else{
 																					
@@ -1291,7 +1291,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  
 																		if($formulaE != -INF && !is_nan($formulaE)) {
 																				
-																				echo round($formulaE,1);
+																				echo round($formulaE,4);
 																				
 																		}else{
 																			
@@ -1332,7 +1332,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	 
 																	 if(round($a,5) != -INF && !is_nan(round($a,5))) {
 																				
-																				echo round($a,1);
+																				echo round($a,4);
 																				
 																		}else{
 																			
@@ -1357,8 +1357,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			$caForDB2 = round($ca);
 																		?>
 																		</div>
-																		<input type="hidden" id="ca_low_o" name="ca_low_o" value="<?php echo round($ca); ?>">
-																		<input type="hidden" id="ca_low_e_o" name="ca_low_e_o" value="<?php echo round($ca); ?>">
+																		<input type="hidden" id="ca_low_o" name="ca_low_o" value="<?php echo round($ca,1); ?>">
+																		<input type="hidden" id="ca_low_e_o" name="ca_low_e_o" value="<?php echo round($ca,1); ?>">
 																  </center>
 																</div>  
 																
@@ -1373,7 +1373,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		
 																				if($formulaF != -INF && !is_nan($formulaF)) {
 																				
-																					echo round($formulaF,1);
+																					echo round($formulaF,4);
 																				
 																				}else{
 																					
@@ -1414,7 +1414,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			
 																			if(round($b,5) != -INF && !is_nan(round($b,5))) {
 																				
-																					echo round($b,1);
+																					echo round($b,4);
 																				
 																				}else{
 																					
@@ -1457,7 +1457,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  
 																	  if( $formulaG != -INF && !is_nan($formulaG)) {
 																				
-																					echo round($formulaG,1);
+																					echo round($formulaG,4);
 																				
 																				}else{
 																					
@@ -1501,7 +1501,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																			  
 																			  if( round($c,5) != -INF && !is_nan(round($c,5))) {
 																				
-																					echo  round($c,1);
+																					echo  round($c,4);
 																				
 																				}else{
 																					
@@ -1561,7 +1561,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  $l = ((float)$totalLow['total']/(float)$items_in_asset)*100;
 																	  
 																	  if(round($l,5) != -INF && !is_nan(round($l,5)) ){
-																		echo round($l);
+																		echo round($l,4);
 																	  }else{ 
 																		echo "0.0";		
 																	  }	
@@ -1599,7 +1599,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																	  
 																	  if( round($d,5) != -INF && !is_nan(round($d,5))) {
 																				
-																					echo  round($d,1);
+																					echo  round($d,4);
 																				
 																				}else{
 																					
@@ -1642,7 +1642,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		    if( round($m,5) != -INF && !is_nan(round($m,5))) {
 																				
-																					echo  round($m,1);
+																					echo  round($m,4);
 																				
 																				}else{
 																					
@@ -1684,7 +1684,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		    if( round($e,5) != -INF && !is_nan(round($e,5))) {
 																				
-																					echo  round($e,1);
+																					echo  round($e,4);
 																				
 																				}else{
 																					
@@ -1728,7 +1728,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		   if( round($h,5) != -INF && !is_nan(round($h,5))) {
 																				
-																					echo  round($h,1);
+																					echo  round($h,4);
 																				
 																				}else{
 																					
@@ -1767,7 +1767,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																		  
 																		   if( round($f,5) != -INF && !is_nan(round($f,5))) {
 																				
-																					echo  round($f,1);
+																					echo  round($f,4);
 																				
 																				}else{
 																					
@@ -2333,11 +2333,17 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							//seta as divs
 							$("#uvp_le_percent_o").html(data['uvp_le_percent']);
+							
 							$("#uvp_le_c_o").html(data['uvp_le_c']);								
+							$("#ca_low_o").val(data['uvp_le_c']);								
+							
 							$("#uvp_mp_percent_o").html(data['uvp_mp_percent']);
 							$("#uvp_mp_c_o").html(data['uvp_mp_c']);							//
+							$("#ca_media_o").val(data['uvp_mp_c']);							//
+							
 							$("#uvp_he_percent_o").html(data['uvp_he_percent']);
 							$("#uvp_he_c_o").html(data['uvp_he_c']);
+							$("#ca_high_o").val(data['uvp_he_c']);
 								
 							$("#aev_le_percent_o").html(data['aev_le_percent']);
 							$("#aev_le_c_o").html(data['aev_le_c']);
@@ -2361,15 +2367,27 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							//seta as divs
 							$("#ex_uvp_le_percent_o").html(data['ex_uvp_le_percent']);
+							
 							$("#ex_uvp_le_c_o").html(data['ex_uvp_le_c']);
+							$("#ca_low_e_o").val(data['ex_uvp_le_c']);
+							$("#ca_low_o").val(data['ex_uvp_le_c']);
+							
 							$("#ex_aev_le_percent_o").html(data['ex_aev_le_percent']);
 							$("#ex_aev_le_c_o").html(data['ex_aev_le_c']);	
 							$("#ex_uvp_mp_percent_o").html(data['ex_uvp_mp_percent']);
+							
 							$("#ex_uvp_mp_c_o").html(data['ex_uvp_mp_c']);							
+							$("#ca_media_e_o").val(data['ex_uvp_mp_c']);							
+							$("#ca_media_o").val(data['ex_uvp_mp_c']);							
+							
 							$("#ex_aev_mp_percent_o").html(data['ex_aev_mp_percent']);
 							$("#ex_aev_mp_c_o").html(data['ex_aev_mp_c']);													
 							$("#ex_uvp_he_percent_o").html(data['ex_uvp_he_percent']);
+							
 							$("#ex_uvp_he_c_o").html(data['ex_uvp_he_c']);
+							$("#ca_high_e_o").val(data['ex_uvp_he_c']);
+							$("#ca_high_o").val(data['ex_uvp_he_c']);
+							
 							$("#ex_aev_he_percent_o").html(data['ex_aev_he_percent']);
 							$("#ex_aev_he_c_o").html(data['ex_aev_he_c']);	
 							
@@ -2394,6 +2412,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							//seta as divs
 							$("#uvp_le_percent_o").html("0.0");
 							$("#uvp_le_c_o").html("0.0");								
+							$("#ca_low_o").val("0.0");								
 							$("#uvp_mp_percent_o").html("0.0");
 							$("#uvp_mp_c_o").html("0.0");							//
 							$("#uvp_he_percent_o").html("0.0");
@@ -2422,6 +2441,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							//seta as divs
 							$("#ex_uvp_le_percent_o").html("0.0");
 							$("#ex_uvp_le_c_o").html("0.0");
+							$("#ca_low_e_o").val("0.0");
 							$("#ex_aev_le_percent_o").html("0.0");
 							$("#ex_aev_le_c_o").html("0.0");	
 							$("#ex_uvp_mp_percent_o").html("0.0");

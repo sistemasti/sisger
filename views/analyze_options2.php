@@ -374,7 +374,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						    $("#zoomRisk").html("<strong>"+data['risk']+"</strong>");						
 						    $("#zoomRisk_le").html("<strong>"+data['risk']+"</strong>");						
 						    $("#zoomRisk_ia").html("<strong>"+data['risk']+"</strong>");	
-							
+							//alert(data['type_calc']);
 						 	if(data['type_calc'] == 3){
 								var x = document.querySelectorAll("#bdgTOTAL");
 								x[0].style.setProperty("background-color", "#ffc107", "important");
@@ -879,6 +879,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								x[0].style.setProperty("background-color", "#ccc", "important");
 							}
 							
+							if(typeof data['type_calc'] === 'undefined'){
+								var x = document.querySelectorAll("#bdgTOTAL_o");
+								x[0].style.setProperty("background-color", "#17a2b8", "important");
+							}
+							
 							
 							
 							//A
@@ -1010,7 +1015,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							if($("#steps3").prop("checked")){
 								//document.getElementById("steps3_o").checked = true;
 								
-								document.getElementById('bxWords').style.display='none';
+								document.getElementById('bxWords_o').style.display='none';
 								document.getElementById('bxFraction_o').style.display='none';
 								document.getElementById('bxPercentage_o').style.display='block';
 								document.getElementById('bxDecimals_o').style.display='none';
