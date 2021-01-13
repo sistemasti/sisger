@@ -325,6 +325,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 			
 				<script>
 				
+				function selectElement(id, valueToSelect) {    
+    let element = document.getElementById(id);
+    element.value = valueToSelect;
+}
 					
 				function select_risk(id) {		
 						
@@ -423,6 +427,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								
 							}	
 								
+							carregaFormulario(data['type_risk']);
 							
 						    $("#fdLow").val(data['fdLow']);
 						    $("#bxLow").html(data['fdLow']);
@@ -521,10 +526,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								document.getElementById('bxDecimals').style.display='none';
 								document.getElementById('bxAnyDecimals').style.display='none';
 								
-								$("#he3").val(data['he3']);
+								selectElement('he3', data['he3']);
+								selectElement('pl3', data['pl3']);
+								selectElement('le3', data['le3']);
+								//alert(data['le3']);
+								//document.getElementById('he3').options[0]=new Option(<?php echo "'~0.1%  loss of value in each item affected.'"; ?>, data['he3'], true, true);
+								/* $("#he3").val(data['he3']);
 								$("#pl3").val(data['pl3']);
 								$("#le3").val(data['le3']);
-								
+								 */
 							}	
 							
 							if(data['steps'] == "4"){
@@ -1006,9 +1016,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								
 								document.getElementById('stepSelected').value='2';
 								
-								$("#he2").val(data['he2_o']);
-								$("#pl2").val(data['pl2_o']);
-								$("#le2").val(data['le2_o']);
+								$("#he2_o").val(data['he2_o']);
+								$("#pl2_o").val(data['pl2_o']);
+								$("#le2_o").val(data['le2_o']);
 								
 							}	
 							
@@ -1023,9 +1033,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								
 								document.getElementById('stepSelected').value='3';
 								
-								$("#he3").val(data['he3_o']);
-								$("#pl3").val(data['pl3_o']);
-								$("#le3").val(data['le3_o']);
+								$("#he3_o").val(data['he3_o']);
+								$("#pl3_o").val(data['pl3_o']);
+								$("#le3_o").val(data['le3_o']);
 								
 							}	
 							
@@ -1648,9 +1658,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									</tr>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of risk']; ?></td>
-									  <td><div id="magnitude_SOMA_L"><?php echo $magnitude_SOMA_L; ?></div></td>
-									  <td><div id="magnitude_SOMA_P"><?php echo $magnitude_SOMA_P; ?></div></td>
-									  <td><div id="magnitude_SOMA_H"><?php echo $magnitude_SOMA_H; ?></div></td>
+									  <td><div id="magnitude_SOMA_L" style="display:none"><?php echo $magnitude_SOMA_L; ?></div></td>
+									  <td><div id="magnitude_SOMA_P" style="display:none"><?php echo $magnitude_SOMA_P; ?></div></td>
+									  <td><div id="magnitude_SOMA_H" style="display:none"><?php echo $magnitude_SOMA_H; ?></div></td>
 									  <!--<td><div id="magnitude_SOMA_RANGE"><?php echo $magnitude_SOMA_RANGE; ?></div><br></td>-->
 									  <td style="text-align:center;"><span class="badge bg-success" style="font-size:20px;" id="bdgTOTAL"><div id="magnitude_SOMA_MEDIA"><?php echo $magnitude_SOMA_MEDIA; ?></div></span></td>
 									</tr>
@@ -1678,9 +1688,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								  <tbody>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Frequency or Rate']; ?></td>
-									  <td><div id="magnitude_FR_High_o"><?php echo $magnitude_FR_High_o; ?></div></td>
-									  <td><div id="magnitude_FR_Probable_o"><?php echo $magnitude_FR_Probable_o; ?></div></td>
 									  <td><div id="magnitude_FR_Low_o"><?php echo $magnitude_FR_Low_o; ?></div></td>
+									  <td><div id="magnitude_FR_Probable_o"><?php echo $magnitude_FR_Probable_o; ?></div></td>
+									  <td><div id="magnitude_FR_High_o"><?php echo $magnitude_FR_High_o; ?></div></td>
 									  <!--<td></td>-->
 									  <td style="text-align:center;"><span class="badge bg-secondary"><div id="magnitude_FR_MEDIA_o"><?php echo $magnitude_FR_MEDIA_o; ?></div></span></td>
 									</tr>
@@ -1702,9 +1712,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									</tr>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of risk']; ?></td>
-									  <td><div id="magnitude_SOMA_L_o"><?php echo $magnitude_SOMA_L_o; ?></div></td>
-									  <td><div id="magnitude_SOMA_P_o"><?php echo $magnitude_SOMA_P_o; ?></div></td>
-									  <td><div id="magnitude_SOMA_H_o"><?php echo $magnitude_SOMA_H_o; ?></div></td>
+									  <td><div id="magnitude_SOMA_L_o" style="display:none"><?php echo $magnitude_SOMA_L_o; ?></div></td>
+									  <td><div id="magnitude_SOMA_P_o" style="display:none"><?php echo $magnitude_SOMA_P_o; ?></div></td>
+									  <td><div id="magnitude_SOMA_H_o" style="display:none"><?php echo $magnitude_SOMA_H_o; ?></div></td>
 									  <!--<td><div id="magnitude_SOMA_RANGE"><?php echo $magnitude_SOMA_RANGE_o; ?></div><br></td>-->
 									  <td style="text-align:center;"><span class="badge bg-success" style="font-size:20px;" id="bdgTOTAL_o"><div id="magnitude_SOMA_MEDIA_o"><?php echo $magnitude_SOMA_MEDIA_o; ?></div></span></td>
 									</tr>

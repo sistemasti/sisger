@@ -518,6 +518,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								document.getElementById('bxFrm1').style.display = 'none';
 							}	
 							
+							carregaFormulario(data['type_risk']);
+							
 						    $("#fdLow").val(data['fdLow']);
 						    $("#bxLow").html(data['fdLow']);
 							
@@ -1081,9 +1083,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								  <tbody>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Frequency or Rate']; ?></td>
-									  <td><div id="magnitude_FR_High"><?php echo $magnitude_FR_High; ?></div></td>
-									  <td><div id="magnitude_FR_Probable"><?php echo $magnitude_FR_Probable; ?></div></td>
 									  <td><div id="magnitude_FR_Low"><?php echo $magnitude_FR_Low; ?></div></td>
+									  <td><div id="magnitude_FR_Probable"><?php echo $magnitude_FR_Probable; ?></div></td>
+									  <td><div id="magnitude_FR_High"><?php echo $magnitude_FR_High; ?></div></td>
 									  <!--<td></td>-->
 									  <td style="text-align:center;"><span class="badge bg-secondary"><div id="magnitude_FR_MEDIA"><?php echo $magnitude_FR_MEDIA; ?></div></span></td>
 									</tr>
@@ -1105,9 +1107,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									</tr>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of risk']; ?></td>
-									  <td><div id="magnitude_SOMA_L"><?php echo $magnitude_SOMA_L; ?></div></td>
-									  <td><div id="magnitude_SOMA_P"><?php echo $magnitude_SOMA_P; ?></div></td>
-									  <td><div id="magnitude_SOMA_H"><?php echo $magnitude_SOMA_H; ?></div></td>
+									  <td><div id="magnitude_SOMA_L" style="display:none"><?php echo $magnitude_SOMA_L; ?></div></td>
+									  <td><div id="magnitude_SOMA_P" style="display:none"><?php echo $magnitude_SOMA_P; ?></div></td>
+									  <td><div id="magnitude_SOMA_H" style="display:none"><?php echo $magnitude_SOMA_H; ?></div></td>
 									  <!--<td><div id="magnitude_SOMA_RANGE"><?php echo $magnitude_SOMA_RANGE; ?></div><br></td>-->
 									  <td style="text-align:center;"><span class="badge bg-success" id="bdgTOTAL" style="font-size:20px; <?php echo $bdgTotal; ?>"><div id="magnitude_SOMA_MEDIA"><?php echo $magnitude_SOMA_MEDIA; ?></div></span></td>
 									</tr>

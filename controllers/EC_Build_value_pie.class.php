@@ -531,6 +531,91 @@ update their_scores
 			
 		}
 		
+		//Para grafico do build value (by group name)
+		static function select_ec_values_for_table_order_by_group_name(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											GROUP BY group_id
+											ORDER BY group_value ASC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+		
+		//Para grafico do build value (by size of group slice)
+		static function select_ec_values_for_table_order_by_size_group_slice(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											GROUP BY group_id
+											ORDER BY group_as_percent_of_asset ASC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+			
+		//Para grafico do build value (by group name, then by item value )
+		static function select_ec_values_for_table_order_by_group_name_item_value(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											
+											ORDER BY group_value ASC, items_value_as_percent_of_asset DESC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+			
+		//Para grafico do build value ( Sorted by size of the slicee )
+		static function select_ec_values_for_table_order_by_size_of_the_slice_TABLE(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											
+											ORDER BY subgroup_as_percent_of_asset DESC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}	
+		
+		//Para grafico do build value ( Sorted by size of the slicee )
+		static function select_ec_values_for_table_order_by_name_subgroup_TABLE(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											
+											ORDER BY subgroup_value ASC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+		
 		static function select_ec_values_for_table_order_by_name_subgroup(){
 			
 			$n1 = self::getConn()->prepare('SELECT 
@@ -817,6 +902,39 @@ update their_scores
 											WHERE project_id="'.$_SESSION['project_id'].'"
 											
 											ORDER BY items_value_as_percent_of_asset DESC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+		
+		
+		static function select_ec_values_for_table_order_by_item_values_sd_TABLE_2B(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											
+											ORDER BY subgroup_as_percent_of_asset ASC
+											');
+			$n1->execute(array()); 
+			$d['dados'] = $n1->fetchAll();	
+			$d['num'] = $n1->rowCount();	
+			return $d;
+			
+		}
+		
+		static function select_ec_values_for_table_order_by_item_values_sd_TABLE_2(){
+			
+			$n1 = self::getConn()->prepare('SELECT 
+												*
+											FROM `ec_value_pie_table`
+											WHERE project_id="'.$_SESSION['project_id'].'"
+											
+											ORDER BY items_ind_subgroup DESC
 											');
 			$n1->execute(array()); 
 			$d['dados'] = $n1->fetchAll();	

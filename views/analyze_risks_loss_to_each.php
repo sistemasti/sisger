@@ -198,7 +198,7 @@
 										  <BR>
 										  <BR>
 											<div class="form-group">
-														<label for="Sigla">Explain your estimates for items affected.</label>
+														<label for="Sigla">Explain the esimates of loss to each item affected.</label>
 														<textarea class="form-control" name="explain_le" id="explain_le"  onkeyup="document.getElementById('le_zoom_explanation_fields').value=this.value"><?php echo $explain_le; ?></textarea>	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg_le" style="float:right; margin-top:2px" >
                   Zoom explanation and notes
                 </button>	
@@ -209,7 +209,7 @@
 											</div>
 											
 											<br>
-											Select the type of scales, then choose from the selection offered (if you use any of the 'Steps' options, you can convert between them by changin the option):
+											Select the type of scales, then choose from the selection offered (if you use any of the 'Steps' options, you can convert between them by changing the option):
 											<br>
 											<br>
 											<div class="row">
@@ -272,7 +272,7 @@
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
 														<select class="form-control" id="he" name="he" onchange="range_L_E_I('High',this.value)" >
-                           
+                           <option value="" >select</option>
 																<option value="5.0" <?php if($he == "5.0"){ echo "selected"; } ?> >TOTAL or almost total loss of value in each item affected.</option>
 																<option value="4.5" <?php if($he == "4.5"){ echo "selected"; } ?>>----------- (between total and large on the word scale)</option>
 																<option value="4.0"  <?php if($he == "4.0"){ echo "selected"; } ?>>LARGE  loss of value in each item affected.</option>
@@ -290,7 +290,7 @@
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
 														<select class="form-control" id="pl" name="pl"  onchange="range_L_E_I('Probable',this.value)">
-                           
+                           <option value="" >select</option>
 																<option value="5.0" <?php if($pl == "5.0"){ echo "selected"; } ?>>TOTAL or almost total loss of value in each item affected.</option>
 																<option value="4.5" <?php if($pl == "4.5"){ echo "selected"; } ?>>----------- (between total and large on the word scale)</option>
 																<option value="4.0"  <?php if($pl == "4.0"){ echo "selected"; } ?>>LARGE  loss of value in each item affected.</option>
@@ -308,7 +308,7 @@
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
 														<select class="form-control" id="le" name="le"  onchange="range_L_E_I('Low',this.value)">
-                           
+                           <option value="" >select</option>
 																<option value="5.0" <?php if($le == "5.0"){ echo "selected"; } ?>>TOTAL or almost total loss of value in each item affected.</option>
 																<option value="4.5" <?php if($le == "4.5"){ echo "selected"; } ?>>----------- (between total and large on the word scale)</option>
 																<option value="4.0"  <?php if($le == "4.0"){ echo "selected"; } ?>>LARGE  loss of value in each item affected.</option>
@@ -334,7 +334,7 @@
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
 														<select class="form-control" id="he2" name="he2"  onchange="range_L_E_I('High',this.value)">
-                           
+                           <option value="" >select</option>
 																<option value="5.0" <?php if($he2 == "5.0"){ echo "selected"; } ?> >~1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($he2 == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($he2 == "4.0"){ echo "selected"; } ?>>~1/10  loss of value in each item affected.</option>
@@ -353,7 +353,7 @@
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
 														<select class="form-control" id="pl2" name="pl2"  onchange="range_L_E_I('Probable',this.value)">
-                           
+                           <option value="" >select</option>
 																<option value="5.0" <?php if($pl2 == "5.0"){ echo "selected"; } ?>>~1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($pl2 == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($pl2 == "4.0"){ echo "selected"; } ?>>~1/10  loss of value in each item affected.</option>
@@ -371,7 +371,7 @@
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
 														<select class="form-control" id="le2" name="le2" onchange="range_L_E_I('Low',this.value)">
-                           
+                           <option value="" >select</option>
 																<option value="5.0" <?php if($le2 == "5.0"){ echo "selected"; } ?> >~1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($le2 == "4.5"){ echo "selected"; } ?> >~1/3  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($le2 == "4.0"){ echo "selected"; } ?> >~1/10  loss of value in each item affected.</option>
@@ -396,7 +396,7 @@
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
 														<select class="form-control" id="he3" name="he3"  onchange="range_L_E_I('High',this.value)">
-                           
+                           <option value="" >select</option>
 																<option value="5.0" <?php if($he3 == "5.0"){ echo "selected"; } ?>>~100% total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($he3 == "4.5"){ echo "selected"; } ?>>~30%  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($he3 == "4.0"){ echo "selected"; } ?>>~10%  loss of value in each item affected.</option>
@@ -414,7 +414,7 @@
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
 														<select class="form-control" id="pl3" name="pl3" onchange="range_L_E_I('Probable',this.value)">
-                           
+                           <option value="" >select</option>
 																<option value="5.0" <?php if($pl3 == "5.0"){ echo "selected"; } ?>>~100% total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($pl3 == "4.5"){ echo "selected"; } ?>>~30%  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($pl3 == "4.0"){ echo "selected"; } ?>>~10%  loss of value in each item affected.</option>
@@ -432,7 +432,7 @@
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
 														<select class="form-control" id="le3" name="le3" onchange="range_L_E_I('Low',this.value)">
-                           
+                           <option value="" >select</option>
 																<option value="5.0"  <?php if($le3 == "5.0"){ echo "selected"; } ?>>~100% total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($le3 == "4.5"){ echo "selected"; } ?>>~30%  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($le3 == "4.0"){ echo "selected"; } ?>>~10%  loss of value in each item affected.</option>
@@ -458,7 +458,7 @@
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
 														<select class="form-control" id="he4" name="he4" onchange="range_L_E_I('High',this.value,1)">
-                           
+                           <option value="" >select</option>
 																<option value="5.0" <?php if($he4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($he4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($he4 == "4.0"){ echo "selected"; } ?> >~0.1  loss of value in each item affected.</option>
@@ -478,7 +478,7 @@
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
 														<select class="form-control" id="pl4" name="pl4"  onchange="range_L_E_I('Probable',this.value,1)">
-                           
+                           <option value="" >select</option>
 																<option value="5.0" <?php if($pl4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($pl4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($pl4 == "4.0"){ echo "selected"; } ?> >~0.1  loss of value in each item affected.</option>
@@ -496,7 +496,7 @@
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
 														<select class="form-control" id="le4" name="le4"  onchange="range_L_E_I('Low',this.value,1)">
-                           
+                           <option value="" >select</option>
 																<option value="5.0" <?php if($le4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($le4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
 																<option value="4.0" <?php if($le4 == "4.0"){ echo "selected"; } ?> >~0.1  loss of value in each item affected.</option>
@@ -749,8 +749,8 @@
 									</div>
 									<div class="row">
 												<div class="col-sm-6 col-md-6">
-													<div class="form-group">
-														<label for="Sigla">Explain your estimates for items affected.</label>
+													<div class="form-group"><br>
+														<label for="Sigla">Explain the esimates of loss to each item affected.</label>
 														<textarea class="form-control" name="le_zoom_explanation_fields" ID="le_zoom_explanation_fields"  onkeyup="document.getElementById('explain_le').value=this.value"><?php echo $le_zoom_explanation_fields; ?></textarea>
 													</div>	
 												</div>	

@@ -48,12 +48,70 @@ if($_POST['steps'] == "5"){
 }	
 
 if($i['num'] > 0){
-			//				update_analyse_risk_loss_to_each($B_min_score,$B_pro_score,$B_max_score,$B_unc_range,$B_explain,$B_explain_note,$B_field_value_1,$B_field_value_2,$B_field_value_3,$B_steps,$id_risk)
-			AR_Analyse_risks::update_analyse_risk_loss_to_each($_POST['B_fdLow'],$_POST['B_fdProbable'],$_POST['B_fdHigh'],$_POST['B_fdUncert'],$_POST['explain_le'],'',$B_field_value_1,$B_field_value_2,$B_field_value_3,$_POST['steps'],$_REQUEST['id_risk']);
+			/* 			
+			
+			update_analyse_risk_loss_to_each(
+			
+			$B_min_score,
+			$B_pro_score,
+			$B_max_score,
+			$B_unc_range,
+			$B_explain,
+			$B_explain_note,
+			$B_field_value_1,
+			$B_field_value_2,
+			$B_field_value_3,
+			$B_steps,
+			$id_risk
+			) 
+			
+			*/
+			AR_Analyse_risks::update_analyse_risk_loss_to_each(
+			$_POST['B_fdLow'],
+			$_POST['B_fdProbable'],
+			$_POST['B_fdHigh'],
+			$_POST['B_fdUncert'],
+			$_POST['explain_le'],
+			'',
+			$B_field_value_1,
+			$B_field_value_2,
+			$B_field_value_3,
+			$_POST['steps'],
+			$_REQUEST['id_risk']
+			);
 }else{
 	
+			/* 
+	
+				insert_analyse_risk_loss_to_each(
+				$id_project,
+				$id_risk,
+				$B_min_score,
+				$B_pro_score,
+				$B_max_score,
+				$B_unc_range,
+				$B_explain,
+				$B_explain_note,
+				$B_field_value_1,
+				$B_field_value_2,
+				$B_field_value_3,
+				$B_steps
+		
+			*/
 			
-			AR_Analyse_risks::insert_analyse_risk_loss_to_each($_SESSION['project_id'],$_REQUEST['id_risk'],'',$_POST['B_fdLow'],$_POST['B_fdProbable'],$_POST['B_fdHigh'],$_POST['B_fdUncert'],$_POST['explain_le'],'',$B_field_value_1,$B_field_value_2,$B_field_value_3,$_POST['steps']);
+			AR_Analyse_risks::insert_analyse_risk_loss_to_each(
+			$_SESSION['project_id'],
+			$_REQUEST['id_risk'],			
+			$_POST['B_fdLow'],
+			$_POST['B_fdProbable'],
+			$_POST['B_fdHigh'],
+			$_POST['B_fdUncert'],
+			$_POST['explain_le'],
+			'',
+			$B_field_value_1,
+			$B_field_value_2,
+			$B_field_value_3,
+			$_POST['steps']);
 }
 
 /* 	 */

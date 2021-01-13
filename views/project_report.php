@@ -145,7 +145,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							?>
 							<center>
 								<a href="javascript:void(0)" onclick="if(confirm('Do you really want to disable?')){project_active(<?php echo $in['id'];?>,0)}"><button type="button" class="btn btn-outline-success btn-sm">Under construction</button></a><br>
-								<small><em>click to finished</em></small>
+								<small><em>click to finish</em></small>
 							</center>
 							<?php		
 								}else{	

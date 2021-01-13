@@ -6,10 +6,12 @@
 											/* document.getElementById('bxFrm1').style.display = 'block';
 											document.getElementById('bxFrm2').style.display = 'none'; */
 											document.getElementById('title_id').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['How often will the event occur?']."'"; ?>;
+											document.getElementById('title_id_o').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['How often will the event occur?']."'"; ?>;
 										}else{
 											/* document.getElementById('bxFrm1').style.display = 'none';
 											document.getElementById('bxFrm2').style.display = 'block'; */
 											document.getElementById('title_id').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['How soon will the process cause the specified loss?']."'"; ?>;
+											document.getElementById('title_id_o').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['How soon will the process cause the specified loss?']."'"; ?>;
 										}		
 										
 										if(id ==1){
@@ -18,6 +20,7 @@
 											document.getElementById("ley").readOnly = false;
 											document.getElementById("hey").readOnly = false;
 											document.getElementById('label1').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['Most probable time period between events, years']."'"; ?>;
+											document.getElementById('label1_o').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['Most probable time period between events, years']."'"; ?>;
 										}
 										
 										if(id ==2){
@@ -26,6 +29,7 @@
 											document.getElementById("ley").readOnly = false;
 											document.getElementById("hey").readOnly = false;
 											document.getElementById('label1').innerHTML =  <?php echo "'".$_SESSION[$_SESSION['lang']]['Most probable time period between events, years']."'"; ?>;
+											document.getElementById('label1_o').innerHTML =  <?php echo "'".$_SESSION[$_SESSION['lang']]['Most probable time period between events, years']."'"; ?>;
 										}			
 										
 										if(id ==3){
@@ -39,6 +43,7 @@
 											
 											
 											document.getElementById('label1').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['This time period has been selected for analysis of the loss to each item affected']."'"; ?>;
+											document.getElementById('label1_o').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['This time period has been selected for analysis of the loss to each item affected']."'"; ?>;
 										}	
 										
 										if(id ==4){
@@ -54,6 +59,7 @@
 											calculcaPontuacao(document.getElementById("time_horizon").value,'Low');
 											calculcaPontuacao(document.getElementById("time_horizon").value,'Probable');
 											document.getElementById('label1').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['The time horizon has been selected and entered automatically']."'"; ?>;
+											document.getElementById('label1_o').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['The time horizon has been selected and entered automatically']."'"; ?>;
 										}	
 										
 										if(id ==5){
@@ -62,6 +68,7 @@
 											document.getElementById("ley").readOnly = false;
 											document.getElementById("hey").readOnly = false;
 											document.getElementById('label1').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss']."'"; ?>;
+											document.getElementById('label1_o').innerHTML = <?php echo "'".$_SESSION[$_SESSION['lang']]['A particular loss to each item affected was selected for analysis, this is the estimate of years required to reach that loss']."'"; ?>;
 										}
 										
 										if(id ==6){
@@ -152,10 +159,10 @@
 												document.getElementById('fd'+field+'_o').value = result.toFixed(1);
 												//alert('fd'+field+'_o');
 												if(field=="High"){
-													document.getElementById('magnitude_FR_Low_o').innerHTML = result.toFixed(1);
+													document.getElementById('magnitude_FR_High_o').innerHTML = result.toFixed(1);
 												}
 												if(field=="Low"){
-													document.getElementById('magnitude_FR_High_o').innerHTML = result.toFixed(1);
+													document.getElementById('magnitude_FR_Low_o').innerHTML = result.toFixed(1);
 												}
 												if(field=="Probable"){
 													if(document.getElementById('type_risk').value == 3){
@@ -487,13 +494,13 @@
 						  <input type="hidden" name="fdUncert_o" id="fdUncert_o" value="<?php echo $fdUncert_o; ?>">
 						  
 						  <div style="float:right;"> &nbsp;&nbsp;&nbsp;
-						   <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxHigh_o" ><?php echo $bxHigh_o; ?>
+						   <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxLow_o" ><?php echo $bxLow_o; ?>
 						  </div>
 						  
 						  <div style="display:inline-block; padding:10px; margin:1px; background-color:#aececc; font-size: 18px;" id="bxProbable_o" value="<?php echo $bxProbable_o; ?>"><?php echo $bxProbable_o; ?>
 						  </div>
 						  
-						  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxLow_o" value="<?php echo $bxLow_o; ?>"><?php echo $bxLow_o; ?>
+						  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxHigh_o" value="<?php echo $bxHigh_o; ?>"><?php echo $bxHigh_o; ?>
 						  </div>
 						 
 

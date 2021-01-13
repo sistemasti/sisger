@@ -209,7 +209,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
              <li class="nav-item">
                 <a href="treat_risk" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Evaluate option</p>
+                  <p>Evaluate options</p>
                 </a>
               </li>
              <li class="nav-item">

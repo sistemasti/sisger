@@ -97,7 +97,7 @@
 										  <BR>
 										  <BR>
 											<div class="form-group">
-														<label for="Sigla">Explain your estimates for frequency or rate</label>
+														<label for="Sigla">Explain the estimates of items affected</label>
 														<textarea class="form-control" name="explain_ia" id="explain_ia" readonly="readonly"><?php echo $explain_ia; ?></textarea>
 														
 														<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg_ia" style="float:right; margin-top:2px">
@@ -373,7 +373,7 @@
 										  <BR>
 										  <BR>
 											<div class="form-group">
-														<label for="Sigla">Explain your estimates for frequency or rate</label>
+														<label for="Sigla">Explain the estimates of items affected</label>
 														<textarea class="form-control" name="explain_ia_o" id="explain_ia_o" onkeyup="document.getElementById('ia_zoom_explanation_fields_o').value=this.value"><?php echo $explain_ia_o; ?></textarea>
 														
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg_ia_o" style="float:right; margin-top:2px">

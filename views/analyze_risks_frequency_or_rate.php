@@ -1,7 +1,7 @@
 <script>
 									
 									function carregaFormulario(id){
-									
+								
 										if(id < 3){
 											/* document.getElementById('bxFrm1').style.display = 'block';
 											document.getElementById('bxFrm2').style.display = 'none'; */
@@ -105,10 +105,10 @@
 												document.getElementById('fd'+field).value = result.toFixed(1);
 												
 												if(field=="High"){
-													document.getElementById('magnitude_FR_Low').innerHTML = result.toFixed(1);
+													document.getElementById('magnitude_FR_High').innerHTML = result.toFixed(1);
 												}
 												if(field=="Low"){
-													document.getElementById('magnitude_FR_High').innerHTML = result.toFixed(1);
+													document.getElementById('magnitude_FR_Low').innerHTML = result.toFixed(1);
 												}
 												if(field=="Probable"){
 													if(document.getElementById('type_risk').value == 3){
@@ -219,13 +219,13 @@
 						  <input type="hidden" name="fdUncert" id="fdUncert" value="<?php echo $fdUncert; ?>">
 						  
 						  <div style="float:right;"> &nbsp;&nbsp;&nbsp;
-						   <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxHigh"  value="<?php echo $bxHigh; ?>"><?php echo $bxHigh; ?>
+						   <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxLow"  value="<?php echo $bxLow; ?>"><?php echo $bxLow; ?>
 						  </div>
 						  
 						  <div style="display:inline-block; padding:14px; margin:1px; background-color:#aececc; font-size: 22px;" id="bxProbable" value="<?php echo $bxProbable; ?>"><?php echo $bxProbable; ?>
 						  </div>
 						  
-						  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxLow" value="<?php echo $bxLow; ?>"><?php echo $bxLow; ?>
+						  <div style="display:inline-block; padding:4px; margin:1px; background-color:#e4e4e4;" id="bxHigh" value="<?php echo $bxHigh; ?>"><?php echo $bxHigh; ?>
 						  </div>
 						 
 

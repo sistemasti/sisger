@@ -33,13 +33,13 @@ include("../controllers/EC_Build_value_pie.class.php");
 											
 											if($st['num'] > 0){
 												
-												$up = Build_value_pie::update_ec_value_pie_table($tg['total'],$in['group_name'], $ts['total'], ($b*100)/$a['a'], $in['subgroup_name'], $in['numbers_of_items'], round(($c*100)/$a['a'],2), round(($c*100)/$a2['a']), round((($c*100)/$a['a'])/$d,6), $in['group_id'], $in['subgroup_id']);
+												$up = Build_value_pie::update_ec_value_pie_table($tg['total'],$in['group_name'], $ts['total'], round(($b*100)/$a['a'],2), $in['subgroup_name'], $in['numbers_of_items'], round(($c*100)/$a['a'],2), round(($c*100)/$a2['a'],2), round((($c*100)/$a['a'])/$d,6), $in['group_id'], $in['subgroup_id']);
 												
 											}else{
 												
 												
 												
-												$ins = Build_value_pie::insert_ec_value_pie_table($in['group_id'],$in['subgroup_id'],$tg['total'],$in['group_name'],$ts['total'],($b*100)/$a['a'],$in['subgroup_name'],$in['numbers_of_items'],round(($c*100)/$a['a'],2),round(($c*100)/$a2['a']),round((($c*100)/$a['a'])/$d,6));
+												$ins = Build_value_pie::insert_ec_value_pie_table($in['group_id'],$in['subgroup_id'],$tg['total'],$in['group_name'],$ts['total'],round(($b*100)/$a['a'],2),$in['subgroup_name'],$in['numbers_of_items'],round(($c*100)/$a['a'],2),round(($c*100)/$a2['a'],2),round((($c*100)/$a['a'])/$d,6));
 											}
 											
 											

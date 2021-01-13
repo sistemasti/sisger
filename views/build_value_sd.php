@@ -111,6 +111,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$in = Build_value_pie::select_ec_groups_value();
 								
 								$x=0;
+								$totalGrupos = $in['num'];
 								if($in['num'] > 0){												
 								foreach($in['dados'] as $in){
 											
@@ -652,7 +653,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							<div class="form-group">
 							<form id="frmUpdateGroup"  name="frmUpdateGroup" method="post">
 							<input type="hidden" class="form-control" id="group_selected" name="group_selected" value="" required>
-								<label for="Name">Name of this groups</label>
+								<label for="Name">Name of this group</label>
 								<input type="text" class="form-control" id="nameGroup" name="nameGroup" placeholder="" value="" required>
 								</div>
 								
@@ -814,6 +815,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						<div class="modal-body">
 							<div class="row">
 									<div class="col-sm-6 col-md-6">
+									<?php 
+							if($totalGrupos > 1){
+							?>
+									<em>Show Group sorted by:</em>
 											<button type="button" class="btn btn-block bg-gradient-info btn-sm" onclick="
 											$('#bxPieChart1').hide();
 											$('#bxPieChart2').hide();
@@ -833,7 +838,25 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 											$('#bxPieChart6').show();
 											$('#bxPieChart7').hide();
 											" >By size of the group slice</button>
+										
 											
+											<?php 
+											}
+											?><br>
+											<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" onclick="
+											$('#bxPieChart1').hide();
+											$('#bxPieChart2').hide();
+											$('#bxPieChart3').hide();
+											$('#bxPieChart4').hide();
+											$('#bxPieChart5').hide();
+											$('#bxPieChart6').hide();
+											$('#bxPieChart7').show();
+											" >sorted by size of the slice, ASSUMING ALL ITEMS EQUAL</button>	
+											
+										
+									</div>
+									<div class="col-sm-6 col-md-6"  >	
+												<em>Show Subgroup sorted by:</em>
 											<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
 											$('#bxPieChart1').hide();
 											$('#bxPieChart2').show();
@@ -856,11 +879,6 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 											$('#btnSBNTS2').show(); */
 											">sorted by size of the slice</button>
 											
-											
-										
-									</div>
-									<div class="col-sm-6 col-md-6"  >	
-											
 											<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
 											$('#bxPieChart1').hide();
 											$('#bxPieChart2').hide();
@@ -869,9 +887,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 											$('#bxPieChart5').hide();
 											$('#bxPieChart6').hide();
 											$('#bxPieChart7').hide();
-											"  id="btnSBNTS" style="margin-top:0px !important;">sorted by name of the subgroup</button>
+											"  id="btnSBNTS" >sorted by name of the subgroup</button>
 											
-										
+											<?php 
+											if($totalGrupos > 1){
+											?>
 											<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
 											$('#bxPieChart1').show();
 											$('#bxPieChart2').hide();
@@ -881,19 +901,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 											$('#bxPieChart6').hide();
 											$('#bxPieChart7').hide();
 											"  id="btnSBNTS" >Sorted by group name, then by item value</button>
-											
+											<?php 
+											}
+											?>
 									
-											
-											
-											<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" onclick="
-											$('#bxPieChart1').hide();
-											$('#bxPieChart2').hide();
-											$('#bxPieChart3').hide();
-											$('#bxPieChart4').hide();
-											$('#bxPieChart5').hide();
-											$('#bxPieChart6').hide();
-											$('#bxPieChart7').show();
-											" >sorted by size of the slice, ASSUMING ALL ITEMS EQUAL</button>			
+													
 									</div>		
 							</div>		
 							<br>
@@ -904,7 +916,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChart1">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by group name, then by item value</h3>
+								<h3 class="card-title">Pie chart by group name, then by item value</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -920,7 +932,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChart2" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie by Item Value</h3>
+								<h3 class="card-title">Pie chart by Item Value</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -936,7 +948,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							<!-- /.card -->
 							<div class="card card-danger" id="bxPieChart3" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by size of the slice</h3>
+								<h3 class="card-title">Pie chart by size of the slice</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -951,7 +963,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							</div>
 							<div class="card card-danger" id="bxPieChart4" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by name of the subgroup</h3>
+								<h3 class="card-title">Pie chart by name of the subgroup</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -968,7 +980,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							</div>
 							<div class="card card-danger" id="bxPieChart5" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by sorted by <strong>group</strong> name</h3>
+								<h3 class="card-title">Pie chart by sorted by <strong>group</strong> name</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -985,7 +997,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							</div>
 							<div class="card card-danger" id="bxPieChart6" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie size of the <strong>group</strong> slice</h3>
+								<h3 class="card-title">Pie chart size of the <strong>group</strong> slice</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -1085,7 +1097,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChartGroup1_<?PHP echo $in['id'] ?>">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by name of the subgroup</h3>
+								<h3 class="card-title">Pie chart by name of the subgroup</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -1101,7 +1113,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChartGroup2_<?PHP echo $in['id'] ?>" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by item value</h3>
+								<h3 class="card-title">Pie chart by item value</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -1117,7 +1129,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChartGroup3_<?PHP echo $in['id'] ?>"  style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie Chart by size of the slice</h3>
+								<h3 class="card-title">Pie chart by size of the slice</h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>

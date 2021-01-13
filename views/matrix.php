@@ -149,15 +149,15 @@ require_once("header.php");
 						<!-- ############# INPUT #############-->
 						<div style="float:left; position:static; right:30.2%;margin-top:-48px;"><input type="text" name="uncertainty_range" id="uncertainty_range" style="width:14%;" onblur="
 						
-							if(this.value !='' && (this.value < 0.1 || this.value > 5.0)){ 
+							if(this.value !='' && (this.value < 0.1 || this.value > 4.0)){ 
 						
-							alert('Enter a number between 0.1 and 5.0'); 
+							alert('Enter a number between 0.1 and 4.0'); 
 							
 							}else{
 								
 								loadMatrix(this.value,document.getElementById('expected_scores').value);	
 								ar_magnitudes_risk();
-							}; " value="<?php echo $uncertainty_range; ?>" maxlength="5" onkeypress="return keypressed( this , event );"> <small>Uncertainty threshould</small> <span style="padding:4px; color:#fff" required ><strong>
+							}; " value="<?php echo $uncertainty_range; ?>" maxlength="5" onkeypress="return keypressed( this , event );"> <small>Uncertainty threshold</small> <span style="padding:4px; color:#fff" required ><strong>
 						</strong></span>&nbsp;</div>
 						<!-- ############# END INPUT #############-->
 						
