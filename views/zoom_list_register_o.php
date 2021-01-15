@@ -328,8 +328,12 @@ require_once("header.php");
 								}
 							  })
 							  
-							  alert('Register save successfull');
-							  
+											alert('Register save successfull');
+											if(r == 1){
+												location.reload();
+											}else{
+												location.href = "zoom_list?type=1&risk_id="+<?php echo $_REQUEST['risk_id']; ?>+"&option_id="+<?php echo $_REQUEST['option_id']; ?>;
+											}	
 							   }
 							}
 						</script>	

@@ -353,7 +353,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									success: function(data) {
 										document.getElementById('subgroup_column').style.display='block';
 										document.getElementById('subgroup_column').innerHTML=data;
-										document.getElementById('btnChart').innerHTML="<button type='button' class='btn btn-block bg-gradient-secondary btn-sm'  data-toggle='modal' data-target='#modal-graph"+group_id+"'>Value Pie for the select group</button>";
+										document.getElementById('btnChart').innerHTML="<button type='button' class='btn btn-block bg-gradient-secondary btn-sm'  data-toggle='modal' data-target='#modal-graph"+group_id+"'>Value Pie for the group selected above</button>";
 										
 									}
 									}); 
@@ -841,7 +841,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 											
 											<?php 
-											}
+											}else{
+											?>
+											<span style="color: #4b6e80"><em>Since there is only one group entered, the Group <br>related buttons have been removed.</em></span>
+											<br>
+											<?php	
+											}	
 											?><br>
 											<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" onclick="
 											$('#bxPieChart1').hide();
@@ -1028,11 +1033,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								</div>
 								<!-- /.card-body -->
 								
-							</div>
-							<!-- /.card -->
-						</div><!--
-						<div class="modal-footer justify-content-between">
-							<a href="javascript:void(0)" onclick="document.location.reload(true);"><center><button type="button" class="btn btn-success">close & refresh calculations</button></center></a>
+							</div><a href="javascript:void(0)" onclick="document.location.reload(true);"><center><button type="button" class="btn btn-success">close & refresh calculations</button></center></a>
+							
+						</div>
+						<!--<div class="modal-footer justify-content-between">
+							
 						</div>-->
 						</div>
 						<!-- /.modal-content -->
@@ -1060,7 +1065,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Value Pie for the selected group (<?php echo $in['name'];  ?>)</h4>
+							<h4 class="modal-title">Value Pie for the group selected above (<?php echo $in['name'];  ?>)</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
@@ -1147,11 +1152,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<a href="javascript:void(0)" onclick="document.location.reload(true);"><center><button type="button" class="btn btn-success">close & refresh calculations</button></center></a>
 							<!-- /.card -->
-						</div>
+						</div><!--
 						<div class="modal-footer justify-content-between">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 							<button type="button" class="btn btn-primary">Save changes</button>
-						</div>
+						</div>-->
 						</div>
 						<!-- /.modal-content -->
 					</div>

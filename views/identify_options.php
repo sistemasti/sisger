@@ -108,7 +108,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div style="padding:7px;background-color:#f5f5f5;-webkit-box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.3);
 -moz-box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.3);
-box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.3);cursor:pointer"  onclick="$( '#subgroup_column' ).show('slow');identify_option_html(<?php echo $in['id']; ?>)"><strong> <?php echo $in['name']; ?></strong>
+box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.3);cursor:pointer"  onclick="$( '#subgroup_column' ).show('slow');identify_option_html(<?php echo $in['id']; ?>);window.scrollTo(0, 0)"><strong> <?php echo $in['name']; ?></strong>
 <br>
 <em><?php echo databr($in['data_analyzed']); ?> </em>
 </div>

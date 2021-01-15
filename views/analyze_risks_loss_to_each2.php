@@ -311,6 +311,7 @@
 											}
 												
 											magnitudeRisk_o();
+											changeTypeCalc(2);	
 									}
 
 								}
@@ -371,7 +372,7 @@
 											</div>
 											
 											<br>
-											Select the type of scales, then choose from the selection offered (if you use any of the 'Steps' options, you can convert between them by changin the option):
+											Select the type of scales, then choose from the selection offered (if you use any of the 'Steps' options, you can convert between them by changing the option):
 											<br>
 											<br>
 											<div class="row">

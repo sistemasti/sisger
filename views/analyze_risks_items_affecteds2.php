@@ -49,6 +49,7 @@
 											document.getElementById('magnitude_IA_MEDIA_o').innerHTML = media.toFixed(1);
 										}	
 										
+										//document.getElementById('magnitude_IA_Min_o').innerHTML = value;
 										document.getElementById('ia_Div_'+field+"_o").innerHTML = value;
 										document.getElementById('ia_Inp_'+field+"_o").value = value;
 										
@@ -60,7 +61,8 @@
 									}
 									
 									magnitudeRisk_o();
-
+									changeTypeCalc(2);
+									//alert('4: '+document.getElementById('magnitude_IA_Min_o').innerHTML);
 								}
 
 							</script>	 

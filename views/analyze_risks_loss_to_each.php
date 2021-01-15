@@ -160,11 +160,23 @@
 											magnitudeRisk();
 									}
 								}
-
+								
+								
+								function selectElement(id, valueToSelect) {    
+					let element = document.getElementById(id);
+					element.value = valueToSelect;
+				}
 							</script>
+							
 							<input type="hidden" name="valid1" id="valid1" value="0">
 							<input type="hidden" name="valid2" id="valid2" value="0">
 							<input type="hidden" name="valid3" id="valid3" value="0">
+							
+							<input type="hidden" name="valid1b" id="valid1b" value="0">
+							<input type="hidden" name="valid2b" id="valid2b" value="0">
+							<input type="hidden" name="valid3b" id="valid3b" value="0">
+							
+							
 							<input type="hidden" name="valid4" id="valid4" value="0">
 							<input type="hidden" name="valid5" id="valid5" value="0">
 							<input type="hidden" name="valid6" id="valid6" value="0">
@@ -221,7 +233,31 @@
 													document.getElementById('bxDecimals').style.display='none';
 													document.getElementById('bxAnyDecimals').style.display='none';
 													
+													selectElement('he', '');
+													selectElement('pl', '');
+													selectElement('le', '');
+													
+													document.getElementById('valid1b').value=0;
+													document.getElementById('valid2b').value=0;
+													document.getElementById('valid3b').value=0;
+													
+													document.getElementById('B_fdLow').value=0;
+													document.getElementById('B_fdProbable').value=0;
+													document.getElementById('B_fdHigh').value=0;
+													document.getElementById('B_fdUncert').value=0;
+													
+													document.getElementById('B_bxLow').innerHTML='0.0';
+													document.getElementById('B_bxProbable').innerHTML='0.0';
+													document.getElementById('B_bxHigh').innerHTML='0.0';
+													document.getElementById('lei_Div_Range').innerHTML='0.0';
+													
+													document.getElementById('magnitude_LE_Min').innerHTML='0.0';
+													document.getElementById('magnitude_LE_Med').innerHTML='0.0';
+													document.getElementById('magnitude_LE_Max').innerHTML='0.0';
+													document.getElementById('magnitude_LE_MEDIA').innerHTML='0.0';
+													magnitudeRisk();
 													" <?php if($steps == "1"){ echo "checked"; } ?>> Steps in words<br>
+													
 													
 													
 													<input type="radio" name="steps" id="steps2" value="2" onclick="
@@ -230,16 +266,65 @@
 													document.getElementById('bxPercentage').style.display='none';
 													document.getElementById('bxDecimals').style.display='none';
 													document.getElementById('bxAnyDecimals').style.display='none';
+													selectElement('he2', '');
+													selectElement('pl2', '');
+													selectElement('le2', '');
 													
+													document.getElementById('valid1b').value=0;
+													document.getElementById('valid2b').value=0;
+													document.getElementById('valid3b').value=0;
+													
+													document.getElementById('B_fdLow').value=0;
+													document.getElementById('B_fdProbable').value=0;
+													document.getElementById('B_fdHigh').value=0;
+													document.getElementById('B_fdUncert').value=0;
+													
+													document.getElementById('B_bxLow').innerHTML='0.0';
+													document.getElementById('B_bxProbable').innerHTML='0.0';
+													document.getElementById('B_bxHigh').innerHTML='0.0';
+													document.getElementById('lei_Div_Range').innerHTML='0.0';
+													
+													document.getElementById('magnitude_LE_Min').innerHTML='0.0';
+													document.getElementById('magnitude_LE_Med').innerHTML='0.0';
+													document.getElementById('magnitude_LE_Max').innerHTML='0.0';
+													document.getElementById('magnitude_LE_MEDIA').innerHTML='0.0';
+													magnitudeRisk();
 													" <?php if($steps == "2"){ echo "checked"; } ?>> Steps in fraction<br>
+													
+													
+													
+													
 													<input type="radio" name="steps" id="steps3" value="3" onclick="
 													document.getElementById('bxWords').style.display='none';
 													document.getElementById('bxFraction').style.display='none';
 													document.getElementById('bxPercentage').style.display='block';
 													document.getElementById('bxDecimals').style.display='none';
 													document.getElementById('bxAnyDecimals').style.display='none';
+													selectElement('he3', '');
+													selectElement('pl3', '');
+													selectElement('le3', '');
 													
+													document.getElementById('valid1b').value=0;
+													document.getElementById('valid2b').value=0;
+													document.getElementById('valid3b').value=0;
+													
+													document.getElementById('B_fdLow').value=0;
+													document.getElementById('B_fdProbable').value=0;
+													document.getElementById('B_fdHigh').value=0;
+													document.getElementById('B_fdUncert').value=0;
+													
+													document.getElementById('B_bxLow').innerHTML='0.0';
+													document.getElementById('B_bxProbable').innerHTML='0.0';
+													document.getElementById('B_bxHigh').innerHTML='0.0';
+													document.getElementById('lei_Div_Range').innerHTML='0.0';
+													
+													document.getElementById('magnitude_LE_Min').innerHTML='0.0';
+													document.getElementById('magnitude_LE_Med').innerHTML='0.0';
+													document.getElementById('magnitude_LE_Max').innerHTML='0.0';
+													document.getElementById('magnitude_LE_MEDIA').innerHTML='0.0';
+													magnitudeRisk();
 													" <?php if($steps == "3"){ echo "checked"; } ?>> Steps in percentage<br>
+													
 													
 													<input type="radio" name="steps" id="steps4" value="4" onclick="
 													document.getElementById('bxWords').style.display='none';
@@ -247,7 +332,29 @@
 													document.getElementById('bxPercentage').style.display='none';
 													document.getElementById('bxDecimals').style.display='block';
 													document.getElementById('bxAnyDecimals').style.display='none';
+													selectElement('he4', '');
+													selectElement('pl4', '');
+													selectElement('le4', '');
 													
+													document.getElementById('valid1b').value=0;
+													document.getElementById('valid2b').value=0;
+													document.getElementById('valid3b').value=0;
+													
+													document.getElementById('B_fdLow').value=0;
+													document.getElementById('B_fdProbable').value=0;
+													document.getElementById('B_fdHigh').value=0;
+													document.getElementById('B_fdUncert').value=0;
+													
+													document.getElementById('B_bxLow').innerHTML='0.0';
+													document.getElementById('B_bxProbable').innerHTML='0.0';
+													document.getElementById('B_bxHigh').innerHTML='0.0';
+													document.getElementById('lei_Div_Range').innerHTML='0.0';
+													
+													document.getElementById('magnitude_LE_Min').innerHTML='0.0';
+													document.getElementById('magnitude_LE_Med').innerHTML='0.0';
+													document.getElementById('magnitude_LE_Max').innerHTML='0.0';
+													document.getElementById('magnitude_LE_MEDIA').innerHTML='0.0';
+													magnitudeRisk();
 													" <?php if($steps == "4"){ echo "checked"; } ?> >  Steps in decimals<br>
 													
 													
@@ -257,7 +364,29 @@
 													document.getElementById('bxPercentage').style.display='none';
 													document.getElementById('bxDecimals').style.display='none';
 													document.getElementById('bxAnyDecimals').style.display='block';
+													selectElement('he5', '');
+													selectElement('pl5', '');
+													selectElement('le5', '');
 													
+													document.getElementById('valid1b').value=0;
+													document.getElementById('valid2b').value=0;
+													document.getElementById('valid3b').value=0;
+													
+													document.getElementById('B_fdLow').value=0;
+													document.getElementById('B_fdProbable').value=0;
+													document.getElementById('B_fdHigh').value=0;
+													document.getElementById('B_fdUncert').value=0;
+													
+													document.getElementById('B_bxLow').innerHTML='0.0';
+													document.getElementById('B_bxProbable').innerHTML='0.0';
+													document.getElementById('B_bxHigh').innerHTML='0.0';
+													document.getElementById('lei_Div_Range').innerHTML='0.0';
+													
+													document.getElementById('magnitude_LE_Min').innerHTML='0.0';
+													document.getElementById('magnitude_LE_Med').innerHTML='0.0';
+													document.getElementById('magnitude_LE_Max').innerHTML='0.0';
+													document.getElementById('magnitude_LE_MEDIA').innerHTML='0.0';
+													magnitudeRisk();
 													" <?php if($steps == "5"){ echo "checked"; } ?> > Any decimal<br>
 												</div>	
 												<div class="col-sm-4 col-md-8">
@@ -271,7 +400,7 @@
 												
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="he" name="he" onchange="range_L_E_I('High',this.value)" >
+														<select class="form-control" id="he" name="he" onchange="range_L_E_I('High',this.value);document.getElementById('valid1b').value=this.value" >
                            <option value="" >select</option>
 																<option value="5.0" <?php if($he == "5.0"){ echo "selected"; } ?> >TOTAL or almost total loss of value in each item affected.</option>
 																<option value="4.5" <?php if($he == "4.5"){ echo "selected"; } ?>>----------- (between total and large on the word scale)</option>
@@ -289,7 +418,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="pl" name="pl"  onchange="range_L_E_I('Probable',this.value)">
+														<select class="form-control" id="pl" name="pl"  onchange="range_L_E_I('Probable',this.value);document.getElementById('valid2b').value=this.value">
                            <option value="" >select</option>
 																<option value="5.0" <?php if($pl == "5.0"){ echo "selected"; } ?>>TOTAL or almost total loss of value in each item affected.</option>
 																<option value="4.5" <?php if($pl == "4.5"){ echo "selected"; } ?>>----------- (between total and large on the word scale)</option>
@@ -307,7 +436,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="le" name="le"  onchange="range_L_E_I('Low',this.value)">
+														<select class="form-control" id="le" name="le"  onchange="range_L_E_I('Low',this.value);document.getElementById('valid3b').value=this.value">
                            <option value="" >select</option>
 																<option value="5.0" <?php if($le == "5.0"){ echo "selected"; } ?>>TOTAL or almost total loss of value in each item affected.</option>
 																<option value="4.5" <?php if($le == "4.5"){ echo "selected"; } ?>>----------- (between total and large on the word scale)</option>
@@ -333,7 +462,7 @@
 												
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="he2" name="he2"  onchange="range_L_E_I('High',this.value)">
+														<select class="form-control" id="he2" name="he2"  onchange="range_L_E_I('High',this.value);document.getElementById('valid1b').value=this.value">
                            <option value="" >select</option>
 																<option value="5.0" <?php if($he2 == "5.0"){ echo "selected"; } ?> >~1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($he2 == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
@@ -352,7 +481,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="pl2" name="pl2"  onchange="range_L_E_I('Probable',this.value)">
+														<select class="form-control" id="pl2" name="pl2"  onchange="range_L_E_I('Probable',this.value);document.getElementById('valid2b').value=this.value">
                            <option value="" >select</option>
 																<option value="5.0" <?php if($pl2 == "5.0"){ echo "selected"; } ?>>~1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($pl2 == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
@@ -370,7 +499,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="le2" name="le2" onchange="range_L_E_I('Low',this.value)">
+														<select class="form-control" id="le2" name="le2" onchange="range_L_E_I('Low',this.value);document.getElementById('valid2b').value=this.value">
                            <option value="" >select</option>
 																<option value="5.0" <?php if($le2 == "5.0"){ echo "selected"; } ?> >~1, total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($le2 == "4.5"){ echo "selected"; } ?> >~1/3  loss of value in each item affected.</option>
@@ -395,7 +524,7 @@
 												
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="he3" name="he3"  onchange="range_L_E_I('High',this.value)">
+														<select class="form-control" id="he3" name="he3"  onchange="range_L_E_I('High',this.value);document.getElementById('valid1b').value=this.value">
                            <option value="" >select</option>
 																<option value="5.0" <?php if($he3 == "5.0"){ echo "selected"; } ?>>~100% total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($he3 == "4.5"){ echo "selected"; } ?>>~30%  loss of value in each item affected.</option>
@@ -413,7 +542,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="pl3" name="pl3" onchange="range_L_E_I('Probable',this.value)">
+														<select class="form-control" id="pl3" name="pl3" onchange="range_L_E_I('Probable',this.value);document.getElementById('valid2b').value=this.value">
                            <option value="" >select</option>
 																<option value="5.0" <?php if($pl3 == "5.0"){ echo "selected"; } ?>>~100% total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($pl3 == "4.5"){ echo "selected"; } ?>>~30%  loss of value in each item affected.</option>
@@ -431,7 +560,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="le3" name="le3" onchange="range_L_E_I('Low',this.value)">
+														<select class="form-control" id="le3" name="le3" onchange="range_L_E_I('Low',this.value);document.getElementById('valid3b').value=this.value">
                            <option value="" >select</option>
 																<option value="5.0"  <?php if($le3 == "5.0"){ echo "selected"; } ?>>~100% total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($le3 == "4.5"){ echo "selected"; } ?>>~30%  loss of value in each item affected.</option>
@@ -457,7 +586,7 @@
 												
 													<div class="form-group">
 														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="he4" name="he4" onchange="range_L_E_I('High',this.value,1)">
+														<select class="form-control" id="he4" name="he4" onchange="range_L_E_I('High',this.value,1);document.getElementById('valid1b').value=this.value">
                            <option value="" >select</option>
 																<option value="5.0" <?php if($he4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($he4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
@@ -477,7 +606,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="pl4" name="pl4"  onchange="range_L_E_I('Probable',this.value,1)">
+														<select class="form-control" id="pl4" name="pl4"  onchange="range_L_E_I('Probable',this.value,1);document.getElementById('valid2b').value=this.value">
                            <option value="" >select</option>
 																<option value="5.0" <?php if($pl4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($pl4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
@@ -495,7 +624,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="le4" name="le4"  onchange="range_L_E_I('Low',this.value,1)">
+														<select class="form-control" id="le4" name="le4"  onchange="range_L_E_I('Low',this.value,1);document.getElementById('valid3b').value=this.value">
                            <option value="" >select</option>
 																<option value="5.0" <?php if($le4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
 																<option value="4.5" <?php if($le4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
@@ -520,15 +649,15 @@
 												<!-- onkeypress='return event.charCode >= 48 && event.charCode <= 57' -->
 													<div class="form-group"> 
 														<label for="Sigla">High estimate</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onblur="range_L_E_I('DecimalsHigh',this.value);" onchange="valida_high_any_decimals(this.value);" value="" onkeypress="return keypressed( this , event );"   maxlength="10">
+														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onblur="range_L_E_I('DecimalsHigh',this.value);" onchange="valida_high_any_decimals(this.value);" value="" onkeypress="return keypressed( this , event );document.getElementById('valid1b').value=this.value"   maxlength="10">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Probable loss to each item affected</label><br>
-														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onblur="range_L_E_I('DecimalsProbable',this.value);" onchange="valida_probable_any_decimals(this.value);" value="" onkeypress="return keypressed( this , event );" maxlength="10">
+														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onblur="range_L_E_I('DecimalsProbable',this.value);" onchange="valida_probable_any_decimals(this.value);" value="" onkeypress="return keypressed( this , event );document.getElementById('valid2b').value=this.value" maxlength="10">
 													</div>
 													<div class="form-group">
 														<label for="Sigla">Low estimate</label><br>
-														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder=""  onchange="valida_low_any_decimals(this.value);"  onblur="range_L_E_I('DecimalsLow',this.value); " value="" onkeypress="return keypressed( this , event );" maxlength="10">
+														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder=""  onchange="valida_low_any_decimals(this.value);"  onblur="range_L_E_I('DecimalsLow',this.value); " value="" onkeypress="return keypressed( this , event );document.getElementById('valid3b').value=this.value" maxlength="10">
 													</div>
 													</div>
 													
@@ -564,7 +693,12 @@
 											</script>
 											<br>
 											<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
-											
+											if(document.getElementById('valid1b').value==0 || document.getElementById('valid2b').value==0 || document.getElementById('valid3b').value==0 ){
+												
+												alert('All fields are required');
+												
+											}else{
+												
 											 if(document.getElementById('steps5').checked == true){
 												 
 												valida_by_button()
@@ -590,6 +724,7 @@
 												loss_to_each_register()
 												
 												}
+											}
 											}
 											">Save</button>
 						    </form>
@@ -817,7 +952,7 @@
 								</div>
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_le_save();loss_to_each_register()">Save changes</button>
+								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_le_save();loss_to_each_register();">Save changes</button>
 								</div>
 							  </div>
 							  <!-- /.modal-content -->

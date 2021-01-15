@@ -32,7 +32,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 					<?php } ?>
 					
 					<?php if($g['method_for_quantifying'] == "2"){ ?>
-					<small>Ratio between subgroups</small>
+					<small>Ratio between value categories</small>
 					<?php } ?>
 					
 					<?php if($g['method_for_quantifying'] == "3"){ ?>
@@ -79,6 +79,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 						
 						$('#zoomSubgroup').show();
 						loadZoomSubgroup(<?php echo $in['id']; ?>);
+						
 						document.getElementById('subgroup_selected').value=<?php echo $in['id']; ?>;" 
 						onblur="if(this.value==0 || this.value ==  ''){ alert('Invalid value'); }else{ subgroup_edit_item(this.value,<?php echo $in['id']; ?>); }document.getElementById('group_name<?php echo $in['id']; ?>').style.backgroundColor='#fff'" 
 						style="display:inline-block;width:70%" 
@@ -87,7 +88,8 @@ include("../controllers/EC_Build_value_pie.class.php");
 					</td>
 					
 					<td>
-					<input type="text" class="form-control" name="soma_for_single<?php echo $in['id']; ?>" id="soma_for_single<?php echo $in['id']; ?>" value="<?php echo $in['soma_for_single']; ?>"  onkeyup="if(this.value!=''){subgroup_edit_soma_for_single(this.value,<?php echo $in['id']; ?>)}" onclick="view_scores(<?php echo $in['id']; ?>,<?php echo $_GET['group_id']; ?>);$('#zoomSubgroup').show();">
+					<input type="text" class="form-control" name="soma_for_single<?php echo $in['id']; ?>" id="soma_for_single<?php echo $in['id']; ?>" value="<?php echo $in['soma_for_single']; ?>"  onkeyup="if(this.value!=''){subgroup_edit_soma_for_single(this.value,<?php echo $in['id']; ?>)};" onclick="view_scores(<?php echo $in['id']; ?>,<?php echo $_GET['group_id']; ?>);$('#zoomSubgroup').show();
+						loadZoomSubgroup(<?php echo $in['id']; ?>);" onblur="view_subgroup(<?php echo $_GET['group_id']; ?>)">
 					</td>
 					
 					<td>

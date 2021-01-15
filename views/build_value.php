@@ -753,7 +753,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							">sorted by size of the group slice</button>
 								
 							<?php 
-							}
+							}else{
+							?>
+							<span style="color: #4b6e80"><em>Since there is only one group entered, the Group <br>related buttons have been removed.</em></span>
+							<br>
+							<?php	
+							}	
 							?><br>
 							<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" onclick="
 							$('#bxPieChart1').hide();
@@ -963,13 +968,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								</div>
 								<!-- /.card-body -->
 								
-							</div>
+							</div><a href="javascript:void(0)" onclick="document.location.reload(true);"><center><button type="button" class="btn btn-success">close & refresh calculations</button></center></a>
 							<!-- /.card -->
 						</div>
-						<div class="modal-footer justify-content-between">
+						<!--<div class="modal-footer justify-content-between">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 							
-						</div>
+						</div>-->
 						</div>
 						<!-- /.modal-content -->
 					</div>
@@ -1079,14 +1084,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								<!-- /.card-body -->
 							</div>
 							
-							
+							<a href="javascript:void(0)" onclick="document.location.reload(true);"><center><button type="button" class="btn btn-success">close & refresh calculations</button></center></a>
 						
 							<!-- /.card -->
 						</div>
-						<div class="modal-footer justify-content-between">
+						<!--<div class="modal-footer justify-content-between">
 							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 							
-						</div>
+						</div>-->
 						</div>
 						<!-- /.modal-content -->
 					</div>

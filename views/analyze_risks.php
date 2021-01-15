@@ -685,17 +685,43 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							
 							//C
-							$("#ia_Inp_Min").val(data['ia_Inp_Min']);
-							$("#ia_Inp_Med").val(data['ia_Inp_Med']);
-							$("#ia_Inp_Max").val(data['ia_Inp_Max']);
-							$("#ia_Inp_Range").val(data['ia_Inp_Range']);
-							$("#explain_ia").val(data['explain_ia']);
 							
-							$("#ia_Div_Min").html(data['ia_Inp_Min']);
-							$("#ia_Div_Med").html(data['ia_Inp_Med']);
-							$("#ia_Div_Max").html(data['ia_Inp_Max']);
-							$("#ia_Div_Range").html(data['ia_Inp_Range']);
-							$("#ia_Div_Range").html(data['ia_Inp_Range']);
+							if(typeof data['ia_Inp_Range'] === 'undefined'){
+									
+									$("#ia_Inp_Min").val('0.0');
+									$("#ia_Inp_Med").val('0.0');
+									$("#ia_Inp_Max").val('0.0');
+									$("#ia_Inp_Range").val('0.0');
+									$("#explain_ia").val(' ');
+									
+									$("#ia_Div_Min").html('0.0');
+									$("#ia_Div_Med").html('0.0');
+									$("#ia_Div_Max").html('0.0');
+									$("#ia_Div_Range").html('0.0');
+									$("#magnitude_IA_Min").html('0.0');
+									$("#magnitude_IA_Med").html('0.0');
+									$("#magnitude_IA_Max").html('0.0');
+									$("#magnitude_IA_MEDIA").html('0.0');
+									
+									magnitudeRisk();
+							
+							}else{
+									
+									$("#ia_Inp_Min").val(data['ia_Inp_Min']);
+									$("#ia_Inp_Med").val(data['ia_Inp_Med']);
+									$("#ia_Inp_Max").val(data['ia_Inp_Max']);
+									$("#ia_Inp_Range").val(data['ia_Inp_Range']);
+									$("#explain_ia").val(data['explain_ia']);
+									
+									$("#ia_Div_Min").html(data['ia_Inp_Min']);
+									$("#ia_Div_Med").html(data['ia_Inp_Med']);
+									$("#ia_Div_Max").html(data['ia_Inp_Max']);
+									$("#ia_Div_Range").html(data['ia_Inp_Range']);
+									
+							}
+							
+							
+							
 							
 							$("#type_score").val(data['type_score']);
 							

@@ -828,24 +828,29 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$("#magnitude_LE_Med_o").html(data['B_fdProbable_o']);
 							$("#magnitude_LE_Max_o").html(data['B_fdHigh_o']);
 							
+							<?php if(!isset($_GET['ca_low'])){ ?>
 							if(data['ia_Inp_Min_o'] == undefined || data['ia_Inp_Min_o'] == 'INF'  || data['ia_Inp_Min_o'] == '-INF'  ){
 								$("#magnitude_IA_Min_o").html('0.0');	
 							}else{
 								$("#magnitude_IA_Min_o").html(data['ia_Inp_Min_o']);	
 							}
+							<?php } ?>
+							//alert('1: '+document.getElementById('magnitude_IA_Min_o').innerHTML);
 							
+							<?php if(!isset($_GET['ca_low'])){ ?>
 							if(data['ia_Inp_Med_o'] == undefined || data['ia_Inp_Med_o'] == 'INF'  || data['ia_Inp_Med_o'] == '-INF' ){
 								$("#magnitude_IA_Med_o").html('0.0');	
 							}else{
 								$("#magnitude_IA_Med_o").html(data['ia_Inp_Med_o']);	
 							}
-							
+							<?php } ?>
+							<?php if(!isset($_GET['ca_low'])){ ?>
 							if(data['ia_Inp_Max_o'] == undefined || data['ia_Inp_Max_o'] == 'INF'  || data['ia_Inp_Max_o'] == '-INF' ){
 								$("#magnitude_IA_Max_o").html('0.0');	
 							}else{
 								$("#magnitude_IA_Max_o").html(data['ia_Inp_Max_o']);	
 							}
-							
+							<?php } ?>
 							//$("#magnitude_IA_Med_o").html(data['ia_Inp_Med_o']);
 							//$("#magnitude_IA_Max_o").html(data['ia_Inp_Max_o']);
 							
@@ -859,6 +864,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$("#magnitude_IA_MEDIA_o").html(data['magnitude_IA_MEDIA_o']);
 							
 							$("#magnitude_SOMA_MEDIA_o").html(data['magnitude_SOMA_MEDIA_o']);
+							
+							//alert("7: "+document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML);
 							//alert('3');
 						    $("#agent_o").val(data['agent_o']);
 						    $("#description_o").val(data['summary_o']);						
@@ -1454,8 +1461,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								
 								document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML = somaTotal.toFixed(1);
 								
-								
-								
+								//changeTypeCalc(2);
+								//alert('2: '+document.getElementById('magnitude_IA_Min_o').innerHTML);
+								//alert("8: "+document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML);
 							}	
 							</script>
                 <div class="row">
@@ -1764,7 +1772,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										  //location.reload();
 										}
 									  });
-									 
+									 //alert("1: "+document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML);
 								 }	 
 								 
 								 function registraMR_o(){
@@ -1791,7 +1799,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										  //location.reload();
 										}
 									  });
-									 
+										<?php
+										if(isset($_GET['ca_low'])){
+										?>
+											//alert("2: "+document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML);
+											changeTypeCalc(2);
+										<?php
+										}
+										?>
 								 }	 
 								 
 								 
@@ -1827,6 +1842,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						
 							
 							magnitudeRisk_o();
+							//alert('3: '+document.getElementById('magnitude_IA_Min_o').innerHTML);
+							changeTypeCalc(2);
+							//alert('s2');
 							//alert(document.getElementById('ia_Inp_Med_o').value);
 
 						}
@@ -1863,6 +1881,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										var x = document.querySelectorAll("#bdgTOTAL_o");
 										x[0].style.setProperty("background-color", "#ffc107", "important");
+										
+										//alert("3: "+document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML);
 										
 										
 									}else if(t==2){
@@ -1937,6 +1957,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										var x = document.querySelectorAll("#bdgTOTAL_o");
 										x[0].style.setProperty("background-color", "#17a2b8", "important");
 										
+										//alert("4: "+document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML);
+										
 										
 										
 									}else{
@@ -1973,6 +1995,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										var x = document.querySelectorAll("#bdgTOTAL_o");
 										x[0].style.setProperty("background-color", "#48b461", "important");
+										
+									//	alert("5: "+document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML);
 									
 									} 		
 									
@@ -1994,7 +2018,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										}
 									  });
 									
-									 
+									 //alert("6: "+document.getElementById('magnitude_SOMA_MEDIA_o').innerHTML);
 								 }	 
 								 
 								 
@@ -2199,8 +2223,8 @@ if(isset($_GET['id_option'])){
 	
 	
 	
-	refreshDataByZoom(<?php echo $_GET['ca_high']; ?>,<?php echo $_GET['ca_media']; ?>,<?php echo $_GET['ca_low']; ?>);
-
+	refreshDataByZoom(<?php echo $_GET['ca_high']; ?>,<?php echo $_GET['ca_media']; ?>,<?php echo str_replace("C:","",$_GET['ca_low']); ?>);
+	
 	</script>
 	
 <?php
@@ -2216,8 +2240,8 @@ document.getElementById('ia_Inp_Max_o').value = <?php echo $_GET['ca_high']; ?>;
 document.getElementById('ia_Div_Med_o').innerHTML = <?php echo $_GET['ca_media']; ?>;
 document.getElementById('ia_Inp_Med_o').value = <?php echo $_GET['ca_media']; ?>;
 
-document.getElementById('ia_Div_Min_o').innerHTML = <?php echo $_GET['ca_low']; ?>;
-document.getElementById('ia_Inp_Min_o').value = <?php echo $_GET['ca_low']; ?>;
+document.getElementById('ia_Div_Min_o').innerHTML = <?php echo str_replace("C:","",$_GET['ca_low']); ?>;
+document.getElementById('ia_Inp_Min_o').value = <?php echo str_replace("C:","",$_GET['ca_low']); ?>;
 
-
+changeTypeCalc(2);
 </SCRIPT>
