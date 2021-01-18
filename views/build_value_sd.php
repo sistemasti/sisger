@@ -338,15 +338,16 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									});
 								}
 							
-								function view_subgroup(group_id) {	
+								function view_subgroup(group_id,sid=0) {	
 									//document.getElementById('subgroup_selected').value=group_id;
 									//alert(name);	
 									$.ajax({
 									dataType: 'html',
 									type: "POST",
-									url: "ajax_process/subgroup_load_html_sd.php?group_id="+group_id,
+									url: "ajax_process/subgroup_load_html_sd.php?group_id="+group_id+"&sid="+sid,
 									data: {
-										name:name		
+										name:name,		
+										sid:sid		
 									},
 									processData: false,
 									contentType: false,
@@ -354,7 +355,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										document.getElementById('subgroup_column').style.display='block';
 										document.getElementById('subgroup_column').innerHTML=data;
 										document.getElementById('btnChart').innerHTML="<button type='button' class='btn btn-block bg-gradient-secondary btn-sm'  data-toggle='modal' data-target='#modal-graph"+group_id+"'>Value Pie for the group selected above</button>";
-										
+										if(sid !=0){
+											
+											loadZoomSubgroup(sid);
+											
+										}
 									}
 									}); 
 									
@@ -543,7 +548,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									type: "POST",
 									url: "ajax_process/select_subgroup_info.php?id="+id,
 									data: {
-										name:name		
+										name:name
 									},
 									processData: false,
 									contentType: false,

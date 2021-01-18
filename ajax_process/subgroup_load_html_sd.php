@@ -12,9 +12,10 @@ include("../controllers/EC_Build_value_pie.class.php");
 		<br>
 		<div style="padding: 5px;background-color:#f4fbcd">
 		<small><strong>Group:</strong> <?php 
-					
+					$g_name = "";
 					$g = Build_value_pie::select_ec_groups_value_id($_GET['group_id']);
 					echo $g['name'];
+					
 					?></small>
 		</div>
 		<br>
@@ -89,7 +90,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 					
 					<td>
 					<input type="text" class="form-control" name="soma_for_single<?php echo $in['id']; ?>" id="soma_for_single<?php echo $in['id']; ?>" value="<?php echo $in['soma_for_single']; ?>"  onkeyup="if(this.value!=''){subgroup_edit_soma_for_single(this.value,<?php echo $in['id']; ?>)};" onclick="view_scores(<?php echo $in['id']; ?>,<?php echo $_GET['group_id']; ?>);$('#zoomSubgroup').show();
-						loadZoomSubgroup(<?php echo $in['id']; ?>);" onblur="view_subgroup(<?php echo $_GET['group_id']; ?>)">
+						loadZoomSubgroup(<?php echo $in['id']; ?>);" onblur="view_subgroup(<?php echo $_GET['group_id']; ?>,<?php echo $in['id']; ?>)">
 					</td>
 					
 					<td>
@@ -189,7 +190,13 @@ include("../controllers/EC_Build_value_pie.class.php");
 			
 			<br>
 			<br>
-			<div style="display:none" id="zoomSubgroup">
+			<?php
+			//print_r($_GET['sid']);
+			if(isset($_GET['sid']) && $_GET['sid'] !=0){ ?>
+			<div  id="zoomSubgroup">
+			<?php }else{ ?>
+			<div  id="zoomSubgroup" style="display:none">
+			<?php } ?>
 			<button type="button" class="btn btn-block bg-gradient-warning btn-sm" data-toggle="modal" data-target="#modal-sub">Zoom Description</button>
 			</div>
 			
@@ -237,7 +244,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 						<input type="hidden" class="form-control" id="subgroup_selected" name="subgroup_selected" value="" required>
 							<div class="form-group">
 								<label for="Name">Name of this subgroups</label>
-								<input type="text" class="form-control" id="nameSubgroup" name="nameSubgroup" placeholder="" value="" required>
+								<input type="text" class="form-control" id="nameSubgroup" name="nameSubgroup" placeholder="" value="<?PHP echo $g_name; ?>" required>
 								</div>
 								
 								

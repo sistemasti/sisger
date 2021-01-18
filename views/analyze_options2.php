@@ -1642,9 +1642,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								  <tbody>
 									<tr>
 									  <td><?php echo $_SESSION[$_SESSION['lang']]['Frequency or Rate']; ?></td>
-									  <td><div id="magnitude_FR_High"><?php echo $magnitude_FR_High; ?></div></td>
-									  <td><div id="magnitude_FR_Probable"><?php echo $magnitude_FR_Probable; ?></div></td>
 									  <td><div id="magnitude_FR_Low"><?php echo $magnitude_FR_Low; ?></div></td>
+									  <td><div id="magnitude_FR_Probable"><?php echo $magnitude_FR_Probable; ?></div></td>
+									  <td><div id="magnitude_FR_High"><?php echo $magnitude_FR_High; ?></div></td>
 									  <!--<td></td>-->
 									  <td style="text-align:center;"><span class="badge bg-secondary"><div id="magnitude_FR_MEDIA"><?php echo $magnitude_FR_MEDIA; ?></div></span></td>
 									</tr>
