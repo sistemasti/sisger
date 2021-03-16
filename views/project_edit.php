@@ -4,7 +4,7 @@ require_once("header.php");
 
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 ?>
@@ -65,7 +65,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Project Edit</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Project Edit']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -73,7 +73,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="project_report"><button type="button" class="btn btn-block btn-outline-success btn-xs">Return</button></a>
+			<a href="project_report"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Return']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -155,12 +155,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 										$_SESSION['project_fi'] 	= $pi['status']; */
 										
 										
-										echo'<script language= "JavaScript">alert("Registration successful.");location.href="project_report"</script>';
+										echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['Registration successful'].'.");location.href="project_report"</script>';
 										unset($_POST);
 										
 									?>	
 										<div class="alert alert-success">
-											Registration successful.
+											<?php echo $_SESSION[$_SESSION['lang']]['Registration successful']; ?>.
 										</div>
 										
 									<?php	
@@ -186,24 +186,23 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 			  <input type="hidden" name="cadastrar" id="cadastrar" value="1">
 			  <input type="hidden" name="id" id="id" value="<?php echo $_REQUEST['id']; ?>">
 			     <div class="form-group">
-                    <label for="Name">Project</label>
+                    <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Project']; ?></label>
                     <input type="text" class="form-control" id="project" name="project" placeholder="Enter institution name" value="<?php echo $project; ?>" required <?php echo $readonly; ?>>
                   </div>
 				  
 				  <div class="form-group">
-                    <label for="Name">Note</label>
+                    <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Note']; ?></label>
                     <textarea name="note" id="note" class="form-control"  <?php echo $readonly; ?>><?php echo $note; ?></textarea>
                   </div>
 				  
 			    <div class="form-group">
-                    <label for="Name">Time horizon in years
-for this project</label>
+                    <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Time horizon in years for this project']; ?></label>
                     <input type="text" class="form-control" id="time_horizon" name="time_horizon" placeholder="Enter project name" value="<?php echo $time_horizon; ?>" required  <?php echo $readonly; ?> onKeyDown="Mascara(this,Integer);" maxlength="4" onKeyPress="Mascara(this,Integer);" onKeyUp="Mascara(this,Integer);">
                   </div>
 				  
 				  
 				  <div class="form-group">	
-                        <label>Institution</label>
+                        <label><?php echo $_SESSION[$_SESSION['lang']]['Institution']; ?></label>
 						<?php if($_SESSION['perfil_logado'] == "1"){ ?>
                         <select class="form-control" id="institutions_id" name="institutions_id">
                            <?php 
@@ -239,14 +238,14 @@ for this project</label>
                 </div>
 				  
 				  
-				<?php if($i['status'] == "1") { ?><button type="submit" class="btn btn-block bg-gradient-primary btn-sm">Register
+				<?php if($i['status'] == "1") { ?><button type="submit" class="btn btn-block bg-gradient-primary btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['Register']; ?>
 				<?php } ?>
 				</button>
               </form>
               </div> 
 			  <div class="col-sm-4 col-md-6">
                <div class="callout callout-info">
-                  <h5>Project Edit</h5>
+                  <h5><?php echo $_SESSION[$_SESSION['lang']]['Project Edit']; ?></h5>
 
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum est id elit auctor consequat. In mattis massa nibh, et scelerisque ipsum molestie sit amet. Nulla sagittis consectetur odio non eleifend. </p>
                 </div>

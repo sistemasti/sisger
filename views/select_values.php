@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -66,7 +66,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Select the values scale</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Select the values scale']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -134,11 +134,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									<div class="row">
 										<div class="col-sm-4 col-md-6" style="text-align:right; ">
 											<div style="margin-top:6px;">
-												The items do not possess this contributing value
+												<?php echo $_SESSION[$_SESSION['lang']]['Selected ratio between consecutive steps in the scale below']; ?>
 											</div>	
 										</div>
 										<div class="col-sm-4 col-md-1">
-											<input type="text" class="form-control" id="ratio" name="ratio" value="<?php echo $ratio; ?>" required  onKeyUp="maskIt(this,event,'##########',true)" maxlength="5">
+											<input type="text" class="form-control" id="ratio" name="ratio" value="<?php echo $ratio; ?>" required  onKeyUp="maskIt(this,event,'##########',true)" maxlength="5"  style="text-align:right;">
 										</div>
 										<div class="col-sm-4 col-md-5">
 											<div style="margin-top:6px;">
@@ -148,7 +148,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 													}else{
 														valueScale();
 													}
-													">save & refresh</button>
+													"><?php echo $_SESSION[$_SESSION['lang']]['save & refresh']; ?></button>
 											</div>	
 										</div>
 									</div>
@@ -159,46 +159,30 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									<div class="row">
 										<div class="col-sm-4 col-md-6" style="text-align:right; ">
 											<div style="margin-top:6px;">
-												The items do not possess this contributing value <strong> None </strong>
+												<?php echo $_SESSION[$_SESSION['lang']]['The items do not possess this contributing value NONE']; ?>.
 											</div>	
 										</div>
 										<div class="col-sm-4 col-md-1">
-											<input type="text" class="form-control" id="v_none" name="v_none" value="<?php echo $none; ?>" required readonly>
+											<input type="text" class="form-control" id="v_none" name="v_none" value="<?php echo $none; ?>" required readonly style="text-align:right;">
 										</div>
 										<div class="col-sm-4 col-md-5">
 											<div style="margin-top:6px;">
-												The items do not possess this contributing value
+												
 											</div>	
 										</div>
 									</div><br>
 										<div class="row">
 										<div class="col-sm-4 col-md-6" style="text-align:right; ">
 											<div style="margin-top:6px;">
-												The occurrence of this contributing value in the items is <strong> very small </strong>
+												<?php echo $_SESSION[$_SESSION['lang']]['The occurrence of this contributing value in the items is VERY SMALL']; ?>.
 											</div>	
 										</div>
 										<div class="col-sm-4 col-md-1">
-											<input type="text" class="form-control" id="v_very_small" name="v_very_small" value="<?php echo $very_small; ?>" required readonly>
+											<input type="text" class="form-control" id="v_very_small" name="v_very_small" value="<?php echo $very_small; ?>" required readonly style="text-align:right;">
 										</div>
 										<div class="col-sm-4 col-md-5">
 											<div style="margin-top:6px;">
-												(This is the benchmark step, assigned 1 point)
-											</div>	
-										</div>
-									</div><br>
-									
-										<div class="row">
-										<div class="col-sm-4 col-md-6" style="text-align:right; ">
-											<div style="margin-top:6px;">
-												The occurrence of this contributing value in the items is <strong> small </strong>
-											</div>	
-										</div>
-										<div class="col-sm-4 col-md-1">
-											<input type="text" class="form-control" id="v_small" name="v_small" value="<?php echo $small; ?>" required readonly>
-										</div>
-										<div class="col-sm-4 col-md-5">
-											<div style="margin-top:6px;">
-												times greater than that corresponding to the score “1”
+												(<?php echo $_SESSION[$_SESSION['lang']]['This is the benchmark step, assigned 1 point']; ?>)
 											</div>	
 										</div>
 									</div><br>
@@ -206,15 +190,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										<div class="row">
 										<div class="col-sm-4 col-md-6" style="text-align:right; ">
 											<div style="margin-top:6px;">
-												The occurrence of this contributing value in the items is <strong> medium </strong>
+												<?php echo $_SESSION[$_SESSION['lang']]['The occurrence of this contributing value in the items is SMALL']; ?>.
 											</div>	
 										</div>
 										<div class="col-sm-4 col-md-1">
-											<input type="text" class="form-control" id="v_medium" name="v_medium" value="<?php echo $medium; ?>" required readonly>
+											<input type="text" class="form-control" id="v_small" name="v_small" value="<?php echo $small; ?>" required readonly style="text-align:right;">
 										</div>
 										<div class="col-sm-4 col-md-5">
 											<div style="margin-top:6px;">
-												times greater than that corresponding to the score “1”
+												<?php echo $_SESSION[$_SESSION['lang']]['times greater than that corresponding to the score “1”']; ?>
 											</div>	
 										</div>
 									</div><br>
@@ -222,15 +206,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										<div class="row">
 										<div class="col-sm-4 col-md-6" style="text-align:right; ">
 											<div style="margin-top:6px;">
-												The occurrence of this contributing value in the items is <strong> large </strong>
+												<?php echo $_SESSION[$_SESSION['lang']]['The occurrence of this contributing value in the items is MEDIUM']; ?>.
 											</div>	
 										</div>
 										<div class="col-sm-4 col-md-1">
-											<input type="text" class="form-control" id="v_large" name="v_large" value="<?php echo $large; ?>" required readonly>
+											<input type="text" class="form-control" id="v_medium" name="v_medium" value="<?php echo $medium; ?>" required readonly style="text-align:right;">
 										</div>
 										<div class="col-sm-4 col-md-5">
 											<div style="margin-top:6px;">
-												times greater than that corresponding to the score “1”
+												<?php echo $_SESSION[$_SESSION['lang']]['times greater than that corresponding to the score “1”']; ?>
 											</div>	
 										</div>
 									</div><br>
@@ -238,15 +222,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										<div class="row">
 										<div class="col-sm-4 col-md-6" style="text-align:right; ">
 											<div style="margin-top:6px;">
-												The occurrence of this contributing value in the items is <strong> very large </strong>
+												<?php echo $_SESSION[$_SESSION['lang']]['The occurrence of this contributing value in the items is LARGE']; ?>.
 											</div>	
 										</div>
 										<div class="col-sm-4 col-md-1">
-											<input type="text" class="form-control" id="v_very_large" name="v_very_large" value="<?php echo $very_large; ?>" required readonly>
+											<input type="text" class="form-control" id="v_large" name="v_large" value="<?php echo $large; ?>" required readonly style="text-align:right;">
 										</div>
 										<div class="col-sm-4 col-md-5">
 											<div style="margin-top:6px;">
-												times greater than that corresponding to the score “1”
+												<?php echo $_SESSION[$_SESSION['lang']]['times greater than that corresponding to the score “1”']; ?>
 											</div>	
 										</div>
 									</div><br>
@@ -254,15 +238,31 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										<div class="row">
 										<div class="col-sm-4 col-md-6" style="text-align:right; ">
 											<div style="margin-top:6px;">
-												The occurrence of this contributing value in the items is <strong> exceptional </strong>
+												<?php echo $_SESSION[$_SESSION['lang']]['The occurrence of this contributing value in the items is VERY LARGE']; ?>.
 											</div>	
 										</div>
 										<div class="col-sm-4 col-md-1">
-											<input type="text" class="form-control" id="v_exceptional" name="v_exceptional" value="<?php echo $excepitional; ?>" required readonly>
+											<input type="text" class="form-control" id="v_very_large" name="v_very_large" value="<?php echo $very_large; ?>" required readonly style="text-align:right;">
 										</div>
 										<div class="col-sm-4 col-md-5">
 											<div style="margin-top:6px;">
-												times greater than that corresponding to the score “1”
+												<?php echo $_SESSION[$_SESSION['lang']]['times greater than that corresponding to the score “1”']; ?>
+											</div>	
+										</div>
+									</div><br>
+									
+										<div class="row">
+										<div class="col-sm-4 col-md-6" style="text-align:right; ">
+											<div style="margin-top:6px;">
+												<?php echo $_SESSION[$_SESSION['lang']]['The occurrence of this contributing value in the items is EXCEPTIONAL']; ?>.
+											</div>	
+										</div>
+										<div class="col-sm-4 col-md-1">
+											<input type="text" class="form-control" id="v_exceptional" name="v_exceptional" value="<?php echo $excepitional; ?>" required readonly style="text-align:right;">
+										</div>
+										<div class="col-sm-4 col-md-5">
+											<div style="margin-top:6px;">
+												<?php echo $_SESSION[$_SESSION['lang']]['times greater than that corresponding to the score “1”']; ?> 
 											</div>	
 										</div>
 									</div>
@@ -290,15 +290,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					//document.getElementById('bxError').style.display='none';
 					/*document.getElementById('bxSucess').style.display='block';
 					document.getElementById('bxSucess').innerHTML=data[1]; */
-					
-					alert("registro realizado com sucesso");
+					alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Registration successful']."'"; ?>);
+					//alert("registro realizado com sucesso");
 					
 			}else{ 
 				//	document.getElementById('bxError').style.display='block';
 				/* 	document.getElementById('bxSucess').style.display='none';*/
 				///	document.getElementById('bxError').innerHTML=data[1]; 
-				
-					alert("erro no servidor, tente novaente mais tarde");
+					alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['server error']."'"; ?>);
+					//alert("server error");
 	
 			}	
 			window.scrollTo(0, 0);

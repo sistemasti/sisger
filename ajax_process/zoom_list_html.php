@@ -35,7 +35,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 				document.getElementById('C_type_list').value=1;			
 				
 				
-				" checked> Items listed are all affected
+				" checked> <?php echo $_SESSION[$_SESSION['lang']]['Items listed are all affected']; ?>
 				
 				<br>
 		<input type="radio" name="type_list" id="type_list_2" value="2" onclick="
@@ -59,7 +59,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 				
 				document.getElementById('C_type_list').value=2;	
 				
-				"> Items listed are exposed, but only this many affected:
+				"> <?php echo $_SESSION[$_SESSION['lang']]['Items listed are exposed, but only this many affected']; ?>:
 				
 													<br>
 													<br>
@@ -90,10 +90,10 @@ include("../controllers/EC_Build_value_pie.class.php");
 														<thead>	
 															<tr>
 															  <th style="width:40%"></th>
-															  <th><small>Number of items in subgroup</small></th>
-															  <th><small>Low estimate</small> </th>                
-															  <th><small>Most Probable</small></th>                
-															  <th><small>High estimate</small></th>    
+															  <th><small><?php echo $_SESSION[$_SESSION['lang']]['Number of items in subgroup']; ?></small></th>
+															  <th><small><?php echo $_SESSION[$_SESSION['lang']]['Low estimate']; ?></small> </th>                
+															  <th><small><?php echo $_SESSION[$_SESSION['lang']]['Most Probable']; ?></small></th>                
+															  <th><small><?php echo $_SESSION[$_SESSION['lang']]['High estimate']; ?></small></th>    
 															  
 															</tr>
 															<tr>
@@ -168,7 +168,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 															<td colspan="5"></td>
 															</tr>
 															<tr id="row">
-															  <td colspan="2" style="text-align:right"><small>Using value pie:</small></td>
+															  <td colspan="2" style="text-align:right"><small><?php echo $_SESSION[$_SESSION['lang']]['Using value pie']; ?>:</small></td>
 															 
 															  <td>
 															  <!-- 
@@ -283,7 +283,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 																</td>
 															</tr>
 															<tr >
-															  <td id="row" colspan="2" style="text-align:right"><small>Assuming all items of equal value:</small></td>
+															  <td id="row" colspan="2" style="text-align:right"><small><?php echo $_SESSION[$_SESSION['lang']]['Assuming all items of equal value']; ?>:</small></td>
 															  <!-- 
 															  ###########################################
 															  as divs serão exibidas de acordo com o item selecionado no radio button

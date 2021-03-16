@@ -15,10 +15,10 @@ $agente = Agents::select_ir_agents_id($status['ir_agents_id']);
 
 $dados['agent'] 		= $agente['agent'] != "" ? $agente['agent']:"";
 $dados['summary'] 		= $status['summary'] != "" ? $status['summary']:"";
-
+$dados['risk']		= $status['name'];
 if($ar['num'] > 0){
 	
-	$dados['risk']		= $status['name'];
+	
 	
 	//A	
 	$dados['type_risk']		= $ar['A_type_risk'];

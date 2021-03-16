@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -66,7 +66,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Reports</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Reports']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -86,17 +86,17 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               
               <!-- /.card-header -->
 				<div class="card-body">
-				  <a href="value_pie_pdf" ><button type="button" class="btn btn-block bg-gradient-success btn-sm" data-toggle="modal" data-target="#modal-graph"><i class="fas fa-search"></i> Value pie</button></a> 
+				  <a href="value_pie_pdf" ><button type="button" class="btn btn-block bg-gradient-success btn-sm" data-toggle="modal" data-target="#modal-graph"><i class="fas fa-search"></i> <?php echo $_SESSION[$_SESSION['lang']]['Value pie']; ?></button></a> 
 				 
 				
 				  <hr>
 				 
 				 
-				  <a href="risk_graph_pdf" ><button type="button" class="btn btn-block bg-gradient-success btn-sm"  data-toggle="modal" data-target="#modal-graph-rg"><i class="fas fa-search"></i> Risk graphs</button></a> 
+				  <a href="risk_graph_pdf" ><button type="button" class="btn btn-block bg-gradient-success btn-sm"  data-toggle="modal" data-target="#modal-graph-rg"><i class="fas fa-search"></i> <?php echo $_SESSION[$_SESSION['lang']]['Risk graphs']; ?></button></a> 
 				  <hr>
 				 
 				 
-				  <a href="pdf" target="_blank"><button type="button" class="btn btn-block bg-gradient-success btn-sm"  ><i class="fas fa-search"></i> Risk analysis</button></a> 
+				  <a href="pdf" target="_blank"><button type="button" class="btn btn-block bg-gradient-success btn-sm"  ><i class="fas fa-search"></i> <?php echo $_SESSION[$_SESSION['lang']]['Risk analysis']; ?></button></a> 
 				</div>
               <!-- ./card-body -->
            
@@ -113,7 +113,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Value Pie</h4>
+							<h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Value Pie']; ?></h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
@@ -170,7 +170,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						</div>
 						
 						<div class="modal-footer justify-content-between">
-							<button type="button" class="btn btn-block bg-gradient-info btn-sm" id="downloadPdf"><i class="fas fa-bars"></i> Value pie</button>
+							<button type="button" class="btn btn-block bg-gradient-info btn-sm" id="downloadPdf"><i class="fas fa-bars"></i> <?php echo $_SESSION[$_SESSION['lang']]['Value Pie']; ?></button>
 						</div>
 						</div>
 						<!-- /.modal-content -->
@@ -184,7 +184,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Value Pie</h4>
+							<h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Value Pie']; ?></h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
@@ -196,7 +196,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						</div>
 						
 						<div class="modal-footer justify-content-between">
-							<button type="button" class="btn btn-block bg-gradient-info btn-sm" id="downloadPdf"><i class="fas fa-bars"></i> Value pie</button>
+							<button type="button" class="btn btn-block bg-gradient-info btn-sm" id="downloadPdf"><i class="fas fa-bars"></i> <?php echo $_SESSION[$_SESSION['lang']]['Value Pie']; ?></button>
 						</div>
 						</div>
 						<!-- /.modal-content -->

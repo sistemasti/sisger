@@ -2,9 +2,9 @@
   <!-- Main Footer -->
   <footer class="main-footer">
     <strong><!--CCI Heritage Risk Management Database.--></strong>
-    All rights reserved.
+    <?php echo $_SESSION[$_SESSION['lang']]['All rights reserved']; ?>.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.0.10b
+      <b><?php echo $_SESSION[$_SESSION['lang']]['Version']; ?></b> 1.0.10b
     </div>
   </footer>
 </div>
@@ -39,6 +39,25 @@
       "searching": true,
       "ordering": true,
       "info": true,
+	  <?php if($_SESSION['lang'] == "pt-br"){ ?>
+	   "oLanguage": {
+                    "sProcessing":   "Processando...",
+                    "sLengthMenu":   "Mostrar _MENU_ registros",
+                    "sZeroRecords":  "Não foram encontrados resultados",
+                    "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty":    "Mostrando de 0 até 0 de 0 registros",
+                    "sInfoFiltered": "",
+                    "sInfoPostFix":  "",
+                    "sSearch":       "Pesquisar:",
+                    "sUrl":          "",
+                    "oPaginate": {
+                        "sFirst":    "Primeiro",
+                        "sPrevious": "Anterior",
+                        "sNext":     "Seguinte",
+                        "sLast":     "Último"
+                    }
+                },
+	  <?php } ?>			
       "autoWidth": false,
 	   "order": [[ 0, "desc" ]]
     });
@@ -58,6 +77,25 @@
       "ordering": true,
       "info": true,
       "autoWidth": true,
+	  <?php if($_SESSION['lang'] == "pt-br"){ ?>
+	   "oLanguage": {
+                    "sProcessing":   "Processando...",
+                    "sLengthMenu":   "Mostrar _MENU_ registros",
+                    "sZeroRecords":  "Não foram encontrados resultados",
+                    "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty":    "Mostrando de 0 até 0 de 0 registros",
+                    "sInfoFiltered": "",
+                    "sInfoPostFix":  "",
+                    "sSearch":       "Pesquisar:",
+                    "sUrl":          "",
+                    "oPaginate": {
+                        "sFirst":    "Primeiro",
+                        "sPrevious": "Anterior",
+                        "sNext":     "Seguinte",
+                        "sLast":     "Último"
+                    }
+                },
+	  <?php } ?>
 	   "order": [[ 4, "desc" ]]
     });
   });
@@ -69,11 +107,12 @@
 <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
 <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <!-- ChartJS -->
+
 <script src="plugins/chart.js/Chart.min.js"></script>
 
 <!-- PAGE SCRIPTS -->
 <script src="dist/js/pages/dashboard2.js"></script>
-<script src="dist/js/charts.js"></script>
+<!--<script src="dist/js/charts.js"></script>-->
 <script src="plugins/moment/moment.min.js"></script>
 <script src="plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
 <script >

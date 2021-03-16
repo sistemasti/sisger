@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo '<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -69,11 +69,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
         <div class="row" style="margin-left:10%;">
           <div class="col-md-10" style="text-align:center !important;">
             <div class="card">
-                <h2>Risk Graphs</h2>
+                <h2><?php echo $_SESSION[$_SESSION['lang']]['Risk Graphs']; ?></h2>
              <canvas id="canvasRG" ></canvas>
 			 <BR>
              <button type="button" class="btn btn-block bg-gradient-info btn-sm" id="downloadPdf"><i class="fas fa-bars"></i> PDF</button>
-             <a href="communicate"><button type="button" class="btn btn-block bg-gradient-warning btn-sm" ><i class="fas fa-arrow-circle-left"></i> RETURN</button></a>
+             <a href="communicate"><button type="button" class="btn btn-block bg-gradient-warning btn-sm" ><i class="fas fa-arrow-circle-left"></i> <?php echo $_SESSION[$_SESSION['lang']]['RETURN']; ?></button></a>
             </div>
             <!-- /.card -->
           </div>
@@ -260,7 +260,12 @@ $('#downloadPdf').click(function(event) {
 									foreach($in['dados'] as $in){
 																		
 											$r = AR_Analyse_risks::select_risk_by_id($in['id_risk']);
-											$labels .= "'".$r['name']."',";
+											if(strlen($r['name']) > 40){
+													$labels .= "'".substr($r['name'],0,40)."...',";
+												}else{
+													$labels .= "'".$r['name']."',";
+													
+												}
 											$fr .= "'".$in['Expected_Scores_FR']."',";
 											$le .= "'".$in['Expected_Scores_LE']."',";
 											$ia .= "'".$in['Expected_Scores_IA']."',";
@@ -299,8 +304,6 @@ $('#downloadPdf').click(function(event) {
 		window.onload = function() {
 			
 				
-		
-			
 			var ctx = document.getElementById('canvasRG').getContext('2d');
 			window.myBar = new Chart(ctx, {
 				type: 'horizontalBar',
@@ -318,11 +321,30 @@ $('#downloadPdf').click(function(event) {
 					scales: {
 						xAxes: [{
 							stacked: true,
+							ticks: {
+								fontColor: "#000000",
+								fontSize: 14,
+								stepSize: 1,
+								beginAtZero: true
+							}
 						}],
 						yAxes: [{
-							stacked: true
+							stacked: true,
+							ticks: {
+								fontColor: "#000000",
+								fontSize: 14,
+								stepSize: 1,
+								beginAtZero: true
+							}
 						}]
-					}
+					},
+					legend: {
+						labels: {
+								fontColor: "black",
+								fontSize: 16
+							},
+							onClick: (e) => e.stopPropagation()
+						}
 				}
 			});
 		};

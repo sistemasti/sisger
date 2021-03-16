@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 ?>
@@ -63,7 +63,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Mixed Values</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Mixed Values']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -321,13 +321,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					  <div class="card-header p-0 border-bottom-0">
 						<ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
 						  <li class="nav-item">
-							<a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="true">Enter the values</a>
+							<a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="true"><?php echo $_SESSION[$_SESSION['lang']]['Enter the values']; ?></a>
 						  </li>
 						  <li class="nav-item">
-							<a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="false">Select the values scale</a>
+							<a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="false"><?php echo $_SESSION[$_SESSION['lang']]['Select the values scale']; ?></a>
 						  </li>
 						  <li class="nav-item">
-							<a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill" href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages" aria-selected="false">Build the Value Pie</a>
+							<a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill" href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages" aria-selected="false"><?php echo $_SESSION[$_SESSION['lang']]['Build the Value Pie']; ?></a>
 						  </li>
 
 						</ul>
@@ -353,7 +353,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									  <li class="breadcrumb-item active">Report Institution</li>
 									</ol>
 									<br>-->
-									<a href="values_register"><button type="button" class="btn btn-block btn-outline-success btn-xs">Register a new value</button></a>
+									<a href="values_register"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new value']; ?></button></a>
 								  </div>
 								</div>
 							  </div><!-- /.container-fluid -->
@@ -369,10 +369,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									   <thead>
 																<tr>
 																  <th>ID</th>
-																  <th>Name</th>                
-																  <th>Weight</th>                
-																  <th>Definition</th>                
-																  <th>Notes</th>                
+																  <th><?php echo $_SESSION[$_SESSION['lang']]['Name']; ?></th>                
+																  <th><?php echo $_SESSION[$_SESSION['lang']]['Weight']; ?></th>                
+																  <th><?php echo $_SESSION[$_SESSION['lang']]['Definition']; ?></th>                
+																  <th><?php echo $_SESSION[$_SESSION['lang']]['Notes']; ?></th>                
 																  <th></th>                
 																 
 																</tr>

@@ -60,7 +60,7 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Edit Risks</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Edit Risks']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -68,7 +68,7 @@ require_once("header.php");
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="ir_risks"><button type="button" class="btn btn-block btn-outline-success btn-xs">Return</button></a>
+			<a href="ir_risks"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Return']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -138,7 +138,7 @@ require_once("header.php");
 										
 									?>	
 										<div class="alert alert-success">
-											Registration successful.
+											<?php echo $_SESSION[$_SESSION['lang']]['Registration successful']; ?>.
 										</div>
 										
 									<?php	
@@ -165,20 +165,21 @@ require_once("header.php");
 					  <input type="hidden" name="id" id="id" value="<?php echo $_REQUEST['id']; ?>">
 					  
 						<div class="form-group">
-							<label for="Name">Name</label>
+							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Name']; ?></label>
 							<input type="text" class="form-control" id="name" name="name" placeholder="Risk name" value="<?php echo $name; ?>" required <?php echo $readonly; ?>>
 						</div>
 						  
 						<div class="form-group">
-							<label for="Name">Summary</label>
+							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Summary']; ?></label>
 							<textarea class="form-control" id="summary" name="summary" placeholder="Risk summary sentence" <?php echo $readonly; ?> maxlength="500"><?php echo $summary; ?></textarea>
 						</div>
 						  
 						<div class="form-group">	
-                        <label>Agent</label>
+                        <label><?php echo $_SESSION[$_SESSION['lang']]['Agent']; ?></label>
 						
                         <select class="form-control" id="ir_agents_id"
 					name="ir_agents_id" <?php echo $readonly; ?>>
+					<option value=""></option>
                            <?php 
 							$in = Agents::select_ir_agents();												
 							foreach($in['dados'] as $in){
@@ -204,7 +205,7 @@ require_once("header.php");
                 </div>
 						  
 				<div class="form-group">	
-                        <label>Risk group name</label>
+                        <label><?php echo $_SESSION[$_SESSION['lang']]['Risk group name']; ?></label>
 						
                         <select class="form-control" id="ec_groups_id"
 					name="ec_groups_id" <?php echo $readonly; ?>>
@@ -234,7 +235,7 @@ require_once("header.php");
                 </div>
 						
 				 <div class="form-group">
-                  <label>Date analyzed </label>
+                  <label><?php echo $_SESSION[$_SESSION['lang']]['Date analyzed']; ?> </label>
 
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -257,7 +258,7 @@ require_once("header.php");
               </div> 
 			  <div class="col-sm-4 col-md-6">
                <div class="callout callout-info">
-                  <h5>Identify Risks</h5>
+                  <h5><?php echo $_SESSION[$_SESSION['lang']]['Identify Risks']; ?></h5>
 
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum est id elit auctor consequat. In mattis massa nibh, et scelerisque ipsum molestie sit amet. Nulla sagittis consectetur odio non eleifend. </p>
                 </div>

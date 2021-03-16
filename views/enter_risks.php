@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+		echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -66,7 +66,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Identify Options</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Identify Options']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -91,7 +91,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				
 				<div class="card">
 					<div class="card-body">
-					<h3>Original riscs</h3>
+					<h3><?php echo $_SESSION[$_SESSION['lang']]['Original risks']; ?></h3>
 						<div>
 						<br>
 							
@@ -118,7 +118,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				
 				
 				<div class="col-sm-8 col-md-8" id="subgroup_column" style="display:block">
-				<h3>Reduction rsk option for he selected risk</h3>
+				<h3><?php echo $_SESSION[$_SESSION['lang']]['Reduction risk option for he selected risk']; ?></h3>
 				</div>
 				
 				</div>
@@ -171,7 +171,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 		},
 		success: function(data) {
 		  $(i).css({"display":"none"});
-		  alert('Record deleted successfully');
+		  //alert('Record deleted successfully');
+		  alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Record deleted successfully']."'"; ?>);
 		  location.reload();
 		}
 	  });

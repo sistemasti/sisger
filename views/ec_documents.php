@@ -2,7 +2,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -74,7 +74,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
             </ol>
 			<br>-->
 			<?php if($readonly != "readonly"){ ?>
-			<a href="document_register"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new document']; ?></button></a>
+			<a href="document_register"><button type="button" class="btn btn-block btn-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new document']; ?></button></a>
 			<?php } ?>
           </div>
         </div>
@@ -90,7 +90,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>ID</th>
+                  
                   <th><?php echo $_SESSION[$_SESSION['lang']]['Name']; ?></th>                
                   <th><?php echo $_SESSION[$_SESSION['lang']]['Comment']; ?></th>                
                   <th><?php echo $_SESSION[$_SESSION['lang']]['Link']; ?></th>                
@@ -108,7 +108,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					?>
 							  
 					<tr id="row<?php echo $in['id'];?>">
-					  <td><?php echo $in['id']; ?></td>
+					  
 					  <td><?php echo $in['name']; ?></td>
 					  <td><?php echo $in['comment']; ?></td>
 					  <td><a href="<?php echo $in['link']; ?>" target="_blank"><?php echo $in['link']; ?></a></td>
@@ -130,7 +130,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					   <?php if($readonly != "readonly"){ ?>
 					   
 					   <a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ document_delete(<?php echo $in['id'];?>)}"><button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:2px;">
-<i class="fas fa-trash-alt"></i> Delete</button></a>
+<i class="fas fa-trash-alt"></i> <?php echo $_SESSION[$_SESSION['lang']]['Delete']; ?></button></a>
 
 					  <?php } ?>
 					  </td>

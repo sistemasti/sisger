@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -66,7 +66,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Enter the values</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Enter the values']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -74,7 +74,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="values_register"><button type="button" class="btn btn-block btn-outline-success btn-xs">Register a new value</button></a>
+			<a href="values_register"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new value']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -90,10 +90,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									   <thead>
 																<tr>
 																  <th>ID</th>
-																  <th>Name</th>                
-																  <th>Weight</th>                
-																  <th>Definition</th>                
-																  <th>Notes</th>                
+																  <th><?php echo $_SESSION[$_SESSION['lang']]['Name']; ?></th>                
+																  <th><?php echo $_SESSION[$_SESSION['lang']]['Weight']; ?></th>                
+																  <th><?php echo $_SESSION[$_SESSION['lang']]['Definition']; ?></th>                
+																  <th><?php echo $_SESSION[$_SESSION['lang']]['Notes']; ?></th>                
 																  <th></th>                
 																 
 																</tr>
@@ -117,9 +117,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																
 																  <td>
 
-																			<a href="values_edit?id=<?php echo $in['id']; ?>"><button type="button" class="btn btn-block btn-info btn-sm">Edit</button></a>
+																			<a href="values_edit?id=<?php echo $in['id']; ?>"><button type="button" class="btn btn-block btn-info btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['Edit']; ?></button></a>
 																			
-																<a href="javascript:void(0)"><button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:4px"  onclick="if(confirm('Do you really want to delete?')){ enter_values_delete(<?php echo $in['id'];?>)}">Delete</button></a>
+																<a href="javascript:void(0)"><button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:4px"  onclick="if(confirm('<?php echo $_SESSION[$_SESSION['lang']]['Do you really want to delete']; ?>?')){ enter_values_delete(<?php echo $in['id'];?>)}"><?php echo $_SESSION[$_SESSION['lang']]['Delete']; ?></button></a>
 																	
 																  </td>
 																</tr>
@@ -183,11 +183,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 		success: function(data) {
 			
 			if(data == 1){		
-				 alert('It is not possible to delete values that are in the build value pie');
+				alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['It is not possible to delete values that are in the build value pie']."'"; ?>);
+				 //alert('');
 			}else{
 				
 			  $(i).css({"display":"none"});
-			  alert('Record deleted successfully');
+			  alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Record deleted successfully']."'"; ?>);
+			 // alert('');
 			  location.reload();
 				
 			}

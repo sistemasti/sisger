@@ -1,7 +1,7 @@
 <?php require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -64,7 +64,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Identify Options</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Identify Options']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -90,7 +90,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				<div class="card" style="background-color:#dee0e4;height:700px;overflow: auto;">
 					<div class="card-body">
 					
-					<h4>Identify Options</h4>
+					<h4><?php echo $_SESSION[$_SESSION['lang']]['Risks']; ?></h4>
 						<div>
 						<br>
 							<?php 
@@ -126,7 +126,7 @@ box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.3);cursor:pointer"  onclick="$( '#subgr
 				</div>
 				
 				
-				<div class="col-sm-8 col-md-8" id="subgroup_column" style="display:none">asd</div>
+				<div class="col-sm-8 col-md-8" id="subgroup_column" style="display:none"></div>
 				
 				</div>
 				<script>

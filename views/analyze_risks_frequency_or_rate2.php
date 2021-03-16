@@ -925,7 +925,7 @@
 						contentType: false,
 						success: function(data) {
 							if(data==1){
-									alert('Register save successfull');
+									alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Register save successfull']."'"; ?>);
 									/*document.getElementById('bxError').style.display='none';
 									document.getElementById('bxSucess').style.display='block';
 									document.getElementById('bxSucess').innerHTML=data[1];
@@ -974,7 +974,7 @@
 									success: function(data) {
 										if(data==1){
 											
-											alert('Registro atualizado com sucesso');
+											alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Register save successfull']."'"; ?>);
 											window.scrollTo(0, 0);
 											registraMR_o();
 										}

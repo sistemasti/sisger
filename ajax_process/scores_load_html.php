@@ -9,9 +9,9 @@ include("../controllers/EC_Enter_values.class.php");
 ?>
 <div class="card">
 <div class="card-body">
-	<h3>Value and their scores</h3>
+	<h4><?php echo $_SESSION[$_SESSION['lang']]['Value and their scores']; ?></h4>
 	<div style="padding: 5px;background-color:#f4fbcd">
-		<small><strong>Subgroup:</strong> <?php 
+		<small><strong><?php echo $_SESSION[$_SESSION['lang']]['Subgroup']; ?>:</strong> <?php 
 					
 					$g = Build_value_pie::select_ec_subgroups_value_id($_GET['subgroup_id']);
 					echo $g['name'];
@@ -68,16 +68,16 @@ include("../controllers/EC_Enter_values.class.php");
 				<center>
 					<select class="form-control" id="pb_<?php echo $in['id']; ?>" name="pb_<?php echo $in['id']; ?>"  onchange="calculate_scores(<?php echo $in['id']; ?>)" style="width:80% !important;">
 						
-						<option value="<?php echo $i['none']; ?>" <?php if($in['value_scale_value'] == $i['none']){ echo "selected"; } ?>>none</option>
-						<option value="<?php echo $i['very_small']; ?>" <?php if($in['value_scale_value'] == $i['very_small']){ echo "selected"; } ?>>very_small</option>
-						<option value="<?php echo $i['small']; ?>" <?php if($in['value_scale_value'] == $i['small']){ echo "selected"; } ?>>small</option>
-						<option value="<?php echo $i['medium']; ?>" <?php if($in['value_scale_value'] == $i['medium']){ echo "selected"; } ?>>medium</option>
-						<option value="<?php echo $i['large']; ?>"  <?php if($in['value_scale_value'] == $i['large']){ echo "selected"; } ?>>large</option>
-						<option value="<?php echo $i['very_large']; ?>" <?php if($in['value_scale_value'] == $i['very_large']){ echo "selected"; } ?>>very_large</option>
-						<option value="<?php echo $i['excepitional']; ?>" <?php if($in['value_scale_value'] == $i['excepitional']){ echo "selected"; } ?>>exceptional</option>
+						<option value="<?php echo $i['none']; ?>" <?php if($in['value_scale_value'] == $i['none']){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['none']; ?></option>
+						<option value="<?php echo $i['very_small']; ?>" <?php if($in['value_scale_value'] == $i['very_small']){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['very_small']; ?></option>
+						<option value="<?php echo $i['small']; ?>" <?php if($in['value_scale_value'] == $i['small']){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['small']; ?></option>
+						<option value="<?php echo $i['medium']; ?>" <?php if($in['value_scale_value'] == $i['medium']){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['medium']; ?></option>
+						<option value="<?php echo $i['large']; ?>"  <?php if($in['value_scale_value'] == $i['large']){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['large']; ?></option>
+						<option value="<?php echo $i['very_large']; ?>" <?php if($in['value_scale_value'] == $i['very_large']){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['very_large']; ?></option>
+						<option value="<?php echo $i['excepitional']; ?>" <?php if($in['value_scale_value'] == $i['excepitional']){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['exceptional']; ?></option>
 					</select>
 					<br>
-					<span id="prob_<?php echo $in['id']; ?>"><?php echo $in['value_scale_value']; ?></span>&nbsp;&nbsp;&nbsp;  <div style="padding:7px; background-color:#ccc">total: <strong><span id="total_<?php echo $in['id']; ?>"><?php echo $in['result']; ?></span></strong></div>
+					<span id="prob_<?php echo $in['id']; ?>"><?php echo $in['value_scale_value']; ?></span>&nbsp;&nbsp;&nbsp;  <div style="padding:7px; background-color:#ccc"><?php echo $_SESSION[$_SESSION['lang']]['total']; ?>: <strong><span id="total_<?php echo $in['id']; ?>"><?php echo $in['result']; ?></span></strong></div>
 				</center> 
 			</div>
 			<a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ value_their_delete(<?php echo $in['id'];?>,<?php echo $_GET['subgroup_id']; ?>); atualiza_value_pie_table(); }" style="text-decoration: none; color:#fff;">
@@ -88,8 +88,8 @@ include("../controllers/EC_Enter_values.class.php");
 		<hr>
 			<?php }
 			}else{
-
-				echo "no results registered";
+				echo $_SESSION[$_SESSION['lang']]['no results registered'];
+				//echo "no results registered";
 
 			}
 			?>
@@ -99,7 +99,7 @@ include("../controllers/EC_Enter_values.class.php");
 																		<br>
 																		<br>
 	<?php $t = Build_value_pie::select_sum_ec_values_and_their_scores($_GET['subgroup_id']); ?>																		
-		<strong> Points in the subgroup: </strong> <span class="btn btn-block btn-outline-success btn-xs" id="html_points_subgroup">
+		<strong> <?php echo $_SESSION[$_SESSION['lang']]['Points in the subgroup']; ?>: </strong> <span class="btn btn-block btn-outline-success btn-xs" id="html_points_subgroup">
 		
 		<?php 
 		
@@ -114,10 +114,10 @@ include("../controllers/EC_Enter_values.class.php");
 			}else{
 				document.getElementById('fd_scores').style.display='none'
 			}
-			">Insert a new score</button>
+			"><?php echo $_SESSION[$_SESSION['lang']]['Insert a new score']; ?></button>
 			<div id="fd_scores" style="display:none">
 			<select class="form-control" id="new_ev" name="new_ev" >
-						<option value="0">select</option>
+						<option value="0"><?php echo $_SESSION[$_SESSION['lang']]['select']; ?></option>
 							<?php 
 									$ev = Enter_values::select_mixed_values_for_report($_SESSION['project_id']);			
 									
@@ -135,16 +135,16 @@ include("../controllers/EC_Enter_values.class.php");
 					
 					<select class="form-control" id="new_pb" name="new_pb"  onchange="calculate_scores(<?php echo $in['id']; ?>)">
 						
-						<option value="<?php echo $i['none']; ?>">none</option>
-						<option value="<?php echo $i['very_small']; ?>">very_small</option>
-						<option value="<?php echo $i['small']; ?>">small</option>
-						<option value="<?php echo $i['medium']; ?>">medium</option>
-						<option value="<?php echo $i['large']; ?>">large</option>
-						<option value="<?php echo $i['very_large']; ?>">very_large</option>
-						<option value="<?php echo $i['excepitional']; ?>">exceptional</option>
+						<option value="<?php echo $i['none']; ?>"><?php echo $_SESSION[$_SESSION['lang']]['none']; ?></option>
+						<option value="<?php echo $i['very_small']; ?>"><?php echo $_SESSION[$_SESSION['lang']]['very_small']; ?></option>
+						<option value="<?php echo $i['small']; ?>"><?php echo $_SESSION[$_SESSION['lang']]['small']; ?></option>
+						<option value="<?php echo $i['medium']; ?>"><?php echo $_SESSION[$_SESSION['lang']]['medium']; ?></option>
+						<option value="<?php echo $i['large']; ?>"><?php echo $_SESSION[$_SESSION['lang']]['large']; ?></option>
+						<option value="<?php echo $i['very_large']; ?>"><?php echo $_SESSION[$_SESSION['lang']]['very_large']; ?></option>
+						<option value="<?php echo $i['excepitional']; ?>"><?php echo $_SESSION[$_SESSION['lang']]['exceptional']; ?></option>
 					</select>
 			
-			<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="if(document.getElementById('new_ev').value=='0'){alert('fill in the name field')}else{score_register(<?php echo $_GET['subgroup_id']; ?>,document.getElementById('new_ev').value,document.getElementById('new_pb').value)}">save</button>
+			<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="if(document.getElementById('new_ev').value=='0'){alert('fill in the name field')}else{score_register(<?php echo $_GET['subgroup_id']; ?>,document.getElementById('new_ev').value,document.getElementById('new_pb').value)}"><?php echo $_SESSION[$_SESSION['lang']]['save']; ?></button>
 			</div>
 	</div>	
 </div>	

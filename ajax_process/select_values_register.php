@@ -78,7 +78,7 @@ include("../controllers/EC_Select_values.class.php");
 									
 									
 									$return[0] = 1;
-									$return[1] = 'Registro realizado com sucesso';
+									$return[1] = $_SESSION[$_SESSION['pt-br']]['Register save successful'];
 									
 								}else{ 
 									

@@ -68,7 +68,7 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Risk History</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Risk History']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -92,7 +92,7 @@ require_once("header.php");
 			 
 			  <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Risk History</h3>
+                <h3 class="card-title"><?php echo $_SESSION[$_SESSION['lang']]['Risk History']; ?></h3>
 
                 <div class="card-tools">
 
@@ -104,7 +104,7 @@ require_once("header.php");
 				<br>
 				
 				<div class="col-sm-4 col-md-4">
-				<strong>Risks</strong>
+				<strong><?php echo $_SESSION[$_SESSION['lang']]['Risks']; ?></strong>
 					<hr>
 						<?php 
 				
@@ -128,11 +128,11 @@ require_once("header.php");
 					
 					
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg" style="margin-top:2px" onclick="return false">
-                  Datasheet by year
+                  <?php echo $_SESSION[$_SESSION['lang']]['Datasheet by year']; ?>
                 </button>
 					
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg-2" style="margin-top:2px" onclick="return false">
-                  Datasheet by risk
+                 <?php echo $_SESSION[$_SESSION['lang']]['Datasheet by risk']; ?> 
                 </button>
 					
 					
@@ -143,7 +143,7 @@ require_once("header.php");
 							<div class="modal-dialog modal-lg">
 							  <div class="modal-content">
 								<div class="modal-header">
-								  <h4 class="modal-title">Datasheet by year</h4>
+								  <h4 class="modal-title"> <?php echo $_SESSION[$_SESSION['lang']]['Datasheet by year']; ?></h4>
 								 
 								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -230,7 +230,7 @@ require_once("header.php");
 							<div class="modal-dialog modal-lg">
 							  <div class="modal-content">
 								<div class="modal-header">
-								  <h4 class="modal-title">Datasheet by risk</h4>
+								  <h4 class="modal-title"> <?php echo $_SESSION[$_SESSION['lang']]['Datasheet by risk']; ?></h4>
 								 
 								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
@@ -317,7 +317,7 @@ require_once("header.php");
 				
 				<div class="col-sm-4 col-md-8">
 				<?php if($_GET['show'] == 'r'){ ?> 
-				Values in %
+				<?php echo $_SESSION[$_SESSION['lang']]['Values in %']; ?>
 				<?php } ?> 
 					<canvas id="canvas"></canvas>
 					
@@ -328,7 +328,7 @@ require_once("header.php");
 					if($_GET['show'] != "r"){
 					?>
 					
-					<small>Total of all original risks: <strong><?php
+					<small><?php echo $_SESSION[$_SESSION['lang']]['Total of all original risks']; ?>: <strong><?php
 
 						$trs = Analyze_options::select_total_original_risk();
 						echo $trs['magnitude_of_risk'];
@@ -339,12 +339,12 @@ require_once("header.php");
 					<?php } ?>
 					<a href="risk_history?id_risk=<?php echo $_GET['id_risk']; ?>">
 					<button type="button" class="btn btn-default" style="margin-top:2px" >
-						Show MR graph
+						<?php echo $_SESSION[$_SESSION['lang']]['Show MR graph']; ?>
 					</button>
 					</a>
 					<a href="risk_history?show=r&id_risk=<?php echo $_GET['id_risk']; ?>">
 					<button type="button" class="btn btn-default" style="margin-top:2px" >
-						Show R graph
+						<?php echo $_SESSION[$_SESSION['lang']]['Show R graph']; ?>
 					</button>
 					</a>
 					<?php }  ?>

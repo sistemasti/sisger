@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -141,13 +141,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 										
 										Institutions::update_institution($name, $code, $sigla, $description, 10, 0, $_REQUEST['id']);
 										
-										echo'<script language= "JavaScript">alert("Registration successful.");location.href="institution_report"</script>';
+										echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['Registration successful'].'.");location.href="institution_report"</script>';
 										
 										unset($_POST);
 										
 									?>	
 										<div class="alert alert-success">
-											Registration successful.
+											<?php echo $_SESSION[$_SESSION['lang']]['Registration successful']; ?>.
 										</div>
 										
 									<?php	
@@ -173,24 +173,24 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 			  <input type="hidden" name="cadastrar" id="cadastrar" value="1">
 			  <input type="hidden" name="id" id="id" value="<?php echo $_REQUEST['id']; ?>">
 			    <div class="form-group">
-                    <label for="Name">Name</label>
+                    <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Name']; ?></label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter institution name" value="<?php echo $name; ?>" required>
                   </div>
 				  
 			    <div class="form-group">
-                    <label for="Sigla">Code</label>
+                    <label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Code']; ?></label>
                     <input type="code" class="form-control" id="code"
 					name="code" placeholder="Enter institution code " value="<?php echo $code; ?>">
                   </div>
 				  
 			    <div class="form-group">
-                    <label for="Sigla">Acronym</label>
+                    <label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Acronym']; ?></label>
                     <input type="text" class="form-control" id="sigla"
 					name="sigla" placeholder="Enter institution acronym"  required value="<?php echo $sigla; ?>">
                 </div>
 				  
 				<div class="form-group">
-                        <label>Description</label>
+                        <label><?php echo $_SESSION[$_SESSION['lang']]['Description']; ?></label>
                         <textarea class="form-control" rows="3" placeholder="Talk about the institution. Your goals, values and mission.." id="description"
 					name="description"><?php echo $description; ?></textarea>
                 </div>
@@ -233,12 +233,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
                          
                         </select>
                 </div>-->
-				<button type="submit" class="btn btn-block bg-gradient-primary btn-sm">Save</button>
+				<button type="submit" class="btn btn-block bg-gradient-primary btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['Save']; ?></button>
               </form>
               </div> 
 			  <div class="col-sm-4 col-md-6">
                <div class="callout callout-info">
-                  <h5>Institution Edit</h5>
+                  <h5><?php echo $_SESSION[$_SESSION['lang']]['Institution Edit']; ?></h5>
 
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum est id elit auctor consequat. In mattis massa nibh, et scelerisque ipsum molestie sit amet. Nulla sagittis consectetur odio non eleifend. </p>
                 </div>

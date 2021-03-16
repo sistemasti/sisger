@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -71,7 +71,7 @@ echo "</pre>"; */
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>List of treatment options and teis Cost-Effectveness</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['List of treatment options and their Cost-Effectveness']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -94,14 +94,14 @@ echo "</pre>"; */
               <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Risk</th>
-                   <th>MR Original</th>                
-                   <th>MR Remaining</th>                
-                   <th>Option name</th>                
-                   <th>Initial cost</th>                
-                   <th>Annual cost</th>                
-                   <th>Annual cost total</th>                
-                   <th>Magnitude of cost-effectness</th>                
+				   <th><?php echo $_SESSION[$_SESSION['lang']]['Risk']; ?></th>
+                   <th><?php echo $_SESSION[$_SESSION['lang']]['MR Original']; ?></th>                
+                   <th><?php echo $_SESSION[$_SESSION['lang']]['MR Remaining']; ?></th>                
+                   <th><?php echo $_SESSION[$_SESSION['lang']]['Option name']; ?></th>                
+                   <th><?php echo $_SESSION[$_SESSION['lang']]['Initial cost']; ?></th>                
+                   <th><?php echo $_SESSION[$_SESSION['lang']]['Annual cost']; ?></th>                
+                   <th><?php echo $_SESSION[$_SESSION['lang']]['Annual cost total']; ?></th>                
+                   <th><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of cost-effectness']; ?></th>                
                  
                 </tr>
                 </thead>
@@ -148,7 +148,7 @@ echo "</pre>"; */
 								echo number_format((round(($annual_cost_total),2)), 2, ',', '.');
 								?></td>
 					  <td><?php 
-					  echo number_format((round(($magnitude_of_cost_effectness),2)), 2, ',', '.');
+					  echo number_format((round(($magnitude_of_cost_effectness),2)), 1, '.', ',');
 					 // echo $magnitude_of_cost_effectness; 
 					  ?></td>
 					</tr>

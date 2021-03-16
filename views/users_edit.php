@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -65,7 +65,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>User Edit</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['User Edit']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -73,7 +73,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="users_report"><button type="button" class="btn btn-block btn-outline-success btn-xs">Return</button></a>
+			<a href="users_report"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Return']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -187,12 +187,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
 												Users::update_user_password($password,$_REQUEST['id']);
 											}	
 										
-										echo'<script language= "JavaScript">alert("Registration successful.");location.href="users_report"</script>';
+										echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['Registration successful'].'.");location.href="users_report"</script>';
 										unset($_POST);
 										
 									?>	
 										<div class="alert alert-success">
-											Registration successful.
+											<?php echo $_SESSION[$_SESSION['lang']]['Registration successful']; ?>.
 										</div>
 										
 									<?php	
@@ -218,7 +218,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
 			  <input type="hidden" name="cadastrar" id="cadastrar" value="1">
 			  <input type="hidden" name="id" id="id" value="<?php echo $_REQUEST['id']; ?>">
 			    <div class="form-group">
-                    <label for="Name">Name</label>
+                    <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Name']; ?></label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="Enter complete name" value="<?php echo $name; ?>" required>
                   </div>
 				  
@@ -241,29 +241,29 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
                 </div>-->
 				
 				<div class="form-group">
-                        <label>Telephone</label>
+                        <label><?php echo $_SESSION[$_SESSION['lang']]['Telephone']; ?></label>
                         <input type="text" class="form-control" id="telephone"
 					name="telephone" placeholder=""  required value="<?php echo $telephone; ?>" onkeydown="Mascara(this,Telefone);" maxlength="15" onkeypress="Mascara(this,Telefone);" onkeyup="Mascara(this,Telefone);">
                 </div>
 				
 				<div class="form-group">
-                        <label>First_acess</label>
+                        <label><?php echo $_SESSION[$_SESSION['lang']]['First_acess']; ?></label>
                         <select class="form-control" id="first_acess"
 					name="first_acess">
-                          <option value="1" <?php if($first_acess == "1"){ echo "selected"; }; ?>>Yes</option>
-                          <option value="0" <?php if($first_acess == "0"){ echo "selected"; }; ?>>No</option>
+                          <option value="1" <?php if($first_acess == "1"){ echo "selected"; }; ?>><?php echo $_SESSION[$_SESSION['lang']]['Yes']; ?></option>
+                          <option value="0" <?php if($first_acess == "0"){ echo "selected"; }; ?>><?php echo $_SESSION[$_SESSION['lang']]['No']; ?></option>
                           
                          
                         </select>
                 </div>
               
 				<div class="form-group">
-                        <label>Password</label>
+                        <label><?php echo $_SESSION[$_SESSION['lang']]['Password']; ?></label>
                         <input type="password" class="form-control" id="password"
 					name="password" placeholder="Enter documentation"  value="">
                 </div>
 				<div class="form-group">	
-                        <label>Institution</label>
+                        <label><?php echo $_SESSION[$_SESSION['lang']]['Institution']; ?></label>
 						<?php if($_SESSION['perfil_logado'] == "1"){ ?>
                         <select class="form-control" id="institutions_id"
 					name="institutions_id">
@@ -299,7 +299,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
 							} ?>
                 </div>
 				<div class="form-group">
-                        <label>Profile</label>
+                        <label><?php echo $_SESSION[$_SESSION['lang']]['Profile']; ?></label>
                         <select class="form-control" id="profiles_id"
 					name="profiles_id">
                            <?php 
@@ -340,12 +340,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" ){
 					}
 					
 					
-					">Register</button>
+					"><?php echo $_SESSION[$_SESSION['lang']]['Register']; ?></button>
               </form>
               </div> 
 			  <div class="col-sm-4 col-md-6">
                <div class="callout callout-info">
-                  <h5>Users Edit</h5>
+                  <h5><?php echo $_SESSION[$_SESSION['lang']]['Users Edit']; ?></h5>
 
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum est id elit auctor consequat. In mattis massa nibh, et scelerisque ipsum molestie sit amet. Nulla sagittis consectetur odio non eleifend. </p>
                 </div>

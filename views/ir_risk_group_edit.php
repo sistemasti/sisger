@@ -60,7 +60,7 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Edit Risk Group</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Edit Risk Group']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -68,7 +68,7 @@ require_once("header.php");
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="ir_risk_group"><button type="button" class="btn btn-block btn-outline-success btn-xs">Return</button></a>
+			<a href="ir_risk_group"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Return']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -114,13 +114,13 @@ require_once("header.php");
 										
 										Risks::update_risk_group($risk_group,$description, $_REQUEST['id']);
 										
-										echo'<script language= "JavaScript">alert("Registration successful.");location.href="ir_risk_group"</script>';
+										echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['Registration successful'].'.");location.href="ir_risk_group"</script>';
 										
 										unset($_POST);
 										
 									?>	
 										<div class="alert alert-success">
-											Registration successful.
+											<?php echo $_SESSION[$_SESSION['lang']]['Registration successful']; ?>.
 										</div>
 										
 									<?php	
@@ -147,12 +147,12 @@ require_once("header.php");
 					  <input type="hidden" name="id" id="id" value="<?php echo $_REQUEST['id']; ?>">
 					  
 					<div class="form-group">
-							<label for="Name">Risk Group</label>
+							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Risk Group']; ?></label>
 							<input type="text" class="form-control" id="risk_group" name="risk_group" placeholder="Risk Group Name" value="<?php echo $risk_group; ?>" required>
 						</div>
 						
 						<div class="form-group">
-                        <label>Description</label>
+                        <label><?php echo $_SESSION[$_SESSION['lang']]['Description']; ?></label>
 								<textarea class="form-control" rows="3" placeholder="Talk about the risk group.." id="description"
 							name="description"><?php echo $description; ?></textarea>
 						</div>
@@ -161,12 +161,12 @@ require_once("header.php");
 						
 						
 				
-				<button type="submit" name="btn2" class="btn btn-block bg-gradient-info btn-sm" value="2">Save
+				<button type="submit" name="btn2" class="btn btn-block bg-gradient-info btn-sm" value="2"><?php echo $_SESSION[$_SESSION['lang']]['Save']; ?>
 					  </form>
               </div> 
 			  <div class="col-sm-4 col-md-6">
                <div class="callout callout-info">
-                  <h5>Risk Group</h5>
+                  <h5><?php echo $_SESSION[$_SESSION['lang']]['Risk Group']; ?></h5>
 
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum est id elit auctor consequat. In mattis massa nibh, et scelerisque ipsum molestie sit amet. Nulla sagittis consectetur odio non eleifend. </p>
                 </div>

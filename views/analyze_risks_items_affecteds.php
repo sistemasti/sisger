@@ -117,7 +117,7 @@ echo "</pre>"; */
 				
 											
 											<br>
-											C.2 <?php echo $_SESSION[$_SESSION['lang']]['Select how this score will be entered']; ?>
+											 <?php echo $_SESSION[$_SESSION['lang']]['Select how this score will be entered']; ?>
 											<br>
 											
 											<input type="radio" name="type_score" id="type_score_1" value="1"  onclick="
@@ -782,7 +782,7 @@ echo "</pre>"; */
 										registraMR();
 										if(data==1){																						
 											if(x==0){
-												alert('Registro atualizado com sucesso');
+												alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Register save successfull']."'"; ?>);
 												window.scrollTo(0, 0);
 											}
 										}

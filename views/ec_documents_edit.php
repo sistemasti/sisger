@@ -4,8 +4,7 @@ require_once("header.php");
 
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
-
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 } 
 
 ?>
@@ -66,7 +65,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Documents Edit</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Documents Edit']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -74,7 +73,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="documents_report"><button type="button" class="btn btn-block btn-outline-success btn-xs">Return</button></a>
+			<a href="documents_report"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Return']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -127,11 +126,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									
 									
 									if($_FILES['att']['type'] != "" && $_FILES['att']['type'] != "image/png" && $_FILES['att']['type'] != "image/jpg" && $_FILES['att']['type'] != "image/jpeg"  && $_FILES['att']['type'] != "application/pdf" ){	
-												$txterr .= "- File type not allowed; Type files only .jpg, .jpeg, .png and .pdfbr>";		
+												$txterr .= "- ".$_SESSION[$_SESSION['lang']]['File type not allowed; Type files only .jpg, .jpeg, .png and .pdf']."<br> ";		
 									}	
 									
 									if($link == "" && $i['file']==""){
-												$txterr .= "- Please write a link or attach a document<br>";		
+											$txterr .= "- ".$_SESSION[$_SESSION['lang']]['Please write a link or attach a document']."<br> ";
+														
 									}	
 									
 									
@@ -139,8 +139,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									$pos2 = strpos($link, 'https://');
 									
 									if(($pos === false && $pos2 === false) && $i['file']==""){
-										
-											$txterr .= "- Link inválido (use http ou https) <br>";		
+											$txterr .= "- ".$_SESSION[$_SESSION['lang']]['Invalid link (use http or https)']."<br> ";
+												
 										
 										
 									}	
@@ -179,13 +179,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
                                         }
 
 										
-										echo'<script language= "JavaScript">alert("Registration successful.");location.href="documents_report"</script>';
+										echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['Registration successful'].'.");location.href="documents_report"</script>';
 										
 										unset($_POST);
 										
 									?>	
 										<div class="alert alert-success">
-											Registration successful.
+											<?php echo $_SESSION[$_SESSION['lang']]['Registration successful']; ?>.
 										</div>
 										
 									<?php	
@@ -211,12 +211,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					  <input type="hidden" name="cadastrar" id="cadastrar" value="1">
 					  <input type="hidden" name="id" id="id" value="<?php echo $_REQUEST['id']; ?>">
 						<div class="form-group">
-							<label for="Name">Document Name</label>
+							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Document Name']; ?></label>
 							<input type="text" class="form-control" id="name" name="name" placeholder="Enter document name" value="<?php echo $name; ?>" required <?php echo $readonly; ?>>
 						</div>
 						  
 						<div class="form-group">
-							<label for="Name">Comment</label>
+							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Comment']; ?></label>
 							<input type="text" class="form-control" id="comment" name="comment" placeholder="Enter comment" value="<?php echo $comment; ?>" <?php echo $readonly; ?>>
 						</div>
 						  
@@ -227,9 +227,9 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 						
 						    
 						<div class="form-group">
-							<label for="Name">... or attachment</label>
+							<label for="Name">... <?php echo $_SESSION[$_SESSION['lang']]['or attachment']; ?></label>
 							<input type="file" class="form-control" value="selecione" placeholder="selecione"  name="att" id="att"  <?php echo $readonly; ?>>
-							<div ><em>Type files only .jpg, .jpeg, .png and .pdf</em></div>
+							<div ><em><?php echo $_SESSION[$_SESSION['lang']]['Type files only']; ?> .jpg, .jpeg, .png and .pdf</em></div>
 							<br>
 							<?php 
 							
@@ -241,13 +241,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							?>
 						</div>	<?php if($readonly != "readonly"){ ?>	
 					
-						<button type="submit" class="btn btn-block bg-gradient-primary btn-sm">Register</button>
+						<button type="submit" class="btn btn-block bg-gradient-primary btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['Register']; ?></button>
 						<?php } ?>
 					  </form>
 				  </div> 
 			  <div class="col-sm-4 col-md-6">
                <div class="callout callout-info">
-                  <h5>Document Edit</h5>
+                  <h5><?php echo $_SESSION[$_SESSION['lang']]['Document Edit']; ?></h5>
 
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum est id elit auctor consequat. In mattis massa nibh, et scelerisque ipsum molestie sit amet. Nulla sagittis consectetur odio non eleifend. </p>
                 </div>

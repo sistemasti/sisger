@@ -70,6 +70,10 @@
 						<center>
 							<h2><?php echo $_SESSION[$_SESSION['lang']]['Welcome to the Risk Management System']; ?></h2>
 						<center>
+						
+						
+
+
                     </p>
 
                     <?php ///phpinfo(); ?>

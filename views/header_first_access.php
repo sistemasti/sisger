@@ -61,7 +61,7 @@ function __autoload($className){
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <span class="nav-link"  style="color:#fff !important;">Welcome, <strong> <?php echo $_SESSION['nome_logado'];  ?></strong></span>
+        <span class="nav-link"  style="color:#fff !important;"><?php echo $_SESSION[$_SESSION['lang']]['Welcome']; ?>, <strong> <?php echo $_SESSION['nome_logado'];  ?></strong></span>
       </li>
      
     </ul>

@@ -61,7 +61,7 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Report Risks</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Report Risks']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -70,7 +70,7 @@ require_once("header.php");
             </ol>
 			<br>-->
 			<?php if($readonly != "readonly"){ ?>
-			<a href="ir_register"><button type="button" class="btn btn-block btn-outline-success btn-xs">Register a new risk</button></a>
+			<a href="ir_register"><button type="button" class="btn btn-block btn-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new risk']; ?></button></a>
 			<?php } ?>
           </div>
         </div>
@@ -83,16 +83,21 @@ require_once("header.php");
               
               <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+			<?PHP 
+			
+			
+			
+			?>
+              <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Summary</th>
-                  <th>Agent</th>                
-                  <th>Risk group name</th>                  
+                 
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Name']; ?></th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Summary']; ?></th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Agent']; ?></th>                
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Risk group name']; ?></th>                  
 				   
-                  <th>Action</th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Action']; ?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -104,7 +109,7 @@ require_once("header.php");
 					?>
 							  
 					<tr id="row<?php echo $in['id'];?>">
-					  <td><?php echo $in['id']; ?></td>
+					 
 					  <!-- td><a href="analyze_risks?view=1&id=<?php echo $in['id']; ?>"> <?php echo $in['name']; ?></a></td -->
             <td><?php echo $in['name']; ?></td>
 					  <td><?php echo $in['summary']; ?></td>
@@ -122,10 +127,10 @@ require_once("header.php");
 					 
 					 
 					  <td>	
-							 <a href="ir_edit?id=<?php echo $in['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm">Edit</button></a>
+							 <a href="ir_edit?id=<?php echo $in['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['Edit']; ?></button></a>
 							 
-							  <a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ risk_delete(<?php echo $in['id'];?>)}"><button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:2px;">
-<i class="fas fa-trash-alt"></i> Delete</button></a>
+							  <a href="javascript:void(0)" onclick="if(confirm('<?php echo $_SESSION[$_SESSION['lang']]['Do you really want to delete']; ?>?')){ risk_delete(<?php echo $in['id'];?>)}"><button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:2px;">
+<i class="fas fa-trash-alt"></i> <?php echo $_SESSION[$_SESSION['lang']]['Delete']; ?></button></a>
 					  </td>
 					  
 					</tr>

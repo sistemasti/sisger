@@ -560,12 +560,12 @@
 							function frequency_or_rate_register() {	
 							
 								if(document.getElementById('risk').value == '#'){
-									
-									alert("Select a risk");
+									alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Select a risk']."'"; ?>);
+									//alert("Select a risk");
 									
 								}else if(document.getElementById('ley').value == '' || document.getElementById('abey').value == '' || document.getElementById('hey').value == ''){
-									
-									alert("All fields are required");
+									alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['All fields are required']."'"; ?>);
+									//alert("All fields are required");
 									
 								}else{	
 								  var formulario = document.getElementById('ar_fr');
@@ -581,7 +581,7 @@
 									success: function(data) {
 										if(data==1){
 											registraMR();
-											alert('Register save successfull');
+											alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Register save successfull']."'"; ?>);
 											window.scrollTo(0, 0);
 										}
 									}

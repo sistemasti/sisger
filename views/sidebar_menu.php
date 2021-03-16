@@ -1,7 +1,5 @@
-<?php
-if (session_status() !== PHP_SESSION_ACTIVE) {
-  session_start();
-}
+<?php session_start();
+
 
 ?>
 
@@ -52,7 +50,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-sign"></i>
               <p>
-                &nbsp;Establish Context
+                &nbsp;<?php echo $_SESSION[$_SESSION['lang']]['Establish Context']; ?>
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -60,7 +58,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
               <li class="nav-item">
                 <a href="documents_report" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Documents</p>
+                  <p><?php echo $_SESSION[$_SESSION['lang']]['Documents']; ?></p>
                 </a>
               </li>
 			  
@@ -75,7 +73,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
-                    Mixed value
+                    <?php echo $_SESSION[$_SESSION['lang']]['Mixed Values']; ?>
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
@@ -83,19 +81,19 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                   <li class="nav-item">
                     <a href="enter_values" class="nav-link">
                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="far fa-dot-circle nav-icon"></i>
-                      <p>Enter the values</p>
+                      <p><?php echo $_SESSION[$_SESSION['lang']]['Enter the values']; ?></p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="select_values" class="nav-link">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="far fa-dot-circle nav-icon"></i>
-                      <p>Select the values scale</p>
+                      <p><?php echo $_SESSION[$_SESSION['lang']]['Select the values scale']; ?></p>
                     </a>
                   </li>
                   <li class="nav-item">
                     <a href="build_value" class="nav-link">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="far fa-dot-circle nav-icon"></i>
-                      <p>Build the value pie</p>
+                      <p><?php echo $_SESSION[$_SESSION['lang']]['Build the value pie']; ?></p>
                     </a>
                   </li>
                 </ul>
@@ -107,7 +105,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                 <a href="#" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
-                    Single general value
+                    <?php echo $_SESSION[$_SESSION['lang']]['Single general value']; ?>
                     <i class="right fas fa-angle-left"></i>
                   </p>
                 </a>
@@ -116,7 +114,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
                   <li class="nav-item">
                     <a href="build_value_sd" class="nav-link">
                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="far fa-dot-circle nav-icon"></i>
-                      <p>Build the value pie</p>
+                      <p><?php echo $_SESSION[$_SESSION['lang']]['Build the value pie']; ?></p>
                     </a>
                   </li>
                 </ul>
@@ -142,14 +140,14 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
           <li class="nav-item <?php if($_SESSION['menu_active'] == "ir_risks"){ echo 'menu-open'; }?>">
             <a href="ir_risks" class="nav-link">
               <i class="nav-icon fas fa-bullseye"></i>
-              <p>Identify Risks</p>
+              <p><?php echo $_SESSION[$_SESSION['lang']]['Identify Risks']; ?></p>
             </a>
           </li>
                     
           <li class="nav-item <?php if($_SESSION['menu_active'] == "analyze_risks"){ echo 'menu-open'; }?>">
             <a href="analyze_risks" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
-              <p>Analyze Risks</p>
+              <p><?php echo $_SESSION[$_SESSION['lang']]['Analyze Risks']; ?></p>
             </a>
           </li>
           
@@ -158,7 +156,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-glasses"></i>
               <p>
-                Evaluate Risk
+               <?php echo $_SESSION[$_SESSION['lang']]['Evaluate Risk']; ?> 
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -166,13 +164,13 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
               <li class="nav-item">
                 <a href="analyze_graphs" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Risk graphs</p>
+                  <p><?php echo $_SESSION[$_SESSION['lang']]['Risk graphs']; ?> </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="matrix" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Magnitude of Risk</p>
+                  <p><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of Risk menu']; ?></p>
                 </a>
               </li>
              
@@ -183,7 +181,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-wrench"></i>
               <p>
-                Treat Risk
+                <?php echo $_SESSION[$_SESSION['lang']]['Treat Risk']; ?>
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -191,31 +189,31 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 			<li class="nav-item">
                 <a href="tr_risk_option" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Risk options</p>
+                  <p><?php echo $_SESSION[$_SESSION['lang']]['Risk options']; ?></p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="identify_options" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Identify options</p>
+                  <p><?php echo $_SESSION[$_SESSION['lang']]['Identify Options']; ?></p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="analyze_options" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Analyze options</p>
+                  <p><?php echo $_SESSION[$_SESSION['lang']]['Analyze Options']; ?></p>
                 </a>
               </li>
              <li class="nav-item">
                 <a href="treat_risk" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Evaluate options</p>
+                  <p><?php echo $_SESSION[$_SESSION['lang']]['Evaluate options']; ?></p>
                 </a>
               </li>
              <li class="nav-item">
                 <a href="risk_history" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Risk History</p>
+                  <p><?php echo $_SESSION[$_SESSION['lang']]['Risk History']; ?></p>
                 </a>
               </li>
              
@@ -224,7 +222,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
           <li class="nav-item <?php if($_SESSION['menu_active'] == "comunicate"){ echo 'menu-open'; }?>">
             <a href="communicate" class="nav-link">
               <i class="nav-icon fas fa-comments"></i>
-              <p>Communicate</p>
+              <p><?php echo $_SESSION[$_SESSION['lang']]['Communicate']; ?></p>
             </a>
           </li>
                     
@@ -234,7 +232,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 		  <?php }else{ ?>
 		  
 		   <li class="nav-item">
-			<div style="padding:7px;background-color:#848468;color:#fff;"><em>Select a project to <br>open more options.</em></div>
+			<div style="padding:7px;background-color:#848468;color:#fff;"><em><?php echo $_SESSION[$_SESSION['lang']]['Select a project to <br>open more options']; ?>.</em></div>
            </li>
 		  <br>&nbsp;
 		  
@@ -245,7 +243,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tools"></i>
               <p>
-               Administration
+               <?php echo $_SESSION[$_SESSION['lang']]['Administration']; ?>
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -255,7 +253,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
               <li class="nav-item">
                 <a href="project_report" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Projects</p>
+                  <p><?php echo $_SESSION[$_SESSION['lang']]['Projects']; ?></p>
                 </a>
               </li>
              <?php } ?>
@@ -264,27 +262,27 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
               <li class="nav-item">
                 <a href="institution_report" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Institutions</p>
+                  <p><?php echo $_SESSION[$_SESSION['lang']]['Institutions']; ?></p>
                 </a>
               </li>
 			
               <li class="nav-item">
                 <a href="users_report" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Users</p>
+                  <p><?php echo $_SESSION[$_SESSION['lang']]['Users']; ?></p>
                 </a>
               </li>
                <?php } ?>
 			   <li class="nav-item">
                 <a href="ir_agents" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Agents</p>
+                  <p><?php echo $_SESSION[$_SESSION['lang']]['Agents']; ?></p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="ir_risk_group" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Risk Groups</p>
+                  <p><?php echo $_SESSION[$_SESSION['lang']]['Risk Groups']; ?></p>
                 </a>
               </li> 
 			  
@@ -294,7 +292,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
           <li class="nav-item">
             <a href="logout" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>Sair</p>
+              <p><?php echo $_SESSION[$_SESSION['lang']]['Exit']; ?></p>
             </a>
           </li>
           

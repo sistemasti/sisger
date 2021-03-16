@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 ?>
@@ -438,7 +438,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 						    $("#agent").val(data['agent']);
 						    $("#description").val(data['summary']);						
-						    $("#explain_le").val('testeeeeeeeeeeee');						
+						    $("#explain_le").val('testeeeeeeeeeeee');			
+							//alert(data['risk']);
 						    $("#zoomRisk").html("<strong>"+data['risk']+"</strong>");						
 						    $("#zoomRisk_le").html("<strong>"+data['risk']+"</strong>");						
 						    $("#zoomRisk_ia").html("<strong>"+data['risk']+"</strong>");						
@@ -591,6 +592,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#pl").val(data['pl']);
 								$("#le").val(data['le']);
 								
+								$("#marcacao1").val(data['he']);
+								$("#marcacao2").val(data['pl']);
+								$("#marcacao3").val(data['le']);
+								
 							}	
 							
 							if(data['steps'] == "2"){
@@ -605,6 +610,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#he2").val(data['he2']);
 								$("#pl2").val(data['pl2']);
 								$("#le2").val(data['le2']);
+								
+								$("#marcacao1").val(data['he2']);
+								$("#marcacao2").val(data['pl2']);
+								$("#marcacao3").val(data['le2']);
 								
 							}	
 							
@@ -621,12 +630,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#pl3").val(data['pl3']);
 								$("#le3").val(data['le3']);
 								
+								$("#marcacao1").val(data['he3']);
+								$("#marcacao2").val(data['pl3']);
+								$("#marcacao3").val(data['le3']);
+								
 							}	
 							
 							if(data['steps'] == "4"){
 								
-								document.getElementById("steps4").checked = true;								
-								
+								document.getElementById("steps4").checked = true;
 								document.getElementById('bxWords').style.display='none';
 								document.getElementById('bxFraction').style.display='none';
 								document.getElementById('bxPercentage').style.display='none';
@@ -636,6 +648,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#he4").val(data['he4']);
 								$("#pl4").val(data['pl4']);
 								$("#le4").val(data['le4']);
+								
+								$("#marcacao1").val(data['he4']);
+								$("#marcacao2").val(data['pl4']);
+								$("#marcacao3").val(data['le4']);
 								
 							}	
 							
@@ -1355,14 +1371,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								 </script>	
 							<div class="row">	
 								<div class="col-sm-4 col-md-4">
-								<button type="button" class="btn btn-block  bg-gradient-info btn-sm" onclick="changeTypeCalc(2)" >Linear triangle distribution (default) </button>
+								<button type="button" class="btn btn-block  bg-gradient-info btn-sm" onclick="changeTypeCalc(2)" ><?php echo $_SESSION[$_SESSION['lang']]['Linear triangle distribution']; ?>(default) </button>
 									
 								</div>
 								<div class="col-sm-4 col-md-4">
-									<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="changeTypeCalc(1)">Log triangle distribution </button>
+									<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="changeTypeCalc(1)"><?php echo $_SESSION[$_SESSION['lang']]['Log triangle distribution']; ?> </button>
 								</div>
 								<div class="col-sm-4 col-md-4">
-									<button type="button" class="btn btn-block bg-gradient-warning btn-sm" onclick="changeTypeCalc(3)">Simple use of problable value</button>
+									<button type="button" class="btn btn-block bg-gradient-warning btn-sm" onclick="changeTypeCalc(3)"><?php echo $_SESSION[$_SESSION['lang']]['Simple use of problable value']; ?></button>
 								</div>
 								
 							</div>	

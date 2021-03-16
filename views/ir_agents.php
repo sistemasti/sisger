@@ -61,7 +61,7 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Report Agents</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Report Agents']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -69,7 +69,7 @@ require_once("header.php");
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="ir_agents_register"><button type="button" class="btn btn-block btn-outline-success btn-xs">Register a new agent</button></a>
+			<a href="ir_agents_register"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new agent']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -81,15 +81,15 @@ require_once("header.php");
               
               <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <!--<th>ID</th>-->
-                  <th>Agent</th>
-                  <th style="width:45%;">Description</th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Agent']; ?></th>
+                  <th style="width:45%;"><?php echo $_SESSION[$_SESSION['lang']]['Description']; ?></th>
                                  
 				   
-                  <th>Action</th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Action']; ?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -106,11 +106,11 @@ require_once("header.php");
 					  <td><?php echo $in['description']; ?></td>
 					  
 					  <td>	
-							 <a href="ir_agents_edit?id=<?php echo $in['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm"><i class="fas fa-pencil-alt"></i> Edit</button></a>
+							 <a href="ir_agents_edit?id=<?php echo $in['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm"><i class="fas fa-pencil-alt"></i> <?php echo $_SESSION[$_SESSION['lang']]['Edit']; ?></button></a>
 							
 							 
-							<a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ agent_delete(<?php echo $in['id'];?>)}"><button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:2px;">
-<i class="fas fa-trash-alt"></i> Delete</button></a>
+							<a href="javascript:void(0)" onclick="if(confirm('<?php echo $_SESSION[$_SESSION['lang']]['Do you really want to delete']; ?>?')){ agent_delete(<?php echo $in['id'];?>)}"><button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:2px;">
+<i class="fas fa-trash-alt"></i> <?php echo $_SESSION[$_SESSION['lang']]['Delete']; ?></button></a>
 					 
 					  </td>
 					  

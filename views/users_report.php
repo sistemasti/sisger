@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 ?>
@@ -65,7 +65,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Report Users</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Report Users']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -73,7 +73,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="user_register"><button type="button" class="btn btn-block btn-outline-success btn-xs">Register a new user</button></a>
+			<a href="user_register"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new user']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -85,21 +85,21 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               
               <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <!--<th>ID</th>-->
-                  <th>Name</th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Name']; ?></th>
                  
-                  <th>Contact</th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Contact']; ?></th>
                  <!-- <th>SSN / CPF</th>
                 
                   <th>Matriculation</th>-->
                  
-                  <th>Institution</th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Institution']; ?></th>
                
 				   <th>Status</th>
-                  <th>Action</th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Action']; ?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -144,15 +144,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								if($us['status']=="1"){
 							?>
 							<center>
-								<a href="javascript:void(0)" onclick="if(confirm('Do you really want to disable?')){users_active(<?php echo $us['id'];?>,0)}"><button type="button" class="btn btn-outline-success btn-sm">active</button></a><br>
-								<small><em>click to disable</em></small>
+								<a href="javascript:void(0)" onclick="if(confirm('Do you really want to disable?')){users_active(<?php echo $us['id'];?>,0)}"><button type="button" class="btn btn-outline-success btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['active']; ?></button></a><br>
+								<small><em><?php echo $_SESSION[$_SESSION['lang']]['click to disable']; ?></em></small>
 							</center>
 							<?php		
 								}else{	
 							?>	
 							<center>
-								<a href="javascript:void(0)" onclick="if(confirm('Do you really want to activate?')){users_active(<?php echo $us['id'];?>,1)}"><button type="button" class="btn btn-block btn-default btn-sm">inactive</button></a><br>
-								<small><em>click to activate</em></small>
+								<a href="javascript:void(0)" onclick="if(confirm('Do you really want to activate?')){users_active(<?php echo $us['id'];?>,1)}"><button type="button" class="btn btn-block btn-default btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['inactive']; ?></button></a><br>
+								<small><em><?php echo $_SESSION[$_SESSION['lang']]['click to activate']; ?></em></small>
 							</center>
 							<?php		
 								}	
@@ -160,7 +160,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 					  </td>
 					  <td>
-					  <a href="users_edit?id=<?php echo $us['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm">Edit</button></a>
+					  <a href="users_edit?id=<?php echo $us['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['Edit']; ?></button></a>
 					  
 					  </td>
 					</tr>

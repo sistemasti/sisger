@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("you dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -66,7 +66,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Report Project</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Report Project']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -74,7 +74,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="project_register"><button type="button" class="btn btn-block btn-outline-success btn-xs">Register a new project</button></a>
+			<a href="project_register"><button type="button" class="btn btn-block btn-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new project']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -90,13 +90,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
                 <thead>
                 <tr>
                   <!--<th>ID</th>-->
-                  <th>Project</th>                
-                  <th>Project type</th>                
-                  <th>Institution</th>                
-                  <th>Time Horizon</th>                
-                  <th>Date register</th>                
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Project']; ?></th>                
+                  <!--<th><?php echo $_SESSION[$_SESSION['lang']]['Project type']; ?></th>-->
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Institution']; ?></th>                
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Time Horizon']; ?></th>                
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Date register']; ?></th>                
 				  <th>Status</th>
-                  <th>Action</th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Action']; ?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -117,8 +117,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					?>
 							  
 					<tr id="row<?php echo $in['id'];?>">
-					  <!--<td><?php echo $in['id']; ?></td>-->
-					  <td><?php echo $in['project']; ?></td>		
+					  <!--<td><?php echo $in['id']; ?></td>
+					  <td><?php echo $in['project']; ?></td>-->		
 					  <td>	<?php 
 
 								if($in['project_type'] == "1"){
@@ -144,15 +144,15 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								if($in['status']=="1"){
 							?>
 							<center>
-								<a href="javascript:void(0)" onclick="if(confirm('Do you really want to disable?')){project_active(<?php echo $in['id'];?>,0)}"><button type="button" class="btn btn-outline-success btn-sm">Under construction</button></a><br>
-								<small><em>click to finish</em></small>
+								<a href="javascript:void(0)" onclick="if(confirm('<?php echo $_SESSION[$_SESSION['lang']]['Do you really want to disable']; ?>?')){project_active(<?php echo $in['id'];?>,0)}"><button type="button" class="btn btn-outline-success btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['Under construction']; ?></button></a><br>
+								<small><em><?php echo $_SESSION[$_SESSION['lang']]['click to finish']; ?></em></small>
 							</center>
 							<?php		
 								}else{	
 							?>	
 							<center>
-								<a href="javascript:void(0)" onclick="if(confirm('Do you really want to reopen? ')){project_active(<?php echo $in['id'];?>,1)}"><button type="button" class="btn btn-block btn-default btn-sm">Finished</button></a>
-								<small><em>click to reopen</em></small>
+								<a href="javascript:void(0)" onclick="if(confirm('Do you really want to reopen? ')){project_active(<?php echo $in['id'];?>,1)}"><button type="button" class="btn btn-block btn-default btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['Finished']; ?></button></a>
+								<small><em><?php echo $_SESSION[$_SESSION['lang']]['click to reopen']; ?></em></small>
 								
 							</center>
 							<?php		
@@ -164,13 +164,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							<?php 
 								if($in['status']=="1"){
 							?>
-								<a href="project_edit?id=<?php echo $in['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm">Edit</button></a>
+								<a href="project_edit?id=<?php echo $in['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['Edit']; ?></button></a>
 								
 							<?php		
 								}else{	
 							?>	
 								
-								<a href="project_edit?id=<?php echo $in['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm">View</button></a>
+								<a href="project_edit?id=<?php echo $in['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['View']; ?></button></a>
 							<?php		
 								}	
 							?>	
@@ -182,7 +182,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									project_delete(<?php echo $in['id'];?>)
 								}
 							}"><button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:2px;">
-<i class="fas fa-trash-alt"></i> Delete</button></a>
+<i class="fas fa-trash-alt"></i> <?php echo $_SESSION[$_SESSION['lang']]['Delete']; ?></button></a>
 					  </td>
 					</tr>
 					
@@ -243,7 +243,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 		},
 		success: function(data) {
 		  $(i).css({"display":"none"});
-		  alert('Record deleted successfully');
+		  alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Record deleted successfully']."'"; ?>);
 		  location.reload();
 		}
 	  });

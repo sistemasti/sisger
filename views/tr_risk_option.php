@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 ?>
@@ -65,7 +65,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Risk options</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Risk options']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -73,7 +73,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="tr_risk_options_register"><button type="button" class="btn btn-block btn-outline-success btn-xs">Register a new option risk</button></a>
+			<a href="tr_risk_options_register"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new option risk']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -131,7 +131,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
                 <tr>
                   <!--<th>ID</th>-->
                   <th>id</th>
-                  <th>option</th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['option']; ?></th>
                   <th></th>
                  
                 </tr>
@@ -148,11 +148,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								  <td><?php echo $in['id']; ?></td>
 								  <td><?php echo $in['option']; ?></td>
 								  <td>	
-							 <a href="tr_risk_options_edit?id=<?php echo $in['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm"><i class="fas fa-pencil-alt"></i> Edit</button></a>
+							 <a href="tr_risk_options_edit?id=<?php echo $in['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm"><i class="fas fa-pencil-alt"></i> <?php echo $_SESSION[$_SESSION['lang']]['Edit']; ?></button></a>
 							
 							 
-							<a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ option_delete(<?php echo $in['id'];?>)}"><button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:2px;">
-<i class="fas fa-trash-alt"></i> Delete</button></a>
+							<a href="javascript:void(0)" onclick="if(confirm('<?php echo $_SESSION[$_SESSION['lang']]['Do you really want to delete']; ?>?')){ option_delete(<?php echo $in['id'];?>)}"><button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:2px;">
+<i class="fas fa-trash-alt"></i> <?php echo $_SESSION[$_SESSION['lang']]['Delete']; ?></button></a>
 					 
 					  </td>
 								</tr>

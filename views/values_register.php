@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo '<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -64,7 +64,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Enter the values</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Enter the values']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -72,7 +72,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="enter_values"><button type="button" class="btn btn-block btn-outline-success btn-xs">return</button></a>
+			<a href="enter_values"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['return']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -141,7 +141,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										if($btn2 == "2"){
 											
-											echo'<script language= "JavaScript">alert("Registration successful.");location.href="enter_values"</script>';
+											echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['Registration successful'].'.");location.href="enter_values"</script>';
 											
 										}
 										
@@ -151,7 +151,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 									?>	
 										<div class="alert alert-success">
-											Registration successful.
+											<?php echo $_SESSION[$_SESSION['lang']]['Registration successful']; ?>.
 										</div>
 										
 									<?php	
@@ -183,24 +183,24 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 			  <input type="hidden" name="cadastrar" id="cadastrar" value="1">
 			  
 			      <div class="form-group">
-                    <label for="Name">Name of this value</label>
+                    <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Name of this value']; ?></label>
                     <input type="text" class="form-control" id="name_value" name="name_value" placeholder="" value="<?php echo $name_value; ?>" required>
                   </div>
 				  
 				  <div class="form-group">
-                    <label for="Name">Weight</label>
+                    <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Weight']; ?></label>
                     <input type="text" class="form-control" id="weight" name="weight" placeholder="" value="<?php echo $weight; ?>" maxlength="10" required onkeypress="return keypressed( this , event );">
                   </div>
 				  
 				  
 				  
 				  <div class="form-group">
-                    <label for="Name">Definition</label>
+                    <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Definition']; ?></label>
                     <textarea name="definition" id="definition" class="form-control" ><?php echo $definition; ?></textarea>
                   </div>
 				  
 				  <div class="form-group">
-                    <label for="Name">Notes</label>
+                    <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Notes']; ?></label>
                     <textarea name="notes" id="notes" class="form-control" ><?php echo $notes; ?></textarea>
                   </div>
 				  
@@ -227,14 +227,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 
 
 				
-				<button type="submit" name="btn1" class="btn btn-block bg-gradient-primary btn-sm" value="1">Save & Add New</button>
+				<button type="submit" name="btn1" class="btn btn-block bg-gradient-primary btn-sm" value="1"><?php echo $_SESSION[$_SESSION['lang']]['Save & Add New']; ?></button>
 				
-				<button type="submit" name="btn2" class="btn btn-block bg-gradient-info btn-sm" value="2">Save & Return</button>
+				<button type="submit" name="btn2" class="btn btn-block bg-gradient-info btn-sm" value="2"><?php echo $_SESSION[$_SESSION['lang']]['Save & Return']; ?></button>
               </form>
               </div> 
 			  <div class="col-sm-4 col-md-6">
                <div class="callout callout-info">
-                  <h5>Value register</h5>
+                  <h5><?php echo $_SESSION[$_SESSION['lang']]['Value register']; ?></h5>
 
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum est id elit auctor consequat. In mattis massa nibh, et scelerisque ipsum molestie sit amet. Nulla sagittis consectetur odio non eleifend. </p>
                 </div>

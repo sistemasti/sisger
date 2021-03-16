@@ -1,7 +1,7 @@
 <?php require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 ?>
@@ -1730,14 +1730,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								</table>
 							<div class="row" style="padding:7px;">	
 								<div class="col-sm-4 col-md-4">
-								<button type="button" class="btn btn-block  bg-gradient-info btn-xs" onclick="changeTypeCalc(2)">Linear triangle distribution <br>(default) </button>
+								<button type="button" class="btn btn-block  bg-gradient-info btn-xs" onclick="changeTypeCalc(2)"><?php echo $_SESSION[$_SESSION['lang']]['Linear triangle distribution']; ?> <br><?php echo $_SESSION[$_SESSION['lang']]['(default)']; ?> </button>
 									
 								</div>
 								<div class="col-sm-4 col-md-4">
-									<button type="button" class="btn btn-block bg-gradient-success btn-xs" onclick="changeTypeCalc(1)">Log triangle <br>distribution </button>
+									<button type="button" class="btn btn-block bg-gradient-success btn-xs" onclick="changeTypeCalc(1)"><?php echo $_SESSION[$_SESSION['lang']]['Log triangle']; ?> <br><?php echo $_SESSION[$_SESSION['lang']]['distribution']; ?> </button>
 								</div>
 								<div class="col-sm-4 col-md-4">
-									<button type="button" class="btn btn-block bg-gradient-warning btn-xs" onclick="changeTypeCalc(3)">Simple use of <br>problable value</button>
+									<button type="button" class="btn btn-block bg-gradient-warning btn-xs" onclick="changeTypeCalc(3)"><?php echo $_SESSION[$_SESSION['lang']]['Simple use of']; ?> <br><?php echo $_SESSION[$_SESSION['lang']]['problable value']; ?></button>
 								</div>
 								
 							</div>	

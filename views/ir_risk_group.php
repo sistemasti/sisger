@@ -61,7 +61,7 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Risk group</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Risk group']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -69,7 +69,7 @@ require_once("header.php");
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="ir_risk_group_register"><button type="button" class="btn btn-block btn-outline-success btn-xs">Register a new risk group</button></a>
+			<a href="ir_risk_group_register"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new risk group']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -81,13 +81,13 @@ require_once("header.php");
              
               <!-- /.card-header -->
             <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <!--<th>ID</th>-->
-                  <th>Risk Group</th>
-                  <th>Description</th>
-                  <th>Action</th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Risk Group']; ?></th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Description']; ?></th>
+                  <th><?php echo $_SESSION[$_SESSION['lang']]['Action']; ?></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -110,9 +110,9 @@ require_once("header.php");
 					  <td><?php echo $in['description']; ?></td>
 					 
 					  <td>	
-							 <a href="ir_risk_group_edit?id=<?php echo $in['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm">Edit</button></a>
-							 <a href="javascript:void(0)" onclick="if(confirm('Do you really want to delete?')){ risk_group_delete(<?php echo $in['id'];?>)}"><button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:2px;">
-<i class="fas fa-trash-alt"></i> Delete</button></a>
+							 <a href="ir_risk_group_edit?id=<?php echo $in['id'];?>"><button type="button" class="btn btn-block btn-info btn-sm"><?php echo $_SESSION[$_SESSION['lang']]['Edit']; ?></button></a>
+							 <a href="javascript:void(0)" onclick="if(confirm('<?php echo $_SESSION[$_SESSION['lang']]['Do you really want to delete']; ?>?')){ risk_group_delete(<?php echo $in['id'];?>)}"><button type="button" class="btn btn-block btn-danger btn-sm" style="margin-top:2px;">
+<i class="fas fa-trash-alt"></i> <?php echo $_SESSION[$_SESSION['lang']]['Delete']; ?></button></a>
 					  </td>
 					  
 					</tr>

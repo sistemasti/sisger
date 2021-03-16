@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -64,7 +64,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Project Registration</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Project Registration']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -72,7 +72,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="project_report"><button type="button" class="btn btn-block btn-outline-success btn-xs">Return</button></a>
+			<a href="project_report"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Return']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -155,7 +155,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 										
 										if($btn2 == "2"){
 											
-											echo'<script language= "JavaScript">alert("Registration successful.");location.href="project_report"</script>';
+											echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['Registration successful'].'.");location.href="project_report"</script>';
 											
 										}
 										
@@ -168,7 +168,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 										
 									?>	
 										<div class="alert alert-success">
-											Registration successful.
+											<?php echo $_SESSION[$_SESSION['lang']]['Registration successful']; ?>.
 										</div>
 										
 									<?php	
@@ -193,34 +193,33 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
 			  <form name="frmProject" method="post" action="project_register">
 			  <input type="hidden" name="cadastrar" id="cadastrar" value="1">
 			      <div class="form-group">
-                    <label for="Name">Project</label>
-                    <input type="text" class="form-control" id="project" name="project" placeholder="Enter project name" value="<?php echo $project; ?>" required>
+                    <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Project']; ?></label>
+                    <input type="text" class="form-control" id="project" name="project" placeholder="" value="<?php echo $project; ?>" required>
                   </div>
 				  
 			      <div class="form-group">
-                    <label for="Name">Project type</label>
+                    <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Project type']; ?></label>
                      <select class="form-control" id="project_type"
 					name="project_type">
-						<option value="1" selected>Mixed values</option>
-						<option value="2" >Single general value</option>
+						<option value="1" selected><?php echo $_SESSION[$_SESSION['lang']]['Mixed values']; ?></option>
+						<option value="2" ><?php echo $_SESSION[$_SESSION['lang']]['Single general value']; ?></option>
 					</select>
                   </div>
 				  
 				  
 				  <div class="form-group">
-                    <label for="Name">Note</label>
+                    <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Note']; ?></label>
                     <textarea name="note" id="note" class="form-control" ><?php echo $note; ?></textarea>
                   </div>
 				  
 				  <div class="form-group">
-                    <label for="Name">Time horizon in years
-for this project</label>
-                    <input type="text" class="form-control" id="time_horizon" name="time_horizon" placeholder="Time horizon in years for this project" value="<?php echo $time_horizon; ?>" required onKeyDown="Mascara(this,Integer);" maxlength="4" onKeyPress="Mascara(this,Integer);" onKeyUp="Mascara(this,Integer);">
+                    <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Time horizon in years for this project']; ?></label>
+                    <input type="text" class="form-control" id="time_horizon" name="time_horizon" placeholder="" value="<?php echo $time_horizon; ?>" required onKeyDown="Mascara(this,Integer);" maxlength="4" onKeyPress="Mascara(this,Integer);" onKeyUp="Mascara(this,Integer);">
                   </div>
 				
 					
 					<div class="form-group">	
-                        <label>Institution</label>
+                        <label><?php echo $_SESSION[$_SESSION['lang']]['Institution']; ?></label>
 						<?php if($_SESSION['perfil_logado'] == "1"){ ?>
                         <select class="form-control" id="institutions_id"
 					name="institutions_id">
@@ -260,12 +259,12 @@ for this project</label>
 				
 				<!--<button type="submit" name="btn1" class="btn btn-block bg-gradient-primary btn-sm" value="1">Save & Add New</button>-->
 				
-				<button type="submit" name="btn2" class="btn btn-block bg-gradient-info btn-sm" value="2">Save & Return</button>
+				<button type="submit" name="btn2" class="btn btn-block bg-gradient-info btn-sm" value="2"><?php echo $_SESSION[$_SESSION['lang']]['Save & Return']; ?></button>
               </form>
               </div> 
 			  <div class="col-sm-4 col-md-6">
                <div class="callout callout-info">
-                  <h5>Project Registration</h5>
+                  <h5><?php echo $_SESSION[$_SESSION['lang']]['Project Registration']; ?></h5>
 
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum est id elit auctor consequat. In mattis massa nibh, et scelerisque ipsum molestie sit amet. Nulla sagittis consectetur odio non eleifend. </p>
                 </div>

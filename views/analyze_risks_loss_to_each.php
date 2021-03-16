@@ -168,6 +168,10 @@
 				}
 							</script>
 							
+							<input type="hidden" name="marcacao1" id="marcacao1" value="0">
+							<input type="hidden" name="marcacao2" id="marcacao2" value="0">
+							<input type="hidden" name="marcacao3" id="marcacao3" value="0">
+							
 							<input type="hidden" name="valid1" id="valid1" value="0">
 							<input type="hidden" name="valid2" id="valid2" value="0">
 							<input type="hidden" name="valid3" id="valid3" value="0">
@@ -206,13 +210,13 @@
 										  <BR>
 										  <BR>
 						
-						   <span id="title_id" style="font-size:22px;">What fraction of the value will be lost in each item affected?</span>
+						   <span id="title_id" style="font-size:22px;"><?php echo $_SESSION[$_SESSION['lang']]['What fraction of the value will be lost in each item affected?']; ?></span>
 										  <BR>
 										  <BR>
 											<div class="form-group">
-														<label for="Sigla">Explain the esimates of loss to each item affected.</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain the esimates of loss to each item affected.']; ?></label>
 														<textarea class="form-control" name="explain_le" id="explain_le"  onkeyup="document.getElementById('le_zoom_explanation_fields').value=this.value"><?php echo $explain_le; ?></textarea>	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg_le" style="float:right; margin-top:2px" >
-                  Zoom explanation and notes
+                  <?php echo $_SESSION[$_SESSION['lang']]['Zoom explanation and notes']; ?>
                 </button>	
 				<br>
 				<br>
@@ -221,7 +225,7 @@
 											</div>
 											
 											<br>
-											Select the type of scales, then choose from the selection offered (if you use any of the 'Steps' options, you can convert between them by changing the option):
+											<?php echo $_SESSION[$_SESSION['lang']]['Select the type of scales, then choose from the selection offered (if you use any of the "Steps" options, you can convert between them by changing the option)']; ?>:
 											<br>
 											<br>
 											<div class="row">
@@ -233,30 +237,17 @@
 													document.getElementById('bxDecimals').style.display='none';
 													document.getElementById('bxAnyDecimals').style.display='none';
 													
-													selectElement('he', '');
-													selectElement('pl', '');
-													selectElement('le', '');
+													selectElement('he', document.getElementById('marcacao1').value);
+													selectElement('pl', document.getElementById('marcacao2').value);
+													selectElement('le', document.getElementById('marcacao3').value);
 													
 													document.getElementById('valid1b').value=0;
 													document.getElementById('valid2b').value=0;
 													document.getElementById('valid3b').value=0;
 													
-													document.getElementById('B_fdLow').value=0;
-													document.getElementById('B_fdProbable').value=0;
-													document.getElementById('B_fdHigh').value=0;
-													document.getElementById('B_fdUncert').value=0;
 													
-													document.getElementById('B_bxLow').innerHTML='0.0';
-													document.getElementById('B_bxProbable').innerHTML='0.0';
-													document.getElementById('B_bxHigh').innerHTML='0.0';
-													document.getElementById('lei_Div_Range').innerHTML='0.0';
-													
-													document.getElementById('magnitude_LE_Min').innerHTML='0.0';
-													document.getElementById('magnitude_LE_Med').innerHTML='0.0';
-													document.getElementById('magnitude_LE_Max').innerHTML='0.0';
-													document.getElementById('magnitude_LE_MEDIA').innerHTML='0.0';
 													magnitudeRisk();
-													" <?php if($steps == "1"){ echo "checked"; } ?>> Steps in words<br>
+													" <?php if($steps == "1"){ echo "checked"; } ?>> <?php echo $_SESSION[$_SESSION['lang']]['Steps in words']; ?><br>
 													
 													
 													
@@ -266,30 +257,16 @@
 													document.getElementById('bxPercentage').style.display='none';
 													document.getElementById('bxDecimals').style.display='none';
 													document.getElementById('bxAnyDecimals').style.display='none';
-													selectElement('he2', '');
-													selectElement('pl2', '');
-													selectElement('le2', '');
+													selectElement('he2', document.getElementById('marcacao1').value);
+													selectElement('pl2', document.getElementById('marcacao2').value);
+													selectElement('le2', document.getElementById('marcacao3').value);
 													
 													document.getElementById('valid1b').value=0;
 													document.getElementById('valid2b').value=0;
 													document.getElementById('valid3b').value=0;
 													
-													document.getElementById('B_fdLow').value=0;
-													document.getElementById('B_fdProbable').value=0;
-													document.getElementById('B_fdHigh').value=0;
-													document.getElementById('B_fdUncert').value=0;
-													
-													document.getElementById('B_bxLow').innerHTML='0.0';
-													document.getElementById('B_bxProbable').innerHTML='0.0';
-													document.getElementById('B_bxHigh').innerHTML='0.0';
-													document.getElementById('lei_Div_Range').innerHTML='0.0';
-													
-													document.getElementById('magnitude_LE_Min').innerHTML='0.0';
-													document.getElementById('magnitude_LE_Med').innerHTML='0.0';
-													document.getElementById('magnitude_LE_Max').innerHTML='0.0';
-													document.getElementById('magnitude_LE_MEDIA').innerHTML='0.0';
 													magnitudeRisk();
-													" <?php if($steps == "2"){ echo "checked"; } ?>> Steps in fraction<br>
+													" <?php if($steps == "2"){ echo "checked"; } ?>> <?php echo $_SESSION[$_SESSION['lang']]['Steps in fraction']; ?><br>
 													
 													
 													
@@ -300,30 +277,16 @@
 													document.getElementById('bxPercentage').style.display='block';
 													document.getElementById('bxDecimals').style.display='none';
 													document.getElementById('bxAnyDecimals').style.display='none';
-													selectElement('he3', '');
-													selectElement('pl3', '');
-													selectElement('le3', '');
+													selectElement('he3', document.getElementById('marcacao1').value);
+													selectElement('pl3', document.getElementById('marcacao2').value);
+													selectElement('le3', document.getElementById('marcacao3').value);
 													
 													document.getElementById('valid1b').value=0;
 													document.getElementById('valid2b').value=0;
 													document.getElementById('valid3b').value=0;
 													
-													document.getElementById('B_fdLow').value=0;
-													document.getElementById('B_fdProbable').value=0;
-													document.getElementById('B_fdHigh').value=0;
-													document.getElementById('B_fdUncert').value=0;
-													
-													document.getElementById('B_bxLow').innerHTML='0.0';
-													document.getElementById('B_bxProbable').innerHTML='0.0';
-													document.getElementById('B_bxHigh').innerHTML='0.0';
-													document.getElementById('lei_Div_Range').innerHTML='0.0';
-													
-													document.getElementById('magnitude_LE_Min').innerHTML='0.0';
-													document.getElementById('magnitude_LE_Med').innerHTML='0.0';
-													document.getElementById('magnitude_LE_Max').innerHTML='0.0';
-													document.getElementById('magnitude_LE_MEDIA').innerHTML='0.0';
 													magnitudeRisk();
-													" <?php if($steps == "3"){ echo "checked"; } ?>> Steps in percentage<br>
+													" <?php if($steps == "3"){ echo "checked"; } ?>> <?php echo $_SESSION[$_SESSION['lang']]['Steps in percentage']; ?><br>
 													
 													
 													<input type="radio" name="steps" id="steps4" value="4" onclick="
@@ -332,30 +295,15 @@
 													document.getElementById('bxPercentage').style.display='none';
 													document.getElementById('bxDecimals').style.display='block';
 													document.getElementById('bxAnyDecimals').style.display='none';
-													selectElement('he4', '');
-													selectElement('pl4', '');
-													selectElement('le4', '');
+													selectElement('he4', document.getElementById('marcacao1').value);
+													selectElement('pl4', document.getElementById('marcacao2').value);
+													selectElement('le4', document.getElementById('marcacao3').value);
 													
 													document.getElementById('valid1b').value=0;
-													document.getElementById('valid2b').value=0;
-													document.getElementById('valid3b').value=0;
+													document.getElementById('valid2b').value=0;													document.getElementById('valid3b').value=0;													
 													
-													document.getElementById('B_fdLow').value=0;
-													document.getElementById('B_fdProbable').value=0;
-													document.getElementById('B_fdHigh').value=0;
-													document.getElementById('B_fdUncert').value=0;
-													
-													document.getElementById('B_bxLow').innerHTML='0.0';
-													document.getElementById('B_bxProbable').innerHTML='0.0';
-													document.getElementById('B_bxHigh').innerHTML='0.0';
-													document.getElementById('lei_Div_Range').innerHTML='0.0';
-													
-													document.getElementById('magnitude_LE_Min').innerHTML='0.0';
-													document.getElementById('magnitude_LE_Med').innerHTML='0.0';
-													document.getElementById('magnitude_LE_Max').innerHTML='0.0';
-													document.getElementById('magnitude_LE_MEDIA').innerHTML='0.0';
 													magnitudeRisk();
-													" <?php if($steps == "4"){ echo "checked"; } ?> >  Steps in decimals<br>
+													" <?php if($steps == "4"){ echo "checked"; } ?> >  <?php echo $_SESSION[$_SESSION['lang']]['Steps in decimals']; ?><br>
 													
 													
 													<input type="radio" name="steps" value="5"  id="steps5" onclick="
@@ -387,7 +335,7 @@
 													document.getElementById('magnitude_LE_Max').innerHTML='0.0';
 													document.getElementById('magnitude_LE_MEDIA').innerHTML='0.0';
 													magnitudeRisk();
-													" <?php if($steps == "5"){ echo "checked"; } ?> > Any decimal<br>
+													" <?php if($steps == "5"){ echo "checked"; } ?> > <?php echo $_SESSION[$_SESSION['lang']]['Any decimal']; ?><br>
 												</div>	
 												<div class="col-sm-4 col-md-8">
 												
@@ -399,55 +347,62 @@
 												<?php } ?> 
 												
 													<div class="form-group">
-														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="he" name="he" onchange="range_L_E_I('High',this.value);document.getElementById('valid1b').value=this.value" >
-                           <option value="" >select</option>
-																<option value="5.0" <?php if($he == "5.0"){ echo "selected"; } ?> >TOTAL or almost total loss of value in each item affected.</option>
-																<option value="4.5" <?php if($he == "4.5"){ echo "selected"; } ?>>----------- (between total and large on the word scale)</option>
-																<option value="4.0"  <?php if($he == "4.0"){ echo "selected"; } ?>>LARGE  loss of value in each item affected.</option>
-																<option value="3.5"  <?php if($he == "3.5"){ echo "selected"; } ?>>----------- (between large and small on the word scale).</option>
-																<option value="3.0"  <?php if($he == "3.0"){ echo "selected"; } ?>>SMALL loss of value in each item affected.</option>
-																<option value="2.5"  <?php if($he == "2.5"){ echo "selected"; } ?>>----------- (between small and tiny on the word scale).</option>
-																<option value="2.0"  <?php if($he == "2.0"){ echo "selected"; } ?>>TINY loss of value in each item affected.</option>
-																<option value="1.5"  <?php if($he == "1.5"){ echo "selected"; } ?>>----------- (between tiny and trace on the word scale).</option>
-																<option value="1.0"  <?php if($he == "1.0"){ echo "selected"; } ?>>TRACE loss of value in each item affected.</option>
-																<option value="0.5"  <?php if($he == "0.5"){ echo "selected"; } ?>>----------- (between trace and none on the word scale!)</option>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['High estimate']; ?></label>
+														<select class="form-control" id="he" name="he" onchange="range_L_E_I('High',this.value);
+														document.getElementById('valid1b').value=this.value;
+														document.getElementById('marcacao1').value=this.value;
+														" >
+                           <option value="" ><?php echo $_SESSION[$_SESSION['lang']]['select']; ?></option>
+																<option value="5.0" <?php if($he == "5.0"){ echo "selected"; } ?> ><?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?>.</option>
+																<option value="4.5" <?php if($he == "4.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between total and large on the word scale']; ?>)</option>
+																<option value="4.0"  <?php if($he == "4.0"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['LARGE  loss of value in each item affected']; ?>.</option>
+																<option value="3.5"  <?php if($he == "3.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between large and small on the word scale']; ?>).</option>
+																<option value="3.0"  <?php if($he == "3.0"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['SMALL loss of value in each item affected']; ?>.</option>
+																<option value="2.5"  <?php if($he == "2.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between small and tiny on the word scale']; ?>).</option>
+																<option value="2.0"  <?php if($he == "2.0"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['TINY loss of value in each item affected']; ?>.</option>
+																<option value="1.5"  <?php if($he == "1.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between tiny and trace on the word scale']; ?>.).</option>
+																<option value="1.0"  <?php if($he == "1.0"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['TRACE loss of value in each item affected']; ?>.</option>
+																<option value="0.5"  <?php if($he == "0.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between trace and none on the word scale']; ?>!)</option>
 																
 														 
 														</select>
 													</div>
 													<div class="form-group">
-														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="pl" name="pl"  onchange="range_L_E_I('Probable',this.value);document.getElementById('valid2b').value=this.value">
-                           <option value="" >select</option>
-																<option value="5.0" <?php if($pl == "5.0"){ echo "selected"; } ?>>TOTAL or almost total loss of value in each item affected.</option>
-																<option value="4.5" <?php if($pl == "4.5"){ echo "selected"; } ?>>----------- (between total and large on the word scale)</option>
-																<option value="4.0"  <?php if($pl == "4.0"){ echo "selected"; } ?>>LARGE  loss of value in each item affected.</option>
-																<option value="3.5"  <?php if($pl == "3.5"){ echo "selected"; } ?>>----------- (between large and small on the word scale).</option>
-																<option value="3.0"  <?php if($pl == "3.0"){ echo "selected"; } ?>>SMALL loss of value in each item affected.</option>
-																<option value="2.5"  <?php if($pl == "2.5"){ echo "selected"; } ?>>----------- (between small and tiny on the word scale).</option>
-																<option value="2.0"  <?php if($pl == "2.0"){ echo "selected"; } ?>>TINY loss of value in each item affected.</option>
-																<option value="1.5"  <?php if($pl == "1.5"){ echo "selected"; } ?>>----------- (between tiny and trace on the word scale).</option>
-																<option value="1.0" <?php if($pl == "1.0"){ echo "selected"; } ?> >TRACE loss of value in each item affected.</option>
-																<option value="0.5"  <?php if($pl == "0.5"){ echo "selected"; } ?>>----------- (between trace and none on the word scale!)</option>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Probable loss to each item affected']; ?></label>
+														<select class="form-control" id="pl" name="pl"  onchange="range_L_E_I('Probable',this.value);document.getElementById('valid2b').value=this.value;
+														document.getElementById('marcacao2').value=this.value;
+														">
+                           <option value="" ><?php echo $_SESSION[$_SESSION['lang']]['select']; ?></option>
+																<option value="5.0" <?php if($pl == "5.0"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?>.</option>
+																<option value="4.5" <?php if($pl == "4.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between total and large on the word scale']; ?>)</option>
+																<option value="4.0"  <?php if($pl == "4.0"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['LARGE  loss of value in each item affected']; ?>.</option>
+																<option value="3.5"  <?php if($pl == "3.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between large and small on the word scale']; ?>).</option>
+																<option value="3.0"  <?php if($pl == "3.0"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['SMALL loss of value in each item affected']; ?>.</option>
+																<option value="2.5"  <?php if($pl == "2.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between small and tiny on the word scale']; ?>).</option>
+																<option value="2.0"  <?php if($pl == "2.0"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['TINY loss of value in each item affected']; ?>.</option>
+																<option value="1.5"  <?php if($pl == "1.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between tiny and trace on the word scale']; ?>).</option>
+																<option value="1.0" <?php if($pl == "1.0"){ echo "selected"; } ?> ><?php echo $_SESSION[$_SESSION['lang']]['TRACE loss of value in each item affected']; ?>.</option>
+																<option value="0.5"  <?php if($pl == "0.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between trace and none on the word scale']; ?>!)</option>
 														  
 														 
 														</select>
 													</div>
 													<div class="form-group">
-														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="le" name="le"  onchange="range_L_E_I('Low',this.value);document.getElementById('valid3b').value=this.value">
-                           <option value="" >select</option>
-																<option value="5.0" <?php if($le == "5.0"){ echo "selected"; } ?>>TOTAL or almost total loss of value in each item affected.</option>
-																<option value="4.5" <?php if($le == "4.5"){ echo "selected"; } ?>>----------- (between total and large on the word scale)</option>
-																<option value="4.0"  <?php if($le == "4.0"){ echo "selected"; } ?>>LARGE  loss of value in each item affected.</option>
-																<option value="3.5"  <?php if($le == "3.5"){ echo "selected"; } ?>>----------- (between large and small on the word scale).</option>
-																<option value="3.0"  <?php if($le == "3.0"){ echo "selected"; } ?>>SMALL loss of value in each item affected.</option>
-																<option value="2.5" <?php if($le == "2.5"){ echo "selected"; } ?> >----------- (between small and tiny on the word scale).</option>
-																<option value="2.0"  <?php if($le == "2.0"){ echo "selected"; } ?>>TINY loss of value in each item affected.</option>
-																<option value="1.5"  <?php if($le == "1.5"){ echo "selected"; } ?>>----------- (between tiny and trace on the word scale).</option>
-																<option value="1.0"  <?php if($le == "1.0"){ echo "selected"; } ?>>TRACE loss of value in each item affected.</option>
-																<option value="0.5"  <?php if($le == "0.5"){ echo "selected"; } ?>>----------- (between trace and none on the word scale!)</option>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate']; ?></label>
+														<select class="form-control" id="le" name="le"  onchange="range_L_E_I('Low',this.value);document.getElementById('valid3b').value=this.value;
+														document.getElementById('marcacao3').value=this.value;
+														">
+                           <option value="" ><?php echo $_SESSION[$_SESSION['lang']]['select']; ?></option>
+																<option value="5.0" <?php if($le == "5.0"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?>.</option>
+																<option value="4.5" <?php if($le == "4.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between total and large on the word scale']; ?>)</option>
+																<option value="4.0"  <?php if($le == "4.0"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['LARGE  loss of value in each item affected']; ?>.</option>
+																<option value="3.5"  <?php if($le == "3.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between large and small on the word scale']; ?>).</option>
+																<option value="3.0"  <?php if($le == "3.0"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['SMALL loss of value in each item affected']; ?>.</option>
+																<option value="2.5" <?php if($le == "2.5"){ echo "selected"; } ?> >----------- (<?php echo $_SESSION[$_SESSION['lang']]['between small and tiny on the word scale']; ?>).</option>
+																<option value="2.0"  <?php if($le == "2.0"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['TINY loss of value in each item affected']; ?>.</option>
+																<option value="1.5"  <?php if($le == "1.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between tiny and trace on the word scale']; ?>).</option>
+																<option value="1.0"  <?php if($le == "1.0"){ echo "selected"; } ?>><?php echo $_SESSION[$_SESSION['lang']]['TRACE loss of value in each item affected']; ?>.</option>
+																<option value="0.5"  <?php if($le == "0.5"){ echo "selected"; } ?>>----------- (<?php echo $_SESSION[$_SESSION['lang']]['between trace and none on the word scale']; ?>!)</option>
 														  
 														 
 														</select>
@@ -461,56 +416,62 @@
 												<?php } ?> 	
 												
 													<div class="form-group">
-														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="he2" name="he2"  onchange="range_L_E_I('High',this.value);document.getElementById('valid1b').value=this.value">
-                           <option value="" >select</option>
-																<option value="5.0" <?php if($he2 == "5.0"){ echo "selected"; } ?> >~1, total or almost total loss of value in each item affected</option>
-																<option value="4.5" <?php if($he2 == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
-																<option value="4.0" <?php if($he2 == "4.0"){ echo "selected"; } ?>>~1/10  loss of value in each item affected.</option>
-																<option value="3.5" <?php if($he2 == "3.5"){ echo "selected"; } ?>>~1/30  loss of value in each item affected.</option>
-																<option value="3.0" <?php if($he2 == "3.0"){ echo "selected"; } ?>>~1/100  loss of value in each item affected.</option>
-																<option value="2.5" <?php if($he2 == "2.5"){ echo "selected"; } ?>>~1/300  loss of value in each item affected.</option>
-																<option value="2.0" <?php if($he2 == "2.0"){ echo "selected"; } ?>>~1/1000  loss of value in each item affected.</option>
-																<option value="1.5" <?php if($he2 == "1.5"){ echo "selected"; } ?>>~1/3 000  loss of value in each item affected.</option>
-																<option value="1.0" <?php if($he2 == "1.0"){ echo "selected"; } ?>>~1/10 000  loss of value in each item affected.</option>
-																<option value="0.5" <?php if($he2 == "0.5"){ echo "selected"; } ?>>~1/30 000  loss of value in each item affected.</option>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['High estimate']; ?></label>
+														<select class="form-control" id="he2" name="he2"  onchange="range_L_E_I('High',this.value);document.getElementById('valid1b').value=this.value;
+														document.getElementById('marcacao1').value=this.value;
+														">
+                           <option value="" ><?php echo $_SESSION[$_SESSION['lang']]['select']; ?></option>
+																<option value="5.0" <?php if($he2 == "5.0"){ echo "selected"; } ?> >~1, <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?></option>
+																<option value="4.5" <?php if($he2 == "4.5"){ echo "selected"; } ?>>~1/3  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?></option>
+																<option value="4.0" <?php if($he2 == "4.0"){ echo "selected"; } ?>>~1/10  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.5" <?php if($he2 == "3.5"){ echo "selected"; } ?>>~1/30  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.0" <?php if($he2 == "3.0"){ echo "selected"; } ?>>~1/100  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.5" <?php if($he2 == "2.5"){ echo "selected"; } ?>>~1/300  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.0" <?php if($he2 == "2.0"){ echo "selected"; } ?>>~1/1000  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.5" <?php if($he2 == "1.5"){ echo "selected"; } ?>>~1/3 000  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.0" <?php if($he2 == "1.0"){ echo "selected"; } ?>>~1/10 000  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="0.5" <?php if($he2 == "0.5"){ echo "selected"; } ?>>~1/30 000  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
 																
 																
 														 
 														</select>
 													</div>
 													<div class="form-group">
-														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="pl2" name="pl2"  onchange="range_L_E_I('Probable',this.value);document.getElementById('valid2b').value=this.value">
-                           <option value="" >select</option>
-																<option value="5.0" <?php if($pl2 == "5.0"){ echo "selected"; } ?>>~1, total or almost total loss of value in each item affected</option>
-																<option value="4.5" <?php if($pl2 == "4.5"){ echo "selected"; } ?>>~1/3  loss of value in each item affected.</option>
-																<option value="4.0" <?php if($pl2 == "4.0"){ echo "selected"; } ?>>~1/10  loss of value in each item affected.</option>
-																<option value="3.5" <?php if($pl2 == "3.5"){ echo "selected"; } ?>>~1/30  loss of value in each item affected.</option>
-																<option value="3.0" <?php if($pl2 == "3.0"){ echo "selected"; } ?>>~1/100  loss of value in each item affected.</option>
-																<option value="2.5" <?php if($pl2 == "2.5"){ echo "selected"; } ?>>~1/300  loss of value in each item affected.</option>
-																<option value="2.0" <?php if($pl2 == "2.0"){ echo "selected"; } ?>>~1/1000  loss of value in each item affected.</option>
-																<option value="1.5" <?php if($pl2 == "1.5"){ echo "selected"; } ?>>~1/3 000  loss of value in each item affected.</option>
-																<option value="1.0" <?php if($pl2 == "1.0"){ echo "selected"; } ?>>~1/10 000  loss of value in each item affected.</option>
-																<option value="0.5" <?php if($pl2 == "0.5"){ echo "selected"; } ?>>~1/30 000  loss of value in each item affected.</option>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Probable loss to each item affected']; ?></label>
+														<select class="form-control" id="pl2" name="pl2"  onchange="range_L_E_I('Probable',this.value);document.getElementById('valid2b').value=this.value;
+														document.getElementById('marcacao2').value=this.value;
+														">
+                           <option value="" ><?php echo $_SESSION[$_SESSION['lang']]['select']; ?></option>
+																<option value="5.0" <?php if($pl2 == "5.0"){ echo "selected"; } ?>>~1, <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?></option>
+																<option value="4.5" <?php if($pl2 == "4.5"){ echo "selected"; } ?>>~1/3  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="4.0" <?php if($pl2 == "4.0"){ echo "selected"; } ?>>~1/10  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.5" <?php if($pl2 == "3.5"){ echo "selected"; } ?>>~1/30  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.0" <?php if($pl2 == "3.0"){ echo "selected"; } ?>>~1/100  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.5" <?php if($pl2 == "2.5"){ echo "selected"; } ?>>~1/300  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.0" <?php if($pl2 == "2.0"){ echo "selected"; } ?>>~1/1000  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.5" <?php if($pl2 == "1.5"){ echo "selected"; } ?>>~1/3 000  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.0" <?php if($pl2 == "1.0"){ echo "selected"; } ?>>~1/10 000  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="0.5" <?php if($pl2 == "0.5"){ echo "selected"; } ?>>~1/30 000  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
 														  
 														 
 														</select>
 													</div>
 													<div class="form-group">
-														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="le2" name="le2" onchange="range_L_E_I('Low',this.value);document.getElementById('valid2b').value=this.value">
-                           <option value="" >select</option>
-																<option value="5.0" <?php if($le2 == "5.0"){ echo "selected"; } ?> >~1, total or almost total loss of value in each item affected</option>
-																<option value="4.5" <?php if($le2 == "4.5"){ echo "selected"; } ?> >~1/3  loss of value in each item affected.</option>
-																<option value="4.0" <?php if($le2 == "4.0"){ echo "selected"; } ?> >~1/10  loss of value in each item affected.</option>
-																<option value="3.5" <?php if($le2 == "3.5"){ echo "selected"; } ?> >~1/30  loss of value in each item affected.</option>
-																<option value="3.0" <?php if($le2 == "3.0"){ echo "selected"; } ?> >~1/100  loss of value in each item affected.</option>
-																<option value="2.5" <?php if($le2 == "2.5"){ echo "selected"; } ?> >~1/300  loss of value in each item affected.</option>
-																<option value="2.0" <?php if($le2 == "2.0"){ echo "selected"; } ?> >~1/1000  loss of value in each item affected.</option>
-																<option value="1.5" <?php if($le2 == "1.5"){ echo "selected"; } ?> >~1/3 000  loss of value in each item affected.</option>
-																<option value="1.0" <?php if($le2 == "1.0"){ echo "selected"; } ?> >~1/10 000  loss of value in each item affected.</option>
-																<option value="0.5" <?php if($le2 == "0.5"){ echo "selected"; } ?>>~1/30 000  loss of value in each item affected.</option>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate']; ?></label>
+														<select class="form-control" id="le2" name="le2" onchange="range_L_E_I('Low',this.value);document.getElementById('valid2b').value=this.value;
+														document.getElementById('marcacao3').value=this.value;
+														">
+                           <option value="" ><?php echo $_SESSION[$_SESSION['lang']]['select']; ?></option>
+																<option value="5.0" <?php if($le2 == "5.0"){ echo "selected"; } ?> >~1, <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?></option>
+																<option value="4.5" <?php if($le2 == "4.5"){ echo "selected"; } ?> >~1/3  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="4.0" <?php if($le2 == "4.0"){ echo "selected"; } ?> >~1/10  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.5" <?php if($le2 == "3.5"){ echo "selected"; } ?> >~1/30  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.0" <?php if($le2 == "3.0"){ echo "selected"; } ?> >~1/100  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.5" <?php if($le2 == "2.5"){ echo "selected"; } ?> >~1/300  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.0" <?php if($le2 == "2.0"){ echo "selected"; } ?> >~1/1000  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.5" <?php if($le2 == "1.5"){ echo "selected"; } ?> >~1/3 000  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.0" <?php if($le2 == "1.0"){ echo "selected"; } ?> >~1/10 000  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="0.5" <?php if($le2 == "0.5"){ echo "selected"; } ?>>~1/30 000  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
 														  
 														 
 														</select>
@@ -523,55 +484,61 @@
 												<?php } ?> 			
 												
 													<div class="form-group">
-														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="he3" name="he3"  onchange="range_L_E_I('High',this.value);document.getElementById('valid1b').value=this.value">
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['High estimate']; ?></label>
+														<select class="form-control" id="he3" name="he3"  onchange="range_L_E_I('High',this.value);document.getElementById('valid1b').value=this.value;
+														document.getElementById('marcacao1').value=this.value;
+														">
                            <option value="" >select</option>
-																<option value="5.0" <?php if($he3 == "5.0"){ echo "selected"; } ?>>~100% total or almost total loss of value in each item affected</option>
-																<option value="4.5" <?php if($he3 == "4.5"){ echo "selected"; } ?>>~30%  loss of value in each item affected.</option>
-																<option value="4.0" <?php if($he3 == "4.0"){ echo "selected"; } ?>>~10%  loss of value in each item affected.</option>
-																<option value="3.5" <?php if($he3 == "3.5"){ echo "selected"; } ?>>~3%  loss of value in each item affected.</option>
-																<option value="3.0" <?php if($he3 == "3.0"){ echo "selected"; } ?>>~1%  loss of value in each item affected.</option>
-																<option value="2.5" <?php if($he3 == "2.5"){ echo "selected"; } ?>>~0.3%  loss of value in each item affected.</option>
-																<option value="2.0" <?php if($he3 == "2.0"){ echo "selected"; } ?>>~0.1%  loss of value in each item affected.</option>
-																<option value="1.5" <?php if($he3 == "1.5"){ echo "selected"; } ?>>~0.03%  loss of value in each item affected.</option>
-																<option value="1.0" <?php if($he3 == "1.0"){ echo "selected"; } ?>>~0.01%  loss of value in each item affected.</option>
-																<option value="0.5" <?php if($he3 == "0.5"){ echo "selected"; } ?>>~0.003%  loss of value in each item affected.</option>
+																<option value="5.0" <?php if($he3 == "5.0"){ echo "selected"; } ?>>~100% <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?></option>
+																<option value="4.5" <?php if($he3 == "4.5"){ echo "selected"; } ?>>~30%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="4.0" <?php if($he3 == "4.0"){ echo "selected"; } ?>>~10%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.5" <?php if($he3 == "3.5"){ echo "selected"; } ?>>~3%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.0" <?php if($he3 == "3.0"){ echo "selected"; } ?>>~1%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.5" <?php if($he3 == "2.5"){ echo "selected"; } ?>>~0.3%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.0" <?php if($he3 == "2.0"){ echo "selected"; } ?>>~0.1%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.5" <?php if($he3 == "1.5"){ echo "selected"; } ?>>~0.03% <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.0" <?php if($he3 == "1.0"){ echo "selected"; } ?>>~0.01%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="0.5" <?php if($he3 == "0.5"){ echo "selected"; } ?>>~0.003%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
 																
 														 
 														</select>
 													</div>
 													<div class="form-group">
-														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="pl3" name="pl3" onchange="range_L_E_I('Probable',this.value);document.getElementById('valid2b').value=this.value">
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Probable loss to each item affected']; ?></label>
+														<select class="form-control" id="pl3" name="pl3" onchange="range_L_E_I('Probable',this.value);document.getElementById('valid2b').value=this.value;
+														document.getElementById('marcacao2').value=this.value;
+														">
                            <option value="" >select</option>
-																<option value="5.0" <?php if($pl3 == "5.0"){ echo "selected"; } ?>>~100% total or almost total loss of value in each item affected</option>
-																<option value="4.5" <?php if($pl3 == "4.5"){ echo "selected"; } ?>>~30%  loss of value in each item affected.</option>
-																<option value="4.0" <?php if($pl3 == "4.0"){ echo "selected"; } ?>>~10%  loss of value in each item affected.</option>
-																<option value="3.5" <?php if($pl3 == "3.5"){ echo "selected"; } ?>>~3%  loss of value in each item affected.</option>
-																<option value="3.0" <?php if($pl3 == "3.0"){ echo "selected"; } ?>>~1%  loss of value in each item affected.</option>
-																<option value="2.5" <?php if($pl3 == "2.5"){ echo "selected"; } ?>>~0.3%  loss of value in each item affected.</option>
-																<option value="2.0" <?php if($pl3 == "2.0"){ echo "selected"; } ?>>~0.1%  loss of value in each item affected.</option>
-																<option value="1.5" <?php if($pl3 == "1.5"){ echo "selected"; } ?>>~0.03%  loss of value in each item affected.</option>
-																<option value="1.0" <?php if($pl3 == "1.0"){ echo "selected"; } ?>>~0.01%  loss of value in each item affected.</option>
-																<option value="0.5" <?php if($pl3 == "0.5"){ echo "selected"; } ?>>~0.003%  loss of value in each item affected.</option>
+																<option value="5.0" <?php if($pl3 == "5.0"){ echo "selected"; } ?>>~100% <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?></option>
+																<option value="4.5" <?php if($pl3 == "4.5"){ echo "selected"; } ?>>~30%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="4.0" <?php if($pl3 == "4.0"){ echo "selected"; } ?>>~10%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.5" <?php if($pl3 == "3.5"){ echo "selected"; } ?>>~3%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.0" <?php if($pl3 == "3.0"){ echo "selected"; } ?>>~1%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.5" <?php if($pl3 == "2.5"){ echo "selected"; } ?>>~0.3%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.0" <?php if($pl3 == "2.0"){ echo "selected"; } ?>>~0.1%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.5" <?php if($pl3 == "1.5"){ echo "selected"; } ?>>~0.03%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.0" <?php if($pl3 == "1.0"){ echo "selected"; } ?>>~0.01%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="0.5" <?php if($pl3 == "0.5"){ echo "selected"; } ?>>~0.003%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
 														  
 														 
 														</select>
 													</div>
 													<div class="form-group">
-														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="le3" name="le3" onchange="range_L_E_I('Low',this.value);document.getElementById('valid3b').value=this.value">
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate']; ?></label>
+														<select class="form-control" id="le3" name="le3" onchange="range_L_E_I('Low',this.value);document.getElementById('valid3b').value=this.value;
+														document.getElementById('marcacao3').value=this.value;
+														">
                            <option value="" >select</option>
-																<option value="5.0"  <?php if($le3 == "5.0"){ echo "selected"; } ?>>~100% total or almost total loss of value in each item affected</option>
-																<option value="4.5" <?php if($le3 == "4.5"){ echo "selected"; } ?>>~30%  loss of value in each item affected.</option>
-																<option value="4.0" <?php if($le3 == "4.0"){ echo "selected"; } ?>>~10%  loss of value in each item affected.</option>
-																<option value="3.5" <?php if($le3 == "3.5"){ echo "selected"; } ?>>~3%  loss of value in each item affected.</option>
-																<option value="3.0" <?php if($le3 == "3.0"){ echo "selected"; } ?>>~1%  loss of value in each item affected.</option>
-																<option value="2.5" <?php if($le3 == "2.5"){ echo "selected"; } ?>>~0.3%  loss of value in each item affected.</option>
-																<option value="2.0" <?php if($le3 == "2.0"){ echo "selected"; } ?>>~0.1%  loss of value in each item affected.</option>
-																<option value="1.5" <?php if($le3 == "1.5"){ echo "selected"; } ?>>~0.03%  loss of value in each item affected.</option>
-																<option value="1.0" <?php if($le3 == "1.0"){ echo "selected"; } ?>>~0.01%  loss of value in each item affected.</option>
-																<option value="0.5" <?php if($le3 == "0.5"){ echo "selected"; } ?>>~0.003%  loss of value in each item affected.</option>
+																<option value="5.0"  <?php if($le3 == "5.0"){ echo "selected"; } ?>>~100% <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?></option>
+																<option value="4.5" <?php if($le3 == "4.5"){ echo "selected"; } ?>>~30%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="4.0" <?php if($le3 == "4.0"){ echo "selected"; } ?>>~10%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.5" <?php if($le3 == "3.5"){ echo "selected"; } ?>>~3%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.0" <?php if($le3 == "3.0"){ echo "selected"; } ?>>~1%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.5" <?php if($le3 == "2.5"){ echo "selected"; } ?>>~0.3%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.0" <?php if($le3 == "2.0"){ echo "selected"; } ?>>~0.1%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.5" <?php if($le3 == "1.5"){ echo "selected"; } ?>>~0.03%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.0" <?php if($le3 == "1.0"){ echo "selected"; } ?>>~0.01%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="0.5" <?php if($le3 == "0.5"){ echo "selected"; } ?>>~0.003%  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
 														  
 														 
 														</select>
@@ -585,19 +552,21 @@
 												<?php } ?> 	
 												
 													<div class="form-group">
-														<label for="Sigla">High estimate</label>
-														<select class="form-control" id="he4" name="he4" onchange="range_L_E_I('High',this.value,1);document.getElementById('valid1b').value=this.value">
-                           <option value="" >select</option>
-																<option value="5.0" <?php if($he4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
-																<option value="4.5" <?php if($he4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
-																<option value="4.0" <?php if($he4 == "4.0"){ echo "selected"; } ?> >~0.1  loss of value in each item affected.</option>
-																<option value="3.5" <?php if($he4 == "3.5"){ echo "selected"; } ?> >~0.03  loss of value in each item affected.</option>
-																<option value="3.0" <?php if($he4 == "3.0"){ echo "selected"; } ?> >~0.01  loss of value in each item affected.</option>
-																<option value="2.5" <?php if($he4 == "2.5"){ echo "selected"; } ?> >~0.003  loss of value in each item affected.</option>
-																<option value="2.0" <?php if($he4 == "2.0"){ echo "selected"; } ?> >~0.001  loss of value in each item affected.</option>
-																<option value="1.5" <?php if($he4 == "1.5"){ echo "selected"; } ?> >~0.000 3  loss of value in each item affected.</option>
-																<option value="1.0" <?php if($he4 == "1.0"){ echo "selected"; } ?> >~0.000 1  loss of value in each item affected.</option>
-																<option value="0.5" <?php if($he4 == "0.5"){ echo "selected"; } ?> >~0.000 03  loss of value in each item affected.</option>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['High estimate']; ?></label>
+														<select class="form-control" id="he4" name="he4" onchange="range_L_E_I('High',this.value,1);document.getElementById('valid1b').value=this.value;
+														document.getElementById('marcacao1').value=this.value;
+														">
+                           <option value="" ><?php echo $_SESSION[$_SESSION['lang']]['select']; ?></option>
+																<option value="5.0" <?php if($he4 == "5.0"){ echo "selected"; } ?> >~1. <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?></option>
+																<option value="4.5" <?php if($he4 == "4.5"){ echo "selected"; } ?> >~0.3  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="4.0" <?php if($he4 == "4.0"){ echo "selected"; } ?> >~0.1  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.5" <?php if($he4 == "3.5"){ echo "selected"; } ?> >~0.03  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="3.0" <?php if($he4 == "3.0"){ echo "selected"; } ?> >~0.01  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.5" <?php if($he4 == "2.5"){ echo "selected"; } ?> >~0.003  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="2.0" <?php if($he4 == "2.0"){ echo "selected"; } ?> >~0.001  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.5" <?php if($he4 == "1.5"){ echo "selected"; } ?> >~0.000 3  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="1.0" <?php if($he4 == "1.0"){ echo "selected"; } ?> >~0.000 1  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
+																<option value="0.5" <?php if($he4 == "0.5"){ echo "selected"; } ?> >~0.000 03  <?php echo $_SESSION[$_SESSION['lang']]['loss of value in each item affected']; ?>.</option>
 																
 																
 																
@@ -605,37 +574,41 @@
 														</select>
 													</div>
 													<div class="form-group">
-														<label for="Sigla">Probable loss to each item affected</label>
-														<select class="form-control" id="pl4" name="pl4"  onchange="range_L_E_I('Probable',this.value,1);document.getElementById('valid2b').value=this.value">
-                           <option value="" >select</option>
-																<option value="5.0" <?php if($pl4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
-																<option value="4.5" <?php if($pl4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
-																<option value="4.0" <?php if($pl4 == "4.0"){ echo "selected"; } ?> >~0.1  loss of value in each item affected.</option>
-																<option value="3.5"<?php if($pl4 == "3.5"){ echo "selected"; } ?>  >~0.03  loss of value in each item affected.</option>
-																<option value="3.0" <?php if($pl4 == "3.0"){ echo "selected"; } ?> >~0.01  loss of value in each item affected.</option>
-																<option value="2.5" <?php if($pl4 == "2.5"){ echo "selected"; } ?> >~0.003  loss of value in each item affected.</option>
-																<option value="2.0" <?php if($pl4 == "2.0"){ echo "selected"; } ?> >~0.001  loss of value in each item affected.</option>
-																<option value="1.5" <?php if($pl4 == "1.5"){ echo "selected"; } ?> >~0.000 3  loss of value in each item affected.</option>
-																<option value="1.0" <?php if($pl4 == "1.0"){ echo "selected"; } ?> >~0.000 1  loss of value in each item affected.</option>
-																<option value="0.5" <?php if($pl4 == "0.5"){ echo "selected"; } ?> >~0.000 03  loss of value in each item affected.</option>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Probable loss to each item affected']; ?></label>
+														<select class="form-control" id="pl4" name="pl4"  onchange="range_L_E_I('Probable',this.value,1);document.getElementById('valid2b').value=this.value;
+														document.getElementById('marcacao2').value=this.value;
+														">
+                           <option value="" ><?php echo $_SESSION[$_SESSION['lang']]['select']; ?></option>
+																<option value="5.0" <?php if($pl4 == "5.0"){ echo "selected"; } ?> >~1. <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?></option>
+																<option value="4.5" <?php if($pl4 == "4.5"){ echo "selected"; } ?> >~0.3  <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?>.</option>
+																<option value="4.0" <?php if($pl4 == "4.0"){ echo "selected"; } ?> >~0.1  <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?>.</option>
+																<option value="3.5"<?php if($pl4 == "3.5"){ echo "selected"; } ?>  >~0.03  <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?>.</option>
+																<option value="3.0" <?php if($pl4 == "3.0"){ echo "selected"; } ?> >~0.01  <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?>.</option>
+																<option value="2.5" <?php if($pl4 == "2.5"){ echo "selected"; } ?> >~0.003  <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?>.</option>
+																<option value="2.0" <?php if($pl4 == "2.0"){ echo "selected"; } ?> >~0.001  <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?>.</option>
+																<option value="1.5" <?php if($pl4 == "1.5"){ echo "selected"; } ?> >~0.000 3  <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?>.</option>
+																<option value="1.0" <?php if($pl4 == "1.0"){ echo "selected"; } ?> >~0.000 1  <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?>.</option>
+																<option value="0.5" <?php if($pl4 == "0.5"){ echo "selected"; } ?> >~0.000 03  <?php echo $_SESSION[$_SESSION['lang']]['total or almost total loss of value in each item affected']; ?>.</option>
 														  
 														 
 														</select>
 													</div>
 													<div class="form-group">
-														<label for="Sigla">Low estimate</label>
-														<select class="form-control" id="le4" name="le4"  onchange="range_L_E_I('Low',this.value,1);document.getElementById('valid3b').value=this.value">
-                           <option value="" >select</option>
-																<option value="5.0" <?php if($le4 == "5.0"){ echo "selected"; } ?> >~1. Total or almost total loss of value in each item affected</option>
-																<option value="4.5" <?php if($le4 == "4.5"){ echo "selected"; } ?> >~0.3  loss of value in each item affected.</option>
-																<option value="4.0" <?php if($le4 == "4.0"){ echo "selected"; } ?> >~0.1  loss of value in each item affected.</option>
-																<option value="3.5" <?php if($le4 == "3.5"){ echo "selected"; } ?> >~0.03  loss of value in each item affected.</option>
-																<option value="3.0" <?php if($le4 == "3.0"){ echo "selected"; } ?> >~0.01  loss of value in each item affected.</option>
-																<option value="2.5" <?php if($le4 == "2.5"){ echo "selected"; } ?> >~0.003  loss of value in each item affected.</option>
-																<option value="2.0" <?php if($le4 == "2.0"){ echo "selected"; } ?> >~0.001  loss of value in each item affected.</option>
-																<option value="1.5" <?php if($le4 == "1.5"){ echo "selected"; } ?> >~0.000 3  loss of value in each item affected.</option>
-																<option value="1.0" <?php if($le4 == "1.0"){ echo "selected"; } ?> >~0.000 1  loss of value in each item affected.</option>
-																<option value="0.5" <?php if($le4 == "0.5"){ echo "selected"; } ?> >~0.000 03  loss of value in each item affected.</option>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate']; ?></label>
+														<select class="form-control" id="le4" name="le4"  onchange="range_L_E_I('Low',this.value,1);document.getElementById('valid3b').value=this.value;
+														document.getElementById('marcacao3').value=this.value;
+														">
+                           <option value="" ><?php echo $_SESSION[$_SESSION['lang']]['select']; ?></option>
+																<option value="5.0" <?php if($le4 == "5.0"){ echo "selected"; } ?> >~1.<?php echo $_SESSION[$_SESSION['lang']]['select']; ?></option>
+																<option value="4.5" <?php if($le4 == "4.5"){ echo "selected"; } ?> >~0.3  <?php echo $_SESSION[$_SESSION['lang']]['select']; ?>.</option>
+																<option value="4.0" <?php if($le4 == "4.0"){ echo "selected"; } ?> >~0.1  <?php echo $_SESSION[$_SESSION['lang']]['select']; ?>.</option>
+																<option value="3.5" <?php if($le4 == "3.5"){ echo "selected"; } ?> >~0.03  <?php echo $_SESSION[$_SESSION['lang']]['select']; ?>.</option>
+																<option value="3.0" <?php if($le4 == "3.0"){ echo "selected"; } ?> >~0.01  <?php echo $_SESSION[$_SESSION['lang']]['select']; ?>.</option>
+																<option value="2.5" <?php if($le4 == "2.5"){ echo "selected"; } ?> >~0.003  <?php echo $_SESSION[$_SESSION['lang']]['select']; ?>.</option>
+																<option value="2.0" <?php if($le4 == "2.0"){ echo "selected"; } ?> >~0.001  <?php echo $_SESSION[$_SESSION['lang']]['select']; ?>.</option>
+																<option value="1.5" <?php if($le4 == "1.5"){ echo "selected"; } ?> >~0.000 3  <?php echo $_SESSION[$_SESSION['lang']]['select']; ?>.</option>
+																<option value="1.0" <?php if($le4 == "1.0"){ echo "selected"; } ?> >~0.000 1  <?php echo $_SESSION[$_SESSION['lang']]['select']; ?>.</option>
+																<option value="0.5" <?php if($le4 == "0.5"){ echo "selected"; } ?> >~0.000 03  <?php echo $_SESSION[$_SESSION['lang']]['select']; ?>.</option>
 														  
 														 
 														</select>
@@ -648,15 +621,15 @@
 												<?php } ?> 			
 												<!-- onkeypress='return event.charCode >= 48 && event.charCode <= 57' -->
 													<div class="form-group"> 
-														<label for="Sigla">High estimate</label><br>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['High estimate']; ?></label><br>
 														<input type="text" class="form-control" min="1" style="width:50%"  id="he5" name="he5"  placeholder="" onblur="range_L_E_I('DecimalsHigh',this.value);" onchange="valida_high_any_decimals(this.value);" value="" onkeypress="return keypressed( this , event );document.getElementById('valid1b').value=this.value"   maxlength="10">
 													</div>
 													<div class="form-group">
-														<label for="Sigla">Probable loss to each item affected</label><br>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Probable loss to each item affected']; ?></label><br>
 														<input type="text" class="form-control" min="1" style="width:50%" id="pl5" name="pl5"  placeholder="" onblur="range_L_E_I('DecimalsProbable',this.value);" onchange="valida_probable_any_decimals(this.value);" value="" onkeypress="return keypressed( this , event );document.getElementById('valid2b').value=this.value" maxlength="10">
 													</div>
 													<div class="form-group">
-														<label for="Sigla">Low estimate</label><br>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate']; ?></label><br>
 														<input type="text" min="1"  class="form-control" style="width:50%" id="le5" name="le5" placeholder=""  onchange="valida_low_any_decimals(this.value);"  onblur="range_L_E_I('DecimalsLow',this.value); " value="" onkeypress="return keypressed( this , event );document.getElementById('valid3b').value=this.value" maxlength="10">
 													</div>
 													</div>
@@ -726,7 +699,7 @@
 												}
 											}
 											}
-											">Save</button>
+											"><?php echo $_SESSION[$_SESSION['lang']]['Save']; ?></button>
 						    </form>
 							</div>
 							
@@ -750,26 +723,26 @@
 									}		
 									
 									if(tamanho == ''){//verifica se está vazio
-											return "It cannot be empty.";
+											return <?php echo "'".$_SESSION[$_SESSION['lang']]['It cannot be empty.']."'"; ?>;
 									}
 									
 									if(valor.charAt(tamanho-1) == '.'){//verifica se o último caracter é um ponto
-											return "The last character cannot be a dot.";
+											return <?php echo "'".$_SESSION[$_SESSION['lang']]['The last character cannot be a dot']."'"; ?>;
 									}	
 									
 									if(valor.charAt(0) == '.'){//verifica se o primeiro caracter é um ponto
-											return "The first character cannot be a dot.";
+											return <?php echo "'".$_SESSION[$_SESSION['lang']]['The last character cannot be a dot']."'"; ?>;
 									}
 									
 									if(qtdPonto > 1) {
-										return "Incorrect value format. Use only one dot.";
+										return <?php echo "'".$_SESSION[$_SESSION['lang']]['The last character cannot be a dot']."'"; ?>;
 									} else {
 										return "";
 									}
 								}
 								
 								function valida_high_any_decimals(valor){
-									msg = "High estimate must be between 0.00001 and 1.0.";
+									msg = <?php echo "'".$_SESSION[$_SESSION['lang']]['High estimate must be between 0.00001 and 1.0.']."'"; ?>;
 									
 									validacao_1 = valida_pontuacao(valor);
 									if (valida_any_decimals(valor) || validacao_1 != ""){
@@ -794,7 +767,7 @@
 								}
 								
 								function valida_probable_any_decimals(valor){
-									msg = "Probable loss must be between 0.00001 and 1.0.";	
+									msg = <?php echo "'".$_SESSION[$_SESSION['lang']]['Probable loss must be between 0.00001 and 1.0.']."'"; ?>;	
 									
 									validacao_1 = valida_pontuacao(valor);
 									if (valida_any_decimals(valor) || validacao_1 != ""){
@@ -820,7 +793,7 @@
 								}
 								
 								function valida_low_any_decimals(valor){
-									msg = "Low estimate must be between 0.00001 and 1.0.";	
+									msg = <?php echo "'".$_SESSION[$_SESSION['lang']]['Low estimate must be between 0.00001 and 1.0.']."'"; ?>;	
 									
 									validacao_1 = valida_pontuacao(valor);
 									if (valida_any_decimals(valor) || validacao_1 != ""){
@@ -867,7 +840,7 @@
 							<div class="modal-dialog modal-lg">
 							  <div class="modal-content">
 								<div class="modal-header">
-								  <h4 class="modal-title">Analysis notes and documents (B)</h4>
+								  <h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Analysis notes and documents']; ?> (B)</h4>
 								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								  </button>
@@ -885,7 +858,7 @@
 									<div class="row">
 												<div class="col-sm-6 col-md-6">
 													<div class="form-group"><br>
-														<label for="Sigla">Explain the esimates of loss to each item affected.</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Analysis notes and documents']; ?><?php echo $_SESSION[$_SESSION['lang']]['Explain the esimates of loss to each item affected']; ?>.</label>
 														<textarea class="form-control" name="le_zoom_explanation_fields" ID="le_zoom_explanation_fields"  onkeyup="document.getElementById('explain_le').value=this.value"><?php echo $le_zoom_explanation_fields; ?></textarea>
 													</div>	
 												</div>	
@@ -893,26 +866,26 @@
 												<div class="form-group">
 														<label for="Sigla">
 														&nbsp;<br>
-														Notes for this explanation .
+														<?php echo $_SESSION[$_SESSION['lang']]['Analysis notes and documents']; ?>Notes for this explanation .
 														</label>
 														<textarea class="form-control" name="le_zoom_notes_explanation" ID="le_zoom_notes_explanation"><?php echo $le_zoom_notes_explanation; ?></textarea>
 													</div>	
 												</div>
 									</div>
 									<hr>
-									<h5>Documents associated with this risk its options</h5>
+									<h5><?php echo $_SESSION[$_SESSION['lang']]['Documents associated with this risk its options']; ?></h5>
 									<br>
 									<div class="row">
 												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
-														<label for="Sigla">Document name</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Document name']; ?></label>
 														<input type="text" class="form-control" id="le_zoom_document_name"
 													name="le_zoom_document_name" placeholder=""  required value="<?php echo $le_zoom_document_name; ?>" >
 													</div>	
 												</div>	
 												<div class="col-sm-4 col-md-4">
 													<div class="form-group">
-														<label for="Sigla">Comment</label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Analysis notes and documents']; ?><?php echo $_SESSION[$_SESSION['lang']]['DComment']; ?></label>
 														<input type="text" class="form-control" id="le_zoom_comment"
 													name="le_zoom_comment" placeholder=""  required value="<?php echo $le_zoom_comment; ?>" >
 													</div>	
@@ -951,8 +924,8 @@
 									</div>-->
 								</div>
 								<div class="modal-footer justify-content-between">
-								  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_le_save();loss_to_each_register();">Save changes</button>
+								  <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>
+								  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="zoom_le_save();loss_to_each_register();"><?php echo $_SESSION[$_SESSION['lang']]['Save changes']; ?></button>
 								</div>
 							  </div>
 							  <!-- /.modal-content -->
@@ -971,7 +944,7 @@
 							
 								if(document.getElementById('risk').value == '#'){
 									
-									alert("Select a risk");
+									alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Select a risk']."'"; ?>);
 									
 								}else{	
 								  var formulario = document.getElementById('ar_le');
@@ -987,7 +960,7 @@
 									success: function(data) {
 										registraMR();
 										if(data==1){
-											alert('Registro atualizado com sucesso');
+											alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Register save successfull']."'"; ?>);
 											window.scrollTo(0, 0);
 										}
 									}

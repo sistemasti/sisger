@@ -68,7 +68,7 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Magnitude of Risk and Uncertainty matrix</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of Risk and Uncertainty matrix']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -92,14 +92,14 @@ require_once("header.php");
 			 
 			  <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Magnitude of Risk and Uncertainty matrix</h3>
+                <h3 class="card-title"><?php echo $_SESSION[$_SESSION['lang']]['Magnitude of Risk and Uncertainty matrix']; ?></h3>
 
                 <div class="card-tools">
 
                 </div>
               </div>
               <div class="card-body">
-                <center><em>Enter different values of thereshold to see how the risks partition into the four quadrants</em></center>
+                <center><em><?php echo $_SESSION[$_SESSION['lang']]['Enter different values of thereshold to see how the risks partition into the four quadrants']; ?></em></center>
 				<br>
 				<br>
 				
@@ -125,12 +125,12 @@ require_once("header.php");
 					
 					<!-- ############# INPUT ############# cidades_incosistentes.xls-->
 					
-					<div style=" position:absolute; top:37.2%; right:-5%; width:65px;background-color:#fff;"><small>Magnitude threshould:</small> <br><span style="padding:4px; color:#fff;"><strong>
+					<div style=" position:absolute; top:37.2%; right:-5%; width:65px;background-color:#fff;"><small><?php echo $_SESSION[$_SESSION['lang']]['Magnitude threshould']; ?>:</small> <br><span style="padding:4px; color:#fff;"><strong>
 					<input type="text" name="expected_scores" id="expected_scores" style="width:82%;"  onblur="
 					
 					if( this.value != '' && (this.value < 8.0 || this.value > 14.0)){ 
 					
-							alert('Enter a number between 8.0 and 14.0'); 
+							alert('<?php echo $_SESSION[$_SESSION['lang']]['Enter a number between 8.0 and 14.0']; ?>'); 
 							
 					}else{
 						
@@ -157,11 +157,11 @@ require_once("header.php");
 								
 								loadMatrix(this.value,document.getElementById('expected_scores').value);	
 								ar_magnitudes_risk();
-							}; " value="<?php echo $uncertainty_range; ?>" maxlength="5" onkeypress="return keypressed( this , event );"> <small>Uncertainty threshold</small> <span style="padding:4px; color:#fff" required ><strong>
+							}; " value="<?php echo $uncertainty_range; ?>" maxlength="5" onkeypress="return keypressed( this , event );"> <small><?php echo $_SESSION[$_SESSION['lang']]['Magnitude threshould']; ?></small> <span style="padding:4px; color:#fff" required ><strong>
 						</strong></span>&nbsp;</div>
 						<!-- ############# END INPUT #############-->
 						
-						<center>High magnitude + Hight uncertainty =  Research now</center>
+						<center><?php echo $_SESSION[$_SESSION['lang']]['High magnitude + Hight uncertainty = Research now']; ?></center>
 						<br>
 							<table class="table-sm">
 							  <thead>
@@ -190,7 +190,7 @@ require_once("header.php");
 						
 						
 						
-						<center>High magnitude + Low uncertainty =  Treat now</center>
+						<center><?php echo $_SESSION[$_SESSION['lang']]['High magnitude + Low uncertainty =  Treat now']; ?></center>
 						<br>
 						<table class="table-sm">
 							  <thead>
@@ -220,7 +220,7 @@ require_once("header.php");
 					
 					margin-top: -6px;">
 						<div style="width:95%;height:260px;background-color:#ffe6e1;margin-left:0px;left:0px;margin-bottom:0px;padding:12px;float:left;margin-bottom:30px;overflow: auto;"> 
-						<center>Low magnitude + High uncertainty =  Research later</center>
+						<center><?php echo $_SESSION[$_SESSION['lang']]['Low magnitude + High uncertainty =  Research later']; ?></center>
 						<br>
 							<table class="table-sm">
 							  <thead>
@@ -249,7 +249,7 @@ require_once("header.php");
 					border-top-color: #7b0606;
 					border-top-style: solid;
 						"> 
-						<center>Low magnitude + Low uncertainty =  Lowest priority</center>
+						<center><?php echo $_SESSION[$_SESSION['lang']]['Low magnitude + Low uncertainty =  Lowest priority']; ?></center>
 							<br>
 							<table class="table-sm">
 							  <thead>

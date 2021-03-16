@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo '<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -69,11 +69,11 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
         <div class="row" style="margin-left:10%;">
           <div class="col-md-10" style="text-align:center !important;">
             <div class="card">
-                <h2>Value pie</h2>
+                <h2><?php echo $_SESSION[$_SESSION['lang']]['Value pie']; ?></h2>
              <canvas id="pieChart4b" ></canvas>
 			 <BR>
              <button type="button" class="btn btn-block bg-gradient-info btn-sm" id="downloadPdf"><i class="fas fa-bars"></i> PDF</button>
-             <a href="communicate"><button type="button" class="btn btn-block bg-gradient-warning btn-sm" ><i class="fas fa-arrow-circle-left"></i> RETURN</button></a>
+             <a href="communicate"><button type="button" class="btn btn-block bg-gradient-warning btn-sm" ><i class="fas fa-arrow-circle-left"></i> <?php echo $_SESSION[$_SESSION['lang']]['RETURN']; ?></button></a>
             </div>
             <!-- /.card -->
           </div>
@@ -302,7 +302,7 @@ $('#downloadPdf').click(function(event) {
 			var ctx5 = document.getElementById('pieChart4b').getContext('2d');
 			
 			var options = {
-				cutoutPercentage: 50
+				cutoutPercentage: 0
 			};
 			
 			window.myBar = new Chart(ctx5, {
@@ -332,7 +332,10 @@ $('#downloadPdf').click(function(event) {
 						yAxes: [{
 							stacked: true
 						}]
-					}
+					},
+							legend: {
+									onClick: (e) => e.stopPropagation()
+								}
 				}
 			});
 		};

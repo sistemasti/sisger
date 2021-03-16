@@ -15,15 +15,15 @@ include("../controllers/TR_Analyze_options.class.php");
 							$in = Risks::select_risk_id($_GET['id']);
 							echo $in['name'];
 					?></h4>
-					<strong>Reduction risk option for the selected risk</strong>
+					<strong><?php echo $_SESSION[$_SESSION['lang']]['Reduction risk option for the selected risk']; ?></strong>
 						<div>
 						<br>
 							
 							<div class="row">
 							
-								<div class="col-sm-3 col-md-3" ><h6>Option name / Date implemented</h6></div>
-								<div class="col-sm-4 col-md-4" ><h6>Options summary sentence</h6></div>
-								<div class="col-sm-4 col-md-4" ><h6>Cost, One Time / Cost, Annual</h6></div>
+								<div class="col-sm-3 col-md-3" ><h6><?php echo $_SESSION[$_SESSION['lang']]['Option name / Date implemented']; ?></h6></div>
+								<div class="col-sm-4 col-md-4" ><h6><?php echo $_SESSION[$_SESSION['lang']]['Options summary sentence']; ?></h6></div>
+								<div class="col-sm-4 col-md-4" ><h6><?php echo $_SESSION[$_SESSION['lang']]['Cost, One Time / Cost, Annual']; ?></h6></div>
 								<div class="col-sm-1 col-md-1" ><h6>&nbsp;</h6></div>
 							</div>
 							
@@ -45,7 +45,7 @@ include("../controllers/TR_Analyze_options.class.php");
 								
 								
 									<select class="form-control" id="id_option" name="ec_groups_id"onchange="update_id_option(this.value,<?php echo $ti['id'];?>)" >
-									<option value="0">select option</option>
+									<option value="0"><?php echo $_SESSION[$_SESSION['lang']]['select option']; ?></option>
 									<?php 
 											
 											$in = Analyze_options::select_options();
@@ -74,14 +74,14 @@ include("../controllers/TR_Analyze_options.class.php");
 									
 										<div class="input-group">
 										<div class="input-group-prepend">
-										  <span class="input-group-text">R$</span>
+										  <span class="input-group-text">$</span>
 										</div>
 										<input type="text" name="one_time_cost" id="one_time_cost" class="form-control"  onKeyPress="return(moeda(this,'.',',',event))" value="<?php echo $ti['one_time_cost'];?>" onkeyup="update_one_time_cost(this.value,<?php echo $ti['id'];?>)">
 										</div>
 									
 										<div class="input-group" style="margin-top:4px;">
 										<div class="input-group-prepend">
-										  <span class="input-group-text">R$</span>
+										  <span class="input-group-text">$</span>
 										</div>
 										<input type="text" name="annual_cost" id="annual_cost"  class="form-control"  onKeyPress="return(moeda(this,'.',',',event))"  value="<?php echo $ti['annual_cost'];?>"  onkeyup="update_annual_cost(this.value,<?php echo $ti['id'];?>)">
 										</div>
@@ -93,10 +93,10 @@ include("../controllers/TR_Analyze_options.class.php");
 								</div>
 								
 							</div>
-							<br>
+							<br><?php //echo $_SESSION[$_SESSION['lang']]['select option']; ?>
 							<?php }
 								}else{
-										echo "no data recorded";
+										echo $_SESSION[$_SESSION['lang']]['no data recorded'];
 								}	
 							?>
 							<br>
@@ -116,10 +116,10 @@ include("../controllers/TR_Analyze_options.class.php");
 			}else{
 				document.getElementById('fd_scores').style.display='none'
 			}
-			">insert a new data</button>
+			"><?php echo $_SESSION[$_SESSION['lang']]['insert a new data']; ?></button>
 			
 			<?php }else{ ?>
-			<center><em>You have already filled in the number of options available. <br>To register more options, <a href="tr_risk_option">click here</a>.</em></center>
+			<center><em><?php echo $_SESSION[$_SESSION['lang']]['You have already filled in the number of options available']; ?>. <br><?php echo $_SESSION[$_SESSION['lang']]['To register more options']; ?>, <a href="tr_risk_option"><?php echo $_SESSION[$_SESSION['lang']]['click here']; ?></a>.</em></center>
 			<?php } ?>
 			
 			
@@ -128,7 +128,7 @@ include("../controllers/TR_Analyze_options.class.php");
 			<form name="frmDocuments" method="post" id="tr_risk_options_register"  enctype="multipart/form-data">
 			<input type="hidden" class="form-control" id="id_risk"	name="id_risk" value="<?php echo $_GET['id']; ?>" required placeholder="Data option" style="margin-top:2px;">
 					<select class="form-control" id="id_option" name="id_option" style="margin-top:2px;">
-						<option value="0" >select a option</option>
+						<option value="0" ><?php echo $_SESSION[$_SESSION['lang']]['select a option']; ?></option>
 							<?php 
 											
 								$in = Analyze_options::select_options_by_id_risk($_GET['id']);
@@ -140,39 +140,40 @@ include("../controllers/TR_Analyze_options.class.php");
 											
 									<?php	} ?>
 					</select>
-					<input type="text" class="form-control" id="data"	name="data" value="" required placeholder="Data implemented" style="margin-top:2px;" onKeyDown="Mascara(this,Data);" onKeyPress="Mascara(this,Data);" onKeyUp="Mascara(this,Data);" maxlength="10">
-					<input type="text" class="form-control" id="summary" name="summary" value="" required placeholder="Options summary sentence" style="margin-top:2px;">
+					<input type="text" class="form-control" id="data"	name="data" value="" required placeholder="<?php echo $_SESSION[$_SESSION['lang']]['Data implemented']; ?>" style="margin-top:2px;" onKeyDown="Mascara(this,Data);" onKeyPress="Mascara(this,Data);" onKeyUp="Mascara(this,Data);" maxlength="10">
+					<input type="text" class="form-control" id="summary" name="summary" value="" required placeholder="<?php echo $_SESSION[$_SESSION['lang']]['Options summary sentence']; ?>" style="margin-top:2px;">
 					<div class="input-group" style="margin-top:2px;">
 										<div class="input-group-prepend">
-										  <span class="input-group-text">R$</span>
+										  <span class="input-group-text">$</span>
 										</div>
-										<input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false" name="one_time_cost" id="one_time_cost" onKeyPress="return(moeda(this,'.',',',event))" placeholder="Cost, One Time">
+										<input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false" name="one_time_cost" id="one_time_cost" onKeyPress="return(moeda(this,'.',',',event))" placeholder="<?php echo $_SESSION[$_SESSION['lang']]['Cost, One Time']; ?>">
 					</div>
 					<div class="input-group" style="margin-top:2px;">
 										<div class="input-group-prepend">
-										  <span class="input-group-text">R$</span>
+										  <span class="input-group-text">$</span>
 										</div>
-										<input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false" name="annual_cost" id="annual_cost"  onKeyPress="return(moeda(this,'.',',',event))" placeholder="Cost, Annual">
+										<input type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask="" im-insert="false" name="annual_cost" id="annual_cost"  onKeyPress="return(moeda(this,'.',',',event))" placeholder="<?php echo $_SESSION[$_SESSION['lang']]['Cost, Annual']; ?>">
 					</div>
 					<!input type="text" class="form-control" id="annual_cost" name="annual_cost" value="" required placeholder="Annual cost" style="margin-top:2px;">
 			
 			<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="
 			
 			if(document.getElementById('data').value==''){
+				alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Please, insert a data']."'"; ?>);
+		  
 				
-				alert('Please, insert a data'); 
 				
 			}else if(document.getElementById('one_time_cost').value=='') { 
-			
-				alert('Please, insert a one time cost'); 
+				alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Please, insert a one time cost']."'"; ?>);
+				
 			
 			}else if(document.getElementById('annual_cost').value=='') { 
-			
-				alert('Please, insert a annual cost'); 
+				alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Please, insert a annual cost']."'"; ?>);
+				
 			
 			}else if(document.getElementById('id_option').value=='' || document.getElementById('id_option').value=='0' ) { 
-			
-				alert('Please, select a option'); 
+				alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Please, select a option']."'"; ?>);
+				
 			
 			}else{
 				
@@ -180,7 +181,7 @@ include("../controllers/TR_Analyze_options.class.php");
 				
 			}
 			
-			" style="margin-top:2px;">save</button>
+			" style="margin-top:2px;"><?php echo $_SESSION[$_SESSION['lang']]['save']; ?></button>
 			</form>
 			</div>
 					</div>

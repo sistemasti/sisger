@@ -60,7 +60,7 @@ require_once("header.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Zoom list register</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Zoom list register']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -68,7 +68,7 @@ require_once("header.php");
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="zoom_list?risk_id=<?php echo $_GET['risk_id']; ?>"><button type="button" class="btn btn-block btn-outline-success btn-xs">Return</button></a>
+			<a href="zoom_list?risk_id=<?php echo $_GET['risk_id']; ?>"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Return']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -119,7 +119,7 @@ require_once("header.php");
 										
 										if($btn2 == "2"){
 											
-											echo'<script language= "JavaScript">alert("Registration successful.");location.href="ir_agents"</script>';
+											echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['Registration successful'].'.");location.href="ir_agents"</script>';
 											
 										}
 										$agent = ''; 		
@@ -128,7 +128,7 @@ require_once("header.php");
 										
 									?>	
 										<div class="alert alert-success">
-											Registration successful.
+											<?php echo $_SESSION[$_SESSION['lang']]['Registration successful']; ?>.
 										</div>
 										
 									<?php	
@@ -154,9 +154,9 @@ require_once("header.php");
 					  <input type="hidden" name="cadastrar" id="cadastrar" value="1">
 					  <input type="hidden" id="risk_id" name="risk_id" value="<?php echo $_REQUEST['risk_id']; ?>">
 						<div class="form-group">
-							<label for="Name">Register</label>
+							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Register']; ?></label>
 							<select class="form-control" id="value_table" name="value_table" onchange="select_dados_value_table_id(this.value)">
-							<option value="" >select</option>
+							<option value="" ><?php echo $_SESSION[$_SESSION['lang']]['select']; ?></option>
 				<?php 
 				$in = Build_value_pie::select_ec_value_pie_table_all_zoom_list($_REQUEST['risk_id']);
 				
@@ -200,7 +200,7 @@ require_once("header.php");
 														
 														</script>
 						<div class="form-group">
-							<label for="Name">Numbers of itens in subgroup</label>
+							<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Numbers of itens in subgroup']; ?></label>
 							<div class="row">
 														<div class="col-sm-12 col-md-12">
 															<input type="text" class="form-control" id="numbers_itens_inp" name="numbers_itens_inp" placeholder="0" value="" readonly required>
@@ -219,19 +219,19 @@ require_once("header.php");
 						 <div class="row">
 														 <div class="col-sm-4 col-md-4">
 														 <div class="form-group">
-															<label for="Name">Low estimate</label>
+															<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate']; ?></label>
 															<input type="text" class="form-control" id="low_estimate" name="low_estimate" placeholder="" value="<?php echo $low_estimate; ?>" onkeypress="return keypressed( this , event );" required>
 														 </div>
 														 </div> 
 														 <div class="col-sm-4 col-md-4">
 														  <div class="form-group">
-															<label for="Name">Most Probable</label>
+															<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Most Probable']; ?></label>
 															<input type="text" class="form-control" id="most_probable" name="most_probable" placeholder="" value="" onkeypress="return keypressed( this , event );" required>
 														 </div>
 														 </div> 
 														 <div class="col-sm-4 col-md-4">
 														 <div class="form-group">
-															<label for="Name">High estimate</label>
+															<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['High estimate']; ?></label>
 															<input type="text" class="form-control" id="high_estimate" name="high_estimate" placeholder="" value="" required onkeypress="return keypressed( this , event );">
 														 </div>
 														 <!--<div style="float:right">
@@ -268,14 +268,14 @@ require_once("header.php");
 											
 											</script>
 						
-						<button type="button" onclick="if( document.getElementById('value_table').value==''){ alert('select a register'); }else{ zoom_list_save(1) }" name="btn1" class="btn btn-block bg-gradient-primary btn-sm" value="1">Save & Add New</button>
+						<button type="button" onclick="if( document.getElementById('value_table').value==''){ alert('select a register'); }else{ zoom_list_save(1) }" name="btn1" class="btn btn-block bg-gradient-primary btn-sm" value="1"><?php echo $_SESSION[$_SESSION['lang']]['Save & Add New']; ?></button>
 				
-						<button type="button" name="btn2" class="btn btn-block bg-gradient-info btn-sm" value="2" onclick="if( document.getElementById('value_table').value==''){  alert('select a register'); }else{ zoom_list_save(2) }" >Save & Return</button>
+						<button type="button" name="btn2" class="btn btn-block bg-gradient-info btn-sm" value="2" onclick="if( document.getElementById('value_table').value==''){  alert('select a register'); }else{ zoom_list_save(2) }" ><?php echo $_SESSION[$_SESSION['lang']]['Save & Return']; ?></button>
 					  </form>
               </div> 
 			  <div class="col-sm-4 col-md-6">
                <div class="callout callout-info">
-                  <h5>Zoom list register</h5>
+                  <h5><?php echo $_SESSION[$_SESSION['lang']]['Zoom list register']; ?></h5>
 
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec rutrum est id elit auctor consequat. In mattis massa nibh, et scelerisque ipsum molestie sit amet. Nulla sagittis consectetur odio non eleifend. </p>
                 </div>
@@ -292,7 +292,8 @@ require_once("header.php");
 							   document.getElementById('high_estimate').value == '' 
 							   
 							   ){
-								   alert('Low estimate, Most probable and High estimate fields are required');
+								   //alert('');
+								    alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Low estimate, Most probable and High estimate fields are required']."'"; ?>);
 							   }else {   
 							   
 										var formulario = document.getElementById('frmZoomLista');
@@ -320,7 +321,7 @@ require_once("header.php");
 											}
 										  });
 										  
-										  alert('Register save successfull');
+										  alert(<?php echo "'".$_SESSION[$_SESSION['lang']]['Register save successfull']."'"; ?>);
 										  
 														
 														

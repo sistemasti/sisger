@@ -3,7 +3,7 @@
 require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo '<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 ?>
@@ -65,7 +65,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Zoom list<?php 
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Zoom list']; ?>
+				<?php 
 			
 			
 			if(isset($_GET['type'])){ echo "(Analyze risks)"; } ?></h1>
@@ -111,14 +112,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				
 				
 				
-				"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << Save & return</button></a>
+				"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << <?php echo $_SESSION[$_SESSION['lang']]['Save & return']; ?></button></a>
 				
 			<?php }else{ 
 			
 					$disabled = "";
 			?>
 			
-				<a href="zoom_list_register?risk_id=<?php echo $_GET['risk_id']; ?>&option_id=<?php echo $_GET['option_id']; ?>"><button type="button" class="btn btn-block btn-success btn-xs">Register a new item >></button></a>
+				<a href="zoom_list_register?risk_id=<?php echo $_GET['risk_id']; ?>&option_id=<?php echo $_GET['option_id']; ?>"><button type="button" class="btn btn-block btn-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new item']; ?> >></button></a>
 				
 				<a href="javascript:void(0)" onclick="
 				
@@ -134,7 +135,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				
 					
 				
-				"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << Save & return</button></a>
+				"><button type="button" class="btn btn-block btn-outline-success btn-xs" style="margin-top:2px;"> << <?php echo $_SESSION[$_SESSION['lang']]['Save & return']; ?></button></a>
 				
 			<?php } 
 			
@@ -184,7 +185,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=1;			
 				
 				
-				" <?php if($iac['type_list_zoom'] == 1 || $iac['type_list_zoom'] == 0 ){ echo "checked"; $displayTop="none"; }  ?>> Items listed are all affected  
+				" <?php if($iac['type_list_zoom'] == 1 || $iac['type_list_zoom'] == 0 ){ echo "checked"; $displayTop="none"; }  ?>> <?php echo $_SESSION[$_SESSION['lang']]['Items listed are all affected']; ?>  
 				
 				<br>
 		<input type="radio" name="type_list" id="type_list_2" value="2" <?php echo $disabled; ?> onclick="
@@ -210,7 +211,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=2;		
 				
 				
-				" <?php if($iac['type_list_zoom'] == 2){ echo "checked"; $displayTop="block"; }  ?>  > Items listed are exposed, but only this many affected:
+				" <?php if($iac['type_list_zoom'] == 2){ echo "checked"; $displayTop="block"; }  ?>  > <?php echo $_SESSION[$_SESSION['lang']]['Items listed are exposed, but only this many affected']; ?>:
 				
 													<br>
 													<br>
@@ -278,10 +279,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 														<thead>	
 															<tr>
 															  <th style="width:40%"></th>
-															  <th><small>Number of items in subgroup</small></th>
-															  <th><small>Low estimate</small> </th>                
-															  <th><small>Most Probable</small></th>                
-															  <th><small>High estimate</small></th>    
+															  <th><small><?php echo $_SESSION[$_SESSION['lang']]['Number of items in subgroup']; ?></small></th>
+															  <th><small><?php echo $_SESSION[$_SESSION['lang']]['Low estimate']; ?></small> </th>                
+															  <th><small><?php echo $_SESSION[$_SESSION['lang']]['Most Probable']; ?></small></th>                
+															  <th><small><?php echo $_SESSION[$_SESSION['lang']]['High estimate']; ?></small></th>    
 															  
 															</tr>
 															<tr>
@@ -403,7 +404,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															<td colspan="5"></td>
 															</tr>
 															<tr id="row">
-															  <td colspan="2" style="text-align:right"><small>Using value pie:</small></td>
+															  <td colspan="2" style="text-align:right"><small><?php echo $_SESSION[$_SESSION['lang']]['Using value pie']; ?>:</small></td>
 															  
 															 <!-- LOW ESTIMATE -->
 															  <td>
@@ -674,7 +675,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																</td>
 															</tr>
 															<tr >
-															  <td id="row" colspan="2" style="text-align:right"><small>Assuming all items of equal value:</small></td>
+															  <td id="row" colspan="2" style="text-align:right"><small><?php echo $_SESSION[$_SESSION['lang']]['Assuming all items of equal value']; ?>:</small></td>
 															  <!-- 
 															  ###########################################
 															  as divs serão exibidas de acordo com o item selecionado no radio button
@@ -935,7 +936,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 													  <br>
 													  <br>
 													  <a id="anc"></a>
-													  <a href="zoom_list?risk_id=<?php echo $_GET['risk_id']; ?>"><button type="button" class="btn btn-block btn-info btn-xs" style="width:15%;float:right;">Refresh calculation</button></a>
+													  <a href="zoom_list?risk_id=<?php echo $_GET['risk_id']; ?>"><button type="button" class="btn btn-block btn-info btn-xs" style="width:15%;float:right;"><?php echo $_SESSION[$_SESSION['lang']]['Refresh calculation']; ?></button></a>
 													   <?php } ?>
 													
             </div>
@@ -984,7 +985,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 		<br>
 	   
 	    <div class="col-sm-10">
-            <h3>Options to reduce the risk</h3>
+            <h3><?php echo $_SESSION[$_SESSION['lang']]['Options to reduce the risk']; ?></h3>
 
           </div>
 	   
@@ -995,7 +996,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               
               <!-- /.card-header -->
             <div class="card-body">
-			 <a href="zoom_list_register_o?risk_id=<?php echo $_GET['risk_id']; ?>&option_id=<?php echo $_GET['option_id']; ?>"><button type="button" class="btn btn-block btn-success btn-xs" style="width:15%;float:right;">Register a new item >></button></a>
+			 <a href="zoom_list_register_o?risk_id=<?php echo $_GET['risk_id']; ?>&option_id=<?php echo $_GET['option_id']; ?>"><button type="button" class="btn btn-block btn-success btn-xs" style="width:15%;float:right;"><?php echo $_SESSION[$_SESSION['lang']]['Register a new item']; ?> >></button></a>
 			<br>
 			<br>
 		<input type="hidden" id="id_option" name="id_option">	
@@ -1036,7 +1037,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=1;			
 				
 				
-				" <?php if($iac_o['type_list'] == 1 || $iac_o['type_list'] == 0 ){ echo "checked"; $displayTop="none"; } ?>> Items listed are all affected 
+				" <?php if($iac_o['type_list'] == 1 || $iac_o['type_list'] == 0 ){ echo "checked"; $displayTop="none"; } ?>> <?php echo $_SESSION[$_SESSION['lang']]['Items listed are all affected']; ?> 
 				
 				<br>
 		<input type="radio" name="type_list_o" id="type_list_2_o" value="2" onclick="
@@ -1063,7 +1064,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				document.getElementById('C_type_list').value=2;		
 				
 				
-				" <?php if($iac_o['type_list'] == 2){ echo "checked"; $displayTop="block"; } ?>> Items listed are exposed, but only this many affected: 
+				" <?php if($iac_o['type_list'] == 2){ echo "checked"; $displayTop="block"; } ?>> <?php echo $_SESSION[$_SESSION['lang']]['Items listed are exposed, but only this many affected']; ?> : 
 				
 													<br>
 													<br>
@@ -1149,10 +1150,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 														<thead>	
 															<tr>
 															  <th style="width:40%"></th>
-															  <th><small>Number of items in subgroup</small></th>
-															  <th><small>Low estimate</small> </th>                
-															  <th><small>Most Probable</small></th>                
-															  <th><small>High estimate</small></th>    
+															  <th><small><?php echo $_SESSION[$_SESSION['lang']]['Number of items in subgroup']; ?></small></th>
+															  <th><small><?php echo $_SESSION[$_SESSION['lang']]['Low estimate']; ?></small> </th>                
+															  <th><small><?php echo $_SESSION[$_SESSION['lang']]['Most Probable']; ?></small></th>                
+															  <th><small><?php echo $_SESSION[$_SESSION['lang']]['High estimate']; ?></small></th>    
 															  
 															</tr>
 															<tr>
@@ -1274,7 +1275,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 															<td colspan="5"></td>
 															</tr>
 															<tr id="row">
-															  <td colspan="2" style="text-align:right"><small>Using value pie:</small></td>
+															  <td colspan="2" style="text-align:right"><small><?php echo $_SESSION[$_SESSION['lang']]['Using value pie']; ?>:</small></td>
 															  
 															 <!-- LOW ESTIMATE -->
 															  <td>
@@ -1544,7 +1545,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 																</td>
 															</tr>
 															<tr >
-															  <td id="row" colspan="2" style="text-align:right"><small>Assuming all items of equal value:</small></td>
+															  <td id="row" colspan="2" style="text-align:right"><small><?php echo $_SESSION[$_SESSION['lang']]['Assuming all items of equal value']; ?>:</small></td>
 															  <!-- 
 															  ###########################################
 															  as divs serão exibidas de acordo com o item selecionado no radio button
@@ -1804,7 +1805,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 													  <br>
 													  <br>
 													  <a id="anc"></a>
-													  <a href="zoom_list?type=<?php echo $_GET['type']; ?>&risk_id=<?php echo $_GET['risk_id']; ?>&option_id=<?php echo $_GET['option_id']; ?>"><button type="button" class="btn btn-block btn-info btn-xs" style="width:15%;float:right;">Refresh calculation</button></a>
+													  <a href="zoom_list?type=<?php echo $_GET['type']; ?>&risk_id=<?php echo $_GET['risk_id']; ?>&option_id=<?php echo $_GET['option_id']; ?>"><button type="button" class="btn btn-block btn-info btn-xs" style="width:15%;float:right;"><?php echo $_SESSION[$_SESSION['lang']]['Refresh calculation']; ?></button></a>
 													
             </div>
               <!-- ./card-body -->

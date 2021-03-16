@@ -7,11 +7,11 @@ include("../controllers/EC_Build_value_pie.class.php");
 ?>
 <div class="card">
 	<div class="card-body">
-		<h3>Subgroups</h3>
+		<h3><?php echo $_SESSION[$_SESSION['lang']]['Subgroups']; ?></h3>
 		<div>
 		<br>
 		<div style="padding: 5px;background-color:#f4fbcd">
-		<small><strong>Group:</strong> <?php 
+		<small><strong><?php echo $_SESSION[$_SESSION['lang']]['Group']; ?>:</strong> <?php 
 					
 					$g = Build_value_pie::select_ec_groups_value_id($_GET['group_id']);
 					echo $g['name'];
@@ -23,8 +23,8 @@ include("../controllers/EC_Build_value_pie.class.php");
 			
 				<tr>
 					<th style="width: 10px"></th>
-					<th>Subgroup</th>
-					<th>Number of items</th>
+					<th><?php echo $_SESSION[$_SESSION['lang']]['Subgroup']; ?></th>
+					<th><?php echo $_SESSION[$_SESSION['lang']]['Number of items']; ?></th>
 					
 				</tr>
 				
@@ -68,7 +68,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 				}
 				}else{
 				?>
-					<tr><td colspan="3"><center>no subgroups registered</center></td></tr>
+					<tr><td colspan="3"><center><?php echo $_SESSION[$_SESSION['lang']]['no subgroups registered']; ?></center></td></tr>
 			<?php		
 					
 					
@@ -102,7 +102,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 			<br>
 			<br>
 			<br>
-			<strong> Number of items: </strong> <span class="btn btn-block btn-outline-success btn-xs" id="totalNumberOfItens">
+			<strong> <?php echo $_SESSION[$_SESSION['lang']]['Number of items']; ?>: </strong> <span class="btn btn-block btn-outline-success btn-xs" id="totalNumberOfItens">
 			<?php
 				
 				$s = Build_value_pie::select_sum_itens_subgroup($_GET['group_id']);
@@ -114,13 +114,13 @@ include("../controllers/EC_Build_value_pie.class.php");
 
 			?>
 			</span>
-			<br><strong> Numbers of subgroups: </strong> <span class="btn btn-block btn-outline-success btn-xs"><?php
+			<br><strong> <?php echo $_SESSION[$_SESSION['lang']]['Numbers of subgroups']; ?>: </strong> <span class="btn btn-block btn-outline-success btn-xs"><?php
 				
 				$c = Build_value_pie::select_count_itens_subgroup($_GET['group_id']);
 				echo $c['total'];
 
 			?></span>
-			<br> <strong> Points for Group: </strong> <span class="btn btn-block btn-outline-info btn-xs" id="html_points_subgroup_subgroup"><?php 
+			<br> <strong> <?php echo $_SESSION[$_SESSION['lang']]['Points for Group']; ?>: </strong> <span class="btn btn-block btn-outline-info btn-xs" id="html_points_subgroup_subgroup"><?php 
 				
 				$t = Build_value_pie::select_sum_ec_values_and_their_scores_by_group($_GET['group_id']);
 				$g = Build_value_pie::update_group_points($t['total'], $_GET['group_id']);
@@ -131,7 +131,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 			<br>
 			<br>
 			<div style="display:none" id="zoomSubgroup">
-			<button type="button" class="btn btn-block bg-gradient-warning btn-sm" data-toggle="modal" data-target="#modal-sub">Zoom Description</button>
+			<button type="button" class="btn btn-block bg-gradient-warning btn-sm" data-toggle="modal" data-target="#modal-sub"><?php echo $_SESSION[$_SESSION['lang']]['Zoom Description']; ?></button>
 			</div>
 			
 			<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
@@ -140,9 +140,9 @@ include("../controllers/EC_Build_value_pie.class.php");
 			}else{
 				document.getElementById('fd_new_subgroup').style.display='none'
 			}
-			">insert a new subgroup</button>
+			"><?php echo $_SESSION[$_SESSION['lang']]['insert a new subgroup']; ?></button>
 			<div id="fd_new_subgroup" style="display:none">
-			<input type="text" class="form-control" id="subgroup_name"	name="subgroup_name" value="" required placeholder="Subgroup name">
+			<input type="text" class="form-control" id="subgroup_name"	name="subgroup_name" value="" required placeholder="<?php echo $_SESSION[$_SESSION['lang']]['Subgroup name']; ?>">
 			
 			<input 
 			type="text" 
@@ -151,7 +151,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 			name="subgroup_itens" 
 			value="" 
 			required 
-			placeholder="Number of items" 
+			placeholder="<?php echo $_SESSION[$_SESSION['lang']]['Number of items']; ?>" 
 			onKeyDown="Mascara(this,Integer);" 
 			onKeyPress="Mascara(this,Integer);" 
 			onKeyUp="Mascara(this,Integer);">
@@ -166,7 +166,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 				}else{
 					subgroup_register(document.getElementById('subgroup_name').value,document.getElementById('subgroup_itens').value,<?php echo $_GET['group_id']; ?>)
 				}
-				">save</button>
+				"><?php echo $_SESSION[$_SESSION['lang']]['save']; ?></button>
 			</div>
 			
 				
@@ -185,7 +185,7 @@ include("../controllers/EC_Build_value_pie.class.php");
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Subgroup description</h4>
+							<h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Subgroup description']; ?></h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
@@ -194,25 +194,25 @@ include("../controllers/EC_Build_value_pie.class.php");
 						<form id="frmUpdateSubGroup"  name="frmUpdateSubGroup" method="post">
 						<input type="hidden" class="form-control" id="subgroup_selected" name="subgroup_selected" value="" required>
 							<div class="form-group">
-								<label for="Name">Name of this subgroups</label>
+								<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Name of this subgroups']; ?></label>
 								<input type="text" class="form-control" id="nameSubgroup" name="nameSubgroup" placeholder="" value="" required>
 								</div>
 								
 								
 								<div class="form-group">
-								<label for="Name">Definition</label>
+								<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Definition']; ?></label>
 								<textarea name="definitioSubgroup" id="definitioSubgroup" class="form-control" ></textarea>
 								</div>
 							
 								<div class="form-group">
-									<label for="Name">Notes</label>
+									<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Notes']; ?></label>
 									<textarea name="noteSubgroup" id="noteSubgroup" class="form-control" ></textarea>
 								</div>
 							
 						</div>
 						<div class="modal-footer justify-content-between">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary" onclick="if(document.getElementById('nameSubgroup').value==''){ alert('Fill the subgroup name');  }else{subgroup_update(); $('#modal-sub').modal('hide');}">Save changes</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>
+							<button type="button" class="btn btn-primary" onclick="if(document.getElementById('nameSubgroup').value==''){ alert('Fill the subgroup name');  }else{subgroup_update(); $('#modal-sub').modal('hide');}"><?php echo $_SESSION[$_SESSION['lang']]['Save changes']; ?></button>
 						</div>
 						</form>
 						</div>

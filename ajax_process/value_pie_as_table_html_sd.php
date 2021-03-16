@@ -11,15 +11,15 @@ $go = Build_value_pie::select_ec_groups_value_id($_REQUEST['id']);
 <table class="table table-bordered table-striped">
 								<thead>                  
 								<tr>
-									<th >Items in asset</th>
-									<th>Group</th>
-									<th>Items in group</th>
-									<th >Group as % of asset</th>
-									<th >Subgroup</th>
-									<th >Items in subgroup</th>
-									<th >Subgroup as % of asset</th>
-									<th >Subgroup as % of group</th>
-									<th >Item value as % of asset</th>
+									<th ><?php echo $_SESSION[$_SESSION['lang']]['Items in asset']; ?></th>
+									<th><?php echo $_SESSION[$_SESSION['lang']]['Group']; ?></th>
+									<th><?php echo $_SESSION[$_SESSION['lang']]['Items in group']; ?></th>
+									<th ><?php echo $_SESSION[$_SESSION['lang']]['Group as % of asset']; ?></th>
+									<th ><?php echo $_SESSION[$_SESSION['lang']]['Subgroup']; ?></th>
+									<th ><?php echo $_SESSION[$_SESSION['lang']]['Items in subgroup']; ?></th>
+									<th ><?php echo $_SESSION[$_SESSION['lang']]['Subgroup as % of asset']; ?></th>
+									<th ><?php echo $_SESSION[$_SESSION['lang']]['Subgroup as % of group']; ?></th>
+									<th ><?php echo $_SESSION[$_SESSION['lang']]['Item value as % of asset']; ?></th>
 								</tr>
 								</thead>
 								<tbody>

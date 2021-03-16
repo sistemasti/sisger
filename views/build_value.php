@@ -1,7 +1,7 @@
 <?php require_once("header.php");
 if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo'<script language= "JavaScript">alert("You dont have permission to access this page");location.href="index"</script>';
+	echo'<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
 
 } 
 
@@ -64,7 +64,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-10">
-            <h1>Build the value pie</h1>
+            <h1><?php echo $_SESSION[$_SESSION['lang']]['Build the value pie']; ?></h1>
           </div>
           <div class="col-sm-2">
             <!--<ol class="breadcrumb float-sm-right">
@@ -89,7 +89,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 				
 				<div class="card">
 					<div class="card-body">
-					<h3>Groups</h3>
+					<h3><?php echo $_SESSION[$_SESSION['lang']]['Groups']; ?></h3>
 						<div>
 						<br>
 							<table class="table table-sm">
@@ -153,7 +153,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								<tr>
 									
 									<td>
-									no groups registered for this project
+									<?php echo $_SESSION[$_SESSION['lang']]['no groups registered for this project']; ?>
 									</td>
 									
 									
@@ -260,7 +260,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									success: function(data) {
 										document.getElementById('subgroup_column').style.display='block';
 										document.getElementById('subgroup_column').innerHTML=data;
-										document.getElementById('btnChart').innerHTML="<button type='button' class='btn btn-block bg-gradient-secondary btn-sm'  data-toggle='modal' data-target='#modal-graph"+group_id+"'>Value Pie for the select group</button>";
+										document.getElementById('btnChart').innerHTML="<button type='button' class='btn btn-block bg-gradient-secondary btn-sm'  data-toggle='modal' data-target='#modal-graph"+group_id+"'>"+<?php echo '"'.$_SESSION[$_SESSION['lang']]['Value Pie for the Group selected above'].'"'; ?>+"</button>";
 										
 									}
 									}); 
@@ -381,10 +381,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							}else{
 								document.getElementById('fd_new_group').style.display='none'
 							}
-							">insert a new group</button>
+							"><?php echo $_SESSION[$_SESSION['lang']]['insert a new group']; ?></button>
 							<div id="fd_new_group" style="display:none">
 							<input type="text" class="form-control" id="group_name"	name="group_name" value="" required>
-							<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="if(document.getElementById('group_name').value==''){alert('fill in the name field')}else{group_register(document.getElementById('group_name').value)}">save</button>
+							<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="if(document.getElementById('group_name').value==''){alert('fill in the name field')}else{group_register(document.getElementById('group_name').value)}"><?php echo $_SESSION[$_SESSION['lang']]['save']; ?></button>
 							</div>
 							<script>
 
@@ -411,13 +411,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							</script>
 							
 							<hr>
-							<button type="button" class="btn btn-block bg-gradient-warning btn-sm" data-toggle="modal" data-target="#modal-lg" onclick="loadZoom(document.getElementById('group_selected_for_all').value)">Zoom Description</button>
+							<button type="button" class="btn btn-block bg-gradient-warning btn-sm" data-toggle="modal" data-target="#modal-lg" onclick="loadZoom(document.getElementById('group_selected_for_all').value)"><?php echo $_SESSION[$_SESSION['lang']]['Zoom Description']; ?></button>
 							<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-graph" style="margin-top:4px;" onclick="$('#btnSBNTS').show();
-							$('#btnSBNTS2').hide();">Value Pie for all the asset</button>
+							$('#btnSBNTS2').hide();"><?php echo $_SESSION[$_SESSION['lang']]['Value Pie for all the asset']; ?></button>
 							<div id="groupOption" style="display:none;margin-top:4px;">
 								
 								<div id="btnChart" style="margin-top:4px;">
-								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm"  data-toggle="modal" data-target="#modal-graph2">Value Pie for the select group</button>
+								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm"  data-toggle="modal" data-target="#modal-graph2"><?php echo $_SESSION[$_SESSION['lang']]['Value Pie for the select group']; ?></button>
 								</div>
 								
 							</div>
@@ -517,7 +517,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 								
 								
-								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-table" onclick="view_value_type(document.getElementById('group_selected_for_all').value)" style="margin-top:4px;">Value Pie as a table</button>
+								<button type="button" class="btn btn-block bg-gradient-secondary btn-sm" data-toggle="modal" data-target="#modal-table" onclick="view_value_type(document.getElementById('group_selected_for_all').value)" style="margin-top:4px;"><?php echo $_SESSION[$_SESSION['lang']]['Value Pie as a table']; ?></button>
 								
 								<script>
 								function view_value_type(id) {	
@@ -555,7 +555,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Group description</h4>
+							<h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Group description']; ?></h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
@@ -564,25 +564,25 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							<div class="form-group">
 							<form id="frmUpdateGroup"  name="frmUpdateGroup" method="post">
 							<input type="hidden" class="form-control" id="group_selected" name="group_selected" value="" required>
-								<label for="Name">Name of this group</label>
+								<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Name of this group']; ?></label>
 								<input type="text" class="form-control" id="nameGroup" name="nameGroup" placeholder="" value="" required>
 								</div>
 								
 								
 								<div class="form-group">
-								<label for="Name">Definition</label>
+								<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Definition']; ?></label>
 								<textarea name="definition" id="definition" class="form-control" ></textarea>
 								</div>
 							
 								<div class="form-group">
-								<label for="Name">Notes</label>
+								<label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Notes']; ?></label>
 								<textarea name="note" id="note" class="form-control" ></textarea>
 								</div>
 							
 						</div>
 						<div class="modal-footer justify-content-between">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary" onclick="if(document.getElementById('nameGroup').value==''){ alert('Fill the group name');  }else{group_update();location.reload();}" >Save changes</button>
+							<button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $_SESSION[$_SESSION['lang']]['Close']; ?></button>
+							<button type="button" class="btn btn-primary" onclick="if(document.getElementById('nameGroup').value==''){ alert('Fill the group name');  }else{group_update();location.reload();}" ><?php echo $_SESSION[$_SESSION['lang']]['Save changes']; ?></button>
 						</div>
 						</form>
 						</div>
@@ -654,7 +654,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					<div class="modal-dialog modal-xl">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Value Pie as a Table</h4>
+							<h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Value Pie as a Table']; ?></h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
@@ -718,7 +718,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Value Pie for all the asset</h4>
+							<h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Value Pie for all the asset']; ?></h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
@@ -729,7 +729,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							<?php 
 							if($totalGrupos > 1){
 							?>
-							<em>Show Group sorted by:</em>
+							<em><?php echo $_SESSION[$_SESSION['lang']]['Show Group sorted by']; ?>:</em>
 							<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="
 							$('#bxPieChart1').hide();
 							$('#bxPieChart2').hide();
@@ -739,7 +739,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart5').show();
 							$('#bxPieChart6').hide();
 							$('#bxPieChart7').hide();
-							">sorted by group name</button>
+							"><?php echo $_SESSION[$_SESSION['lang']]['sorted by group name']; ?></button>
 							
 							<button type="button" class="btn btn-block bg-gradient-success btn-sm" onclick="
 							$('#bxPieChart1').hide();
@@ -750,12 +750,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart5').hide();
 							$('#bxPieChart6').show();
 							$('#bxPieChart7').hide();
-							">sorted by size of the group slice</button>
+							"><?php echo $_SESSION[$_SESSION['lang']]['sorted by size of the group slice']; ?></button>
 								
 							<?php 
 							}else{
 							?>
-							<span style="color: #4b6e80"><em>Since there is only one group entered, the Group <br>related buttons have been removed.</em></span>
+							<span style="color: #4b6e80"><em><?php echo $_SESSION[$_SESSION['lang']]['Since there is only one group entered, the Group related buttons have been removed']; ?>.</em></span>
 							<br>
 							<?php	
 							}	
@@ -769,14 +769,14 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart5').hide();
 							$('#bxPieChart6').hide();
 							$('#bxPieChart7').hide();
-							">sorted by size of the slice, ASSUMING ALL ITEMS EQUAL</button>
+							"><?php echo $_SESSION[$_SESSION['lang']]['sorted by size of the slice, ASSUMING ALL ITEMS EQUAL']; ?></button>
 						
 							
 						
 							</div>
 							<div class="col-sm-6 col-md-6">
 						
-								<em>Show Subgroup sorted by:</em>
+								<em><?php echo $_SESSION[$_SESSION['lang']]['Show Subgroup sorted by']; ?>:</em>
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
 							$('#bxPieChart1').hide();
 							$('#bxPieChart2').show();
@@ -786,7 +786,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart5').hide();
 							$('#bxPieChart6').hide();
 							$('#bxPieChart7').hide();
-							">sorted by item value</button>
+							"><?php echo $_SESSION[$_SESSION['lang']]['sorted by item value']; ?></button>
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
 							$('#bxPieChart1').hide();
@@ -799,7 +799,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart7').hide();
 							/* $('#btnSBNTS').hide();
 							$('#btnSBNTS2').show(); */
-							">sorted by size of the slice</button>
+							"><?php echo $_SESSION[$_SESSION['lang']]['sorted by size of the slice']; ?></button>
 								<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
 							$('#bxPieChart1').hide();
 							$('#bxPieChart2').hide();
@@ -809,7 +809,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart5').hide();
 							$('#bxPieChart6').hide();
 							$('#bxPieChart7').hide();
-							"  id="btnSBNTS">sorted by name of the subgroup</button>
+							"  id="btnSBNTS"><?php echo $_SESSION[$_SESSION['lang']]['sorted by name of the subgroup']; ?></button>
 							<?php 
 							if($totalGrupos > 1){
 							?>
@@ -822,7 +822,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChart5').hide();
 							$('#bxPieChart6').hide();
 							$('#bxPieChart7').show();
-							"  id="btnSBNTS">sorted by group name, then by item value</button>
+							"  id="btnSBNTS"><?php echo $_SESSION[$_SESSION['lang']]['sorted by group name, then by item value']; ?></button>
 							<?php 
 							}
 							?>
@@ -854,7 +854,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChart2" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie chart by Item Value</h3>
+								<h3 class="card-title"><?php echo $_SESSION[$_SESSION['lang']]['Pie chart by Item Value']; ?></h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -870,7 +870,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							<!-- /.card -->
 							<div class="card card-danger" id="bxPieChart3" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie chart by size of the slice</h3>
+								<h3 class="card-title"><?php echo $_SESSION[$_SESSION['lang']]['Pie chart by size of the slice']; ?></h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -885,7 +885,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							</div>
 							<div class="card card-danger" id="bxPieChart4" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie chart by name of the subgroup</h3>
+								<h3 class="card-title"><?php echo $_SESSION[$_SESSION['lang']]['Pie chart by name of the subgroup']; ?></h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -902,7 +902,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							</div>
 							<div class="card card-danger" id="bxPieChart4c" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie chart by size of the slice, ASSUMING ALL ITEMS EQUAL</h3>
+								<h3 class="card-title"><?php echo $_SESSION[$_SESSION['lang']]['Pie chart by size of the slice, ASSUMING ALL ITEMS EQUAL']; ?></h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -920,7 +920,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChart5" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie chart by group name</h3>
+								<h3 class="card-title"><?php echo $_SESSION[$_SESSION['lang']]['Pie chart by group name']; ?></h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -937,7 +937,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							</div>
 							<div class="card card-danger" id="bxPieChart6" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie chart by size of the group slice</h3>
+								<h3 class="card-title"><?php echo $_SESSION[$_SESSION['lang']]['Pie chart by size of the group slice']; ?></h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -954,7 +954,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							</div>
 							<div class="card card-danger" id="bxPieChart7" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie chart by group name, then by item value</h3>
+								<h3 class="card-title"><?php echo $_SESSION[$_SESSION['lang']]['Pie chart by group name, then by item value']; ?></h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -968,7 +968,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								</div>
 								<!-- /.card-body -->
 								
-							</div><a href="javascript:void(0)" onclick="document.location.reload(true);"><center><button type="button" class="btn btn-success">close & refresh calculations</button></center></a>
+							</div><a href="javascript:void(0)" onclick="document.location.reload(true);"><center><button type="button" class="btn btn-success"><?php echo $_SESSION[$_SESSION['lang']]['close & refresh calculations']; ?></button></center></a>
 							<!-- /.card -->
 						</div>
 						<!--<div class="modal-footer justify-content-between">
@@ -1001,7 +1001,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 						<div class="modal-header">
-							<h4 class="modal-title">Value Pie for the selected group (<?php echo $in['name'];  ?>)</h4>
+							<h4 class="modal-title"><?php echo $_SESSION[$_SESSION['lang']]['Value Pie for the selected group']; ?> (<?php echo $in['name'];  ?>)</h4>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 							</button>
@@ -1012,21 +1012,21 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							$('#bxPieChartGroup2_<?PHP echo $in['id'] ?>').show();
 							$('#bxPieChartGroup3_<?PHP echo $in['id'] ?>').hide();
 							
-							">sorted by item value</button>
+							"><?php echo $_SESSION[$_SESSION['lang']]['sorted by item value']; ?></button>
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
 							$('#bxPieChartGroup1_<?PHP echo $in['id'] ?>').show();
 							$('#bxPieChartGroup2_<?PHP echo $in['id'] ?>').hide();
 							$('#bxPieChartGroup3_<?PHP echo $in['id'] ?>').hide();
 							
-							">sorted by size of the slice</button>
+							"><?php echo $_SESSION[$_SESSION['lang']]['sorted by size of the slice']; ?></button>
 							
 							<button type="button" class="btn btn-block bg-gradient-primary btn-sm" onclick="
 							$('#bxPieChartGroup1_<?PHP echo $in['id'] ?>').hide();
 							$('#bxPieChartGroup2_<?PHP echo $in['id'] ?>').hide();
 							$('#bxPieChartGroup3_<?PHP echo $in['id'] ?>').show();
 							
-							">sorted by name of the subgroup</button>
+							"><?php echo $_SESSION[$_SESSION['lang']]['sorted by name of the subgroup']; ?></button>
 							
 							
 							
@@ -1038,7 +1038,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChartGroup1_<?PHP echo $in['id'] ?>">
 								<div class="card-header">
-								<h3 class="card-title">Pie chart by size of the slice</h3>
+								<h3 class="card-title"><?php echo $_SESSION[$_SESSION['lang']]['Pie chart by size of the slice']; ?></h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -1054,7 +1054,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChartGroup2_<?PHP echo $in['id'] ?>" style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie chart by by item value</h3>
+								<h3 class="card-title"><?php echo $_SESSION[$_SESSION['lang']]['Pie chart by by item value']; ?></h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -1070,7 +1070,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							
 							<div class="card card-danger" id="bxPieChartGroup3_<?PHP echo $in['id'] ?>"  style="display:none">
 								<div class="card-header">
-								<h3 class="card-title">Pie chart by name of the subgroup</h3>
+								<h3 class="card-title"><?php echo $_SESSION[$_SESSION['lang']]['Pie chart by name of the subgroup']; ?></h3>
 
 								<div class="card-tools">
 									<button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -1084,7 +1084,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								<!-- /.card-body -->
 							</div>
 							
-							<a href="javascript:void(0)" onclick="document.location.reload(true);"><center><button type="button" class="btn btn-success">close & refresh calculations</button></center></a>
+							<a href="javascript:void(0)" onclick="document.location.reload(true);"><center><button type="button" class="btn btn-success"><?php echo $_SESSION[$_SESSION['lang']]['close & refresh calculations']; ?></button></center></a>
 						
 							<!-- /.card -->
 						</div>
@@ -1593,12 +1593,15 @@ require_once("footer.php");
 			var ctx2 = document.getElementById('pieChart1').getContext('2d');
 			
 			var options = {
-				cutoutPercentage: 50
+				cutoutPercentage: 0,
+				legend: {
+                        onClick: (e) => e.stopPropagation()
+                    }
 			};
 			
 			window.myBar = new Chart(ctx2, {
 				type: 'pie',
-				data: barChartData,
+				data: barChartData,				
 				options: options
 			});
 			
@@ -1606,7 +1609,10 @@ require_once("footer.php");
 			var ctx3 = document.getElementById('pieChart2b').getContext('2d');
 			
 			var options = {
-				cutoutPercentage: 50
+				cutoutPercentage: 0,
+				legend: {
+                        onClick: (e) => e.stopPropagation()
+                    }
 			};
 			
 			window.myBar = new Chart(ctx3, {
@@ -1620,7 +1626,10 @@ require_once("footer.php");
 			var ctx4 = document.getElementById('pieChart3b').getContext('2d');
 			
 			var options = {
-				cutoutPercentage: 50
+				cutoutPercentage: 0,
+				legend: {
+                        onClick: (e) => e.stopPropagation()
+                    }
 			};
 			
 			window.myBar = new Chart(ctx4, {
@@ -1634,7 +1643,7 @@ require_once("footer.php");
 			var ctx5 = document.getElementById('pieChart4b').getContext('2d');
 			
 			var options = {
-				cutoutPercentage: 50
+				cutoutPercentage: 0
 			};
 			
 			window.myBar = new Chart(ctx5, {
@@ -1648,7 +1657,10 @@ require_once("footer.php");
 			var ctx6 = document.getElementById('pieChart4c').getContext('2d');
 			
 			var options = {
-				cutoutPercentage: 50
+				cutoutPercentage: 0,
+				legend: {
+                        onClick: (e) => e.stopPropagation()
+                    }
 			};
 			
 			window.myBar = new Chart(ctx6, {
@@ -1662,7 +1674,10 @@ require_once("footer.php");
 			var ctx7 = document.getElementById('pieChart5').getContext('2d');
 			
 			var options = {
-				cutoutPercentage: 50
+				cutoutPercentage: 0,
+				legend: {
+                        onClick: (e) => e.stopPropagation()
+                    }
 			};
 			
 			window.myBar = new Chart(ctx7, {
@@ -1677,7 +1692,10 @@ require_once("footer.php");
 			var ctx8 = document.getElementById('pieChart6').getContext('2d');
 			
 			var options = {
-				cutoutPercentage: 50
+				cutoutPercentage: 0,
+				legend: {
+                        onClick: (e) => e.stopPropagation()
+                    }
 			};
 			
 			window.myBar = new Chart(ctx8, {
@@ -1692,7 +1710,10 @@ require_once("footer.php");
 			var ctx9 = document.getElementById('pieChart7').getContext('2d');
 			
 			var options = {
-				cutoutPercentage: 50
+				cutoutPercentage: 0,
+				legend: {
+                        onClick: (e) => e.stopPropagation()
+                    }
 			};
 			
 			window.myBar = new Chart(ctx9, {
@@ -1705,7 +1726,10 @@ require_once("footer.php");
 			var ctx = document.getElementById('pieChart1').getContext('2d');
 			
 			var options = {
-				cutoutPercentage: 50
+				cutoutPercentage: 0,
+				legend: {
+                        onClick: (e) => e.stopPropagation()
+                    }
 			};
 			
 			window.myBar = new Chart(ctx, {
@@ -1738,7 +1762,10 @@ require_once("footer.php");
 						var ctx_g<?PHP echo $in['id'] ?> = document.getElementById('pieChartGroup_NameOfGroup_'+''+<?PHP echo $in['id'] ?>+'').getContext('2d');
 						
 						var options = {
-							cutoutPercentage: 50
+							cutoutPercentage: 0,
+							legend: {
+									onClick: (e) => e.stopPropagation()
+								}
 						};
 						
 						window.myBar = new Chart(ctx_g<?PHP echo $in['id'] ?>, {
@@ -1753,7 +1780,10 @@ require_once("footer.php");
 						var ctx_h<?PHP echo $in['id'] ?> = document.getElementById('pieChartGroup_itemValue_'+''+<?PHP echo $in['id'] ?>+'').getContext('2d');
 						
 						var options = {
-							cutoutPercentage: 50
+							cutoutPercentage: 0,
+							legend: {
+									onClick: (e) => e.stopPropagation()
+								}
 						};
 						
 						window.myBar = new Chart(ctx_h<?PHP echo $in['id'] ?>, {
@@ -1768,7 +1798,10 @@ require_once("footer.php");
 						var ctx_i<?PHP echo $in['id'] ?> = document.getElementById('pieChartGroup_sizeSlice_'+''+<?PHP echo $in['id'] ?>+'').getContext('2d');
 						
 						var options = {
-							cutoutPercentage: 50
+							cutoutPercentage: 0,
+							legend: {
+									onClick: (e) => e.stopPropagation()
+								}
 						};
 						
 						window.myBar = new Chart(ctx_i<?PHP echo $in['id'] ?>, {
