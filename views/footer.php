@@ -4,7 +4,7 @@
     <strong><!--CCI Heritage Risk Management Database.--></strong>
     <?php echo $_SESSION[$_SESSION['lang']]['All rights reserved']; ?>.
     <div class="float-right d-none d-sm-inline-block">
- <b><?php echo $_SESSION[$_SESSION['lang']]['Version']; ?></b> 1.0.11
+ <b><?php echo $_SESSION[$_SESSION['lang']]['Version']; ?></b> 1.0.12a
     </div>
   </footer>
 </div>
