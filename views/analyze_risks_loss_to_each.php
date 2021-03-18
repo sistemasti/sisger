@@ -241,9 +241,7 @@
 													selectElement('pl', document.getElementById('marcacao2').value);
 													selectElement('le', document.getElementById('marcacao3').value);
 													
-													document.getElementById('valid1b').value=0;
-													document.getElementById('valid2b').value=0;
-													document.getElementById('valid3b').value=0;
+													
 													
 													
 													magnitudeRisk();
@@ -261,9 +259,6 @@
 													selectElement('pl2', document.getElementById('marcacao2').value);
 													selectElement('le2', document.getElementById('marcacao3').value);
 													
-													document.getElementById('valid1b').value=0;
-													document.getElementById('valid2b').value=0;
-													document.getElementById('valid3b').value=0;
 													
 													magnitudeRisk();
 													" <?php if($steps == "2"){ echo "checked"; } ?>> <?php echo $_SESSION[$_SESSION['lang']]['Steps in fraction']; ?><br>
@@ -281,9 +276,6 @@
 													selectElement('pl3', document.getElementById('marcacao2').value);
 													selectElement('le3', document.getElementById('marcacao3').value);
 													
-													document.getElementById('valid1b').value=0;
-													document.getElementById('valid2b').value=0;
-													document.getElementById('valid3b').value=0;
 													
 													magnitudeRisk();
 													" <?php if($steps == "3"){ echo "checked"; } ?>> <?php echo $_SESSION[$_SESSION['lang']]['Steps in percentage']; ?><br>
@@ -298,9 +290,7 @@
 													selectElement('he4', document.getElementById('marcacao1').value);
 													selectElement('pl4', document.getElementById('marcacao2').value);
 													selectElement('le4', document.getElementById('marcacao3').value);
-													
-													document.getElementById('valid1b').value=0;
-													document.getElementById('valid2b').value=0;													document.getElementById('valid3b').value=0;													
+																										
 													
 													magnitudeRisk();
 													" <?php if($steps == "4"){ echo "checked"; } ?> >  <?php echo $_SESSION[$_SESSION['lang']]['Steps in decimals']; ?><br>
@@ -316,9 +306,6 @@
 													selectElement('pl5', '');
 													selectElement('le5', '');
 													
-													document.getElementById('valid1b').value=0;
-													document.getElementById('valid2b').value=0;
-													document.getElementById('valid3b').value=0;
 													
 													document.getElementById('B_fdLow').value=0;
 													document.getElementById('B_fdProbable').value=0;
@@ -458,7 +445,7 @@
 													</div>
 													<div class="form-group">
 														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Low estimate']; ?></label>
-														<select class="form-control" id="le2" name="le2" onchange="range_L_E_I('Low',this.value);document.getElementById('valid2b').value=this.value;
+														<select class="form-control" id="le2" name="le2" onchange="range_L_E_I('Low',this.value);document.getElementById('valid3b').value=this.value;
 														document.getElementById('marcacao3').value=this.value;
 														">
                            

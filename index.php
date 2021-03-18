@@ -59,6 +59,11 @@ $router
         require './views/value_pie_pdf.php';
     })	
 	
+	//value_pie_pdf_xls
+	->on('GET', '/value_pie_pdf_xls', function () {
+        require './views/value_pie_pdf_xls.php';
+    })	
+	
 	//risk_graph_pdf
 	->on('GET', '/risk_graph_pdf', function () {
         require './views/risk_graph_pdf.php';

@@ -591,10 +591,13 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#he").val(data['he']);
 								$("#pl").val(data['pl']);
 								$("#le").val(data['le']);
-								
+								//document.getElementById('valid1b').value=this.value
 								$("#marcacao1").val(data['he']);
 								$("#marcacao2").val(data['pl']);
 								$("#marcacao3").val(data['le']);
+								$("#valid1b").val(data['he']);
+								$("#valid2b").val(data['pl']);
+								$("#valid3b").val(data['le']);
 								
 							}	
 							
@@ -615,6 +618,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#marcacao2").val(data['pl2']);
 								$("#marcacao3").val(data['le2']);
 								
+								$("#valid1b").val(data['he2']);
+								$("#valid2b").val(data['pl2']);
+								$("#valid3b").val(data['le2']);
+								
 							}	
 							
 							if(data['steps'] == "3"){
@@ -634,6 +641,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#marcacao2").val(data['pl3']);
 								$("#marcacao3").val(data['le3']);
 								
+								$("#valid1b").val(data['he3']);
+								$("#valid2b").val(data['pl3']);
+								$("#valid3b").val(data['le3']);
+								
 							}	
 							
 							if(data['steps'] == "4"){
@@ -648,6 +659,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#he4").val(data['he4']);
 								$("#pl4").val(data['pl4']);
 								$("#le4").val(data['le4']);
+								
+								$("#valid1b").val(data['he4']);
+								$("#valid2b").val(data['pl4']);
+								$("#valid3b").val(data['le4']);
 								
 								$("#marcacao1").val(data['he4']);
 								$("#marcacao2").val(data['pl4']);
@@ -668,6 +683,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#he5").val(data['he5']);
 								$("#pl5").val(data['pl5']);
 								$("#le5").val(data['le5']);
+								
+								$("#valid1b").val(data['he5']);
+								$("#valid2b").val(data['pl5']);
+								$("#valid3b").val(data['le5']);
 								
 							}	
 							 
