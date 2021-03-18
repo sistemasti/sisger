@@ -19,6 +19,18 @@ $dados['risk']			= $status['name'];
 $dados['fr_zoom_link']							= $ar['fr_zoom_link'];	
 $dados['le_zoom_link']							= $ar['le_zoom_link'];	
 $dados['ia_zoom_link']							= $ar['ia_zoom_link'];	
+
+if($dados['fr_zoom_link'] == null){
+	$ar['fr_zoom_link'] =  "";
+}
+
+if($dados['le_zoom_link'] == null){
+	$ar['le_zoom_link'] =  "";
+}
+if($dados['ia_zoom_link'] == null){
+	$ar['ia_zoom_link'] =  "";
+}
+
 if($ar['num'] > 0){
 	
 	

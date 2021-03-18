@@ -905,7 +905,7 @@
 	
 	$_SESSION['eng']['Uncertainty range']											= "Uncertainty range";
 	
-	$_SESSION['eng']['Explain the estimates of items affected']						= "Explain your estimates of loss of value in each item affected";
+	$_SESSION['eng']['Explain the estimates of items affected']						= "Explain the estimates of items affected";
 	
 	$_SESSION['eng']['What fraction of the value will be affected?']				= "What fraction of the value will be affected?";
 	

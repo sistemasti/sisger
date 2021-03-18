@@ -1647,7 +1647,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#magnitude_IA_MEDIA").html(data['magnitude_IA_MEDIA']);
 								$("#magnitude_SOMA_MEDIA").html(data['magnitude_SOMA_MEDIA']);		
 							 -->
-							 	 <h4><?php echo $_SESSION[$_SESSION['lang']]['ABC Scores']; ?></h4>
+							 	 <div style="float:right"><strong><?php echo mb_strtoupper($_SESSION[$_SESSION['lang']]['ABC Scores']); ?></strong></div>
 							 
 							  <table class="table table-sm">
 								  <thead>
@@ -1703,7 +1703,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								<!---- ##################################### --->
 								<div class="col-sm-4 col-md-6" style="padding:16px;background-color:#f9f2d2">
 								
-							 	 <h4><?php echo $_SESSION[$_SESSION['lang']]['ABC Scores']; ?></h4>
+							 	  <div style="float:right"><strong><?php echo mb_strtoupper($_SESSION[$_SESSION['lang']]['ABC Scores']); ?></strong></div>
 							   <table class="table table-sm">
 								  <thead>
 									<tr>

@@ -303,7 +303,15 @@ $('#downloadPdf').click(function(event) {
 			var ctx5 = document.getElementById('pieChart4b').getContext('2d');
 			
 			var options = {
-				cutoutPercentage: 0
+				cutoutPercentage: 0,
+				
+					legend: {
+						labels: {
+								fontColor: "black",
+								fontSize: 16
+							},
+							onClick: (e) => e.stopPropagation()
+						}
 			};
 			
 			window.myBar = new Chart(ctx5, {
@@ -329,14 +337,30 @@ $('#downloadPdf').click(function(event) {
 					scales: {
 						xAxes: [{
 							stacked: true,
+							ticks: {
+								fontColor: "#000000",
+								fontSize: 14,
+								stepSize: 1,
+								beginAtZero: true
+							}
 						}],
 						yAxes: [{
-							stacked: true
+							stacked: true,
+							ticks: {
+								fontColor: "#000000",
+								fontSize: 14,
+								stepSize: 1,
+								beginAtZero: true
+							}
 						}]
 					},
-							legend: {
-									onClick: (e) => e.stopPropagation()
-								}
+					legend: {
+						labels: {
+								fontColor: "black",
+								fontSize: 16
+							},
+							onClick: (e) => e.stopPropagation()
+						}
 				}
 			});
 		};
