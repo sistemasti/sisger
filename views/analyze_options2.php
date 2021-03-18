@@ -1647,10 +1647,18 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#magnitude_IA_MEDIA").html(data['magnitude_IA_MEDIA']);
 								$("#magnitude_SOMA_MEDIA").html(data['magnitude_SOMA_MEDIA']);		
 							 -->
-							 	 <div style="float:right"><strong><?php echo mb_strtoupper($_SESSION[$_SESSION['lang']]['ABC Scores']); ?></strong></div>
+							 	 
 							 
 							  <table class="table table-sm">
 								  <thead>
+								  
+									<tr>
+									  <th ></th>
+									  <th style="width: 40px" colspan="3"><center><strong><?php echo mb_strtoupper($_SESSION[$_SESSION['lang']]['ABC Scores']); ?></strong></center></th>
+									  <!--<th style="width: 40px">Uncertainty range</th>-->
+									  <th style="width: 80px"></th>
+									</tr>
+								  
 									<tr>
 									  <th ></th>
 									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['Low']; ?></th>
@@ -1703,9 +1711,17 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								<!---- ##################################### --->
 								<div class="col-sm-4 col-md-6" style="padding:16px;background-color:#f9f2d2">
 								
-							 	  <div style="float:right"><strong><?php echo mb_strtoupper($_SESSION[$_SESSION['lang']]['ABC Scores']); ?></strong></div>
+							 	  
 							   <table class="table table-sm">
 								  <thead>
+								  
+									<tr>
+									  <th ></th>
+									  <th style="width: 40px" colspan="3"><center><strong><?php echo mb_strtoupper($_SESSION[$_SESSION['lang']]['ABC Scores']); ?></strong></center></th>
+									  <!--<th style="width: 40px">Uncertainty range</th>-->
+									  <th style="width: 80px"></th>
+									</tr>
+								  
 									<tr>
 									  <th ></th>
 									  <th style="width: 40px"><?php echo $_SESSION[$_SESSION['lang']]['Low']; ?></th>
