@@ -108,7 +108,11 @@
 <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <!-- ChartJS -->
 
+<?php if($_GET['order'] == "rlr"){ ?>
+<script src="plugins/chart.js/ChartLinear.min.js"></script>
+<?php }else{ ?>
 <script src="plugins/chart.js/Chart.min.js"></script>
+<?php }?>
 
 <!-- PAGE SCRIPTS -->
 <script src="dist/js/pages/dashboard2.js"></script>

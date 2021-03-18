@@ -155,7 +155,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 										
 										onkeyup="
 										
-										group_edit(document.getElementById('group_name<?php echo $in['id']; ?>').value,this.value,document.getElementById('method_for_quantifying_<?php echo $in['id']; ?>').value,<?php echo $in['id']; ?>);" 
+										group_edit(document.getElementById('group_name<?php echo $in['id']; ?>').value,this.value,document.getElementById('method_for_quantifying_<?php echo $in['id']; ?>').value,<?php echo $in['id']; ?>); " 
+										onkeypress="return keypressed( this , event );"
 										
 										onclick="
 										
@@ -478,7 +479,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 							"><?php echo $_SESSION[$_SESSION['lang']]['insert a new group']; ?></button>
 							<div id="fd_new_group" style="display:none">
 							<input type="text" class="form-control" id="group_name"	name="group_name" value="" required placeholder="Group name">
-							<input type="number" class="form-control" id="value_ratio" name="value_ratio" value="" required placeholder="Value ratio between groups">
+							
+							<input type="text" class="form-control" id="value_ratio" name="value_ratio" value="" required placeholder="Value ratio between groups" onkeypress="return keypressed( this , event );">
+							
+							
 							<select class="form-control" id="method_for_quantifying"
 											name="method_for_quantifying">
 												<option value="1" ><?php echo $_SESSION[$_SESSION['lang']]['Percent of the group']; ?></option>
@@ -1927,3 +1931,31 @@ require_once("footer.php");
 
 		
 	</script>
+	
+<script>
+											
+											function keypressed( obj , e ) {
+												 var tecla = ( window.event ) ? e.keyCode : e.which;
+												 var texto = obj.value
+												// var indexvir = texto.indexOf(",")
+												 var indexpon = texto.indexOf(".")
+												
+												if ( tecla == 8 || tecla == 0 )
+													return true;
+												if ( tecla != 46 && tecla < 48 || tecla > 57 )
+													return false;
+												
+												if (tecla == 46) { if (indexvir !== -1 || indexpon !== -1) {return false} }
+											}
+											
+											function formataAnyDecimal (value,id){
+												
+												var d1 = value.substring(0,1);
+												var d2 = value.substring(1,10);
+												
+												document.getElementById(id).value = d1+','+d2;
+												
+												
+											}
+											
+											</script>	

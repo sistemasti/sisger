@@ -74,7 +74,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="project_register"><button type="button" class="btn btn-block btn-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new project']; ?></button></a>
+			<a href="project_register"><button type="button" class="btn btn-block btn-success "><?php echo $_SESSION[$_SESSION['lang']]['Register a new project']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->

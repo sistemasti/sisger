@@ -1111,6 +1111,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#magnitude_IA_MEDIA").html(data['magnitude_IA_MEDIA']);
 								$("#magnitude_SOMA_MEDIA").html(data['magnitude_SOMA_MEDIA']);		
 							 -->
+							 <h4><?php echo $_SESSION[$_SESSION['lang']]['ABC Scores']; ?></h4>
 							  <table class="table table-sm">
 								  <thead>
 									<tr>

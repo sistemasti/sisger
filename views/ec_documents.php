@@ -74,7 +74,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
             </ol>
 			<br>-->
 			<?php if($readonly != "readonly"){ ?>
-			<a href="document_register"><button type="button" class="btn btn-block btn-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new document']; ?></button></a>
+			<a href="document_register"><button type="button" class="btn btn-block btn-success "><?php echo $_SESSION[$_SESSION['lang']]['Register a new document']; ?></button></a>
 			<?php } ?>
           </div>
         </div>

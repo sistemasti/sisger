@@ -104,7 +104,7 @@ echo "</pre>"; */
 										  <BR>
 										  <BR>
 											<div class="form-group">
-														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain the estimates of items affected']; ?></label>
+														<label for="Sigla"><?php echo $_SESSION[$_SESSION['lang']]['Explain the estimates of items affected.']; ?></label>
 														<textarea class="form-control" name="explain_ia" id="explain_ia" onkeyup="document.getElementById('ia_zoom_explanation_fields').value=this.value"><?php echo $explain_ia; ?></textarea>
 														
 				<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg_ia" style="float:right; margin-top:2px">

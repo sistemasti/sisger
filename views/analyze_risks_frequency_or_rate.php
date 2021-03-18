@@ -474,7 +474,7 @@
 													<div id="fr_zoom_link_bx" style="background-color: #c5dcc6;padding:7px;">
 													<?php 
 													if($fr_zoom_link != "undefined"){
-													echo "Link: <a href='".$fr_zoom_link."' target='_blank'>".$fr_zoom_link."</a>"; 
+													echo "<a href='".$fr_zoom_link."' target='_blank'>".$fr_zoom_link."</a>"; 
 													}
 													?>
 													</div>	

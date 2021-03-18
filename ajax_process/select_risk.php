@@ -15,7 +15,10 @@ $agente = Agents::select_ir_agents_id($status['ir_agents_id']);
 
 $dados['agent'] 		= $agente['agent'] != "" ? $agente['agent']:"";
 $dados['summary'] 		= $status['summary'] != "" ? $status['summary']:"";
-$dados['risk']		= $status['name'];
+$dados['risk']			= $status['name'];
+$dados['fr_zoom_link']							= $ar['fr_zoom_link'];	
+$dados['le_zoom_link']							= $ar['le_zoom_link'];	
+$dados['ia_zoom_link']							= $ar['ia_zoom_link'];	
 if($ar['num'] > 0){
 	
 	

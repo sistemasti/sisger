@@ -266,6 +266,7 @@
 #analyze_risks_items_affecteds2.php
 	$_SESSION['pt-br']['total or almost total loss of value in each item affected'] 		= "perda total ou quase total de valor em cada item afetado";
 	$_SESSION['pt-br']['loss of value in each item affected'] 								= "perda de valor em cada item afetado.";	
+	$_SESSION['pt-br']['loss of value in each item affected.'] 								= "perda de valor em cada item afetado.";	
 	$_SESSION['pt-br']['total or almost total loss of value in each item affected'] 		= "perda total ou quase total de valor em cada item afetado";
 
 	
@@ -480,7 +481,7 @@
 		
 #matrix.php
 		$_SESSION['pt-br']['Mixed Values']											= "valores mistos";
-		$_SESSION['pt-br']['Select the values scale']								= "Selecione a escala de valores";
+		$_SESSION['pt-br']['Select the values scale']								= "Escala de valores";
 		$_SESSION['pt-br']['Register a new value']									= "Registre um novo valor";
 
 		
@@ -712,19 +713,20 @@
 		$_SESSION['pt-br']['Using value pie']											= "Usando gráfico de valor";
 		$_SESSION['pt-br']['Assuming all items of equal value']							= "Assumindo todos os itens de igual valor";
 		$_SESSION['pt-br']['Subgroups']													= "Subgrupos";	 
-		$_SESSION['pt-br']['Magnitude of Risk menu']										= "MR x Matriz de incerteza";
-		$_SESSION['pt-br']['Register a new agent']													= "Registrar um novo agente";
+		$_SESSION['pt-br']['Magnitude of Risk menu']									= "MR x Matriz de incerteza";
+		$_SESSION['pt-br']['Register a new agent']										= "Registrar um novo agente";
 		
-		$_SESSION['pt-br']['Click on "Uncertainty bar" to hide/show.'] 										= "Clique em 'barra de incerteza' para ocultar/mostrar";
+####
+		$_SESSION['pt-br']['Click on "Uncertainty bar" to hide/show.'] 					= "Clique em 'barra de incerteza' para ocultar/mostrar";
 		
-		$_SESSION['pt-br']['Subgroup name']											= "Nome do subgrupo";
-		$_SESSION['pt-br']['Indetify Risks']										= "Identificar riscos";
-		$_SESSION['pt-br']['All fields are required']								= "Todos os campos são obrigatórios";
-		$_SESSION['pt-br']['Data implemented']										= "Data de implementação";
-		$_SESSION['pt-br']['Options summary sentence']								= "Resumo de opções";
-		$_SESSION['pt-br']['Report Institution']								= "Lista de instituições";
-		
-		
+		$_SESSION['pt-br']['Subgroup name']												= "Nome do subgrupo";
+		$_SESSION['pt-br']['Indetify Risks']											= "Identificar riscos";
+		$_SESSION['pt-br']['All fields are required']									= "Todos os campos são obrigatórios";
+		$_SESSION['pt-br']['Data implemented']											= "Data de implementação";
+		$_SESSION['pt-br']['Options summary sentence']									= "Resumo de opções";
+		$_SESSION['pt-br']['Report Institution']										= "Lista de instituições";
+		$_SESSION['pt-br']['ABC Scores']												= "Pontuação ABC";
+		$_SESSION['pt-br']['Explain the estimates of items affected.']					= "Explique as estimativas dos itens afetados.";
 		
 		
 		
@@ -849,7 +851,7 @@
 	$_SESSION['pt-br']['Linear triangle distribution'] 									= "Distribuição linear do triângulo";
 	//$_SESSION['pt-br']['Log triangle distribution'] 									= "Distribuição do triângulo logarítmico";
 	$_SESSION['pt-br']['Simple use of problable value'] 								= "Uso simples de valor provável";
-	$_SESSION['pt-br']['Evaluate Risk'] 												= "Uso simples de valor provável";
+	$_SESSION['pt-br']['Evaluate Risk'] 												= "Avaliar riscos";
 	
 	 /* */
 	
@@ -1019,11 +1021,12 @@
 	#analyze_risks_items_affecteds2.php
 	$_SESSION['eng']['total or almost total loss of value in each item affected'] 		= "total or almost total loss of value in each item affected";
 	$_SESSION['eng']['loss of value in each item affected.'] 								= "loss of value in each item affected";	
+	$_SESSION['eng']['loss of value in each item affected'] 								= "loss of value in each item affected";	
 	$_SESSION['eng']['TOTAL or almost total loss of value in each item affected'] 		= "total or almost total loss of value in each item affected";
 	
 	#analyze_risks_loss_to_each.php	
 	$_SESSION['eng']['What fraction of the value will be lost in each item affected?'] 		= "What fraction of the value will be lost in each item affected?";
-	$_SESSION['eng']['Explain the esimates of loss to each item affected.'] 					= "Explain the esimates of loss to each item affected.";
+	$_SESSION['eng']['Explain the esimates of loss to each item affected.'] 					= "Explain your estimates of loss of value in each item affected.";
 	$_SESSION['eng']['Select the type of scales, then choose from the selection offered (if you use any of the "Steps" options, you can convert between them by changing the option)'] 				= "Select the type of scales, then choose from the selection offered (if you use any of the 'Steps' options, you can convert between them by changing the option)";
 	$_SESSION['eng']['Steps in words'] 															= "Steps in words";
 	$_SESSION['eng']['Steps in words'] 														= "Steps in words";
@@ -1223,7 +1226,7 @@
 #matrix.php
 		$_SESSION['eng']['Magnitude of Risk and Uncertainty matrix']					= "Magnitude of Risk and Uncertainty matrix";
 		$_SESSION['eng']['Enter different values of thereshold to see how the risks partition into the four quadrants']				= "Enter different values of thereshold to see how the risks partition into the four quadrants";
-		$_SESSION['eng']['Magnitude threshould']										= "Magnitude threshould";
+		$_SESSION['eng']['Magnitude threshould']										= "Magnitude threshold";
 		$_SESSION['eng']['Enter a number between 8.0 and 14.0']						= "Enter a number between 8.0 and 14.0";
 		$_SESSION['eng']['Uncertainty threshold']									= "Uncertainty threshold";
 		$_SESSION['eng']['High magnitude + Hight uncertainty = Research now']		= "High magnitude + Hight uncertainty = Research now";
@@ -1289,7 +1292,7 @@
 		$_SESSION['eng']['The items do not possess this contributing value NONE']	= "The items do not possess this contributing value - NONE";
 		$_SESSION['eng']['The items do not possess this contributing value']			= "The items do not possess this contributing value";
 		$_SESSION['eng']['The occurrence of this contributing value in the items is VERY SMALL']	= "The occurrence of this contributing value in the items is VERY SMALL";
-		$_SESSION['eng']['This is the benchmark step, assigned 1 point']				= "This is the benchmark step, score ‘1’";
+		$_SESSION['eng']['This is the benchmark step, assigned 1 point']				= "This is the benchmark step, assigned score ‘1’";
 		$_SESSION['eng']['The occurrence of this contributing value in the items is SMALL']	= "The occurrence of this contributing value in the items is SMALL";
 		$_SESSION['eng']['times greater than that corresponding to the score “1”']	= "times greater than that corresponding to the score “1”";
 		$_SESSION['eng']['The occurrence of this contributing value in the items is MEDIUM']	= "The occurrence of this contributing value in the items is MEDIUM";
@@ -1488,4 +1491,6 @@
 		$_SESSION['eng']['Data implemented']										= "Data implemented";
 		$_SESSION['eng']['Options summary sentence']										= "Options summary sentence";
 		$_SESSION['eng']['Report Institution']								= "Report Institution";
+		$_SESSION['eng']['ABC Scores']								= "ABC Scores";
+		$_SESSION['eng']['Explain the estimates of items affected.']								= "Explain the estimates of items affected.";
 ?>

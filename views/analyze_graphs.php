@@ -128,24 +128,26 @@ require_once("header.php");
 					<br>
 					<canvas id="chart-area6"></canvas>-->
 					
-			
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<center><b><?php echo $_SESSION[$_SESSION['lang']]['Click on "Uncertainty bar" to hide/show.']; ?></b></center>
+					
+						<?php if($_GET['order'] != "rlr" && $_GET['order'] != "gm" ){ ?>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<br>
+						<center><b><?php echo $_SESSION[$_SESSION['lang']]['Click on "Uncertainty bar" to hide/show.']; ?></b></center>
+					<?php } ?>
 					
 				</div>
 				             
@@ -575,10 +577,20 @@ $('#downloadPdf').click(function(event) {
 												}
 												
 											}else{
-												if(strlen($r['name']) > 40){
-													$labels .= "'".substr($r['name'],0,40)."...',";
+												if(strlen($r['name']) >= 35){
+													
+													/* 
+													SOLUÇÃO PARA QUEBRA DE LINHA (MAS AINDA PRECISA DE TRATAMENTO)
+													$l1 = substr($r['name'],0,35);
+													$l2 = substr($r['name'],35,150);
+													$labels .= "[['".$l1."'],['".$l2."']],"; 
+													*/
+													
+													$labels .= "'".substr($r['name'],0,38)."...',";
 												}else{
+													
 													$labels .= "'".$r['name']."',";
+													//$labels .= "'khashdahsdhkjahskdjhakjsdhkakjhkjhasasj',";
 													
 												}	
 											}	
@@ -601,7 +613,7 @@ $('#downloadPdf').click(function(event) {
 		<?php if($_GET['order'] == "l"){ ?>
 		
 			
-			var barChartData = {
+			/* var barChartData2 = {
 				labels: [<?php echo substr($labels,0,-1); ?>],
 				datasets: [{
 					label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
@@ -633,35 +645,34 @@ $('#downloadPdf').click(function(event) {
 							]
 						}]
 
-			};
+			}; */
 			
-		
-		<?php }else if($_GET['order'] == "i"){ ?>
-		
 			var barChartData = {
-				labels: [<?php echo substr($labels,0,-1); ?>],
-				datasets: [
-				
-				 {
-					label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Collection affected']."'"; ?>,
-					backgroundColor: window.chartColors.blue,
-					data: [
-						<?php echo substr($ia,0,-1); ?>
-					]
-				},
-				{
-					label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Frequency / Rate']."'"; ?>,
-					backgroundColor: window.chartColors.red,
-					data: [
-						<?php echo substr($fr,0,-1); ?>
-					]
-				}, {
-					label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
-					backgroundColor: window.chartColors.yellow,
-					data: [
-						<?php echo substr($le,0,-1); ?>
-					]
-				}, {
+						labels: [<?php echo substr($labels,0,-1); ?>],
+						datasets: [
+						{
+							label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
+							backgroundColor: window.chartColors.yellow,
+							stack: 'Stack 0',
+							data: [
+								<?php echo substr($le,0,-1); ?>
+							]
+						},
+						{
+							label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Frequency / Rate']."'"; ?>,
+							backgroundColor: window.chartColors.red,
+							stack: 'Stack 0',
+							data: [
+								<?php echo substr($fr,0,-1); ?>
+							]
+						},  {
+							label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Collection affected']."'"; ?>,
+							backgroundColor: window.chartColors.blue,
+							stack: 'Stack 0',
+							data: [
+								<?php echo substr($ia,0,-1); ?>
+							]
+						} , {
 							label: 'Uncertainty bar',
 							backgroundColor: "#000000",
 							stack: 'Stack 1',
@@ -671,9 +682,51 @@ $('#downloadPdf').click(function(event) {
 							data: [
 								<?php echo substr($unBar,0,-1); ?>
 							]
-						}]
+						} ]
 
-			};
+					};
+		
+		<?php }else if($_GET['order'] == "i"){ ?>
+		
+			var barChartData = {
+						labels: [<?php echo substr($labels,0,-1); ?>],
+						datasets: [
+						{
+							label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Collection affected']."'"; ?>,
+							backgroundColor: window.chartColors.blue,
+							stack: 'Stack 0',
+							data: [
+								<?php echo substr($ia,0,-1); ?>
+							]
+						} ,
+						{
+							label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Loss to object']."'"; ?>,
+							backgroundColor: window.chartColors.yellow,
+							stack: 'Stack 0',
+							data: [
+								<?php echo substr($le,0,-1); ?>
+							]
+						},
+						{
+							label: <?php echo "'".$_SESSION[$_SESSION['lang']]['Frequency / Rate']."'"; ?>,
+							backgroundColor: window.chartColors.red,
+							stack: 'Stack 0',
+							data: [
+								<?php echo substr($fr,0,-1); ?>
+							]
+						},   {
+							label: 'Uncertainty bar',
+							backgroundColor: "#000000",
+							stack: 'Stack 1',
+							
+							barThickness: 6,
+											
+							data: [
+								<?php echo substr($unBar,0,-1); ?>
+							]
+						} ]
+
+					};
 		
 		
 		<?php }else if($_GET['order'] == "gm"){ ?>
@@ -708,6 +761,7 @@ $('#downloadPdf').click(function(event) {
 
 				if($inO['num'] > 0){		 										
 								foreach($inO['dados'] as $inO){
+									//(".$inO['magnitude_of_risk']."/".$linearMR.")
 									$linearMR = pow(10, ($inO['magnitude_of_risk']-15));
 									$labels .= "'".$inO['risk']." ',";	
 									//$perc = porcentagem_nx($inO['magnitude_of_risk'], $magnitudMAX);
@@ -834,107 +888,6 @@ $('#downloadPdf').click(function(event) {
 </script>		
 
 
-
-<script>
-		/* var barChartData2 = {
-			labels: ['Fire', 'Theft', 'Chemical decay', 'Water', 'Bad weather', 'Lost', 'Others'],
-			
-			datasets: [{
-				label: 'Frequenci/Rate (A)',
-				backgroundColor: window.chartColors.red,
-				stack: 'Stack 0',
-				data: [
-					3,
-					2,
-					4,
-					2,
-					3,
-					7,
-					4
-				]
-			}, {
-				label: 'Loss to object (B)',
-				backgroundColor: window.chartColors.yellow,
-				stack: 'Stack 0',
-				data: [
-					4,
-					5,
-					3,
-					5,
-					2,
-					6,
-					3
-				]
-			}, {
-				label: 'Collection affected (C)',
-				backgroundColor: window.chartColors.blue,
-				stack: 'Stack 0',
-				data: [
-					5,
-					3,
-					7,
-					5,
-					8,
-					1,
-					2
-				]
-			}, {
-				label: 'Uncertainty bar',
-				backgroundColor: "#000000",
-				stack: 'Stack 1',
-				
-				barThickness: 6,
-								
-				data: [
-					[5, 9],
-					[8, 12],
-					[12, 15],
-					[2, 6],
-					[4, 8],
-					[7, 9],
-					[8, 12]
-				]
-			}]
-
-		};
-		window.onload = function() {
-			var ctx3 = document.getElementById('canvas2').getContext('2d');
-			window.myBar = new Chart(ctx3, {
-				type: 'horizontalBar',
-				data: barChartData2,
-				options: {
-					plugins: {
-						title: {
-							display: true,
-							text: 'Chart.js Bar Chart - Stacked'
-						},
-						tooltip: {
-							mode: 'index',
-							intersect: false
-						}
-					},
-					responsive: true,
-					scales: {
-						x: {
-							stacked: true,
-						},
-						y: {
-							stacked: true
-						}
-					}
-				}
-			});
-		}; */
-
-		//document.getElementById('randomizeData').addEventListener('click', function() {
-		//	barChartData.datasets.forEach(function(dataset) {
-		//		dataset.data = dataset.data.map(function() {
-		//			return randomScalingFactor();
-		//		});
-		//	});
-		//	window.myBar.update();
-		//});
-	</script>
 
 <script>		
 		window.onload = function() {

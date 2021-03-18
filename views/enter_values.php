@@ -74,7 +74,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
               <li class="breadcrumb-item active">Report Institution</li>
             </ol>
 			<br>-->
-			<a href="values_register"><button type="button" class="btn btn-block btn-outline-success btn-xs"><?php echo $_SESSION[$_SESSION['lang']]['Register a new value']; ?></button></a>
+			<a href="values_register"><button type="button" class="btn btn-block btn-success"><?php echo $_SESSION[$_SESSION['lang']]['Register a new value']; ?></button></a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -89,7 +89,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 									  <table id="example1" class="table table-bordered table-striped">
 									   <thead>
 																<tr>
-																  <th>ID</th>
+																  
 																  <th><?php echo $_SESSION[$_SESSION['lang']]['Name']; ?></th>                
 																  <th><?php echo $_SESSION[$_SESSION['lang']]['Weight']; ?></th>                
 																  <th><?php echo $_SESSION[$_SESSION['lang']]['Definition']; ?></th>                
@@ -108,7 +108,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 											?>
 													  
 																<tr id="row<?php echo $in['id']; ?>">
-																  <td><?php echo $in['id']; ?></td>
+																
 																  <td><?php echo $in['name_value']; ?></td>
 																  <td><?php echo $in['weight']; ?></td>							 				  
 																  <td><?php echo $in['definition']; ?></td>
