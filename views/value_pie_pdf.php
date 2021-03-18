@@ -72,7 +72,8 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
                 <h2><?php echo $_SESSION[$_SESSION['lang']]['Value pie']; ?></h2>
              <canvas id="pieChart4b" ></canvas>
 			 <BR>
-             <button type="button" class="btn btn-block bg-gradient-info btn-sm" id="downloadPdf"><i class="fas fa-bars"></i> PDF</button>
+             <button type="button" class="btn btn-block bg-gradient-danger btn-sm" id="downloadPdf"><i class="fas fa-file-pdf"></i> PDF</button>
+             <a href="value_pie_pdf_xls"><button type="button" class="btn btn-block bg-gradient-success btn-sm" ><i class="fas fa-file-excel"></i> XLS</button></a>
              <a href="communicate"><button type="button" class="btn btn-block bg-gradient-warning btn-sm" ><i class="fas fa-arrow-circle-left"></i> <?php echo $_SESSION[$_SESSION['lang']]['RETURN']; ?></button></a>
             </div>
             <!-- /.card -->

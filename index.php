@@ -68,6 +68,10 @@ $router
 	->on('GET', '/risk_graph_pdf', function () {
         require './views/risk_graph_pdf.php';
     })	
+	//risk_graph_pdf
+	->on('GET', '/risk_graph_pdf_xls', function () {
+        require './views/risk_graph_pdf_xls.php';
+    })	
 	
 	//USERS
 	->on('GET', '/user_register', function () {

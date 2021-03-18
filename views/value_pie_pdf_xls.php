@@ -62,15 +62,16 @@ function __autoload($className){
           include("./controllers/".$className.".class.php"); 
      }
 } */
-$arquivo = "value_pie.xls";  
+$arquivo = "value_pie_".$_SESSION['project']."_".date("dmY").".xls";  
 
    /**/
 	/**/
-	/* header('Content-Type: application/vnd.ms-excel; charset=UTF-8');
+	/**/ 
+	header('Content-Type: application/vnd.ms-excel; charset=UTF-8');
     header('Content-Disposition: attachment;filename="'.$arquivo.'"');
     header('Cache-Control: max-age=0'); 
   
-    header('Cache-Control: max-age=1');    */
+    header('Cache-Control: max-age=1');    
 ?>
   <!-- DataTables -->
  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
@@ -133,13 +134,13 @@ $arquivo = "value_pie.xls";
         <div class="row" style="margin-left:10%;">
           <div class="col-md-10" style="text-align:center !important;">
             <div class="card">
-                <h2><?php echo $_SESSION[$_SESSION['lang']]['Value pie']; ?></h2>
+                <h2><?php echo $_SESSION[$_SESSION['lang']]['Value pie']; ?> - <?php echo $_SESSION['project']; ?></h2>
              <!--<canvas id="pieChart4b" ></canvas>-->
 			 <table>
 			 <tr style="background-color: #ccc;">
 			 <td><strong><?php echo $_SESSION[$_SESSION['lang']]['Group']; ?></strong></td>
 			 <td><strong><?php echo $_SESSION[$_SESSION['lang']]['Subgroup']; ?></strong></td>
-			 <td></strong><?php echo $_SESSION[$_SESSION['lang']]['Number of items']; ?></strong></td>
+			 <td><strong><?php echo $_SESSION[$_SESSION['lang']]['Number of items']; ?></strong></td>
 			 </tr>
 				<?php 
 				$bgColors2 = "";
@@ -155,7 +156,7 @@ $arquivo = "value_pie.xls";
 						$bgColors2 	.= "'".random_color()."',";
 						$name2 		.= "'".$in2['group_name'].";".$in2['subgroup_name']."',";
 						$data2 		.= $in2['numbers_of_items'].",";
-				}	
+				
 						?>
 						<tr>
 						<td><?php echo $in2['group_name']; ?></td>
@@ -164,7 +165,7 @@ $arquivo = "value_pie.xls";
 						
 						</tr>
 						<?php
-						
+					}		
 		?>
             </div>
             <!-- /.card -->
@@ -193,7 +194,7 @@ $arquivo = "value_pie.xls";
   
 <?php
 
-require_once("footer.php");
+//require_once("footer.php");
 
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>

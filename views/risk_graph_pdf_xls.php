@@ -1,12 +1,77 @@
-<?php
+<?php error_reporting(0); session_start(); 
 
-require_once("header.php");
-if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_SESSION['perfil_logado'] != "3"){ 
 
-	echo '<script language= "JavaScript">alert("'.$_SESSION[$_SESSION['lang']]['You dont have permission to access this page'].'");location.href="index"</script>';
+ini_set("display_errors", 1);
+if(isset($_GET['lang'])){
+	
+	$_SESSION['lang'] = $_GET['lang'];
+	
+}elseif(!isset($_SESSION['lang'])){
 
-} 
+	$_SESSION['lang'] = "eng";
 
+}
+
+//session_name(md5('seg'.$_SERVER['REMOTE_ADDR'].$_SERVER['HTTP_USER_AGENT']));
+
+if(!isset($_SESSION['id_logado'])){
+	
+	echo'<script language= "JavaScript">location.href="login"</script>';
+	
+}	
+
+if($_SESSION['first_acess'] == "1"){
+	
+	echo'<script language= "JavaScript">location.href="first_acess"</script>';
+	
+}	
+
+if((isset($_SESSION['project_fi']) && $_SESSION['project_fi'] == 0) || $_SESSION['perfil_logado'] == 4){
+	$readonly = "readonly";
+}else{ 
+	$readonly = "";
+}		
+
+include("./functions.php");
+include("./translate.php");
+include("./models/DB.class.php");
+include("./controllers/ADM_Institutions.class.php");
+include("./controllers/ADM_Users.class.php");
+include("./controllers/ADM_Projects.class.php");
+include("./controllers/EC_Documents.class.php");
+include("./controllers/IR_Risks.class.php");
+include("./controllers/IR_Agents.class.php");
+include("./controllers/AR_Analyse_risks.class.php");
+include("./controllers/EC_Enter_values.class.php");
+include("./controllers/EC_Build_value_pie.class.php");
+include("./controllers/EC_Select_values.class.php");
+include("./controllers/TR_Analyze_options.class.php");
+include("./controllers/Access.class.php");
+
+/* 
+
+function __autoload($className){
+	
+	 //Carrega models
+	 if(file_exists("./models/".$className.".class.php")){
+          include("./models/".$className.".class.php"); 
+     }
+	 
+	 //Carrega controllers
+     if(file_exists("./controllers/".$className.".class.php")){
+          include("./controllers/".$className.".class.php"); 
+     }<?php echo $_SESSION['project']; ?>
+} */
+$arquivo = "risk_graph_".$_SESSION['project']."_".date("dmY").".xls";  
+
+   /**/
+	/**/
+	/**/ 
+	header('Content-Type: application/vnd.ms-excel; charset=UTF-8');
+    header('Content-Disposition: attachment;filename="'.$arquivo.'"');
+    header('Cache-Control: max-age=0'); 
+  
+    header('Cache-Control: max-age=1');    
 ?>
   <!-- DataTables -->
  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
@@ -62,19 +127,54 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
       <div class="container-fluid">
       
 
-         <section class="content-header">
-     
-    </section>
+         
 		<center>
         <div class="row" style="margin-left:10%;">
           <div class="col-md-10" style="text-align:center !important;">
             <div class="card">
-                <h2><?php echo $_SESSION[$_SESSION['lang']]['Risk Graphs']; ?></h2>
-             <canvas id="canvasRG" ></canvas>
-			 <BR>
-             <button type="button" class="btn btn-block bg-gradient-danger btn-sm" id="downloadPdf"><i class="fas fa-file-pdf"></i> PDF</button>
-			 <a href="risk_graph_pdf_xls"><button type="button" class="btn btn-block bg-gradient-success btn-sm" ><i class="fas fa-file-excel"></i> XLS</button></a>
-             <a href="communicate"><button type="button" class="btn btn-block bg-gradient-warning btn-sm" ><i class="fas fa-arrow-circle-left"></i> <?php echo $_SESSION[$_SESSION['lang']]['RETURN']; ?></button></a>
+                <h2><?php echo $_SESSION[$_SESSION['lang']]['Risk Graphs']; ?> - <?php echo $_SESSION['project']; ?></h2>
+				 <table>
+			 <tr style="background-color: #ccc;">
+				 <td><strong><?php echo $_SESSION[$_SESSION['lang']]['Risk']; ?></strong></td>
+				 <td><strong><?php echo $_SESSION[$_SESSION['lang']]['Frequency / Rate']; ?></strong></td>
+				 <td><strong><?php echo $_SESSION[$_SESSION['lang']]['Loss to object']; ?></strong></td>
+				 <td><strong><?php echo $_SESSION[$_SESSION['lang']]['Collection affected']; ?></strong></td>
+			 </tr>
+				<?php 
+								$in = AR_Analyse_risks::select_analyse_risk_by_project();
+									
+									
+									
+								if($in['num'] > 0){		 										
+									foreach($in['dados'] as $in){
+																		
+											$r = AR_Analyse_risks::select_risk_by_id($in['id_risk']);
+										/* if(strlen($r['name']) > 40){
+												$labels .= "'".substr($r['name'],0,40)."...',";
+											}else{
+												$labels .= "'".$r['name']."',";
+												
+											}
+										$fr .= "'".$in['Expected_Scores_FR']."',";
+										$le .= "'".$in['Expected_Scores_LE']."',";
+										$ia .= "'".$in['Expected_Scores_IA']."',";
+											 */
+											
+											?>
+											<tr>
+											<td><?php echo $r['name']; ?></td>
+											<td><?php echo $in['Expected_Scores_FR']; ?></td>
+											<td><?php echo $in['Expected_Scores_LE']; ?></td>
+											<td><?php echo $in['Expected_Scores_IA']; ?></td>
+											
+											</tr>
+											<?php
+										
+									}
+								}
+								
+		?>
+		</table>
             </div>
             <!-- /.card -->
           </div>
@@ -101,46 +201,12 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
     <!-- Control sidebar content goes here -->
   </aside>
   <!-- /.control-sidebar -->
-  <script>
-  function document_active(id,status) {			
-	  var i = '#row'+id;
-	  $.ajax({
-		type: "POST",
-		url: "ajax_process/documents_active.php",
-		data: {
-			id: id,
-			status: status
-		},
-		success: function(data) {
-		  //$(i).css({"display":"none"});
-		  location.reload();
-		}
-	  });
-	}
-	
-	function document_delete(id) {			
-	  var i = '#row'+id;
-	  $.ajax({
-		type: "POST",
-		url: "ajax_process/document_delete.php",
-		data: {
-			id: id
-		},
-		success: function(data) {
-		  $(i).css({"display":"none"});
-		  //location.reload();
-		}
-	  });
-	}
-	
-	
-  </script>
+  
 <?php
 
-require_once("footer.php");
+//require_once("footer.php");
 
 ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
 <script>
  
 		
@@ -203,55 +269,6 @@ require_once("footer.php");
 	
 
 
-
-$('#downloadPdf').click(function(event) {
-  // get size of report page
-  var reportPageHeight = '800';
-  var reportPageWidth = '900';
-  
-  // create a new canvas object that we will populate with all other canvas objects
-  var pdfCanvas = $('<canvas />').attr({
-    id: "canvaspdf",
-    width: reportPageWidth,
-    height: reportPageHeight
-  });
-  
-  // keep track canvas position
-  var pdfctx = $(pdfCanvas)[0].getContext('2d');
-  var pdfctxX = 0;
-  var pdfctxY = 0;
-  var buffer = 100;
-  
-  // for each chart.js chart
-  $("canvas").each(function(index) {
-    // get the chart height/width
-    var canvasHeight = '350';
-    var canvasWidth = '655';
-    
-    // draw the chart into the new canvas
-    pdfctx.drawImage($(this)[0], pdfctxX, pdfctxY, canvasWidth, canvasHeight);
-    pdfctxX += canvasWidth + buffer;
-    
-    // our report page is in a grid pattern so replicate that in the new canvas
-    if (index % 2 === 1) {
-      pdfctxX = 0;
-      pdfctxY += canvasHeight + buffer;
-    }
-  });
-  
-  // create new pdf and add our new canvas as an image
-  var pdf = new jsPDF({
-  orientation: "portrait",
-  unit: "px",
-  format: [650, 390]
-});
-  pdf.text("SISGER - Risk Graphs", 15, 20);
-  pdf.addImage($(pdfCanvas)[0], 'PNG', 10, 40);
-  
-  // download the pdf
-  pdf.save('risk_graphs.pdf');
-});
-		
 		<?php 
 								$in = AR_Analyse_risks::select_analyse_risk_by_project();
 									
