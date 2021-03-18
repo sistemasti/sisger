@@ -120,8 +120,8 @@ require_once("header.php");
              
 				<div class="col-sm-4 col-md-11">
 					
-					
-					<div style="display: inline-block; background-color:#fff;width:50%;border-left-width: 5px;border-left-color: #7b0606;border-left-style: solid;border-bottom-width: 5px;border-bottom-color: #7b0606;border-bottom-style: solid;overflow: auto;">
+					<!-- ALTERADO PARA REMOVER LINHA REPETIDA div style="display: inline-block; background-color:#fff;width:50%;border-left-width: 5px;border-left-color: #7b0606;border-left-style: solid;border-bottom-width: 5px;border-bottom-color: #7b0606;border-bottom-style: solid;overflow: auto;" -->
+					<div style="display: inline-block; background-color:#fff;width:50%;border-left-width: 5px;border-left-color: #7b0606;border-left-style: solid;border-bottom-width: 5px;border-bottom-color: #7b0606;overflow: auto;">
 					
 					<!-- ############# INPUT ############# cidades_incosistentes.xls-->
 					
