@@ -109,7 +109,8 @@ require_once("header.php");
 				<div class="row">
              
 				<div class="col-sm-4 col-md-8" id="reportPage">
-					<canvas id="canvas" style="position:absolute"></canvas>
+				
+					<canvas id="canvas" style="position:absolute;"></canvas>
 					<canvas id="canvas2" style="position:absolute"></canvas>
 					<!--<canvas id="chart-area"></canvas>
 					<br>
@@ -127,29 +128,12 @@ require_once("header.php");
 					<br>
 					<br>
 					<canvas id="chart-area6"></canvas>-->
-					
-					
-						<?php if($_GET['order'] != "rlr" && $_GET['order'] != "gm" ){ ?>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<center><b><?php echo $_SESSION[$_SESSION['lang']]['Click on "Uncertainty bar" to hide/show.']; ?></b></center>
-					<?php } ?>
+										
+						
 					
 				</div>
+				
+
 				             
 				<div class="col-sm-4 col-md-4">
 					
@@ -208,7 +192,8 @@ require_once("header.php");
 									
 									<a href="analyze_graphs?order=gm&title=<?php echo $_SESSION[$_SESSION['lang']]['By Magnitude of Risk']; ?>" style="text-decoration:none"><button type="button" class="btn btn-block btn-primary btn-sm"  style="margin-top:3px;"><?php echo $_SESSION[$_SESSION['lang']]['By Magnitude of Risk']; ?></button></a>
 									
-								</div>	<!--<br>
+								</div>	
+								<!--<br>
 								<div style="background-color:#ecedf1;padding:10px;">
 									<center><strong>Risk Totals For Groups</strong></center>
 									<br>
@@ -223,6 +208,15 @@ require_once("header.php");
 								<input type="text" disabled="disabled" value="<?php echo $_SESSION['time_horizon']; ?>" style="width:100% !important">
 								<br>
 							</div>
+							
+							<?php if($_GET['order'] != "rlr" && $_GET['order'] != "gm" ){ ?>
+								<div class="col-sm-4 col-md-12"><br>								
+								
+									<center><b><?php echo $_SESSION[$_SESSION['lang']]['Click on "Uncertainty bar" to hide/show.']; ?></b></center>
+									
+								</div>
+							<?php } ?>
+							
 						</div>					
 					
 					</div>
@@ -577,7 +571,7 @@ $('#downloadPdf').click(function(event) {
 												}
 												
 											}else{
-												if(strlen($r['name']) >= 35){
+												if(strlen($r['name']) >= 40){
 													
 													/* 
 													SOLUÇÃO PARA QUEBRA DE LINHA (MAS AINDA PRECISA DE TRATAMENTO)
@@ -586,7 +580,7 @@ $('#downloadPdf').click(function(event) {
 													$labels .= "[['".$l1."'],['".$l2."']],"; 
 													*/
 													
-													$labels .= "'".substr($r['name'],0,38)."...',";
+													$labels .= "'".substr($r['name'],0,40)."...',";
 												}else{
 													
 													$labels .= "'".$r['name']."',";
