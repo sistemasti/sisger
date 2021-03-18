@@ -1010,6 +1010,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#pl_o").val(data['pl_o']);
 								$("#le_o").val(data['le_o']);
 								
+								$("#valid1_o").val(data['he_o']);
+								$("#valid2_o").val(data['pl_o']);
+								$("#valid3_o").val(data['le_o']);
+								
 							}	
 							
 							if($("#steps2").prop("checked")){
@@ -1027,6 +1031,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#pl2_o").val(data['pl2_o']);
 								$("#le2_o").val(data['le2_o']);
 								
+								$("#valid1_o").val(data['he2_o']);
+								$("#valid2_o").val(data['pl2_o']);
+								$("#valid3_o").val(data['le2_o']);
+								
 							}	
 							
 							if($("#steps3").prop("checked")){
@@ -1043,6 +1051,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#he3_o").val(data['he3_o']);
 								$("#pl3_o").val(data['pl3_o']);
 								$("#le3_o").val(data['le3_o']);
+								
+								$("#valid1_o").val(data['he3_o']);
+								$("#valid2_o").val(data['pl3_o']);
+								$("#valid3_o").val(data['le3_o']);
 								
 							}	
 							
@@ -1062,6 +1074,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#pl4_o").val(data['pl4_o']);
 								$("#le4_o").val(data['le4_o']);
 								
+								$("#valid1_o").val(data['he4_o']);
+								$("#valid2_o").val(data['pl4_o']);
+								$("#valid3_o").val(data['le4_o']);
+								
 							}	
 							
 							if($("#steps5").prop("checked")){
@@ -1079,6 +1095,10 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2" && $_S
 								$("#he5_o").val(data['he5_o']);
 								$("#pl5_o").val(data['pl5_o']);
 								$("#le5_o").val(data['le5_o']);
+								
+								$("#valid1_o").val(data['he5_o']);
+								$("#valid2_o").val(data['pl5_o']);
+								$("#valid3_o").val(data['le5_o']);
 								
 							}	
 							 
