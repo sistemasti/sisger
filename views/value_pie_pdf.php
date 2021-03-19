@@ -205,10 +205,58 @@ require_once("footer.php");
 
 
 $('#downloadPdf').click(function(event) {
+	
+	
+	
+	
+	
+	
+//	var w = document.getElementById("content").offsetWidth;
+//  var h = document.getElementById("content").offsetHeight;
+ 
+
+
+
+ //html2canvas(document.getElementById("content"), {
+   // dpi: 300, // Set to 300 DPI
+   // scale: 3, // Adjusts your resolution
+   // onrendered: function(canvas) {
+   //   var img = canvas.toDataURL("image/jpeg", 1);
+      //var doc = new jsPDF('L', 'px', [w, h]);
+     // doc.addImage(img, 'JPEG', 0, 0, w, h);
+    //  doc.save('sample-file.pdf');
+   // }
+  //});
+	
+	
+	
+	
+	
+	
+	
+  
+  var reportPageHeight = document.getElementById("pieChart4b").offsetHeight; //610
+  var reportPageWidth = document.getElementById("pieChart4b").offsetWidth; //1221
+  
+  
+  
+  html2canvas(document.getElementById("pieChart4b"), {
+    dpi: 300, // Set to 300 DPI
+    scale: 1, // Adjusts your resolution
+    onrendered: function(canvas) {
+      var img = canvas.toDataURL("image/png", 1);
+      var doc = new jsPDF('P', 'px', [reportPageWidth, reportPageHeight]);
+	  doc.text("SISGER - Value Pie", 15, 20);
+      doc.addImage(img, 'PNG', -50, 50, reportPageWidth/2, reportPageHeight/2);
+      doc.save('value_pie.pdf');
+    }
+  });
+  
+  /*
   // get size of report page
   var reportPageHeight = '800';
   var reportPageWidth = '900';
-  
+    
   // create a new canvas object that we will populate with all other canvas objects
   var pdfCanvas = $('<canvas />').attr({
     id: "canvaspdf",
@@ -249,7 +297,7 @@ $('#downloadPdf').click(function(event) {
   pdf.addImage($(pdfCanvas)[0], 'PNG', 10, 40);
   
   // download the pdf
-  pdf.save('value_pie.pdf');
+  pdf.save('value_pie.pdf');*/
 });
 		
 		<?php 

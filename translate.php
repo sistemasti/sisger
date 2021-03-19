@@ -1481,7 +1481,7 @@
 		
 		
 ###		
-		$_SESSION['eng']['Click on "Uncertainty bar" to hide/show.'] 										= "Click on 'Uncertainty bar' to hide/show.";
+		$_SESSION['eng']['Click on "Uncertainty bar" to hide/show.'] 										= "Click on 'Uncertainty bar to hide/show.";
 		
 		$_SESSION['eng']['Report']													= "Report";
 		$_SESSION['eng']['Register a new agent']													= "Register a new agent";

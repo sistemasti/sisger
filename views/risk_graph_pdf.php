@@ -205,6 +205,25 @@ require_once("footer.php");
 
 
 $('#downloadPdf').click(function(event) {
+  
+  var reportPageHeight = document.getElementById("canvasRG").offsetHeight; 
+  var reportPageWidth = document.getElementById("canvasRG").offsetWidth; 
+  
+  html2canvas(document.getElementById("canvasRG"), {
+    dpi: 300, // Set to 300 DPI
+    scale: 1, // Adjusts your resolution
+    onrendered: function(canvas) {
+      var img = canvas.toDataURL("image/png", 1);
+      var doc = new jsPDF('P', 'px', [reportPageWidth, reportPageHeight]);
+	  doc.text("SISGER - Risk Graphs", 15, 20);
+      doc.addImage(img, 'PNG', -50, 50, reportPageWidth/2, reportPageHeight/2);
+      doc.save('risk_graphs.pdf');
+    }
+  });
+  
+  
+  
+  /*
   // get size of report page
   var reportPageHeight = '800';
   var reportPageWidth = '900';
@@ -249,7 +268,7 @@ $('#downloadPdf').click(function(event) {
   pdf.addImage($(pdfCanvas)[0], 'PNG', 10, 40);
   
   // download the pdf
-  pdf.save('risk_graphs.pdf');
+  pdf.save('risk_graphs.pdf');  */
 });
 		
 		<?php 
