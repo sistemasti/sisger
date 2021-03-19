@@ -571,7 +571,7 @@ $('#downloadPdf').click(function(event) {
 												}
 												
 											}else{
-												if(strlen($r['name']) >= 40){
+												//if(strlen($r['name']) >= 40){
 													
 													/* 
 													SOLUÇÃO PARA QUEBRA DE LINHA (MAS AINDA PRECISA DE TRATAMENTO)
@@ -580,13 +580,13 @@ $('#downloadPdf').click(function(event) {
 													$labels .= "[['".$l1."'],['".$l2."']],"; 
 													*/
 													
-													$labels .= "'".substr($r['name'],0,40)."...',";
-												}else{
+												//	$labels .= "'".substr($r['name'],0,40)."...',";
+												//}else{
 													
 													$labels .= "'".$r['name']."',";
 													//$labels .= "'khashdahsdhkjahskdjhakjsdhkakjhkjhasasj',";
 													
-												}	
+												//}	
 											}	
 											
 											$iniUncBar = (float)$in['A_min_score']+(float)$in['B_min_score']+(float)$in['C_min_score'];
