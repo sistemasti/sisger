@@ -491,6 +491,7 @@
 	
 
 #project_register.php
+		$_SESSION['pt-br']['mixed_values']												= "Tabela de valor";
 		$_SESSION['pt-br']['Project Registration']								= "Registro de Projeto";
 		$_SESSION['pt-br']['Project type']										= "Tipo de projeto";
 		$_SESSION['pt-br']['Single general value']								= "Valor geral único";
@@ -1250,6 +1251,7 @@
 		$_SESSION['eng']['Project']													= "Project";
 	
 #project_register.php
+		$_SESSION['eng']['mixed_values']												= "Mixed values";
 		$_SESSION['eng']['Project Registration']										= "Project Registration";
 		$_SESSION['eng']['Project type']												= "Project type";
 		$_SESSION['eng']['Single general value']										= "Single general value";

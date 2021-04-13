@@ -201,7 +201,7 @@ if($_SESSION['perfil_logado'] != "1" && $_SESSION['perfil_logado'] != "2"){
                     <label for="Name"><?php echo $_SESSION[$_SESSION['lang']]['Project type']; ?></label>
                      <select class="form-control" id="project_type"
 					name="project_type">
-						<option value="1" selected><?php echo $_SESSION[$_SESSION['lang']]['Mixed values']; ?></option>
+						<option value="1" selected><?php echo $_SESSION[$_SESSION['lang']]['mixed_values']; ?></option>
 						<option value="2" ><?php echo $_SESSION[$_SESSION['lang']]['Single general value']; ?></option>
 					</select>
                   </div>
